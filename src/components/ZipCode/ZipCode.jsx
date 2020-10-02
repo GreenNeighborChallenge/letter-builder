@@ -12,7 +12,7 @@ import InfoPopover from './InfoPopover'
 
 const useStyles = makeStyles({
     root: {
-        maxWidth: "50%",
+        maxWidth: "55%",
         maxHeight: "100%",
     },
     title: {
@@ -50,9 +50,9 @@ const ZipCode = ({dispatch}) => {
                         BE THE CHANGE: State Policy Petition Maker
         </Typography>
                     <Typography variant="h5" component="h2"></Typography>
-                    <Typography className={classes.pos} color="textSecondary">
+                    <Typography className={classes.pos} color="textSecondary" variant='body1' style={{display: 'inline'}}> 
                         The petition maker will walk you through your state's existing energy policies, what they mean, who has influence over them, 
-                        and help you send a letter to them advocating for green policies. <InfoPopover />
+                        and help you send a letter to them advocating for green policies. <span style={{display: 'inline', float: 'right'}}><InfoPopover /></span>
         </Typography> 
                     <div className='zipBox' >
                         <Typography variant='h4'>Enter Your Zip Code</Typography>

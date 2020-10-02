@@ -3,12 +3,12 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 // worker Saga: will be fired on "FETCH_USER" actions
 function* fetchGeo(action) {
-    console.log('got to fetchState with', action.payload)
+    console.log('got to fetchGeo with', action.payload)
     try {
         let response = yield axios.get(`/api/zip/${action.payload}`)
-        put({type: 'ZIP_RESPONSE', payload: response.data})
+        put({type: 'SET_ZIP_RESPONSE', payload: response.data})
     } catch (error) {
-        console.log('error in fetchState', error)
+        console.log('error in fetchGEO', error)
     }
 }
 

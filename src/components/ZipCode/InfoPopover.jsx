@@ -3,6 +3,7 @@ import Popover from '@material-ui/core/Popover';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import InfoIcon from '@material-ui/icons/Info';
+import './ZipCode.css'
 
 const useStyles = makeStyles((theme) => ({
   popover: {
@@ -37,7 +38,7 @@ export default function MouseOverPopover() {
       >
         <InfoIcon />
       </Typography>
-      <Popover  style={{maxWidth: "50%"}}
+      <Popover fontSize='small' style={{maxWidth: "50%"}}
         id="mouse-over-popover"
         className={classes.popover}
         classes={{
