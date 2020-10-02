@@ -38,7 +38,7 @@ const ZipCode = ({dispatch}) => {
     let [zip, changeZip] = useState('');
 
     function sendZip(){
-        dispatch({type: 'POST_ZIP', payload: zip})
+        dispatch({type: 'SEND_ZIP', payload: zip})
         console.log(zip)
     }
 
