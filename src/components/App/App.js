@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import ZipCode from '../ZipCode/ZipCode';
 
 import './App.css';
 
@@ -43,6 +44,12 @@ class App extends Component {
               exact
               path="/about"
               component={AboutPage}
+            />
+            <Route
+              // shows zip code page
+              exact
+              path="/zip"
+              component={ZipCode}
             />
 
             {/* For protected routes, the view could show one of several things on the same route.
