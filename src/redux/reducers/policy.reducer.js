@@ -1,4 +1,4 @@
-const policyReducer = (state = {}, action) => {
+const policyReducer = (state = [], action) => {
     switch (action.type) {
         case 'PUT_POLICIES':
             return action.payload;

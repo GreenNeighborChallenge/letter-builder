@@ -1,0 +1,16 @@
+.cardItem {
+    padding: 5px
+}
+
+.addButton {
+    margin-left: 5px;
+}
+
+.textArea{
+    height: 150px;
+    width: 350px;
+}
+
+.subjectLine {
+    width: 280px
+}
