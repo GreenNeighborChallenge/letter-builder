@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField'
 // import "./Card.css"
 import './ZipCode.css'
+import InfoPopover from './InfoPopover'
 
 const useStyles = makeStyles({
     root: {
@@ -43,7 +44,7 @@ export default function ZipCode() {
                     <Typography variant="h5" component="h2"></Typography>
                     <Typography className={classes.pos} color="textSecondary">
                         The petition maker will walk you through your state's existing energy policies, what they mean, who has influence over them, 
-                        and help you send a letter to them advocating for green policies. <InfoIcon />
+                        and help you send a letter to them advocating for green policies. <InfoPopover />
         </Typography> 
                     <div className='zipBox'>
                         <Typography variant='h4'>Enter Your Zip Code</Typography>
