@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { connect } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import InfoIcon from '@material-ui/icons/Info';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField'
 // import "./Card.css"
@@ -30,9 +29,18 @@ const useStyles = makeStyles({
     }
 });
 
-export default function ZipCode() {
+
+
+const ZipCode = ({dispatch}) => {
+    // const dispatch = useDispatch();
     const classes = useStyles();
 
+    let [zip, changeZip] = useState('');
+
+    function sendZip(){
+        dispatch({type: 'POST_ZIP', payload: zip})
+        console.log(zip)
+    }
 
     return (
         <div className={classes.container}>
@@ -46,14 +54,17 @@ export default function ZipCode() {
                         The petition maker will walk you through your state's existing energy policies, what they mean, who has influence over them, 
                         and help you send a letter to them advocating for green policies. <InfoPopover />
         </Typography> 
-                    <div className='zipBox'>
+                    <div className='zipBox' >
                         <Typography variant='h4'>Enter Your Zip Code</Typography>
                         <Typography variant="h5" component="h2">to find your state's policies and write to your elected officials</Typography>
-                        <TextField label="zip code" variant="outlined"/>
-                        <Button variant='contained'>Go</Button>
+                        <TextField label="zip code" variant="outlined" onChange={(event) => changeZip(event.target.value)}/>
+                        <br />
+                        <Button variant='contained' onClick={sendZip}>Go</Button>
                     </div>
                 </CardContent>
             </Card>
         </div>
     );
 }
+
+export default connect()(ZipCode)
