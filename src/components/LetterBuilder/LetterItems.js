@@ -56,6 +56,7 @@ class LetterItems extends Component {
         return (
             <>
                 <div>
+                <h1 className="policies">Policies</h1>
                     {this.props.store.policies.map((policy) => {
                         return (
                             <div className="cardItem" key={policy.id}>
