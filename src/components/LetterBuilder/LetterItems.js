@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import Button from '@material-ui/core/Button';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { connect } from 'react-redux';
+
 import './LetterItem.css';
+import PolicyButton from './PolicyButton.js'
 
 class LetterItems extends Component {
 
@@ -58,8 +59,7 @@ class LetterItems extends Component {
                     {this.props.store.policies.map((policy) => {
                         return (
                             <div className="cardItem" key={policy.id}>
-                                <Button variant="contained" >{policy.policy}</Button>
-                                <button className="addButton" onClick={() => this.handleAdd(policy.id)}>Add</button>
+                                <PolicyButton policy={policy} handleAdd={()=> this.handleAdd(policy.id)}/>
                             </div>
                         )
                     })}
