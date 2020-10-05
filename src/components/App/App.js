@@ -21,6 +21,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import ZipCode from '../ZipCode/ZipCode';
 import AddressForm from '../AddressForm/AddressForm';
 import LetterBuilder from '../LetterBuilder/LetterBuilder.js'
+import StateGrade from '../StateGrade/StateGrade.jsx'
 
 
 import './App.css';
@@ -51,6 +52,12 @@ class App extends Component {
               exact
               path="/zip"
               component={ZipCode}
+            />
+            <Route
+              // shows zip code page
+              exact
+              path="/grade"
+              component={StateGrade}
             />
 
             <Route
