@@ -38,7 +38,7 @@ export default function MouseOverPopover() {
       >
         <InfoIcon />
       </Typography>
-      <Popover fontSize='small' style={{maxWidth: "50%"}}
+      <Popover fontSize='small' style={{maxWidth: "70%"}}
         id="mouse-over-popover"
         className={classes.popover}
         classes={{

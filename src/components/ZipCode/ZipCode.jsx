@@ -47,10 +47,10 @@ const ZipCode = ({dispatch, store}) => {
         <div className={classes.container}>
             <Card className={classes.root}>
                 <CardContent>
-                    <Typography color="textSecondary" style={{fontSize: 48, fontFamily:'leafy', color:'black'}} gutterBottom>
+                    <div style={{textAlign: 'center'}}>
+                    <Typography color="textSecondary" id='zipTitle' style={{fontSize: 48, fontFamily:'leafy', color:'black'}} gutterBottom>
                         BE THE CHANGE: State Policy Petition Maker
-        </Typography>
-                    <Typography variant="h5" component="h2"></Typography>
+        </Typography></div>
                     <Typography className={classes.pos} color="textSecondary" variant='body1' style={{display: 'inline'}}> 
                         The petition maker will walk you through your state's existing energy policies, what they mean, who has influence over them, 
                         and help you send a letter to them advocating for green policies. <span style={{display: 'inline', float: 'right'}}><InfoPopover /></span>
