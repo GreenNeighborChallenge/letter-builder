@@ -9,8 +9,14 @@
 .textArea{
     height: 150px;
     width: 350px;
+    white-space: pre-line
 }
 
 .subjectLine {
     width: 280px
+}
+
+.policies {
+    margin-top:0px;
+    margin-bottom: 65px
 }

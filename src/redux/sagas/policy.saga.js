@@ -11,9 +11,21 @@ function* fetchPolicies(action){
     }
 }
 
+function* addPolicy(action){
+    try {
+        let response = yield axios.get(`/api/policy/${action.payload}`);
+        console.log(response.data);
+        yield put ({ type: 'SET_POLICY', payload: response.data})
+    } catch (error) {
+        console.log('error setting policy', error)
+    }
+}
+
+
 
 function* policySaga() {
   yield takeLatest('FETCH_POLICIES', fetchPolicies);
+  yield takeLatest('ADD_POLICY', addPolicy);
 }
 
 export default policySaga;
