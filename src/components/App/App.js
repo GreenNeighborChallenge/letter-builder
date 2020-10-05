@@ -19,6 +19,8 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import AddressForm from '../AddressForm/AddressForm';
+import LetterBuilder from '../LetterBuilder/LetterBuilder.js'
+
 
 import './App.css';
 
@@ -42,6 +44,12 @@ class App extends Component {
               exact
               path="/about"
               component={AboutPage}
+            />
+
+            <Route
+              exact
+              path="/letterBuilder"
+              component={LetterBuilder}
             />
 
             {/* For protected routes, the view could show one of several things on the same route.
