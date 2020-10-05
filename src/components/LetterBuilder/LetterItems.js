@@ -6,6 +6,12 @@ import './LetterItem.css';
 
 class LetterItems extends Component {
 
+    state ={
+        subject: this.subject,
+        intro: this.intro,
+        conclusion: this.conclusion
+    }
+
     //this will update page every time a new policy is added to the letter
     componentDidUpdate(prevProps) {
         if (prevProps.store.letter.body !== this.props.store.letter.body) {
@@ -13,23 +19,29 @@ class LetterItems extends Component {
     }
 
     handleSubject = (event) => {
-        this.props.dispatch({ type: 'SET_SUBJECT', payload: event.target.value })
+        this.setState({
+            subject: event.target.value
+        })
     }
 
     handleIntro = (event) => {
-        this.props.dispatch({ type: 'SET_INTRO', payload: event.target.value })
+        this.setState({
+            intro: event.target.value
+        })
     }
 
-    handleBody = (id) => {
+    handleAdd = (id) => {
         this.props.dispatch({ type: 'ADD_POLICY', payload: id })
     }
 
     handleConclusion = (event) => {
-        this.props.dispatch({ type: 'SET_CONCLUSION', payload: event.target.value })
+        this.setState({
+            conclusion: event.target.value
+        })
     }
 
     handleSubmit = () => {
-        console.log('clicked')
+        this.props.dispatch ({ type: 'SET_LETTER', payload: this.state})
     }
 
 
@@ -47,7 +59,7 @@ class LetterItems extends Component {
                         return (
                             <div className="cardItem" key={policy.id}>
                                 <Button variant="contained" >{policy.policy}</Button>
-                                <button className="addButton" onClick={() => this.handleBody(policy.id)}>Add</button>
+                                <button className="addButton" onClick={() => this.handleAdd(policy.id)}>Add</button>
                             </div>
                         )
                     })}
