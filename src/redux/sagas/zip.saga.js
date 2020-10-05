@@ -6,7 +6,7 @@ function* fetchGeo(action) {
     console.log('got to fetchGeo with', action.payload)
     try {
         let response = yield axios.get(`/api/zip/${action.payload}`)
-        put({type: 'SET_ZIP_RESPONSE', payload: response.data})
+        yield put({type: 'SET_ZIP_RESPONSE', payload: response.data})
     } catch (error) {
         console.log('error in fetchGEO', error)
     }

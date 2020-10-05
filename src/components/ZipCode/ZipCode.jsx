@@ -6,6 +6,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField'
+import mapStoreToProps from '../../redux/mapStoreToProps';
 // import "./Card.css"
 import './ZipCode.css'
 import InfoPopover from './InfoPopover'
@@ -31,7 +32,7 @@ const useStyles = makeStyles({
 
 
 
-const ZipCode = ({dispatch}) => {
+const ZipCode = ({dispatch, store}) => {
     // const dispatch = useDispatch();
     const classes = useStyles();
 
@@ -67,4 +68,7 @@ const ZipCode = ({dispatch}) => {
     );
 }
 
-export default connect()(ZipCode)
+
+
+
+export default connect(mapStoreToProps)(ZipCode)
