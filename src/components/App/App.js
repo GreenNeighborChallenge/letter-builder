@@ -10,7 +10,6 @@ import { connect } from 'react-redux';
 
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
-
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import AboutPage from '../AboutPage/AboutPage';
@@ -20,6 +19,9 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import ZipCode from '../ZipCode/ZipCode';
+import AddressForm from '../AddressForm/AddressForm';
+import LetterBuilder from '../LetterBuilder/LetterBuilder.js'
+
 
 import './App.css';
 
@@ -32,7 +34,6 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <h1 className='leafy'>Leafy Test</h1>
           <Nav />
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
@@ -50,6 +51,12 @@ class App extends Component {
               exact
               path="/zip"
               component={ZipCode}
+            />
+
+            <Route
+              exact
+              path="/letterBuilder"
+              component={LetterBuilder}
             />
 
             {/* For protected routes, the view could show one of several things on the same route.
@@ -99,6 +106,12 @@ class App extends Component {
               path="/home"
               component={LandingPage}
               authRedirect="/user"
+            />
+
+            <Route 
+            exact
+            path="/address"
+            component={AddressForm}
             />
 
             {/* If none of the other routes matched, we will show a 404. */}
