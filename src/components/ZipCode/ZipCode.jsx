@@ -10,6 +10,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 // import "./Card.css"
 import './ZipCode.css'
 import InfoPopover from './InfoPopover'
+import StateGrade from '../StateGrade/StateGrade.jsx'
 
 const useStyles = makeStyles({
     root: {
@@ -44,6 +45,7 @@ const ZipCode = ({dispatch, store}) => {
     }
 
     return (
+        <>
         <div className={classes.container}>
             <Card className={classes.root}>
                 <CardContent>
@@ -65,6 +67,9 @@ const ZipCode = ({dispatch, store}) => {
                 </CardContent>
             </Card>
         </div>
+        {store.zip.long_name &&
+        <StateGrade />}
+        </>
     );
 }
 
