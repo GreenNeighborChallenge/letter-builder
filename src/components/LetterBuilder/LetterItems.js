@@ -6,54 +6,37 @@ import './LetterItem.css';
 
 class LetterItems extends Component {
 
-    state = {
-        intro: '',
-        conclusion: '',
-        subject: ''
-    }
-
-    componentDidMount(){
-        this.setState({
-            intro: this.intro,
-            conclusion: this.conclusion,
-            subject: this.subject
-        })
+    //this will update page every time a new policy is added to the letter
+    componentDidUpdate(prevProps) {
+        if (prevProps.store.letter.body !== this.props.store.letter.body) {
+        }
     }
 
     handleSubject = (event) => {
-        this.setState({
-            subject: event.target.value
-        })
+        this.props.dispatch({ type: 'SET_SUBJECT', payload: event.target.value })
     }
 
     handleIntro = (event) => {
-        this.setState({
-            intro: event.target.value
-        })
+        this.props.dispatch({ type: 'SET_INTRO', payload: event.target.value })
     }
 
     handleBody = (id) => {
-        this.props.dispatch ({ type: "ADD_POLICY", payload: id})
-        this.getPolicy()
+        this.props.dispatch({ type: 'ADD_POLICY', payload: id })
     }
 
     handleConclusion = (event) => {
-        this.setState({
-            conclusion: event.target.value
-        })
+        this.props.dispatch({ type: 'SET_CONCLUSION', payload: event.target.value })
     }
 
     handleSubmit = () => {
-        console.log(this.state)
+        console.log('clicked')
     }
 
-    getPolicy = () => {
-        this.props.dispatch ({ type: "GET_POLICY"})
-    }
 
     render() {
 
-        const intro = "To whom it may concern, As a resident of [STATE], I think our state could be doing more to make our air cleaner and healthier, mitigate climate change, and increase citizen control over our energy system. Energy use impacts all of us, but as consumers we don't have a lot of power to make the changes that are urgently needed. I am writing to recommend policy changes that are important to me and to our state."
+        const intro = `"To whom it may concern, 
+        As a resident of [STATE], I think our state could be doing more to make our air cleaner and healthier, mitigate climate change, and increase citizen control over our energy system. Energy use impacts all of us, but as consumers we don't have a lot of power to make the changes that are urgently needed. I am writing to recommend policy changes that are important to me and to our state."`
         const conclusion = "Thank you for taking the time to read my letter. Energy policy is important to [STATE] residents, and we need to act quickly to ensure a safe, healthy, democratic future. I look forward to hearing back from you, and learning how you plan to act on these recommendations."
         const subject = "Energy Policy in YOUR STATE HERE."
 
@@ -75,10 +58,11 @@ class LetterItems extends Component {
                     < br />
                     <textarea className="textArea" height="500px" width="100" defaultValue={intro} onChange={this.handleIntro}></textarea>
                     <br />
-                    <textarea className="textArea" onChange={this.handleBody}></textarea>
+                    <textarea className="textArea" value={this.props.store.letter.body.map(policy => policy + '\n')}>
+                    </textarea>
                     <br />
                     <textarea className="textArea" defaultValue={conclusion} onChange={this.handleConclusion}></textarea>
-                    < br/>
+                    < br />
                     {/* <a>Print a PDF instead!</a> */}
                     <button onClick={this.handleSubmit}>Enter Address</button>
                 </div>
