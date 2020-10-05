@@ -18,6 +18,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import ZipCode from '../ZipCode/ZipCode';
 import AddressForm from '../AddressForm/AddressForm';
 import LetterBuilder from '../LetterBuilder/LetterBuilder.js'
 
@@ -44,6 +45,12 @@ class App extends Component {
               exact
               path="/about"
               component={AboutPage}
+            />
+            <Route
+              // shows zip code page
+              exact
+              path="/zip"
+              component={ZipCode}
             />
 
             <Route
