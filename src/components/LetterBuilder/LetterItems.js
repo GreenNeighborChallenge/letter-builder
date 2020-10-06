@@ -67,6 +67,7 @@ class LetterItems extends Component {
                             </div>
                         )
                     })}
+                    <button>Back</button>
                 </div>
                 <div>
                     <h1>Your Letter</h1>
@@ -84,6 +85,7 @@ class LetterItems extends Component {
                     {/* <a>Print a PDF instead!</a> */}
                     <button onClick={this.handleSubmit}>Enter Address</button>
                 </div>
+                
             </>
         );
     }

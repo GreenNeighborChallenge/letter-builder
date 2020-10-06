@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import PreviewLetter from '../PreviewLetter/PreviewLetter.js'
 //import css
 import './AddressForm.css';
 
@@ -96,7 +97,9 @@ class AddressForm extends Component {
                         <p>{this.props.store.address.firstName}{this.props.store.address.st}</p>
                     }
                 </div>
+                <PreviewLetter />
             </div>
+            
         );
     }
 }
