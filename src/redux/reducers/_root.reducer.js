@@ -1,11 +1,10 @@
 import { combineReducers } from 'redux';
 import errors from './errors.reducer';
 import user from './user.reducer';
-
 import zip from './zip.reducer';
 import address from './address.reducer';
 import states from './states.reducer';
-import policies from './policy.reducer';
+import policyLanguage from './policyLanguage.reducer';
 import reps from './reps.reducer'
 import letter from './letter.reducer';
 
@@ -21,7 +20,7 @@ const rootReducer = combineReducers({
   zip,
   address,
   states,
-  policies,
+  policyLanguage,
   reps, // has representatives
   letter,
 });
