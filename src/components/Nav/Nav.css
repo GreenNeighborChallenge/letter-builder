@@ -8,7 +8,7 @@
 
 .nav {
   margin: 0 0 30px;
-  background-image: url("./river.jpg");
+  /* background-image: url("./river.jpg"); */
   background-repeat: no-repeat;
   background-size: cover;
   overflow: hidden;
