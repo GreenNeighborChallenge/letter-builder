@@ -19,25 +19,27 @@ class StateGrade extends Component{
     render() {
     return (
         <div>
+            {this.props.store.statePolicies &&
+            <>
             <div id='stateTitle'><Typography variant='h4' gutterBottom>Your State: Add Dropdown</Typography></div>
                    <div className='outline'>
                     <Typography>
                       Your state's energy and climate policy, graded:
         </Typography></div>
             <div className='outline' id='grade'>
-                <Typography variant='h1'>B</Typography>
+            <Typography variant='h1'>{this.props.store.statePolicies.policy_grade}</Typography>
             </div>
             <Typography>
                       Your state's existing energy and climate policies:
         </Typography>
             <ul>
-                <li>Climate Action Plan: <span>Get from DB</span></li>
-                <li>Renewable Portfolio Standard (RPS): <span>Get from DB</span></li>
-                <li>Green Pricing Mandate: <span>Get from DB</span></li>
-                <li>Property Assessed Clean Energy (PACE): <span>Get from DB</span></li>
+            <li>Climate Action Plan: <span>{this.props.store.statePolicies.climate_plan}</span></li>
+            <li>Renewable Portfolio Standard (RPS): <span>{this.props.store.statePolicies.portfolio_standard}</span></li>
+            <li>Green Pricing Mandate: <span>{this.props.store.statePolicies.green_pricing}</span></li>
+            <li>Property Assessed Clean Energy (PACE): <span>{this.props.store.statePolicies.pace}</span></li>
             </ul>
             <Typography>
-                      Energy Efficiency Standard: <span>Get from DB</span>
+            Energy Efficiency Standard: <span>{this.props.store.statePolicies.energy_standard}</span>
         </Typography>
                     <Typography variant="h5" component="h2"></Typography>
                     <Typography color="textSecondary"></Typography>
@@ -46,8 +48,8 @@ class StateGrade extends Component{
           
                     <Button style={{display: 'inline', float: 'left', margin: 5}}>Previous</Button>
                     <Button style={{display: 'inline',float: 'right', margin: 5}}>Create Your Letter!</Button>
-         
- 
+                </>
+            }
         </div>
     );
     }
