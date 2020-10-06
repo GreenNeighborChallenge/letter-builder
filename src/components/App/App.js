@@ -20,8 +20,9 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import LetterBuilder from '../LetterBuilder/LetterBuilder.js'
-
+import PickReps from '../PickReps/PickReps'
 import './App.css';
+
 
 class App extends Component {
   componentDidMount() {
@@ -31,8 +32,8 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div>
-          <h1 className='leafy'>Leafy Test</h1>
+        <div className='image' >
+          
           <Nav />
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
@@ -50,6 +51,12 @@ class App extends Component {
               exact
               path="/letterBuilder"
               component={LetterBuilder}
+            />
+
+            <Route
+              exact
+              path="/selectContacts"
+              component={PickReps}
             />
 
             {/* For protected routes, the view could show one of several things on the same route.
