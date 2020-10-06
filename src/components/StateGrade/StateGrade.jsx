@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { connect } from 'react-redux'
+import GradeExplainer from './GradeExplainer.jsx'
 import './StateGrade.css'
 
 
@@ -25,9 +26,11 @@ class StateGrade extends Component{
                    <div className='outline'>
                     <Typography>
                       Your state's energy and climate policy, graded:
-        </Typography></div>
+        </Typography>
+        </div>
             <div className='outline' id='grade'>
             <Typography variant='h1'>{this.props.store.statePolicies.policy_grade}</Typography>
+            <GradeExplainer />
             </div>
             <Typography>
                       Your state's existing energy and climate policies:
