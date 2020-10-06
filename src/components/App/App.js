@@ -25,6 +25,7 @@ import LetterBuilder from '../LetterBuilder/LetterBuilder.js';
 import AdminLanding from '../AdminLanding/AdminLanding.js';
 import AdminPolicies from '../AdminPolicies/AdminPolicies';
 import AdminStates from '../AdminStates/AdminStates';
+import PickReps from '../PickReps/PickReps.jsx';
 
 import StateGrade from '../StateGrade/StateGrade.jsx'
 import './App.css';
