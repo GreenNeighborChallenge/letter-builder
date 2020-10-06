@@ -7,6 +7,7 @@ import address from './address.reducer';
 import states from './states.reducer';
 import policies from './policy.reducer';
 import letter from './letter.reducer';
+import stateInfo from './state.info.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   states,
   policies,
   letter,
+  stateInfo,
 });
 
 export default rootReducer;
