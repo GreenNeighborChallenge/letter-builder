@@ -5,7 +5,7 @@ import user from './user.reducer';
 import zip from './zip.reducer';
 import address from './address.reducer';
 import states from './states.reducer';
-import policies from './policy.reducer';
+import policyLanguage from './policyLanguage.reducer';
 import letter from './letter.reducer';
 
 // rootReducer is the primary reducer for our entire project
@@ -20,7 +20,7 @@ const rootReducer = combineReducers({
   zip,
   address,
   states,
-  policies,
+  policyLanguage,
   letter,
 });
 

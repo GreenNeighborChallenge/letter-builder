@@ -1,6 +1,3 @@
-import update from 'immutability-helper';
-
-
 const letterState = {
     subject: '',
     intro: '',
@@ -23,18 +20,14 @@ const letterReducer = (state = letterState, action) => {
                 conclusion: action.payload.conclusion
             };
         case 'DELETE_POLICY':
-            letterState.body.map((petition_info, i) => {
-                if (action.payload === petition_info[i]) {
-                    const newData = update(letterState, { body: { $splice: petition_info[i] } })
-                    console.log("this is the", newData)
-                    return {
-                        ...state,
-                        body: [newData],
-                    }
-                } else
-                    return state
-            });
-            break;
+            const newBody = state.body.filter((petition_info) => {
+                if (action.payload === petition_info){
+                    return false
+                } else return true
+            }) 
+            return {
+                ...state,
+                body: newBody}
         default:
             return state;
     }

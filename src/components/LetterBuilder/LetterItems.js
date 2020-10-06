@@ -60,7 +60,7 @@ class LetterItems extends Component {
             <>
                 <div>
                     <h1 className="policies">Policies</h1>
-                    {this.props.store.policies.map((policy) => {
+                    {this.props.store.policyLanguage.map((policy) => {
                         return (
                             <div className="cardItem" key={policy.id}>
                                 <PolicyButton policy={policy} handleAdd={() => this.handleAdd(policy.id)} />
