@@ -7,4 +7,5 @@ const policyReducer = (state = [], action) => {
     }
 }
 
+
 export default policyReducer

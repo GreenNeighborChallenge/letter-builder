@@ -10,7 +10,6 @@ import { connect } from 'react-redux';
 
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
-
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import AboutPage from '../AboutPage/AboutPage';
@@ -19,7 +18,11 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import ZipCode from '../ZipCode/ZipCode';
+import AddressForm from '../AddressForm/AddressForm';
 import LetterBuilder from '../LetterBuilder/LetterBuilder.js'
+import StateGrade from '../StateGrade/StateGrade.jsx'
+
 
 import './App.css';
 
@@ -32,7 +35,6 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <h1 className='leafy'>Leafy Test</h1>
           <Nav />
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
@@ -44,6 +46,18 @@ class App extends Component {
               exact
               path="/about"
               component={AboutPage}
+            />
+            <Route
+              // shows zip code page
+              exact
+              path="/zip"
+              component={ZipCode}
+            />
+            <Route
+              // shows zip code page
+              exact
+              path="/grade"
+              component={StateGrade}
             />
 
             <Route
@@ -91,14 +105,19 @@ class App extends Component {
               component={RegisterPage}
               authRedirect="/user"
             />
-            <ProtectedRoute
+            <Route
               // with authRedirect:
               // - if logged in, redirects to "/user"
               // - else shows LandingPage at "/home"
               exact
               path="/home"
-              component={LandingPage}
-              authRedirect="/user"
+              component={ZipCode}
+            />
+
+            <Route 
+            exact
+            path="/address"
+            component={AddressForm}
             />
 
             {/* If none of the other routes matched, we will show a 404. */}

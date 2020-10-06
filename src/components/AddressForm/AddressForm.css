@@ -1,0 +1,12 @@
+.addressFormContainer {
+    width: 50%;
+    text-align: center;
+    position: relative;
+    border: 2px solid black;
+}
+
+.addressForm {
+    left: 25%;
+    height: auto;
+    position: relative;
+}
