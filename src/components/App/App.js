@@ -20,7 +20,10 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import ZipCode from '../ZipCode/ZipCode';
 import AddressForm from '../AddressForm/AddressForm';
-import LetterBuilder from '../LetterBuilder/LetterBuilder.js'
+import LetterBuilder from '../LetterBuilder/LetterBuilder.js';
+import AdminLanding from '../AdminLanding/AdminLanding.js';
+import AdminPolicies from '../AdminPolicies/AdminPolicies';
+import AdminStates from '../AdminStates/AdminStates';
 
 
 import './App.css';
@@ -68,6 +71,7 @@ class App extends Component {
               exact
               path="/user"
               component={UserPage}
+              authRedirect="/admin_home"
             />
 
             <ProtectedRoute
@@ -98,6 +102,25 @@ class App extends Component {
               component={RegisterPage}
               authRedirect="/user"
             />
+
+            <ProtectedRoute
+              exact
+              path="/admin_home"
+              component={AdminLanding}
+            />
+
+            <ProtectedRoute
+              exact
+              path="/admin_policies"
+              component={AdminPolicies}
+            />
+
+            <ProtectedRoute
+              exact
+              path="/admin_states"
+              component={AdminStates}
+            />
+
             <Route
               // with authRedirect:
               // - if logged in, redirects to "/user"
@@ -107,10 +130,10 @@ class App extends Component {
               component={ZipCode}
             />
 
-            <Route 
-            exact
-            path="/address"
-            component={AddressForm}
+            <Route
+              exact
+              path="/address"
+              component={AddressForm}
             />
 
             {/* If none of the other routes matched, we will show a 404. */}
