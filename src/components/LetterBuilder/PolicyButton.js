@@ -8,6 +8,8 @@ import MuiDialogContent from '@material-ui/core/DialogContent';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Button from '@material-ui/core/Button';
+import mapStoreToProps from '../../redux/mapStoreToProps';
+import { connect } from 'react-redux'
 import "./LetterItem.css"
 
 //this is for the popover
@@ -56,7 +58,7 @@ const DialogContent = withStyles((theme) => ({
 
 
 
-export default function PolicyInfo(props) {
+function PolicyInfo(props) {
     //dialog
     const [open, setOpen] = React.useState(false);
 
@@ -80,6 +82,18 @@ export default function PolicyInfo(props) {
     };
 
     const popoverOpen = Boolean(anchorEl);
+
+    //adding policy to letter
+    const [added, addPolicy] = React.useState(false)
+    const handleAdd = () => {
+        props.dispatch({ type: 'ADD_POLICY', payload: props.policy.id });
+        addPolicy(true)
+    }
+
+    const handleDelete = () => {
+        addPolicy(false)
+        props.dispatch({ type: 'DELETE_POLICY', payload: props.policy.petition_info})
+    }
 
     return (
         <div>
@@ -114,7 +128,10 @@ export default function PolicyInfo(props) {
             >
                 <Typography>{props.policy.short_info}</Typography>
             </Popover>
-            <button className="addButton" onClick={props.handleAdd}>Add</button>
+            {added ?
+                <button className="addButton" onClick={handleDelete}>Delete</button> :
+                <button className="addButton" onClick={handleAdd}>Add</button>
+            }
             <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
                 <DialogTitle id="customized-dialog-title" onClose={handleClose}>
                     {props.policy.policy}
@@ -128,3 +145,5 @@ export default function PolicyInfo(props) {
         </div>
     );
 }
+
+export default connect(mapStoreToProps)(PolicyInfo);
