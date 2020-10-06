@@ -1,11 +1,11 @@
 import React, { Component }  from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { connect } from 'react-redux'
 import GradeExplainer from './GradeExplainer.jsx'
 import './StateGrade.css'
+import PolicyExplainer from './PolicyExplainer.jsx';
 
 
 class StateGrade extends Component{
@@ -19,7 +19,7 @@ class StateGrade extends Component{
 
     render() {
     return (
-        <div>
+        <div style={{backgroundColor: 'white'}}>
             {this.props.store.statePolicies &&
             <>
             <div id='stateTitle'><Typography variant='h4' gutterBottom>Your State: Add Dropdown</Typography></div>
@@ -36,7 +36,7 @@ class StateGrade extends Component{
                       Your state's existing energy and climate policies:
         </Typography>
             <ul>
-            <li>Climate Action Plan: <span>{this.props.store.statePolicies.climate_plan}</span></li>
+            <li>Climate Action Plan <PolicyExplainer type={'CAP'}/>: {this.props.store.statePolicies.climate_plan}</li>
             <li>Renewable Portfolio Standard (RPS): <span>{this.props.store.statePolicies.portfolio_standard}</span></li>
             <li>Green Pricing Mandate: <span>{this.props.store.statePolicies.green_pricing}</span></li>
             <li>Property Assessed Clean Energy (PACE): <span>{this.props.store.statePolicies.pace}</span></li>
