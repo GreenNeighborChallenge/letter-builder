@@ -21,9 +21,10 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import ZipCode from '../ZipCode/ZipCode';
 import AddressForm from '../AddressForm/AddressForm';
 import LetterBuilder from '../LetterBuilder/LetterBuilder.js'
-
-
+import PickReps from '../PickReps/PickReps'
+import StateGrade from '../StateGrade/StateGrade.jsx'
 import './App.css';
+
 
 class App extends Component {
   componentDidMount() {
@@ -33,6 +34,7 @@ class App extends Component {
   render() {
     return (
       <Router>
+        <div className='image' >
         <div>
           <Nav />
           <Switch>
@@ -52,11 +54,23 @@ class App extends Component {
               path="/zip"
               component={ZipCode}
             />
+            <Route
+              // shows zip code page
+              exact
+              path="/grade"
+              component={StateGrade}
+            />
 
             <Route
               exact
               path="/letterBuilder"
               component={LetterBuilder}
+            />
+
+            <Route
+              exact
+              path="/selectContacts"
+              component={PickReps}
             />
 
             {/* For protected routes, the view could show one of several things on the same route.
@@ -117,6 +131,7 @@ class App extends Component {
             <Route render={() => <h1>404</h1>} />
           </Switch>
           <Footer />
+        </div>
         </div>
       </Router>
     );
