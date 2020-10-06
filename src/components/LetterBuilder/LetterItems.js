@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import './LetterItem.css';
 import PolicyButton from './PolicyButton.js'
 
 class LetterItems extends Component {
 
-    state ={
+    state = {
         subject: this.subject,
         intro: this.intro,
         conclusion: this.conclusion
@@ -42,25 +43,27 @@ class LetterItems extends Component {
     }
 
     handleSubmit = () => {
-        this.props.dispatch ({ type: 'SET_LETTER', payload: this.state})
+        this.props.dispatch({ type: 'SET_LETTER', payload: this.state })
+        this.props.history.push('/address')
     }
 
 
     render() {
 
+        //will allow this info to still be collected if they aren't edited
         const intro = `"To whom it may concern, 
-        As a resident of [STATE], I think our state could be doing more to make our air cleaner and healthier, mitigate climate change, and increase citizen control over our energy system. Energy use impacts all of us, but as consumers we don't have a lot of power to make the changes that are urgently needed. I am writing to recommend policy changes that are important to me and to our state."`
-        const conclusion = "Thank you for taking the time to read my letter. Energy policy is important to [STATE] residents, and we need to act quickly to ensure a safe, healthy, democratic future. I look forward to hearing back from you, and learning how you plan to act on these recommendations."
-        const subject = "Energy Policy in YOUR STATE HERE."
+        As a resident of ${this.props.store.zip.long_name}, I think our state could be doing more to make our air cleaner and healthier, mitigate climate change, and increase citizen control over our energy system. Energy use impacts all of us, but as consumers we don't have a lot of power to make the changes that are urgently needed. I am writing to recommend policy changes that are important to me and to our state."`
+        const conclusion = `"Thank you for taking the time to read my letter. Energy policy is important to ${this.props.store.zip.long_name} residents, and we need to act quickly to ensure a safe, healthy, democratic future. I look forward to hearing back from you, and learning how you plan to act on these recommendations."`
+        const subject = `Energy Policy in ${this.props.store.zip.long_name}.`
 
         return (
             <>
                 <div>
-                <h1 className="policies">Policies</h1>
+                    <h1 className="policies">Policies</h1>
                     {this.props.store.policies.map((policy) => {
                         return (
                             <div className="cardItem" key={policy.id}>
-                                <PolicyButton policy={policy} handleAdd={()=> this.handleAdd(policy.id)}/>
+                                <PolicyButton policy={policy} handleAdd={() => this.handleAdd(policy.id)} />
                             </div>
                         )
                     })}
@@ -71,8 +74,10 @@ class LetterItems extends Component {
                     < br />
                     <textarea className="textArea" height="500px" width="100" defaultValue={intro} onChange={this.handleIntro}></textarea>
                     <br />
-                    <textarea className="textArea" value={this.props.store.letter.body.map(policy => policy + '\n')}>
-                    </textarea>
+                    {this.props.store.letter.body &&
+                        <textarea className="textArea" value={this.props.store.letter.body.map(policy => policy + '\n')}>
+                        </textarea>
+                    }
                     <br />
                     <textarea className="textArea" defaultValue={conclusion} onChange={this.handleConclusion}></textarea>
                     < br />
@@ -84,4 +89,4 @@ class LetterItems extends Component {
     }
 }
 
-export default connect(mapStoreToProps)(LetterItems);
+export default withRouter(connect(mapStoreToProps)(LetterItems));
