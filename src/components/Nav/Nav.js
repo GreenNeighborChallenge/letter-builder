@@ -17,6 +17,10 @@ const Nav = (props) => {
   }
 
   return (
+    <div className="nav" >
+      <div className='title' >
+        <h1 className='leafy'>Letter Builder</h1>
+      </div>
     <div className="nav">
       <Link to="/home">
         <h1 className="nav-title leafy">The Green Neighbor</h1>

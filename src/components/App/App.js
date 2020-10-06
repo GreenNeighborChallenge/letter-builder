@@ -21,10 +21,10 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import ZipCode from '../ZipCode/ZipCode';
 import AddressForm from '../AddressForm/AddressForm';
 import LetterBuilder from '../LetterBuilder/LetterBuilder.js'
+import PickReps from '../PickReps/PickReps'
 import StateGrade from '../StateGrade/StateGrade.jsx'
-
-
 import './App.css';
+
 
 class App extends Component {
   componentDidMount() {
@@ -34,6 +34,7 @@ class App extends Component {
   render() {
     return (
       <Router>
+        <div className='image' >
         <div>
           <Nav />
           <Switch>
@@ -64,6 +65,12 @@ class App extends Component {
               exact
               path="/letterBuilder"
               component={LetterBuilder}
+            />
+
+            <Route
+              exact
+              path="/selectContacts"
+              component={PickReps}
             />
 
             {/* For protected routes, the view could show one of several things on the same route.

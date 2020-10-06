@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import "./Card.css"
 
+
 const useStyles = makeStyles({
     root: {
         maxWidth: "50%",
