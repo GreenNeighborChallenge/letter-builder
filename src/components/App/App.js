@@ -132,6 +132,7 @@ class App extends Component {
           </Switch>
           <Footer />
         </div>
+        </div>
       </Router>
     );
   }

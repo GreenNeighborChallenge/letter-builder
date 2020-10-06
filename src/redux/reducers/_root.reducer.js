@@ -22,7 +22,7 @@ const rootReducer = combineReducers({
   address,
   states,
   policies,
-  reps // has representatives
+  reps, // has representatives
   letter,
 });
 
