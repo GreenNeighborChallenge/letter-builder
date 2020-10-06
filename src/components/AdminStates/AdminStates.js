@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import AdminStateInfo from './AdminStateInfo';
 
 class AdminStates extends Component {
     state = {
@@ -18,10 +19,10 @@ class AdminStates extends Component {
         this.props.dispatch({ type: 'GET_STATES' })
     }
 
-    getStatesInfo = () => {
+    getStatesInfo = (selectedStateId) => {
         this.props.dispatch({
             type: 'FETCH_STATE_INFO',
-            payload: this.state.selectedState
+            payload: selectedStateId
         });
     };
 
@@ -33,8 +34,8 @@ class AdminStates extends Component {
                 {JSON.stringify(this.state.selectedState)}
 
                 <select onChange={(event) => {
-                    this.setState({ ...this.state, selectedState: event.target.value });
-                    this.getStatesInfo();
+                    this.setState({...this.state, selectedState: event.target.value});
+                    this.getStatesInfo(event.target.value);
                 }}>
                     <option value="">State</option>
                     {this.props.store.states &&
@@ -43,14 +44,10 @@ class AdminStates extends Component {
                         })}
                 </select>
 
-                {this.state.selectedState &&
-                    <div>
-                        <p>PUC:</p>
-                        <p>{this.state.selectedState.stateId}</p>
-                        {/* <p>{this.state.selectedState.state}</p> */}
-                        {JSON.stringify(this.state.selectedState)}
-                    </div>}
-
+                {this.props.store.stateInfo[0] &&
+                <AdminStateInfo 
+                stateInfo={this.props.store.stateInfo[0]}
+                />}
 
             </div>
         );
