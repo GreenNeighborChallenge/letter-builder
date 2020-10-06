@@ -93,7 +93,11 @@ function PreviewLetter(props) {
                         <div>
                             <p>{props.store.letter.intro}</p>
                             <br />
-                            <p>{props.store.letter.body}</p>
+                            {props.store.letter.body.map((policy) => {
+                                return(
+                                    <p>{policy}</p>
+                                )
+                            })}
                             <br />
                             <p>{props.store.letter.conclusion}</p>
                         </div>
