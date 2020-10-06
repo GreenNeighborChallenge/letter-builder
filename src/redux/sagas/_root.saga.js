@@ -21,7 +21,6 @@ export default function* rootSaga() {
     zipSaga(),
     addressSaga(),
     policyLanguageSaga(),
-    policySaga(),
     repsSaga(),
   ]);
 }
