@@ -20,8 +20,16 @@ class AdminStates extends Component {
     }
 
     getStatesInfo = (selectedStateId) => {
+        console.log('this is also running')
         this.props.dispatch({
             type: 'FETCH_STATE_INFO',
+            payload: selectedStateId
+        });
+    };
+
+    getSSEO = (selectedStateId) => {
+        this.props.dispatch({
+            type: 'FETCH_SSEO_INFO',
             payload: selectedStateId
         });
     };
@@ -29,13 +37,12 @@ class AdminStates extends Component {
     render() {
         return (
             <div>
-                <h2>{this.state.heading}</h2>
-                <h2>{this.state.selectedState.id}</h2>
-                {JSON.stringify(this.state.selectedState)}
 
                 <select onChange={(event) => {
+                    console.log('this is changing');
                     this.setState({...this.state, selectedState: event.target.value});
                     this.getStatesInfo(event.target.value);
+                    this.getSSEO(event.target.value);
                 }}>
                     <option value="">State</option>
                     {this.props.store.states &&
