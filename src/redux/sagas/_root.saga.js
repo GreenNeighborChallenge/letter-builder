@@ -6,6 +6,7 @@ import zipSaga from './zip.saga';
 import addressSaga from './address.saga';
 import policySaga from './policy.saga';
 import repsSaga from './reps.saga'
+import officesSaga from './offices.saga'
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
 // This is imported in index.js as rootSaga
@@ -22,5 +23,6 @@ export default function* rootSaga() {
     addressSaga(),
     policySaga(),
     repsSaga(),
+    officesSaga(),
   ]);
 }
