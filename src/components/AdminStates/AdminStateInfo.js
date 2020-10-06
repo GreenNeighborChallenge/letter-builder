@@ -9,7 +9,9 @@ class AdminStateInfo extends Component {
         heading: 'state infoooo Component',
     };
 
-
+    // addSSEO = () => {
+    //     this.props.dispatch({type: 'ADD_SSEO', payload: this.props.stateInfo.state_id})
+    // }
 
     render() {
         // console.log(this.props.store.stateInfo.climate_plan)
