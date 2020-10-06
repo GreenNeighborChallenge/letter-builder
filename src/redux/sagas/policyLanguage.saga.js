@@ -23,9 +23,9 @@ function* addPolicy(action){
 
 
 
-function* policySaga() {
+function* policyLanguageSaga() {
   yield takeLatest('FETCH_POLICIES', fetchPolicies);
   yield takeLatest('ADD_POLICY', addPolicy);
 }
 
-export default policySaga;
+export default policyLanguageSaga;

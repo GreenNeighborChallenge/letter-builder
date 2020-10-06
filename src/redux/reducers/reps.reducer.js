@@ -1,11 +1,10 @@
-const policyReducer = (state = [], action) => {
+const repsReducer = (state = [], action) => {
     switch (action.type) {
-        case 'PUT_POLICIES':
+        case 'PUT_REPS':
             return action.payload;
         default:
             return state;
     }
 }
 
-
-export default policyReducer
+export default repsReducer

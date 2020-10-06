@@ -13,13 +13,25 @@ img {
   display: inline-block;
   max-width: 100%;
 }
+
 @font-face{
   font-family: leafy;
   src: url(./Leafy400.otf);
 }
 .leafy {
-  font-family: leafy;
+  font-family: leafy;  
+  color: white;
 }
+
+.image {
+  background-image: url('/stream.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 1em;
+  padding-bottom: 10em;
+}
+
 /* --------------------------------------------------------------------------------
 Container
 -------------------------------------------------------------------------------- */
@@ -73,7 +85,7 @@ Button
   border-radius: 0;
   background: none;
   font: inherit;
-  color: #444;
+  color: white;
 }
 
 .btn_asLink:hover {
