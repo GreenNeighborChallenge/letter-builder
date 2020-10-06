@@ -24,7 +24,7 @@ class LandingPage extends Component {
         <div className="grid">
           <div className="grid-col grid-col_8">
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+              asdfghjklLorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
               id felis metus. Vestibulum et pulvinar tortor. Morbi pharetra
               lacus ut ex molestie blandit. Etiam et turpis sit amet risus
               mollis interdum. Suspendisse et justo vitae metus bibendum

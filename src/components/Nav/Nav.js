@@ -21,6 +21,10 @@ const Nav = (props) => {
       <div className='title' >
         <h1 className='leafy'>Letter Builder</h1>
       </div>
+    <div className="nav">
+      <Link to="/home">
+        <h1 className="nav-title leafy">The Green Neighbor</h1>
+      </Link>
       <div className="nav-right">
         <Link className="nav-link" to={loginLinkData.path}>
           {/* Show this link if they are logged in or not,

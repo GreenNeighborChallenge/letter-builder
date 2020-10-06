@@ -8,12 +8,18 @@
 
 .nav {
   margin: 0 0 30px;
+  background-image: url("./river.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
   overflow: hidden;
 }
 
 .nav-link {
   float: left;
   color: #f2f2f2;
+  color: black;
+  background: rgba(204, 204, 204, 0.7);
+  /* opacity: 0.5; */
   text-align: center;
   padding: 24px 10px;
   text-decoration: none;
@@ -33,6 +39,7 @@
 
 .nav-link:hover {
   background-color: rgba(255,255,255, .1);
+  background-color: rgba(255, 255, 255, 0.9);
 }
 
 .nav-right {
