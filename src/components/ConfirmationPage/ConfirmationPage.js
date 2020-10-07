@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import { Link } from 'react-router-dom';
 import './ConfirmationPage.css';
 
 class ConfirmationPage extends Component {
@@ -18,8 +19,8 @@ class ConfirmationPage extends Component {
                         Thank you for taking the time to contact your state officials.
                         You will recieve an email copy of your letter for your records.
                     </h4>
-                    <button className="confirmationBtn">Share</button>
-                    <button className="confirmationBtn leafy">Go Back</button>
+                    <Link className="confirmationBtn">Share</Link>
+                    <Link className="confirmationBtn leafy">Go Back</Link>
                 </div>
             </div>
         );

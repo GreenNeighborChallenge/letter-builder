@@ -180,6 +180,7 @@ class AddressForm extends Component {
                     </CardActions>
                     </div>     
                 </Card>
+                <PreviewLetter />
             </div>
             
         );
