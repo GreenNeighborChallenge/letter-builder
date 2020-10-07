@@ -3,7 +3,7 @@ const zipReducer = (state = {}, action) => {
       case 'SET_ZIP_RESPONSE':
         console.log('in zipReducer')
         //array to search
-        // console.log(action.payload.results[0].address_components)
+        console.log(action.payload.results[0].address_components)
       //filters geo data to return only state name object
         let stateInfo = action.payload.results[0].address_components.filter((obj) => {
           return obj.types.includes("administrative_area_level_1");

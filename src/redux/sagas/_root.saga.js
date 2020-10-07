@@ -3,10 +3,13 @@ import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import zipSaga from './zip.saga';
-import addressSaga from './address.saga';
-import policySaga from './policy.saga';
+
+import statesSaga from './states.saga';
+
+import policyLanguageSaga from './policyLanguage.saga';
 import repsSaga from './reps.saga'
 import statePolicySaga from './statePolicy.saga';
+import officesSaga from './offices.saga'
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
 // This is imported in index.js as rootSaga
@@ -20,9 +23,10 @@ export default function* rootSaga() {
     registrationSaga(),
     userSaga(),
     zipSaga(),
-    addressSaga(),
-    policySaga(),
+    statesSaga(),
+    policyLanguageSaga(),
     repsSaga(),
     statePolicySaga(),
+    officesSaga(),
   ]);
 }
