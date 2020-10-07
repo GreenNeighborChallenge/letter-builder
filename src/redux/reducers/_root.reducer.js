@@ -7,6 +7,7 @@ import states from './states.reducer';
 import policyLanguage from './policyLanguage.reducer';
 import reps from './reps.reducer'
 import letter from './letter.reducer';
+import statePolicies from './statePolicies.reducer';
 
 import offices from './offices.reducer'
 
@@ -27,10 +28,10 @@ const rootReducer = combineReducers({
   policyLanguage,
   reps, // has representatives
   letter,
+  statePolicies,
   offices,
   stateInfo,
   sseoInfo,
-
 });
 
 export default rootReducer;
