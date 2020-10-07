@@ -14,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-
 export default function PolicyExplainer(props) {
 
     const classes = useStyles();
