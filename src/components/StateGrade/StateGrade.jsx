@@ -17,6 +17,7 @@ class StateGrade extends Component{
         this.props.dispatch({type: 'FETCH_POLICIES'})
     }
 
+    //searches by policy ID for policy name
     getById = (arr, value) => {
         for (let i=0; i < arr.length; i++) {
           if (arr[i].id === value) {
@@ -24,7 +25,6 @@ class StateGrade extends Component{
               }
           }
         }
-      
 
 
     render() {
@@ -49,13 +49,15 @@ class StateGrade extends Component{
             <ul>
             <li>{this.getById(this.props.store.policyLanguage, 1)}
             <PolicyExplainer type={'CAP'}/>: {this.props.store.statePolicies.climate_plan}</li>
-            <li>{this.getById(this.props.store.policyLanguage, 2)} <PolicyExplainer type={'RPS'}/>: <span>{this.props.store.statePolicies.portfolio_standard}</span></li>
-            <li>{this.getById(this.props.store.policyLanguage, 5)}<PolicyExplainer type={'GPM'} />:<span>{this.props.store.statePolicies.green_pricing}</span></li>
-            <li>{this.getById(this.props.store.policyLanguage, 3)}<PolicyExplainer type={'PACE'} />: <span>{this.props.store.statePolicies.pace}</span></li>
+            <li>{this.getById(this.props.store.policyLanguage, 2)} 
+            <PolicyExplainer type={'RPS'}/>: <span>{this.props.store.statePolicies.portfolio_standard}</span></li>
+            <li>{this.getById(this.props.store.policyLanguage, 5)}
+            <PolicyExplainer type={'GPM'} />:<span>{this.props.store.statePolicies.green_pricing}</span></li>
+            <li>{this.getById(this.props.store.policyLanguage, 3)}
+            <PolicyExplainer type={'PACE'} />: <span>{this.props.store.statePolicies.pace}</span></li>
         
-            <li>
-            {this.getById(this.props.store.policyLanguage, 9)} <PolicyExplainer type={'EES'} />: <span>{this.props.store.statePolicies.energy_standard}</span>
-        </li>
+            <li>{this.getById(this.props.store.policyLanguage, 9)} 
+            <PolicyExplainer type={'EES'} />: <span>{this.props.store.statePolicies.energy_standard}</span></li>
         
             <li>{this.getById(this.props.store.policyLanguage, 4)}:</li>
             <li>{this.getById(this.props.store.policyLanguage, 6)}:</li>

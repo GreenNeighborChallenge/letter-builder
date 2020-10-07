@@ -3,6 +3,8 @@ import Popover from '@material-ui/core/Popover';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
+import mapStoreToProps from '../../redux/mapStoreToProps';
+import { connect } from 'react-redux'
 
 const useStyles = makeStyles((theme) => ({
     popover: {
@@ -17,11 +19,20 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function PolicyExplainer(props) {
+function PolicyExplainer(props) {
 
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
 
+    //searches by policy if for short info text
+    const getById = (arr, value) => {
+        for (let i=0; i < arr.length; i++) {
+          if (arr[i].id === value) {
+              console.log(arr[i].short_info)
+                return arr[i].short_info
+              }
+          }
+        }
 
     const handlePopoverOpen = (event) => {
         setAnchorEl(event.currentTarget);
@@ -65,8 +76,9 @@ export default function PolicyExplainer(props) {
                     onClose={handlePopoverClose}
                     disableRestoreFocus
                 >
-                    <Typography variant='body1'>Climate Action Plans are state- city- or region-wide plans to reduce greenhouse gas emissions and increase resilience. They usually include emissions reduction targets and steps to reach those goals through energy efficiency, land use, green energy, and transportation.</Typography>
+          <Typography variant='body1'>{getById(props.store.policyLanguage, 1)}</Typography>
                 </Popover>}
+
                 {props.type === "RPS" &&
                 <Popover
                     id="mouse-over-popover"
@@ -87,7 +99,7 @@ export default function PolicyExplainer(props) {
                     onClose={handlePopoverClose}
                     disableRestoreFocus
                 >
-                    <h4>I'm an RPS popover</h4>
+                    <Typography variant='body1'>{getById(props.store.policyLanguage, 2)}</Typography>
                 </Popover>}
                 {props.type === "GPM" &&
                 <Popover
@@ -109,7 +121,7 @@ export default function PolicyExplainer(props) {
                     onClose={handlePopoverClose}
                     disableRestoreFocus
                 >
-                    <h4>I'm a GPM popover</h4>
+                    <Typography variant='body1'>{getById(props.store.policyLanguage, 5)}</Typography>
                 </Popover>}
                 {props.type === "PACE" &&
                 <Popover
@@ -131,7 +143,7 @@ export default function PolicyExplainer(props) {
                     onClose={handlePopoverClose}
                     disableRestoreFocus
                 >
-                    <h4>I'm a PACE popover</h4>
+                    <Typography variant='body1'>{getById(props.store.policyLanguage, 3)}</Typography>
                 </Popover>}
                 {props.type === "EES" &&
                 <Popover
@@ -153,8 +165,10 @@ export default function PolicyExplainer(props) {
                     onClose={handlePopoverClose}
                     disableRestoreFocus
                 >
-                    <h4>I'm an EES popover</h4>
+                    <Typography variant='body1'>{getById(props.store.policyLanguage, 9)}</Typography>
                 </Popover>}
         </div>
     );
 }
+
+export default connect(mapStoreToProps)(PolicyExplainer)
