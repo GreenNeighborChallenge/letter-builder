@@ -42,7 +42,8 @@ class LetterItems extends Component {
     }
 
     handleSubmit = () => {
-        this.props.dispatch ({ type: 'SET_LETTER', payload: this.state})
+        this.props.dispatch ({ type: 'SET_LETTER', payload: this.state});
+        this.props.directToAddress()
     }
 
 

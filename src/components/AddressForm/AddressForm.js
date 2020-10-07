@@ -42,7 +42,7 @@ const styles = theme => ({
     cardActions: {
         float: 'right',
     },
-    email: {
+    signup: {
         float: 'left',
     },
     form: {
@@ -78,10 +78,13 @@ class AddressForm extends Component {
     //lose this data
 
     directToReps = () => {
-        
         this.props.history.push('/selectContacts')
         this.props.dispatch({ type: 'ADDRESS_INFO', payload: this.state })
         this.props.dispatch({ type: 'FETCH_OFFICES', payload: this.state.st })
+    }
+
+    directBack = () => {
+        this.props.history.push('/letterBuilder')
     }
 
     render() {
@@ -97,8 +100,8 @@ class AddressForm extends Component {
                         <Typography variant="body2" color="textSecondary" align="center" >To send emails to your local representatives,
                         fill in your address and contact information
                         here and click “find my reps” to make sure your
-                        letter gets to the right people. </Typography>
-
+                        letter gets to the right people. 
+                        </Typography>
                         {/* all inputs change state on-change */}
                         <section className={classes.form} >
                             <TextField style={{ marginRight: '1em' }} label="First Name" variant="outlined" size="small" onChange={(event) => { this.setState({ ...this.state, firstName: event.target.value }) }} placeholder="First Name" />
@@ -156,8 +159,8 @@ class AddressForm extends Component {
                         </FormControl>
                     </CardContent>
                      <div style={{marginTop: '2em'}}>               
-                    <section className={classes.email}>
-                        <CustomButton variant="outlined" disabledonClick={this.directToReps} >
+                    <section className={classes.signup}>
+                        <CustomButton variant="outlined" disabled onClick={this.directToReps} >
                             Sign Up for our News Letter!
                             <Checkbox
                                 defaultChecked
@@ -167,7 +170,7 @@ class AddressForm extends Component {
                         </CustomButton>
         
                     </section>
-                    <Button >Back</Button>
+                    <Button onClick={this.directBack}>Back</Button>
                     <CardActions className={classes.cardActions}>
                         <section>
                             <CustomButton variant="outlined" onClick={this.directToReps} >Find my Representatives!</CustomButton>
