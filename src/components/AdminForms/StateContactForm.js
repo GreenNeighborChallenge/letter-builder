@@ -6,7 +6,7 @@ class StateContactForm extends Component {
         puc: '',
         doc: '',
         sseo: [{
-            id: 1,
+            id: 0,
             name: '',
             email: ''
         }]
@@ -14,12 +14,11 @@ class StateContactForm extends Component {
 
     addSseo = () => {
         console.log(this.state.sseo)
-        let id=this.state.sseo.id
         this.setState({
             ...this.state,
             sseo: [
                 ...this.state.sseo,
-                {id: id + 1,
+                {id: this.state.sseo.length,
                 name: '',
                 email: ''}
             ]
@@ -42,7 +41,7 @@ class StateContactForm extends Component {
     }
 
     handleNameChange = (event) => {
-        const nameIndex = this.state.sseo.findIndex(name => name.name === "")
+        const nameIndex = this.state.sseo.findIndex(name => name.id === this.state.sseo.id)
         let nameToChange = [...this.state.sseo]
         nameToChange[nameIndex] = {...nameToChange[nameIndex], name: event.target.value}
         this.setState({
@@ -52,14 +51,13 @@ class StateContactForm extends Component {
     }
 
     handleEmailChange = (event) => {
+        const emailIndex = this.state.sseo.findIndex(email => email.id === this.state.sseo.id)
+        let emailToChange = [...this.state.sseo]
+        emailToChange[emailIndex] = {...emailToChange[emailIndex], email: event.target.value}
         this.setState({
-            ...this.state,
-            sseo: [
-                {...this.state.sseo.name,
-                email: event.target.value}
-            ]
+            sseo: emailToChange
         })
-        console.log(this.state)
+        console.log(this.state.sseo)
     }    
 
     render() {
