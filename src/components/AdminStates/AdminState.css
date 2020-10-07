@@ -1,0 +1,15 @@
+.statePolicies {
+    background: rgba(204, 204, 204, 0.7);
+}
+
+.stateContacts {
+    background: rgba(204, 204, 204, 0.7);
+}
+
+.stateSSEO {
+    background: rgba(204, 204, 204, 0.7);
+}
+
+.stateSSEOitem {
+    border-top: 2px solid black;
+}

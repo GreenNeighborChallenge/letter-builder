@@ -35,10 +35,22 @@ function* fetchStateInfo(action) {
   }
 }
 
+function* fetchSSEOInfo(action) {
+  try {
+      let response = yield axios.get(`/api/states/sseo/${action.payload}`);
+      console.log(response.data);
+
+      yield put({ type: 'UPDATE_SSEO_INFO', payload: response.data })
+  } catch (error) {
+      console.log('error getting states info', error);
+  }
+}
+
 function* statesSaga() {
   yield takeLatest('ADDRESS_INFO', updateAddress);
   yield takeLatest('GET_STATES', getStates);
   yield takeLatest('FETCH_STATE_INFO', fetchStateInfo);
+  yield takeLatest('FETCH_SSEO_INFO', fetchSSEOInfo)
 }
 
 export default statesSaga;

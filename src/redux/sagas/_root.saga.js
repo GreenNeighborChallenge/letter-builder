@@ -8,11 +8,8 @@ import statesSaga from './states.saga';
 
 import policyLanguageSaga from './policyLanguage.saga';
 import repsSaga from './reps.saga'
-<<<<<<< HEAD
 import officesSaga from './offices.saga'
-=======
 
->>>>>>> master
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
 // This is imported in index.js as rootSaga
