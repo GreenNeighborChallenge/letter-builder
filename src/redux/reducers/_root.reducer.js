@@ -7,8 +7,12 @@ import states from './states.reducer';
 import policyLanguage from './policyLanguage.reducer';
 import reps from './reps.reducer'
 import letter from './letter.reducer';
+<<<<<<< HEAD
+import offices from './offices.reducer'
+=======
 import stateInfo from './state.info.reducer';
 
+>>>>>>> master
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -24,7 +28,11 @@ const rootReducer = combineReducers({
   policyLanguage,
   reps, // has representatives
   letter,
+<<<<<<< HEAD
+  offices
+=======
   stateInfo,
+>>>>>>> master
 });
 
 export default rootReducer;

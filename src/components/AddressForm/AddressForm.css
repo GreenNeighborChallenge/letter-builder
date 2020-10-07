@@ -1,12 +1,25 @@
-.addressFormContainer {
-    width: 50%;
+.root {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 1em
+    /* min-height:  15em; */
+}
+
+.addressCard {
+    width: 60%;
+    min-height:  30em;
     text-align: center;
     position: relative;
-    border: 2px solid black;
 }
 
 .addressForm {
     left: 25%;
     height: auto;
     position: relative;
+}
+
+.bottomInputs {
+    display: inline;
+    margin: 1em;
 }
