@@ -1,13 +1,15 @@
 .statePolicies {
     background: rgba(204, 204, 204, 0.7);
+    width: 80%;
+    left: 22%;
+    height: auto;
+    position: relative;
 }
 
-.stateContacts {
-    background: rgba(204, 204, 204, 0.7);
-}
-
-.stateSSEO {
-    background: rgba(204, 204, 204, 0.7);
+.stateBody {
+    width: 80%;
+    text-align: center;
+    position: relative;
 }
 
 .stateSSEOitem {

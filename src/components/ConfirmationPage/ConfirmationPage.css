@@ -1,14 +1,19 @@
-.addressFormContainer {
+.confirmation {
     width: 50%;
     text-align: center;
     position: relative;
     background: rgba(204, 204, 204, 0.7);
 }
 
-.addressForm {
+.confirmationBody {
     left: 25%;
     right: 25%;
     height: auto;
     position: relative;
+}
+
+.confirmationBtn {
+    height: 85px;
+    width: 85px;
     
 }
