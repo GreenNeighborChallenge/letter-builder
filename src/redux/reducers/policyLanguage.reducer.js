@@ -1,4 +1,4 @@
-const policyReducer = (state = [], action) => {
+const policyLanguageReducer = (state = [], action) => {
     switch (action.type) {
         case 'PUT_POLICIES':
             return action.payload;
@@ -8,4 +8,4 @@ const policyReducer = (state = [], action) => {
 }
 
 
-export default policyReducer
+export default policyLanguageReducer

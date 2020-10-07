@@ -24,9 +24,21 @@ function* getStates(action) {
     }
 }
 
-function* addressSaga() {
-  yield takeLatest('ADDRESS_INFO', updateAddress);
-  yield takeLatest('GET_STATES', getStates);
+function* fetchStateInfo(action) {
+  try {
+      let response = yield axios.get(`/api/states/info/${action.payload}`);
+      console.log(response.data);
+
+      yield put({ type: 'UPDATE_STATE_INFO', payload: response.data })
+  } catch (error) {
+      console.log('error getting states info', error);
+  }
 }
 
-export default addressSaga;
+function* statesSaga() {
+  yield takeLatest('ADDRESS_INFO', updateAddress);
+  yield takeLatest('GET_STATES', getStates);
+  yield takeLatest('FETCH_STATE_INFO', fetchStateInfo);
+}
+
+export default statesSaga;
