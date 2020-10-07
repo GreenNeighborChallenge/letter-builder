@@ -14,6 +14,7 @@ class StateGrade extends Component{
 
     componentDidMount() {
         this.props.dispatch({type: 'GET_STATE_POLICIES', payload: this.props.stateInfo})
+        this.props.dispatch({type: 'FETCH_POLICIES'})
     }
 
 
@@ -44,10 +45,11 @@ class StateGrade extends Component{
             <Typography>
             Energy Efficiency Standard <PolicyExplainer type={'EES'}></PolicyExplainer>: <span>{this.props.store.statePolicies.energy_standard}</span>
         </Typography>
-                    <Typography variant="h5" component="h2"></Typography>
-                    <Typography color="textSecondary"></Typography>
-                    <Typography variant="body2" component="p"></Typography>
-
+        <ul>
+            <li>{this.props.store.statePolicies.clean_vehicle}</li>
+            <li>{this.props.store.statePolicies.home_solar}</li>
+            <li>{this.props.store.statePolicies.community_solar}</li>
+        </ul>
           
                     <Button style={{display: 'inline', float: 'left', margin: 5}}>Previous</Button>
                     <Button style={{display: 'inline',float: 'right', margin: 5}}>Create Your Letter!</Button>
