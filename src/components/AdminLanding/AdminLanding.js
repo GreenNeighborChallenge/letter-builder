@@ -4,6 +4,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 
 import AdminPolicies from '../AdminPolicies/AdminPolicies';
 import AdminStates from '../AdminStates/AdminStates';
+import AdminTabs from './AdminTabs.js'
 
 class AdminLanding extends Component {
   state = {
@@ -28,6 +29,7 @@ class AdminLanding extends Component {
   render() {
     return (
       <div>
+        <AdminTabs />
         <h2>{this.state.heading}</h2>
         {this.state.displayPolicies}
         <button onClick={this.showStates}>State List</button>

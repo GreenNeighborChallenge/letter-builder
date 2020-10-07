@@ -119,19 +119,19 @@ class App extends Component {
               authRedirect="/user"
             />
 
-            <ProtectedRoute
+            <Route
               exact
               path="/admin_home"
               component={AdminLanding}
             />
 
-            <ProtectedRoute
+            <Route
               exact
               path="/admin_policies"
               component={AdminPolicies}
             />
 
-            <ProtectedRoute
+            <Route
               exact
               path="/admin_states"
               component={AdminStates}
