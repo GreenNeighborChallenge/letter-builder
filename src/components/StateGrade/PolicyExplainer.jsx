@@ -7,6 +7,7 @@ import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 const useStyles = makeStyles((theme) => ({
     popover: {
         pointerEvents: 'none',
+        maxWidth: '50%'
     },
     paper: {
         padding: theme.spacing(1),
@@ -18,30 +19,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PolicyExplainer(props) {
 
-    let popoverText = '';
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
 
 
     const handlePopoverOpen = (event) => {
-
-        console.log(props)
-        if (props.type === "CAP") {
-            popoverText = 'I am CAP'
-            console.log(popoverText)
-        }
-        if (props.type === 'RPS') {
-            popoverText = 'I am RPS'
-        }
-        if (props.type === 'GPM') {
-            popoverText = 'I am GPM'
-        }
-        if (props.type === 'PACE') {
-            popoverText = 'I am PACE'
-        }
-        if (props.type === 'EES') {
-            popoverText = 'I am EES'
-        }
         setAnchorEl(event.currentTarget);
     };
 
@@ -63,7 +45,7 @@ export default function PolicyExplainer(props) {
             >
                 <HelpOutlineIcon fontSize='small' />
             </Typography>
-            {props.type &&
+            {props.type === "CAP" &&
                 <Popover
                     id="mouse-over-popover"
                     className={classes.popover}
@@ -83,7 +65,95 @@ export default function PolicyExplainer(props) {
                     onClose={handlePopoverClose}
                     disableRestoreFocus
                 >
-                    {popoverText}
+                    <Typography variant='body1'>Climate Action Plans are state- city- or region-wide plans to reduce greenhouse gas emissions and increase resilience. They usually include emissions reduction targets and steps to reach those goals through energy efficiency, land use, green energy, and transportation.</Typography>
+                </Popover>}
+                {props.type === "RPS" &&
+                <Popover
+                    id="mouse-over-popover"
+                    className={classes.popover}
+                    classes={{
+                        paper: classes.paper,
+                    }}
+                    open={open}
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    }}
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'left',
+                    }}
+                    onClose={handlePopoverClose}
+                    disableRestoreFocus
+                >
+                    <h4>I'm an RPS popover</h4>
+                </Popover>}
+                {props.type === "GPM" &&
+                <Popover
+                    id="mouse-over-popover"
+                    className={classes.popover}
+                    classes={{
+                        paper: classes.paper,
+                    }}
+                    open={open}
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    }}
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'left',
+                    }}
+                    onClose={handlePopoverClose}
+                    disableRestoreFocus
+                >
+                    <h4>I'm a GPM popover</h4>
+                </Popover>}
+                {props.type === "PACE" &&
+                <Popover
+                    id="mouse-over-popover"
+                    className={classes.popover}
+                    classes={{
+                        paper: classes.paper,
+                    }}
+                    open={open}
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    }}
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'left',
+                    }}
+                    onClose={handlePopoverClose}
+                    disableRestoreFocus
+                >
+                    <h4>I'm a PACE popover</h4>
+                </Popover>}
+                {props.type === "EES" &&
+                <Popover
+                    id="mouse-over-popover"
+                    className={classes.popover}
+                    classes={{
+                        paper: classes.paper,
+                    }}
+                    open={open}
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    }}
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'left',
+                    }}
+                    onClose={handlePopoverClose}
+                    disableRestoreFocus
+                >
+                    <h4>I'm an EES popover</h4>
                 </Popover>}
         </div>
     );

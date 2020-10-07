@@ -37,12 +37,12 @@ class StateGrade extends Component{
         </Typography>
             <ul>
             <li>Climate Action Plan <PolicyExplainer type={'CAP'}/>: {this.props.store.statePolicies.climate_plan}</li>
-            <li>Renewable Portfolio Standard (RPS): <span>{this.props.store.statePolicies.portfolio_standard}</span></li>
-            <li>Green Pricing Mandate: <span>{this.props.store.statePolicies.green_pricing}</span></li>
-            <li>Property Assessed Clean Energy (PACE): <span>{this.props.store.statePolicies.pace}</span></li>
+            <li>Renewable Portfolio Standard (RPS) <PolicyExplainer type={'RPS'}/>: <span>{this.props.store.statePolicies.portfolio_standard}</span></li>
+            <li>Green Pricing Mandate<PolicyExplainer type={'GPM'}>: </PolicyExplainer><span>{this.props.store.statePolicies.green_pricing}</span></li>
+            <li>Property Assessed Clean Energy (PACE) <PolicyExplainer type={'PACE'}></PolicyExplainer>: <span>{this.props.store.statePolicies.pace}</span></li>
             </ul>
             <Typography>
-            Energy Efficiency Standard: <span>{this.props.store.statePolicies.energy_standard}</span>
+            Energy Efficiency Standard <PolicyExplainer type={'EES'}></PolicyExplainer>: <span>{this.props.store.statePolicies.energy_standard}</span>
         </Typography>
                     <Typography variant="h5" component="h2"></Typography>
                     <Typography color="textSecondary"></Typography>
