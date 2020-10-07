@@ -16,7 +16,7 @@ const zipRouter = require('./routes/zip.router')
 const statesRouter = require('./routes/states.router');
 const policyRouter = require('./routes/policy.router');
 const repsRouter = require('./routes/reps.router');
-
+const officesRouter = require('./routes/offices.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -35,6 +35,7 @@ app.use('/api/zip', zipRouter)
 app.use('/api/states', statesRouter);
 app.use('/api/policy', policyRouter);
 app.use('/api/reps', repsRouter);
+app.use('/api/offices', officesRouter);
 
 // Serve static files
 app.use(express.static('build'));
