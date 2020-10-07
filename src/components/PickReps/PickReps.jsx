@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import Card from '@material-ui/core/Card';
@@ -27,7 +27,6 @@ const useStyles = makeStyles({
     cardContent: {
         minHeight: '25em',
         minWidth: '25em',
-
     },
     preview: {
         display: "flex",
