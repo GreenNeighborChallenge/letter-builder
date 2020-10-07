@@ -19,8 +19,10 @@ class ConfirmationPage extends Component {
                         Thank you for taking the time to contact your state officials.
                         You will recieve an email copy of your letter for your records.
                     </h4>
-                    <Link className="confirmationBtn">Share</Link>
-                    <Link className="confirmationBtn leafy">Go Back</Link>
+                    <Link className="confirmationBtnShare leafy">Share</Link>
+                    <p></p>
+                    <Link to="https://www.greenneighborchallenge.com/" className="confirmationBtnHome leafy">Green Neighbor Home</Link>
+                    <p>Find more ways to get involved!</p>
                 </div>
             </div>
         );
