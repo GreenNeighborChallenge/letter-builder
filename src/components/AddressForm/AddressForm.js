@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-<<<<<<< HEAD
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -12,10 +11,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import { Button } from '@material-ui/core/';
 import FormControl from '@material-ui/core/FormControl';
-=======
-import PreviewLetter from '../PreviewLetter/PreviewLetter.js'
-//import css
->>>>>>> master
 import './AddressForm.css';
 import { withStyles } from '@material-ui/core/styles';
 import { CustomButton } from '../PickReps/RepButtons'
@@ -96,7 +91,6 @@ class AddressForm extends Component {
         const { classes } = this.props;
 
         return (
-<<<<<<< HEAD
             <div className="root">
                 <Card className={classes.card}>
                     <CardContent className="addressFormContainer">
@@ -187,70 +181,6 @@ class AddressForm extends Component {
                     </CardActions>
                     </div>     
                 </Card>
-=======
-            <div className="addressForm">
-                <div className="addressFormContainer">
-                    <p>To send emails to your local representatives,
-                    fill in your address and contact information
-                    here and click “find my reps” to make sure your
-                        letter gets to the right people. </p>
-
-                    {/* all inputs change state on-change */}
-                    <input onChange={(event) => { this.setState({ ...this.state, firstName: event.target.value }) }} placeholder="First Name" />
-                    <input onChange={(event) => { this.setState({ ...this.state, lastName: event.target.value }) }} placeholder="Last Name" />
-                    <br />
-                    <p>Email: </p>
-
-                    <div className="emailAndAddress">
-                        <input className="emailInput"
-                            onChange={(event) => {
-                                this.setState({
-                                    ...this.state,
-                                    email: event.target.value
-                                })
-                            }}
-                            placeholder="Email Address" />
-                    </div>
-
-                    <br />
-                    <p>Address: </p>
-
-                    <div className="emailAndAddress">
-                        <input className="addressInput"
-                            onChange={(event) => {
-                                this.setState({
-                                    ...this.state,
-                                    street: event.target.value
-                                })
-                            }}
-                            placeholder="Street Address" />
-                    </div>
-
-                    <br />
-                    <input onChange={(event) => { this.setState({ ...this.state, city: event.target.value }) }} placeholder="City" />
-                    
-                    {/* options come from states reducer once it's "there" */}
-                    <select onChange={(event) => { this.setState({ ...this.state, st: event.target.value }) }}>
-                        <option>State</option>
-                        {this.props.store.states && 
-                        this.props.store.states.map((state) => {
-                        return(<option key={state.id} value={state.state}>{state.state}</option>)
-                        })}
-                    </select>
-                    <input onChange={(event) => { this.setState({ ...this.state, zip: event.target.value }) }} placeholder="Zip Code" />
-                    <br />
-
-                    {/* --find reps button runs the sendInfo function 
-                        --back button doesn't do anything yet */}
-                    <button>Back</button>
-                    <button onClick={this.sendInfo}>Find my Representatives!</button>
-
-                    {this.props.store.address &&
-                        <p>{this.props.store.address.firstName}{this.props.store.address.st}</p>
-                    }
-                </div>
-                <PreviewLetter />
->>>>>>> master
             </div>
             
         );
