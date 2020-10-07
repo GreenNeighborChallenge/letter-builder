@@ -9,7 +9,7 @@ import { connect } from 'react-redux'
 const useStyles = makeStyles((theme) => ({
     popover: {
         pointerEvents: 'none',
-        maxWidth: '50%'
+        maxWidth: '80%'
     },
     paper: {
         padding: theme.spacing(1),
@@ -28,7 +28,6 @@ function PolicyExplainer(props) {
     const getById = (arr, value) => {
         for (let i=0; i < arr.length; i++) {
           if (arr[i].id === value) {
-              console.log(arr[i].short_info)
                 return arr[i].short_info
               }
           }
@@ -166,6 +165,116 @@ function PolicyExplainer(props) {
                     disableRestoreFocus
                 >
                     <Typography variant='body1'>{getById(props.store.policyLanguage, 9)}</Typography>
+                </Popover>}
+                {props.type === "CVP" &&
+                <Popover
+                    id="mouse-over-popover"
+                    className={classes.popover}
+                    classes={{
+                        paper: classes.paper,
+                    }}
+                    open={open}
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    }}
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'left',
+                    }}
+                    onClose={handlePopoverClose}
+                    disableRestoreFocus
+                >
+                    <Typography variant='body1'>{getById(props.store.policyLanguage, 4)}</Typography>
+                </Popover>}
+                {props.type === "CS" &&
+                <Popover
+                    id="mouse-over-popover"
+                    className={classes.popover}
+                    classes={{
+                        paper: classes.paper,
+                    }}
+                    open={open}
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    }}
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'left',
+                    }}
+                    onClose={handlePopoverClose}
+                    disableRestoreFocus
+                >
+                    <Typography variant='body1'>{getById(props.store.policyLanguage, 7)}</Typography>
+                </Popover>}
+                {props.type === "HSR" &&
+                <Popover
+                    id="mouse-over-popover"
+                    className={classes.popover}
+                    classes={{
+                        paper: classes.paper,
+                    }}
+                    open={open}
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    }}
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'left',
+                    }}
+                    onClose={handlePopoverClose}
+                    disableRestoreFocus
+                >
+                    <Typography variant='body1'>{getById(props.store.policyLanguage, 6)}</Typography>
+                </Popover>}
+                {props.type === "CCA" &&
+                <Popover
+                    id="mouse-over-popover"
+                    className={classes.popover}
+                    classes={{
+                        paper: classes.paper,
+                    }}
+                    open={open}
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    }}
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'left',
+                    }}
+                    onClose={handlePopoverClose}
+                    disableRestoreFocus
+                >
+                    <Typography variant='body1'>{getById(props.store.policyLanguage, 8)}</Typography>
+                </Popover>}
+                {props.type === "CUB" &&
+                <Popover
+                    id="mouse-over-popover"
+                    className={classes.popover}
+                    classes={{
+                        paper: classes.paper,
+                    }}
+                    open={open}
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    }}
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'left',
+                    }}
+                    onClose={handlePopoverClose}
+                    disableRestoreFocus
+                >
+                    <Typography variant='body1'>{getById(props.store.policyLanguage, 10)}</Typography>
                 </Popover>}
         </div>
     );
