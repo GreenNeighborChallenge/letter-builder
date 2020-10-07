@@ -17,11 +17,21 @@ class StateGrade extends Component{
         this.props.dispatch({type: 'FETCH_POLICIES'})
     }
 
+    getById = (arr, value) => {
+        for (let i=0; i < arr.length; i++) {
+          if (arr[i].id === value) {
+                return arr[i].policy
+              }
+          }
+        }
+      
+
 
     render() {
     return (
         <div style={{backgroundColor: 'white'}}>
-            {this.props.store.statePolicies &&
+            
+            {this.props.store.statePolicies && this.props.store.policyLanguage &&
             <>
             <div id='stateTitle'><Typography variant='h4' gutterBottom>Your State: Add Dropdown</Typography></div>
                    <div className='outline'>
@@ -37,18 +47,21 @@ class StateGrade extends Component{
                       Your state's existing energy and climate policies:
         </Typography>
             <ul>
-            <li>Climate Action Plan <PolicyExplainer type={'CAP'}/>: {this.props.store.statePolicies.climate_plan}</li>
-            <li>Renewable Portfolio Standard (RPS) <PolicyExplainer type={'RPS'}/>: <span>{this.props.store.statePolicies.portfolio_standard}</span></li>
-            <li>Green Pricing Mandate<PolicyExplainer type={'GPM'}>: </PolicyExplainer><span>{this.props.store.statePolicies.green_pricing}</span></li>
-            <li>Property Assessed Clean Energy (PACE) <PolicyExplainer type={'PACE'}></PolicyExplainer>: <span>{this.props.store.statePolicies.pace}</span></li>
-            </ul>
-            <Typography>
-            Energy Efficiency Standard <PolicyExplainer type={'EES'}></PolicyExplainer>: <span>{this.props.store.statePolicies.energy_standard}</span>
-        </Typography>
-        <ul>
-            <li>{this.props.store.statePolicies.clean_vehicle}</li>
-            <li>{this.props.store.statePolicies.home_solar}</li>
-            <li>{this.props.store.statePolicies.community_solar}</li>
+            <li>{this.getById(this.props.store.policyLanguage, 1)}
+            <PolicyExplainer type={'CAP'}/>: {this.props.store.statePolicies.climate_plan}</li>
+            <li>{this.getById(this.props.store.policyLanguage, 2)} <PolicyExplainer type={'RPS'}/>: <span>{this.props.store.statePolicies.portfolio_standard}</span></li>
+            <li>{this.getById(this.props.store.policyLanguage, 5)}<PolicyExplainer type={'GPM'} />:<span>{this.props.store.statePolicies.green_pricing}</span></li>
+            <li>{this.getById(this.props.store.policyLanguage, 3)}<PolicyExplainer type={'PACE'} />: <span>{this.props.store.statePolicies.pace}</span></li>
+        
+            <li>
+            {this.getById(this.props.store.policyLanguage, 9)} <PolicyExplainer type={'EES'} />: <span>{this.props.store.statePolicies.energy_standard}</span>
+        </li>
+        
+            <li>{this.getById(this.props.store.policyLanguage, 4)}:</li>
+            <li>{this.getById(this.props.store.policyLanguage, 6)}:</li>
+            <li>{this.getById(this.props.store.policyLanguage, 7)}:</li>
+            <li>{this.getById(this.props.store.policyLanguage, 8)}:</li>
+            <li>{this.getById(this.props.store.policyLanguage, 10)}:</li>
         </ul>
           
                     <Button style={{display: 'inline', float: 'left', margin: 5}}>Previous</Button>
