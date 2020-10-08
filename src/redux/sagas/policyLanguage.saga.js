@@ -25,7 +25,7 @@ function* addPolicy(action){
 //admin side
 function* newPolicy(action){
     try {
-        let response = yield axios.post(`/api/policy, ${action.payload}`);
+        let response = yield axios.post(`/api/policy`, action.payload);
         console.log(response.data);
         yield put ({ type: 'SET_NEW_POLICY', payload: response.data})
     } catch (error) {
