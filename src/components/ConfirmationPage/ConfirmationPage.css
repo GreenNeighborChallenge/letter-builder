@@ -1,40 +1,40 @@
 .confirmation {
     width: 50%;
     height: 100%;
+    padding: 20px;
     text-align: center;
     position: relative;
     background: rgba(204, 204, 204, 0.7);
+    left: 25%
 }
 
 .confirmationBody {
-    left: 25%;
-    right: 25%;
+    margin-bottom: 10em;
     height: auto;
     position: relative;
 }
 
 .confirmationBtnShare {
     float: left;
-    color: #f2f2f2;
-    color: black;
-    background: rgba(90, 150, 79, 0.7);
-    padding: 40px 40px;
-    text-decoration: none;
-    font-size: 30px;
-    border:none;
-    cursor: pointer;
-    outline:0;
+}
+
+.confirmationBtnShare:hover {
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 .confirmationBtnHome {
     float: right;
-    color: #f2f2f2;
-    color: black;
-    background: rgba(90, 150, 79, 0.7);
-    padding: 40px 40px;
+}
+
+.confirmationBtnHome:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.confirmBtns {
+    height: 100px;
+}
+
+.unstyled {
     text-decoration: none;
-    font-size: 30px;
-    border:none;
-    cursor: pointer;
-    outline:0;
+    color: black;
 }
