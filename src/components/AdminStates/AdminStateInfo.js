@@ -17,9 +17,9 @@ class AdminStateInfo extends Component {
         // console.log(this.props.store.stateInfo.climate_plan)
         const stateInfo = this.props.stateInfo
         return (
-            <div>
+            <div className="stateBody">
                 <div className="statePolicies">
-                    <h1>State Policy Information</h1>
+                    <h1>{stateInfo.state} Policy Information</h1>
                     <p>Policy Grade: {stateInfo.policy_grade}</p>
 
                     <p>Climate Action Plan: {stateInfo.climate_plan}</p>
@@ -43,15 +43,15 @@ class AdminStateInfo extends Component {
                     <p>Energy Efficiency Standard: {stateInfo.energy_standard}</p>
 
                 </div>
-                <div className="stateContacts">
-                    <h1>State Contact Information</h1>
+                <div className="statePolicies">
+                    <h1>{stateInfo.state} Contact Information</h1>
                     <p>PUC: {stateInfo.puc}</p>
 
                     <p>DoC Email: {stateInfo.DoC}</p>
 
                 </div>
-                <div className="stateSSEO">
-                    <h1>State SSEO's</h1>
+                <div className="statePolicies">
+                    <h1>{stateInfo.state} SSEO's</h1>
                     <button>Add Another SSEO</button>
                     {this.props.store.sseoInfo[0] &&
                         this.props.store.sseoInfo.map((sseo) => {

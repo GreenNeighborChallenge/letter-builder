@@ -26,6 +26,7 @@ import AdminLanding from '../AdminLanding/AdminLanding.js';
 import AdminPolicies from '../AdminPolicies/AdminPolicies';
 import AdminStates from '../AdminStates/AdminStates';
 import PickReps from '../PickReps/PickReps.jsx';
+import ConfirmationPage from '../ConfirmationPage/ConfirmationPage';
 import PreviewLetter from '../PreviewLetter/PreviewLetter'
 import StateGrade from '../StateGrade/StateGrade.jsx'
 import './App.css';
@@ -87,12 +88,12 @@ class App extends Component {
                 path="/previewLetter"
                 component={PreviewLetter}
               />
-              
               <Route
                 exact
                 path="/home"
                 component={ZipCode}
               />
+
               {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
@@ -106,7 +107,6 @@ class App extends Component {
               authRedirect="/admin_home"
             />
 
-
               <ProtectedRoute
                 // logged in shows InfoPage else shows LoginPage
                 exact
@@ -118,63 +118,69 @@ class App extends Component {
             be redirected to the path supplied when logged in, otherwise they will
             be taken to the component and path supplied. */}
 
-            <ProtectedRoute
-              // with authRedirect:
-              // - if logged in, redirects to "/user"
-              // - else shows LoginPage at /login
-              exact
-              path="/login"
-              component={LoginPage}
-              authRedirect="/user"
-            />
-            <ProtectedRoute
-              // with authRedirect:
-              // - if logged in, redirects to "/user"
-              // - else shows RegisterPage at "/registration"
-              exact
-              path="/registration"
-              component={RegisterPage}
-              authRedirect="/user"
-            />
+              <ProtectedRoute
+                // with authRedirect:
+                // - if logged in, redirects to "/user"
+                // - else shows LoginPage at /login
+                exact
+                path="/login"
+                component={LoginPage}
+                authRedirect="/user"
+              />
+              <ProtectedRoute
+                // with authRedirect:
+                // - if logged in, redirects to "/user"
+                // - else shows RegisterPage at "/registration"
+                exact
+                path="/registration"
+                component={RegisterPage}
+                authRedirect="/user"
+              />
 
-            <ProtectedRoute
-              exact
-              path="/admin_home"
-              component={AdminLanding}
-            />
+              <ProtectedRoute
+                exact
+                path="/admin_home"
+                component={AdminLanding}
+              />
 
-            <ProtectedRoute
-              exact
-              path="/admin_policies"
-              component={AdminPolicies}
-            />
+              <ProtectedRoute
+                exact
+                path="/admin_policies"
+                component={AdminPolicies}
+              />
 
-            <ProtectedRoute
-              exact
-              path="/admin_states"
-              component={AdminStates}
-            />
+              <ProtectedRoute
+                exact
+                path="/admin_states"
+                component={AdminStates}
+              />
 
-            <Route
-              // with authRedirect:
-              // - if logged in, redirects to "/user"
-              // - else shows LandingPage at "/home"
-              exact
-              path="/home"
-              component={ZipCode}
-            />
+              <Route
+                // with authRedirect:
+                // - if logged in, redirects to "/user"
+                // - else shows LandingPage at "/home"
+                exact
+                path="/home"
+                component={ZipCode}
+              />
 
-            <Route
-              exact
-              path="/address"
-              component={AddressForm}
-            />
+              <Route
+                exact
+                path="/address"
+                component={AddressForm}
+              />
 
-            {/* If none of the other routes matched, we will show a 404. */}
-            <Route render={() => <h1>404</h1>} />
-          </Switch>
-          <Footer />
-        </div>
+              <Route
+                exact
+                path="/confirmation"
+                component={ConfirmationPage}
+              />
+
+              {/* If none of the other routes matched, we will show a 404. */}
+              <Route render={() => <h1>404</h1>} />
+            </Switch>
+            <Footer />
+          </div>
 
         </div>
       </Router>

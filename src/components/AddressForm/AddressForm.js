@@ -148,8 +148,8 @@ const AddressForm = ({ dispatch, history, states }) => {
                 </FormControl>
             </Card>
         </div>
-
     );
+
 }
 
 const mapStoreToProps = (reduxState) => {
