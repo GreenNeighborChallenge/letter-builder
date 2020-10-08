@@ -9,7 +9,9 @@ import PolicyExplainer from './PolicyExplainer.jsx';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import StateSelect from './StateSelect'
+import StateSelect from './StateSelect';
+import Tooltip from '@material-ui/core/Tooltip';
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 
 
 class StateGrade extends Component {
@@ -53,7 +55,12 @@ class StateGrade extends Component {
                         </Typography>
                         <List>
                             <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 1)}:</span><ListItemIcon style={{ minWidth: 0, marginRight: 5 }}>
-                                <PolicyExplainer type={'CAP'} /></ListItemIcon>{this.props.store.statePolicies.climate_plan ? this.props.store.statePolicies.climate_plan : <p>none</p>}</ListItem>
+                                {/* <PolicyExplainer type={'CAP'} /> */}
+                                <Tooltip title={<><p>Climate Action Plans are state- city- or region-wide plans to reduce greenhouse gas emissions and increase resilience. They usually include emissions reduction targets and steps to reach those goals through energy efficiency, land use, green energy, and transportation.</p><a href="https://www.w3schools.com">Visit W3Schools.com!</a></>}>
+                                    <HelpOutlineIcon /></Tooltip>
+                                </ListItemIcon>{this.props.store.statePolicies.climate_plan ? this.props.store.statePolicies.climate_plan : <p>none</p>}</ListItem>
+
+
                             <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 2)}:</span><ListItemIcon style={{ minWidth: 0, marginRight: 5 }}>
                                 <PolicyExplainer type={'RPS'} /></ListItemIcon> {this.props.store.statePolicies.portfolio_standard ? this.props.store.statePolicies.portfolio_standard : <p>none</p>}</ListItem>
                             <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 5)}:</span><ListItemIcon style={{ minWidth: 0, marginRight: 5 }}>
