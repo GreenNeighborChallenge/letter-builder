@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import Card from '@material-ui/core/Card';
 import { Button } from '@material-ui/core';
@@ -9,7 +9,6 @@ import Typography from '@material-ui/core/Typography';
 import { RepButton } from './RepButtons'
 import PreviewLetter from '../PreviewLetter/PreviewLetter';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-import ToggleButton from '@material-ui/lab/ToggleButtonGroup';
 
 const useStyles = makeStyles({
     root: {
