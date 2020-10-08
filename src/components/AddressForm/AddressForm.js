@@ -11,6 +11,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import { Button } from '@material-ui/core/';
 import FormControl from '@material-ui/core/FormControl';
+import PreviewLetter from '../PreviewLetter/PreviewLetter.js'
+//import css
 import './AddressForm.css';
 import { withStyles } from '@material-ui/core/styles';
 import { CustomButton } from '../PickReps/RepButtons'
@@ -171,6 +173,7 @@ class AddressForm extends Component {
                         </CardActions>
                     </div>
                 </Card>
+                <PreviewLetter />
             </div>
 
         );

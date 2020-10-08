@@ -1,0 +1,40 @@
+.confirmation {
+    width: 50%;
+    height: 100%;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    background: rgba(204, 204, 204, 0.7);
+    left: 25%
+}
+
+.confirmationBody {
+    margin-bottom: 10em;
+    height: auto;
+    position: relative;
+}
+
+.confirmationBtnShare {
+    float: left;
+}
+
+.confirmationBtnShare:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.confirmationBtnHome {
+    float: right;
+}
+
+.confirmationBtnHome:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.confirmBtns {
+    height: 100px;
+}
+
+.unstyled {
+    text-decoration: none;
+    color: black;
+}

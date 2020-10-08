@@ -15,8 +15,10 @@
 
 .addressForm {
     left: 25%;
+    right: 25%;
     height: auto;
     position: relative;
+    
 }
 
 .bottomInputs {

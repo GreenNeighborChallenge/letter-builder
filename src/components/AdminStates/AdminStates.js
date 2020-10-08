@@ -39,7 +39,6 @@ class AdminStates extends Component {
             <div>
 
                 <select onChange={(event) => {
-                    console.log('this is changing');
                     this.setState({...this.state, selectedState: event.target.value});
                     this.getStatesInfo(event.target.value);
                     this.getSSEO(event.target.value);
