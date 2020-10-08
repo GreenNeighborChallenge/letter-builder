@@ -31,7 +31,7 @@ SimpleDialog.propTypes = {
 
 export default function GradeExplainer() {
   const [open, setOpen] = React.useState(false);
-//   const [selectedValue, setSelectedValue] = React.useState(emails[1]);
+
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -39,13 +39,10 @@ export default function GradeExplainer() {
 
   const handleClose = (value) => {
     setOpen(false);
-    // setSelectedValue(value);
   };
 
   return (
     <div>
-      {/* <Typography variant="subtitle1">Selected: {selectedValue}</Typography>
-      <br /> */}
       <Button color="primary" onClick={handleClickOpen}>
         Learn More
       </Button>
