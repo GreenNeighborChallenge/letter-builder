@@ -22,9 +22,9 @@ CREATE TABLE "policy_info" (
 	"green_pricing" varchar(255),
 	"home_solar" varchar(255),
 	"community_solar" varchar(255),
-	"community_choice" BOOLEAN,
+	"community_choice" varchar(255),
 	"energy_standard" varchar(255),
-	"utility_board" BOOLEAN,
+	"utility_board" varchar(255),
 	"resident_count" int,
 	"resident_mwh" int,
 	CONSTRAINT "policy_info_pk" PRIMARY KEY ("id")

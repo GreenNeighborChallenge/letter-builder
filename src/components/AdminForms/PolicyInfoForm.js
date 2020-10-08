@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import './AdminForms.css'
+import mapStoreToProps from '../../redux/mapStoreToProps';
+import { connect } from 'react-redux';
+import './AdminForms.css';
 
 class PolicyInfoForm extends Component {
 
     state = {
+        selectedState: '',
         grade: '',
         cap: '',
         rps: '',
@@ -14,7 +17,9 @@ class PolicyInfoForm extends Component {
         cs: '',
         cca: '',
         ees: '',
-        cub: ''
+        cub: '',
+        resCount: 0,
+        resMwh: 0
     }
 
     handleGradeChange = (event) => {
@@ -46,12 +51,16 @@ class PolicyInfoForm extends Component {
                 break;
             default:
         }
+        this.setState({
+            selectedState: this.props.store.admin[0].id
+        })
     }
 
     handleCapChange = (event) => {
         this.setState({
             cap: event.target.value
         })
+        console.log(this.state)
     }
 
     handleRpsChange = (event) => {
@@ -178,10 +187,21 @@ class PolicyInfoForm extends Component {
         }
     }
 
-    handleSave = (event) => {
+    handleResCount = (event) => {
+        this.setState({
+            resCount: event.target.value
+        })
+    }
+
+    handleResMwh = (event) => {
+        this.setState({
+            resMwh: event.target.value
+        })
+    }
+
+    handleSave = () => {
         console.log(this.state)
-        
-        // this.props.dispatch ({ type: 'SET_POLICY_INFO', payload: this.state})
+        this.props.dispatch ({ type: 'PUT_POLICY_INFO', payload: this.state})
     }
 
     render() {
@@ -253,6 +273,12 @@ class PolicyInfoForm extends Component {
                         <option value="No">No</option>
                     </select>
                     <br />
+                    Resident Count (optional):
+                    <input onChange={(event) => this.handleResCount(event)}></input>
+                    <br />
+                    Resident MWH (optional):
+                    <input onChange={(event) => this.handleResMwh(event)}></input>
+                    <br />
                     <button onClick={this.handleSave}>Save</button>
                 </div>
             </div>
@@ -260,4 +286,4 @@ class PolicyInfoForm extends Component {
     }
 }
 
-export default PolicyInfoForm;
+export default connect(mapStoreToProps)(PolicyInfoForm);

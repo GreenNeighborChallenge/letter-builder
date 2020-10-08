@@ -8,6 +8,7 @@ import policyLanguage from './policyLanguage.reducer';
 import reps from './reps.reducer'
 import letter from './letter.reducer';
 import stateInfo from './state.info.reducer';
+import admin from './admin.reducer'
 
 
 // rootReducer is the primary reducer for our entire project
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   reps, // has representatives
   letter,
   stateInfo,
+  admin,
 });
 
 export default rootReducer;
