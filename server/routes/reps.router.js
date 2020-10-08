@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const pool = require('../modules/pool');
 const axios = require('axios');
 require('dotenv').config();
 
@@ -9,14 +8,15 @@ router.get('/:address', (req, res) => {
     console.log(address);
     console.log(`https://civicinfo.googleapis.com/civicinfo/v2/representatives?address=${address}&includeOffices=true&levels=administrativeArea1&roles=legislatorUpperBody&roles=headOfGovernment&roles=legislatorLowerBody&key=${process.env.API_KEY}`);
     axios.get(`https://civicinfo.googleapis.com/civicinfo/v2/representatives?address=${address}&includeOffices=true&levels=administrativeArea1&roles=legislatorUpperBody&roles=headOfGovernment&roles=legislatorLowerBody&key=${process.env.API_KEY}`)
-    
-    .then(response => {
-        console.log(response.data);
-        res.send(response.data)
-    })
-    .catch(error => {
-        res.sendStatus(500)
-    }) 
+
+        .then(response => {
+            console.log(response.data);
+            res.send(response.data)
+        })
+        .catch(error => {
+            res.sendStatus(500)
+        })
 })
+
 
 module.exports = router;

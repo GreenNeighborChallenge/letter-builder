@@ -17,6 +17,9 @@ const statesRouter = require('./routes/states.router');
 const policyRouter = require('./routes/policy.router');
 const repsRouter = require('./routes/reps.router');
 
+const statePoliciesRouter = require ('./routes/statePolicies.router')
+
+const officesRouter = require('./routes/offices.router');
 
 // Body parser middleware
 app.use(bodyParser.json());

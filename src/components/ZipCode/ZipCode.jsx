@@ -23,6 +23,15 @@ const useStyles = makeStyles({
     pos: {
         marginBottom: 12,
     },
+    card: {
+        maxWidth: "45em",
+        minWidth: '35em',
+        minHeight: '35em',
+        backgroundColor: 'rgb(255,255,255, .85)',
+        display: "flex",
+        alignItems: 'center',  
+        flexDirection: 'column',
+    },
     container: {
         display: "flex",
         alignContent: "center",
@@ -44,10 +53,11 @@ const ZipCode = ({ dispatch, store }) => {
         console.log(zip)
     }
 
+
     return (
         <>
             <div className={classes.container}>
-                <Card className={classes.root}>
+                <Card className={classes.card}>
                     <CardContent>
                         <div style={{ textAlign: 'center' }}>
                             <Typography color="textSecondary" id='zipTitle' style={{ fontSize: 48, fontFamily: 'leafy', color: 'black' }} gutterBottom>
@@ -65,7 +75,7 @@ const ZipCode = ({ dispatch, store }) => {
                             <Button variant='contained' onClick={sendZip}>Go</Button>
                         </div>
                         {store.zip.long_name &&
-                            <StateGrade />}
+                            <StateGrade stateInfo={store.zip} />}
                     </CardContent>
                 </Card>
             </div>

@@ -10,6 +10,8 @@ import letter from './letter.reducer';
 import stateInfo from './state.info.reducer';
 import admin from './admin.reducer'
 
+import stateInfo from './state.info.reducer';
+import sseoInfo from './sseo.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -25,6 +27,8 @@ const rootReducer = combineReducers({
   policyLanguage,
   reps, // has representatives
   letter,
+  statePolicies,
+  offices,
   stateInfo,
   admin,
 });

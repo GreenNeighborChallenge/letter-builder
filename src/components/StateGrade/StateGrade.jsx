@@ -1,71 +1,63 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-// import Card from '@material-ui/core/Card';
-// import CardActions from '@material-ui/core/CardActions';
-// import CardContent from '@material-ui/core/CardContent';
+import React, { Component }  from 'react';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-// import "./Card.css"
 import { connect } from 'react-redux'
+import GradeExplainer from './GradeExplainer.jsx'
 import './StateGrade.css'
+import PolicyExplainer from './PolicyExplainer.jsx';
 
-const useStyles = makeStyles({
-    root: {
-        maxWidth: "50%",
-        maxHeight: "100%",
-    },
-    title: {
-        fontSize: 16,
-    },
-    pos: {
-        marginBottom: 12,
-    },
-    container: {
-        display: "flex",
-        alignContent: "center",
-        alignItems: "center",
-        justifyContent: "center",
+
+class StateGrade extends Component{
+
+  
+
+    componentDidMount() {
+        this.props.dispatch({type: 'GET_STATE_POLICIES', payload: this.props.stateInfo})
+        this.props.dispatch({type: 'FETCH_POLICIES'})
     }
-});
-
-const StateGrade = (props) => {
-    const classes = useStyles();
 
 
+    render() {
     return (
-        <div>
+        <div style={{backgroundColor: 'white'}}>
+            {this.props.store.statePolicies &&
+            <>
             <div id='stateTitle'><Typography variant='h4' gutterBottom>Your State: Add Dropdown</Typography></div>
                    <div className='outline'>
-                    <Typography className={classes.title}>
+                    <Typography>
                       Your state's energy and climate policy, graded:
-        </Typography></div>
+        </Typography>
+        </div>
             <div className='outline' id='grade'>
-                <Typography variant='h1'>B</Typography>
+            <Typography variant='h1'>{this.props.store.statePolicies.policy_grade}</Typography>
+            <GradeExplainer />
             </div>
-            <Typography className={classes.title}>
+            <Typography>
                       Your state's existing energy and climate policies:
         </Typography>
             <ul>
-                <li>Climate Action Plan: <span>Get from DB</span></li>
-                <li>Renewable Portfolio Standard (RPS): <span>Get from DB</span></li>
-                <li>Green Pricing Mandate: <span>Get from DB</span></li>
-                <li>Property Assessed Clean Energy (PACE): <span>Get from DB</span></li>
+            <li>Climate Action Plan <PolicyExplainer type={'CAP'}/>: {this.props.store.statePolicies.climate_plan}</li>
+            <li>Renewable Portfolio Standard (RPS) <PolicyExplainer type={'RPS'}/>: <span>{this.props.store.statePolicies.portfolio_standard}</span></li>
+            <li>Green Pricing Mandate<PolicyExplainer type={'GPM'}>: </PolicyExplainer><span>{this.props.store.statePolicies.green_pricing}</span></li>
+            <li>Property Assessed Clean Energy (PACE) <PolicyExplainer type={'PACE'}></PolicyExplainer>: <span>{this.props.store.statePolicies.pace}</span></li>
             </ul>
-            <Typography className={classes.title}>
-                      Energy Efficiency Standard: <span>Get from DB</span>
+            <Typography>
+            Energy Efficiency Standard <PolicyExplainer type={'EES'}></PolicyExplainer>: <span>{this.props.store.statePolicies.energy_standard}</span>
         </Typography>
-                    <Typography variant="h5" component="h2"></Typography>
-                    <Typography className={classes.pos} color="textSecondary"></Typography>
-                    <Typography variant="body2" component="p"></Typography>
-
+        <ul>
+            <li>{this.props.store.statePolicies.clean_vehicle}</li>
+            <li>{this.props.store.statePolicies.home_solar}</li>
+            <li>{this.props.store.statePolicies.community_solar}</li>
+        </ul>
           
                     <Button style={{display: 'inline', float: 'left', margin: 5}}>Previous</Button>
                     <Button style={{display: 'inline',float: 'right', margin: 5}}>Create Your Letter!</Button>
-         
- 
+                </>
+            }
         </div>
     );
+    }
 }
 
 export default connect(mapStoreToProps)(StateGrade)
