@@ -34,10 +34,11 @@ class StateGrade extends Component {
 
     render() {
         return (
-            <div >
+            <div style={{backgroundColor: 'white'}}>
                 {this.props.store.statePolicies &&
                     <>
-                        <div id='stateTitle'><Typography variant='h4' gutterBottom>Your State: <StateSelect default={this.props.store.zip.short_name}  /> </Typography></div>
+                        <div id='stateTitle' >
+                            <Typography variant='h4' gutterBottom>Your State: <StateSelect default={this.props.store.zip.short_name}  /> </Typography></div>
                         <div className='outline'>
                             <Typography>
                                 Your state's energy and climate policy, graded:
@@ -76,7 +77,11 @@ class StateGrade extends Component {
                                     <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 10)}:</span><ListItemIcon style={{ minWidth: 0, marginRight: 5 }}>
                                         <PolicyExplainer type={'CUB'} /></ListItemIcon>{this.props.store.statePolicies.utility_board ? this.props.store.statePolicies.utility_board : <p>none</p>}</ListItem>
                                 </>}
-                            <div><Button style={{ float: 'left', display: 'inline' }} onClick={() => this.setState({ showMore: true })}>See More</Button></div>
+                            <div>
+                                {this.state.showMore ?  <Button style={{ float: 'left', display: 'inline' }} onClick={() => this.setState({ showMore: false })}>See Less</Button>
+                                : <Button style={{ float: 'left', display: 'inline' }} onClick={() => this.setState({ showMore: true })}>See More</Button> }
+                                
+                                </div>
                             <br />
                         </List>
 

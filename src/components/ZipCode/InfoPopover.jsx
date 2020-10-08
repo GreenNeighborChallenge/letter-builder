@@ -3,6 +3,7 @@ import Popover from '@material-ui/core/Popover';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import InfoIcon from '@material-ui/icons/Info';
+import IconButton from '@material-ui/core/IconButton'
 import './ZipCode.css'
 
 const useStyles = makeStyles((theme) => ({
@@ -30,14 +31,14 @@ export default function MouseOverPopover() {
 
   return (
     <div>
-      <Typography
+      <IconButton
         aria-owns={open ? 'mouse-over-popover' : undefined}
         aria-haspopup="true"
         onMouseEnter={handlePopoverOpen}
         onMouseLeave={handlePopoverClose}
       >
         <InfoIcon />
-      </Typography>
+      </IconButton>
       <Popover fontSize='small' style={{maxWidth: "70%"}}
         id="mouse-over-popover"
         className={classes.popover}

@@ -32,20 +32,23 @@ const styles = theme => ({
 class StateSelect extends Component {
 
     state = {
-        selectedState: this.props.default
+        //short_name is the state abbreviation.
+        //named so it matches results from geocode API
+        short_name: this.props.default
     }
 
     componentDidMount() {
         this.props.dispatch({type: 'GET_STATES'})
-        console.log(this.state.selectedState)
+
     }
  
     submitState = () => {
         console.log(this.state)
-        //makes new call to geocode API with new state selection
+    
         //updates the zip reducer with new state info
         this.props.dispatch({ type: 'SEND_STATE_ABBREV', payload: this.state })
-        this.props.dispatch({type: 'GET_STATE_POLICIES', payload: this.state.selectedState})
+        //gets state policies to diplay on DOM
+        this.props.dispatch({type: 'GET_STATE_POLICIES', payload: this.state})
     }
 
   render() {
@@ -55,8 +58,8 @@ class StateSelect extends Component {
       <div>
           {this.props.store.states &&
          <FormControl className={classes.formControl}>
-           <Select value={this.state.selectedState} 
-           onChange={(event) => { this.setState({selectedState: event.target.value })}}
+           <Select value={this.state.short_name} 
+           onChange={(event) => { this.setState({short_name: event.target.value })}}
            className={classes.select}
            variant="outlined">
            <InputLabel className={classes.label} >State</InputLabel>

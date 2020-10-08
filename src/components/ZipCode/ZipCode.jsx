@@ -68,8 +68,8 @@ const ZipCode = ({ dispatch, store, history }) => {
                         </Typography></div>
                         <Typography className={classes.pos} color="textSecondary" variant='body1' style={{ display: 'inline' }}>
                             The petition maker will walk you through your state's existing energy policies, what they mean, who has influence over them,
-                        and help you send a letter to them advocating for green policies. <span style={{ display: 'inline', float: 'right' }}><InfoPopover /></span>
-                        </Typography>
+                        and help you send a letter to them advocating for green policies. 
+                        </Typography> <span style={{ display: 'inline', float: 'right' }}><InfoPopover /></span>
                         <div className='zipBox' >
                             <Typography variant='h4'>Enter Your Zip Code</Typography>
                             <Typography variant="h5" component="h2">to find your state's policies and write to your elected officials</Typography>
