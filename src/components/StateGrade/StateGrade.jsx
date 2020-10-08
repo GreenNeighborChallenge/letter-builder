@@ -31,27 +31,18 @@ class StateGrade extends Component {
         }
     }
 
-    
+
 
     render() {
-    return (
-        <div style={{backgroundColor: 'rgb(255,255,255, .85)'}}>
-            {this.props.store.statePolicies &&
-            <>
-            <div id='stateTitle'><Typography variant='h4' gutterBottom>Your State: Add Dropdown</Typography></div>
-                   <div className='outline'>
-                    <Typography>
-                      Your state's energy and climate policy, graded:
+        return (
+            <div style={{ backgroundColor: 'rgb(255,255,255, .85)' }}>
+                {this.props.store.statePolicies &&
+                    <>
+                        <div id='stateTitle'><Typography variant='h4' gutterBottom>Your State: Add Dropdown</Typography></div>
+                        <div className='outline'>
+                            <Typography>
+                                Your state's energy and climate policy, graded:
                     </Typography>
-            </div>
-            <div className='outline' id='grade'>
-            <Typography variant='h1'>{this.props.store.statePolicies.policy_grade}</Typography>
-            <GradeExplainer />
-            </div>
-            <Typography>
-                      Your state's existing energy and climate policies:
-
-            </Typography>
                         </div>
                         <div className='outline' id='grade'>
                             <Typography variant='h1'>{this.props.store.statePolicies.policy_grade}</Typography>
@@ -61,38 +52,38 @@ class StateGrade extends Component {
                             Your state's existing energy and climate policies:
                         </Typography>
                         <List>
-                            <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 1)}:</span><ListItemIcon style={{minWidth: 0, marginRight: 5}}>
+                            <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 1)}:</span><ListItemIcon style={{ minWidth: 0, marginRight: 5 }}>
                                 <PolicyExplainer type={'CAP'} /></ListItemIcon>{this.props.store.statePolicies.climate_plan ? this.props.store.statePolicies.climate_plan : <p>none</p>}</ListItem>
-                            <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 2)}:</span><ListItemIcon style={{minWidth: 0, marginRight: 5}}>
+                            <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 2)}:</span><ListItemIcon style={{ minWidth: 0, marginRight: 5 }}>
                                 <PolicyExplainer type={'RPS'} /></ListItemIcon> {this.props.store.statePolicies.portfolio_standard ? this.props.store.statePolicies.portfolio_standard : <p>none</p>}</ListItem>
-                            <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 5)}:</span><ListItemIcon style={{minWidth: 0, marginRight: 5}}>
+                            <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 5)}:</span><ListItemIcon style={{ minWidth: 0, marginRight: 5 }}>
                                 <PolicyExplainer type={'GPM'} /></ListItemIcon>{this.props.store.statePolicies.green_pricing ? this.props.store.statePolicies.green_pricing : <p>none</p>}</ListItem>
-                            <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 3)}:</span><ListItemIcon style={{minWidth: 0, marginRight: 5}}>
+                            <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 3)}:</span><ListItemIcon style={{ minWidth: 0, marginRight: 5 }}>
                                 <PolicyExplainer type={'PACE'} /></ListItemIcon>{this.props.store.statePolicies.pace ? this.props.store.statePolicies.pace : <p>none</p>}</ListItem>
-                            <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 9)}:</span><ListItemIcon style={{minWidth: 0, marginRight: 5}}>
+                            <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 9)}:</span><ListItemIcon style={{ minWidth: 0, marginRight: 5 }}>
                                 <PolicyExplainer type={'EES'} /></ListItemIcon>{this.props.store.statePolicies.energy_standard ? this.props.store.statePolicies.energy_standard : <p>none</p>}</ListItem>
-                            
-                    {/* these items hidden until see more button is clicked */}
+
+                            {/* these items hidden until see more button is clicked */}
                             {this.state.showMore &&
                                 <>
-                                    <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 4)}:</span><ListItemIcon style={{minWidth: 0, marginRight: 5}}>
+                                    <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 4)}:</span><ListItemIcon style={{ minWidth: 0, marginRight: 5 }}>
                                         <PolicyExplainer type={'CVP'} /></ListItemIcon>{this.props.store.statePolicies.clean_vehicle ? this.props.store.statePolicies.clean_vehicle : <p>none</p>}</ListItem>
-                                    <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 7)}:</span><ListItemIcon style={{minWidth: 0, marginRight: 5}}>
+                                    <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 7)}:</span><ListItemIcon style={{ minWidth: 0, marginRight: 5 }}>
                                         <PolicyExplainer type={'CS'} /></ListItemIcon>{this.props.store.statePolicies.community_solar ? this.props.store.statePolicies.community_solar : <p>none</p>}</ListItem>
-                                    <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 6)}:</span><ListItemIcon style={{minWidth: 0, marginRight: 5}}>
+                                    <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 6)}:</span><ListItemIcon style={{ minWidth: 0, marginRight: 5 }}>
                                         <PolicyExplainer type={'HSR'} /></ListItemIcon>{this.props.store.statePolicies.home_solar ? this.props.store.statePolicies.home_solar : <p>none</p>}</ListItem>
-                                    <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 8)}:</span><ListItemIcon style={{minWidth: 0, marginRight: 5}}>
+                                    <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 8)}:</span><ListItemIcon style={{ minWidth: 0, marginRight: 5 }}>
                                         <PolicyExplainer type={'CCA'} /></ListItemIcon>{this.props.store.statePolicies.community_choice ? this.props.store.statePolicies.community_choice : <p>none</p>}</ListItem>
-                                    <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 10)}:</span><ListItemIcon style={{minWidth: 0, marginRight: 5}}>
+                                    <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 10)}:</span><ListItemIcon style={{ minWidth: 0, marginRight: 5 }}>
                                         <PolicyExplainer type={'CUB'} /></ListItemIcon>{this.props.store.statePolicies.utility_board ? this.props.store.statePolicies.utility_board : <p>none</p>}</ListItem>
                                 </>}
-                                <div><Button style={{float: 'left', display: 'inline'}}onClick={() => this.setState({ showMore: true })}>See More</Button></div>
+                            <div><Button style={{ float: 'left', display: 'inline' }} onClick={() => this.setState({ showMore: true })}>See More</Button></div>
                             <br />
                         </List>
-                        
+
 
                         <Button style={{ display: 'inline', float: 'left', margin: 5 }}>Previous</Button>
-                        <Button onClick={this.props.directToLetterBuilder}style={{display: 'inline',float: 'right', margin: 5}}>Create Your Letter!</Button>
+                        <Button onClick={this.props.directToLetterBuilder} style={{ display: 'inline', float: 'right', margin: 5 }}>Create Your Letter!</Button>
                     </>
                 }
             </div>
