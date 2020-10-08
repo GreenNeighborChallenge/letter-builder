@@ -69,7 +69,6 @@ class LetterItems extends Component {
                             </div>
                         )
                     })}
-                    <button>Back</button>
                 </div>
                 <div>
                     <h1>Your Letter</h1>

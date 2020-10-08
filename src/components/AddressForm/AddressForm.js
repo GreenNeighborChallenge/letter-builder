@@ -53,9 +53,9 @@ const styles = theme => ({
 
 class AddressForm extends Component {
     state = {
-        firstName: '',
-        lastName: '',
-        email: '',
+        firstName: 'patrick',
+        lastName: 'mazurek',
+        email: 'jpmzurk@gmail.com',
         street: '901 22nd Ave NE',
         city: 'minneapolis',
         st: 'MN',
@@ -73,9 +73,6 @@ class AddressForm extends Component {
     }
 
     //sends address form info to address saga, takes entire state
-    //data does NOT currently go to the DB, refreshing the page will
-    //lose this data
-
     directToReps = () => {
         this.props.history.push('/selectContacts')
         this.props.dispatch({ type: 'ADDRESS_INFO', payload: this.state })
@@ -95,11 +92,12 @@ class AddressForm extends Component {
                     <CardContent className="addressFormContainer">
                         <Typography variant="h5" component="h2" gutterBottom align="center" >
                             Enter your Information
-                    </Typography>
-                        <Typography variant="body2" color="textSecondary" align="center" >To send emails to your local representatives,
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary" align="center" >
+                            To send emails to your local representatives,
                         fill in your address and contact information
                         here and click “find my reps” to make sure your
-                        letter gets to the right people. 
+                        letter gets to the right people.
                         </Typography>
                         {/* all inputs change state on-change */}
                         <section className={classes.form} >
@@ -107,7 +105,6 @@ class AddressForm extends Component {
                             <TextField label="Last Name" variant="outlined" size="small" onChange={(event) => { this.setState({ ...this.state, lastName: event.target.value }) }} placeholder="Last Name" />
                             <br />
                             <div>
-
                                 <TextField label="Email" variant="outlined" size="small" style={{ marginTop: '1em' }}
                                     onChange={(event) => {
                                         this.setState({
@@ -117,7 +114,6 @@ class AddressForm extends Component {
                                     }}
                                     placeholder="Email Address" />
                             </div>
-
 
                             <div >
                                 <TextField label="StreetAddress" variant="outlined" size="small" multiline style={{ marginTop: '1em', width: "20em" }}
@@ -129,13 +125,10 @@ class AddressForm extends Component {
                                     }}
                                     placeholder="Street Address" />
                             </div>
-
                         </section>
 
                         <FormControl className={classes.formControl}>
                             <TextField label="City" variant="outlined" size="small" onChange={(event) => { this.setState({ ...this.state, city: event.target.value }) }} placeholder="City" />
-
-
                             {/* options come from states reducer once it's "there" */}
                             <FormControl className={classes.formControl}>
                                 <InputLabel className={classes.label} >State</InputLabel>
@@ -151,37 +144,35 @@ class AddressForm extends Component {
                                             return (<MenuItem key={state.id} value={state.state}>{state.state}</MenuItem>)
                                         })}
                                 </Select>
-
                             </FormControl>
 
                             <TextField label="Zip Code" variant="outlined" size="small" onChange={(event) => { this.setState({ ...this.state, zip: event.target.value }) }} placeholder="Zip Code" />
                         </FormControl>
                     </CardContent>
-                     <div style={{marginTop: '2em'}}>               
-                    <section className={classes.signup}>
-                        <CustomButton variant="outlined" disabled onClick={this.directToReps} >
-                            Sign Up for our News Letter!
+                    <div style={{ marginTop: '2em' }}>
+                        <section className={classes.signup}>
+                            <CustomButton variant="outlined" >
+                                Sign Up for our News Letter!
                             <Checkbox
-                                defaultChecked
-                                size="small"
-                                inputProps={{ 'aria-label': 'checkbox with small size' }}
-                            />
-                        </CustomButton>
-        
-                    </section>
-                    <Button onClick={this.directBack}>Back</Button>
-                    <CardActions className={classes.cardActions}>
-                        <section>
-                            <CustomButton variant="outlined" onClick={this.directToReps} >Find my Representatives!</CustomButton>
-                            {/* {this.props.store.address &&
+                                    size="small"
+                                    inputProps={{ 'aria-label': 'checkbox with small size' }}
+                                />
+                            </CustomButton>
+
+                        </section>
+                        <Button onClick={this.directBack}>Back</Button>
+                        <CardActions className={classes.cardActions}>
+                            <section>
+                                <CustomButton variant="outlined" onClick={this.directToReps} >Find my Representatives!</CustomButton>
+                                {/* {this.props.store.address &&
                                 <p>{this.props.store.address.firstName}{this.props.store.address.st}</p>
                             } */}
-                        </section>
-                    </CardActions>
-                    </div>     
+                            </section>
+                        </CardActions>
+                    </div>
                 </Card>
             </div>
-            
+
         );
     }
 }
