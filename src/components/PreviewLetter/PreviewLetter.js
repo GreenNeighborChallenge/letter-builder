@@ -1,6 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import { CustomButton } from '../PickReps/RepButtons'
 import Dialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
@@ -65,10 +66,11 @@ function PreviewLetter(props) {
     };
 
     return (
+        
         <div>
-            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+            <CustomButton variant="outlined" color="primary" onClick={handleClickOpen}>
                 Preview Letter!
-      </Button>
+            </CustomButton>
             <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
                 <DialogTitle id="customized-dialog-title" onClose={handleClose}>
                     Preview
@@ -83,15 +85,16 @@ function PreviewLetter(props) {
                     <Typography gutterBottom className="info">
                         Sender: {props.store.user.email}
                         <br />
-                        Recipient(s):
+                        Recipient(s): {props.selections.map(email => {
+                            return email + ", "
+                        })}
                          <br />
                         Subject: {props.store.letter.subject}
                         <br />
                         Message:
           </Typography>
                     <Typography gutterBottom className="body">
-                        <div>
-                            <p>{props.store.letter.intro}</p>
+                           {props.store.letter.intro}
                             <br />
                             {props.store.letter.body.map((policy) => {
                                 return(
@@ -99,8 +102,7 @@ function PreviewLetter(props) {
                                 )
                             })}
                             <br />
-                            <p>{props.store.letter.conclusion}</p>
-                        </div>
+                           {props.store.letter.conclusion}
                     </Typography>
                 </DialogContent>
                 <DialogActions>

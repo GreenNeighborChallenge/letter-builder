@@ -11,14 +11,11 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 
 
-
-
 class StateGrade extends Component {
 
     state = {
         showMore: false
     }
-
 
     componentDidMount() {
         this.props.dispatch({ type: 'GET_STATE_POLICIES', payload: this.props.stateInfo })
@@ -34,18 +31,27 @@ class StateGrade extends Component {
         }
     }
 
+    
 
     render() {
-        return (
-            <div style={{ backgroundColor: 'white' }}>
+    return (
+        <div style={{backgroundColor: 'rgb(255,255,255, .85)'}}>
+            {this.props.store.statePolicies &&
+            <>
+            <div id='stateTitle'><Typography variant='h4' gutterBottom>Your State: Add Dropdown</Typography></div>
+                   <div className='outline'>
+                    <Typography>
+                      Your state's energy and climate policy, graded:
+                    </Typography>
+            </div>
+            <div className='outline' id='grade'>
+            <Typography variant='h1'>{this.props.store.statePolicies.policy_grade}</Typography>
+            <GradeExplainer />
+            </div>
+            <Typography>
+                      Your state's existing energy and climate policies:
 
-                {this.props.store.statePolicies && this.props.store.policyLanguage &&
-                    <>
-                        <div id='stateTitle'><Typography variant='h4' gutterBottom>Your State: Add Dropdown</Typography></div>
-                        <div className='outline'>
-                            <Typography>
-                                Your state's energy and climate policy, graded:
-        </Typography>
+            </Typography>
                         </div>
                         <div className='outline' id='grade'>
                             <Typography variant='h1'>{this.props.store.statePolicies.policy_grade}</Typography>
@@ -53,7 +59,7 @@ class StateGrade extends Component {
                         </div>
                         <Typography variant='h5'>
                             Your state's existing energy and climate policies:
-        </Typography>
+                        </Typography>
                         <List>
                             <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 1)}:</span><ListItemIcon style={{minWidth: 0, marginRight: 5}}>
                                 <PolicyExplainer type={'CAP'} /></ListItemIcon>{this.props.store.statePolicies.climate_plan ? this.props.store.statePolicies.climate_plan : <p>none</p>}</ListItem>
@@ -86,11 +92,12 @@ class StateGrade extends Component {
                         
 
                         <Button style={{ display: 'inline', float: 'left', margin: 5 }}>Previous</Button>
-                        <Button style={{ display: 'inline', float: 'right', margin: 5 }}>Create Your Letter!</Button>
+                        <Button onClick={this.props.directToLetterBuilder}style={{display: 'inline',float: 'right', margin: 5}}>Create Your Letter!</Button>
                     </>
                 }
             </div>
         );
+
     }
 }
 

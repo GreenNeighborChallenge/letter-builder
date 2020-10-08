@@ -33,9 +33,8 @@ const styles = theme => ({
     card: {
         textAlign: 'center',
         position: 'relative',
-        maxWidth: "45em",
-        minWidth: '35em',
-        minHeight: '35em',
+        width: '48em',
+        height: '35em',
         padding: '1em',
         backgroundColor: 'rgb(255,255,255, .85)',
     },
@@ -57,10 +56,10 @@ class AddressForm extends Component {
         firstName: '',
         lastName: '',
         email: '',
-        street: '',
-        city: '',
-        st: '',
-        zip: '',
+        street: '901 22nd Ave NE',
+        city: 'minneapolis',
+        st: 'MN',
+        zip: '55418',
     };
 
     //gets states on mount to display in dropdown box

@@ -45,7 +45,7 @@ function LetterBuilder({history}) {
         history.push('/address')
     }
     const directBack = () => {
-        history.push('/grade')
+        history.push('/zip')
     }
     return (
         <div className={classes.container}>
