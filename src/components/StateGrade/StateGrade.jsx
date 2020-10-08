@@ -31,11 +31,9 @@ class StateGrade extends Component {
         }
     }
 
-
-
     render() {
         return (
-            <div style={{ backgroundColor: 'rgb(255,255,255, .85)' }}>
+            <div >
                 {this.props.store.statePolicies &&
                     <>
                         <div id='stateTitle'><Typography variant='h4' gutterBottom>Your State: Add Dropdown</Typography></div>

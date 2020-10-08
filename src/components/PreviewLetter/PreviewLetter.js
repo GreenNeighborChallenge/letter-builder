@@ -66,7 +66,7 @@ function PreviewLetter(props) {
     };
 
     return (
-        
+
         <div>
             <CustomButton variant="outlined" color="primary" onClick={handleClickOpen}>
                 Preview Letter!
@@ -74,35 +74,35 @@ function PreviewLetter(props) {
             <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
                 <DialogTitle id="customized-dialog-title" onClose={handleClose}>
                     Preview
-        </DialogTitle>
+                </DialogTitle>
                 <DialogContent dividers>
                     <Typography gutterBottom className="header">
                         Preview your letter below to make sure everything looks right. Click the "x" in the top right corner
                         to make any edits. When you are happy with your letter, either hit “send” to email it
                         to your selected local officials, or “print” to create a printable PDF with a form for signatures.
-          </Typography>
-                <br />
+                    </Typography>
+                    <br />
                     <Typography gutterBottom className="info">
-                        Sender: {props.store.user.email}
+                        Sender: {props.store.address.email}
                         <br />
                         Recipient(s): {props.selections.map(email => {
                             return email + ", "
                         })}
-                         <br />
+                        <br />
                         Subject: {props.store.letter.subject}
                         <br />
                         Message:
-          </Typography>
+                    </Typography>
                     <Typography gutterBottom className="body">
-                           {props.store.letter.intro}
-                            <br />
-                            {props.store.letter.body.map((policy) => {
-                                return(
-                                    <p>{policy}</p>
-                                )
-                            })}
-                            <br />
-                           {props.store.letter.conclusion}
+                        {props.store.letter.intro}
+                        <br />
+                        {props.store.letter.body.map((policy) => {
+                            return (
+                                <p>{policy}</p>
+                            )
+                        })}
+                        <br />
+                        {props.store.letter.conclusion}
                     </Typography>
                 </DialogContent>
                 <DialogActions>
