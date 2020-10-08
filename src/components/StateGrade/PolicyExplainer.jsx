@@ -5,6 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { connect } from 'react-redux'
+import LongExplainer from './LongExplainer.jsx'
+import IconButton from '@material-ui/core/Button'
 
 const useStyles = makeStyles((theme) => ({
     popover: {
@@ -35,7 +37,8 @@ function PolicyExplainer(props) {
     };
 
     const handlePopoverClose = () => {
-        setAnchorEl(null);
+        setTimeout(() => setAnchorEl(null), 3000);
+      
     };
 
 
@@ -50,7 +53,7 @@ function PolicyExplainer(props) {
                 onMouseEnter={handlePopoverOpen}
                 onMouseLeave={handlePopoverClose}
             >
-                <HelpOutlineIcon fontSize='small' />
+                <IconButton><HelpOutlineIcon fontSize='small' /></IconButton>
             </Typography>
             {props.type === "CAP" &&
                 <Popover
@@ -72,7 +75,8 @@ function PolicyExplainer(props) {
                     onClose={handlePopoverClose}
                     disableRestoreFocus
                 >
-          <Typography variant='body1'>{getById(props.store.policyLanguage, 1)}</Typography>
+          <Typography variant='body1'>{getById(props.store.policyLanguage, 1)} 
+          </Typography> <LongExplainer />
                 </Popover>}
 
                 {props.type === "RPS" &&
