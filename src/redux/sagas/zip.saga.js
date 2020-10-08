@@ -83,11 +83,11 @@ function* setZipReducerByState(action) {
             return stateList[stateAbbr];
           }
     
-          let searchState = getStateFullName(action.payload.selectedState)
+          let searchState = getStateFullName(action.payload.short_name)
           console.log(searchState)
           let objForZip = {
             long_name: searchState,
-            short_name: action.payload
+            short_name: action.payload.short_name
         }
 
           yield put({type: 'SET_STATE_RESPONSE', payload: objForZip })

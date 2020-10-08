@@ -34,10 +34,11 @@ class StateGrade extends Component {
 
     render() {
         return (
-            <div >
+            <div style={{backgroundColor: 'white'}}>
                 {this.props.store.statePolicies &&
                     <>
-                        <div id='stateTitle'><Typography variant='h4' gutterBottom>Your State: <StateSelect default={this.props.store.zip.short_name}  /> </Typography></div>
+                        <div id='stateTitle' >
+                            <Typography variant='h4' gutterBottom>Your State: <StateSelect default={this.props.store.zip.short_name}  /> </Typography></div>
                         <div className='outline'>
                             <Typography>
                                 Your state's energy and climate policy, graded:
