@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+
 
 import './AdminState.css';
 
@@ -8,6 +11,8 @@ class AdminStateInfo extends Component {
     state = {
         heading: 'state infoooo Component',
         SSEOinput: false,
+        editPolicies: false,
+        editContact: false,
         newSSEOName: '',
         newSSEOEmail: '',
     };
@@ -19,8 +24,32 @@ class AdminStateInfo extends Component {
     saveSSEO = (selectedId) => {
         this.setState({ ...this.state, SSEOinput: false })
 
-        this.props.dispatch({type: 'NEW_SSEO', payload: {state_info: this.state, stateId: selectedId}})
+        this.props.dispatch({ type: 'NEW_SSEO', payload: { state_info: this.state, stateId: selectedId } })
     }
+
+    deleteConfirm = () => {
+        confirmAlert({
+          title: 'Confirm to submit',
+          message: 'Are you sure to do this.',
+          buttons: [
+            {
+              label: 'Yes',
+              onClick: () => {
+                  alert('Click Yes');
+                  this.deleteState();
+                }
+            },
+            {
+              label: 'No',
+              onClick: () => alert('Nothing Deleted.')
+            }
+          ]
+        });
+      };
+
+      deleteState = () => {
+        console.log(this.props.stateInfo.state_id);
+      }
 
     render() {
         // console.log(this.props.store.stateInfo.climate_plan)
@@ -66,7 +95,10 @@ class AdminStateInfo extends Component {
                 <div className="statePolicies">
                     <h1>{stateInfo.state} SSEO's</h1>
                     {this.state.SSEOinput ?
-                        <button onClick={() => this.saveSSEO(stateInfo.state_id)}>Save</button> :
+                        <div>
+                            <button onClick={() => this.saveSSEO(stateInfo.state_id)}>Save</button>
+                            <button onClick={() => this.setState({...this.state, SSEOinput: false})}>Cancel</button>
+                        </div> :
                         <button onClick={() => this.addSSEO()}>Add Another SSEO</button>
                     }
                     {this.props.store.sseoInfo[0] &&
@@ -80,17 +112,16 @@ class AdminStateInfo extends Component {
                                 </div>
                             )
                         })}
-                        {this.state.newSSEOEmail}
-                        {this.state.newSSEOName}
                     {this.state.SSEOinput &&
                         <div>
                             <input placeholder="SSEO Name"
-                            onChange={(event) => this.setState({...this.state, newSSEOName: event.target.value})}></input>
+                                onChange={(event) => this.setState({ ...this.state, newSSEOName: event.target.value })}></input>
                             <input placeholder="SSEO Email"
-                            onChange={(event) => this.setState({...this.state, newSSEOEmail: event.target.value})}></input>
+                                onChange={(event) => this.setState({ ...this.state, newSSEOEmail: event.target.value })}></input>
                         </div>
                     }
                 </div>
+                <button onClick={() => this.deleteConfirm(stateInfo.state_id)}>Delete State Info</button>
             </div>
         );
     }
