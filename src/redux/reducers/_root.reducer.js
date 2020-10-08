@@ -5,12 +5,12 @@ import zip from './zip.reducer';
 import address from './address.reducer';
 import states from './states.reducer';
 import policyLanguage from './policyLanguage.reducer';
+import statePolicies from './statePolicies.reducer';
+import offices from './offices.reducer'
 import reps from './reps.reducer'
 import letter from './letter.reducer';
 import stateInfo from './state.info.reducer';
 import admin from './admin.reducer'
-
-import stateInfo from './state.info.reducer';
 import sseoInfo from './sseo.reducer';
 
 // rootReducer is the primary reducer for our entire project
@@ -31,6 +31,7 @@ const rootReducer = combineReducers({
   offices,
   stateInfo,
   admin,
+  sseoInfo
 });
 
 export default rootReducer;
