@@ -4,6 +4,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -22,21 +23,6 @@ const styles = theme => ({
         minWidth: 120,
         margin: '-1.4em',
     },
-    card: {
-        textAlign: 'center',
-        position: 'relative',
-        maxWidth: "45em",
-        minWidth: '35em',
-        minHeight: '35em',
-        padding: '1em',
-        backgroundColor: 'rgb(255,255,255, .85)',
-    },
-    cardActions: {
-        float: 'right',
-    },
-    signup: {
-        float: 'left',
-    },
     form: {
         margin: '2em',
     }
@@ -54,10 +40,9 @@ class StateSelect extends Component {
         console.log(this.state.selectedState)
     }
  
-    handleChange = event => {
+    submitState = () => {
+        console.log(this.state)
         //makes new call to geocode API with new state selection
-        this.setState({selectedState: event.target.value})
-        console.log('running handle change', this.state)
         //updates the zip reducer with new state info
         this.props.dispatch({ type: 'SEND_STATE_ABBREV', payload: this.state })
         this.props.dispatch({type: 'GET_STATE_POLICIES', payload: this.state.selectedState})
@@ -69,9 +54,9 @@ class StateSelect extends Component {
     return (
       <div>
           {this.props.store.states &&
-        //  <FormControl className={classes.formControl}>
+         <FormControl className={classes.formControl}>
            <Select value={this.state.selectedState} 
-           onChange={this.handleChange}
+           onChange={(event) => { this.setState({selectedState: event.target.value })}}
            className={classes.select}
            variant="outlined">
            <InputLabel className={classes.label} >State</InputLabel>
@@ -82,8 +67,9 @@ class StateSelect extends Component {
 
          })}
         </Select>
-        // </FormControl>
+         </FormControl>
   }
+    <Button onClick={this.submitState}>Change State</Button>
       </div>
     );
   }

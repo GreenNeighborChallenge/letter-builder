@@ -16,7 +16,7 @@ function* fetchGeo(action) {
 function* fetchGeoByState(action) {
     try {
         console.log(action.payload.selectedState)
-        let response = yield axios.get(`/api/zip/${action.payload.selectedState}`)
+        let response = yield axios.get(`/api/zip/state/${action.payload.selectedState}`)
         yield put({type: 'SET_ZIP_RESPONSE', payload: response.data})
     } catch (error) {
         console.log('error in fetchGEO', error)

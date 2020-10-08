@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.get(`/:stateName`, (req, res) => {
 //uses state name to find state ID in DB
+console.log('req.params in stateName', req.params)
   let stateName = req.params.stateName
   console.log(stateName)
   const queryText = `SELECT * FROM "state" WHERE "state".state = $1;`
