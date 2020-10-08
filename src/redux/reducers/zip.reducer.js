@@ -10,6 +10,9 @@ const zipReducer = (state = {}, action) => {
         })
 
         return stateInfo[0];
+      case 'SET_STATE_RESPONSE':
+        console.log(action.payload)
+        return action.payload
       case 'UNSET_ZIP_RESPONSE':
         return {};
       default:
