@@ -27,5 +27,7 @@ export default function* rootSaga() {
     policyLanguageSaga(),
     repsSaga(),
     adminFormSaga(),
+    officesSaga(), 
+    statePolicySaga(), 
   ]);
 }
