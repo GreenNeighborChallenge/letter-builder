@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField'
 import mapStoreToProps from '../../redux/mapStoreToProps';
-// import "./Card.css"
+
 import './ZipCode.css'
 import InfoPopover from './InfoPopover'
 import StateGrade from '../StateGrade/StateGrade.jsx'
@@ -40,10 +40,8 @@ const useStyles = makeStyles({
     }
 });
 
+const ZipCode = ({ dispatch, store, history }) => {
 
-
-const ZipCode = ({ dispatch, store }) => {
-    // const dispatch = useDispatch();
     const classes = useStyles();
 
     let [zip, changeZip] = useState('');
@@ -53,6 +51,10 @@ const ZipCode = ({ dispatch, store }) => {
         console.log(zip)
     }
 
+    const directToLetterBuilder = () => {
+        console.log('clicked');
+        history.push('/letterBuilder')
+    }
 
     return (
         <>
@@ -62,7 +64,7 @@ const ZipCode = ({ dispatch, store }) => {
                         <div style={{ textAlign: 'center' }}>
                             <Typography color="textSecondary" id='zipTitle' style={{ fontSize: 48, fontFamily: 'leafy', color: 'black' }} gutterBottom>
                                 BE THE CHANGE: State Policy Petition Maker
-        </Typography></div>
+                        </Typography></div>
                         <Typography className={classes.pos} color="textSecondary" variant='body1' style={{ display: 'inline' }}>
                             The petition maker will walk you through your state's existing energy policies, what they mean, who has influence over them,
                         and help you send a letter to them advocating for green policies. <span style={{ display: 'inline', float: 'right' }}><InfoPopover /></span>
@@ -75,16 +77,12 @@ const ZipCode = ({ dispatch, store }) => {
                             <Button variant='contained' onClick={sendZip}>Go</Button>
                         </div>
                         {store.zip.long_name &&
-                            <StateGrade stateInfo={store.zip} />}
+                            <StateGrade stateInfo={store.zip} directToLetterBuilder={directToLetterBuilder}/>}
                     </CardContent>
                 </Card>
             </div>
-
         </>
     );
 }
-
-
-
 
 export default connect(mapStoreToProps)(ZipCode)

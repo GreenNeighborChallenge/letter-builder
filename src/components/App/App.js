@@ -26,7 +26,7 @@ import AdminLanding from '../AdminLanding/AdminLanding.js';
 import AdminPolicies from '../AdminPolicies/AdminPolicies';
 import AdminStates from '../AdminStates/AdminStates';
 import PickReps from '../PickReps/PickReps.jsx';
-
+import PreviewLetter from '../PreviewLetter/PreviewLetter'
 import StateGrade from '../StateGrade/StateGrade.jsx'
 import './App.css';
 
@@ -74,15 +74,20 @@ class App extends Component {
 
               <Route
                 exact
-                path="/selectContacts"
-                component={PickReps}
-              />
-
-              <Route
-                exact
                 path="/address"
                 component={AddressForm}
               />
+              <Route
+                exact
+                path="/selectContacts"
+                component={PickReps}
+              />
+                <Route
+                exact
+                path="/previewLetter"
+                component={PreviewLetter}
+              />
+              
               <Route
                 exact
                 path="/home"

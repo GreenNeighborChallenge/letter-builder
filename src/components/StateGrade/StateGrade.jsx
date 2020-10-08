@@ -10,25 +10,25 @@ import PolicyExplainer from './PolicyExplainer.jsx';
 
 class StateGrade extends Component{
 
-  
-
     componentDidMount() {
         this.props.dispatch({type: 'GET_STATE_POLICIES', payload: this.props.stateInfo})
         this.props.dispatch({type: 'FETCH_POLICIES'})
     }
 
+    
 
     render() {
+
     return (
-        <div style={{backgroundColor: 'white'}}>
+        <div style={{backgroundColor: 'rgb(255,255,255, .85)'}}>
             {this.props.store.statePolicies &&
             <>
             <div id='stateTitle'><Typography variant='h4' gutterBottom>Your State: Add Dropdown</Typography></div>
                    <div className='outline'>
                     <Typography>
                       Your state's energy and climate policy, graded:
-        </Typography>
-        </div>
+                    </Typography>
+            </div>
             <div className='outline' id='grade'>
             <Typography variant='h1'>{this.props.store.statePolicies.policy_grade}</Typography>
             <GradeExplainer />
@@ -52,7 +52,7 @@ class StateGrade extends Component{
         </ul>
           
                     <Button style={{display: 'inline', float: 'left', margin: 5}}>Previous</Button>
-                    <Button style={{display: 'inline',float: 'right', margin: 5}}>Create Your Letter!</Button>
+                    <Button onClick={this.props.directToLetterBuilder}style={{display: 'inline',float: 'right', margin: 5}}>Create Your Letter!</Button>
                 </>
             }
         </div>
