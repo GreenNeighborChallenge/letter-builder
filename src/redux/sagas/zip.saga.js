@@ -12,16 +12,17 @@ function* fetchGeo(action) {
     }
 }
 
+//Delete this once we've confirmed setZipReducerByState works
 //sends state abbreviation to server, then Google Geocode API
-function* fetchGeoByState(action) {
-    try {
-        console.log(action.payload.selectedState)
-        let response = yield axios.get(`/api/zip/state/${action.payload.selectedState}`)
-        yield put({type: 'SET_ZIP_RESPONSE', payload: response.data})
-    } catch (error) {
-        console.log('error in fetchGEO', error)
-    }
-}
+// function* fetchGeoByState(action) {
+//     try {
+//         console.log(action.payload.selectedState)
+//         let response = yield axios.get(`/api/zip/state/${action.payload.selectedState}`)
+//         yield put({type: 'SET_ZIP_RESPONSE', payload: response.data})
+//     } catch (error) {
+//         console.log('error in fetchGEO', error)
+//     }
+// }
 
 //takes state acronym, finds state full name, and sends both to zip reducer
 function* setZipReducerByState(action) {
