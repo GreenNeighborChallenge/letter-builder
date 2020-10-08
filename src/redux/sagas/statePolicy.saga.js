@@ -12,10 +12,20 @@ function* fetchStatePolicies(action){
     }
 }
 
+function* createSSEO(action){
+    try {
+        let response = yield axios.post(`/api/statePolicies/sseo/${action.payload.stateId}`, action.payload.state_info);
+        console.log(response);
 
+        yield put({type: 'FETCH_SSEO_INFO', payload: action.payload.stateId})
+    } catch (error) {
+        console.log('error setting new SSEO', error)
+    }
+}
 
 function* policySaga() {
   yield takeLatest('GET_STATE_POLICIES', fetchStatePolicies);
+  yield takeLatest('NEW_SSEO', createSSEO);
 }
 
 export default policySaga;

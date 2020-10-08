@@ -27,6 +27,21 @@ router.get(`/:stateName`, (req, res) => {
   })
 })
 
+router.post('/sseo/:id', (req, res) => {
+  let queryText = `INSERT INTO state_office ("state_id", "SSEO_name", "SSEO_email")
+  VALUES ($1, $2, $3);`
 
+  let stateId = req.params.id;
+  let newName = req.body.newSSEOName;
+  let newEmail = req.body.newSSEOEmail;
+
+  pool.query(queryText, [stateId, newName, newEmail])
+  .then((result) => {
+    res.sendStatus(201);
+  }).catch((error) => {
+    console.log('error adding new sseo', error);
+    res.sendStatus(500);
+  });
+});
 
 module.exports = router;
