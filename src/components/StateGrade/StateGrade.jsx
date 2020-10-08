@@ -9,6 +9,7 @@ import PolicyExplainer from './PolicyExplainer.jsx';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
+import StateSelect from './StateSelect'
 
 
 
@@ -41,7 +42,7 @@ class StateGrade extends Component {
 
                 {this.props.store.statePolicies && this.props.store.policyLanguage &&
                     <>
-                        <div id='stateTitle'><Typography variant='h4' gutterBottom>Your State: Add Dropdown</Typography></div>
+                        <div id='stateTitle'><Typography variant='h4' gutterBottom>Your State: <StateSelect default={this.props.store.zip.short_name}  /> </Typography></div>
                         <div className='outline'>
                             <Typography>
                                 Your state's energy and climate policy, graded:

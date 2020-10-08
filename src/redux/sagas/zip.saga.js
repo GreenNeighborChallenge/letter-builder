@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-// worker Saga: will be fired on "FETCH_USER" actions
+//sends zipcode to server, then Google Geocode API
 function* fetchGeo(action) {
     console.log('got to fetchGeo with', action.payload)
     try {
@@ -12,8 +12,20 @@ function* fetchGeo(action) {
     }
 }
 
+//sends state abbreviation to server, then Google Geocode API
+function* fetchGeoByState(action) {
+    try {
+        console.log(action.payload.selectedState)
+        let response = yield axios.get(`/api/zip/${action.payload.selectedState}`)
+        yield put({type: 'SET_ZIP_RESPONSE', payload: response.data})
+    } catch (error) {
+        console.log('error in fetchGEO', error)
+    }
+}
+
 function* zipSaga() {
   yield takeLatest('SEND_ZIP', fetchGeo);
+  yield takeLatest('SEND_STATE_ABBREV', fetchGeoByState )
 }
 
 export default zipSaga
