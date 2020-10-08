@@ -7,7 +7,6 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import { connect } from 'react-redux'
 import LongExplainer from './LongExplainer.jsx'
 
-
 const useStyles = makeStyles((theme) => ({
     popover: {
         pointerEvents: 'none',

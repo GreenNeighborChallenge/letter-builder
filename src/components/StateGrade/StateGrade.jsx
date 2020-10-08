@@ -36,11 +36,11 @@ class StateGrade extends Component {
 
     render() {
         return (
-            <div style={{backgroundColor: 'white'}}>
+            <div style={{ backgroundColor: 'white' }}>
                 {this.props.store.statePolicies &&
                     <>
                         <div id='stateTitle' >
-                            <Typography variant='h4' gutterBottom>Your State: <StateSelect default={this.props.store.zip.short_name}  /> </Typography></div>
+                            <Typography variant='h4' gutterBottom>Your State: <StateSelect default={this.props.store.zip.short_name} /> </Typography></div>
                         <div className='outline'>
                             <Typography>
                                 Your state's energy and climate policy, graded:
@@ -54,11 +54,16 @@ class StateGrade extends Component {
                             Your state's existing energy and climate policies:
                         </Typography>
                         <List>
+                            <Tooltip
+                                interactive
+                                title={<a href="https://www.w3schools.com">Visit W3Schools.com!</a>}>
+                            <HelpOutlineIcon />
+                            </Tooltip>
+
                             <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 1)}:</span><ListItemIcon style={{ minWidth: 0, marginRight: 5 }}>
                                 {/* <PolicyExplainer type={'CAP'} /> */}
-                                <Tooltip title={<><p>Climate Action Plans are state- city- or region-wide plans to reduce greenhouse gas emissions and increase resilience. They usually include emissions reduction targets and steps to reach those goals through energy efficiency, land use, green energy, and transportation.</p><a href="https://www.w3schools.com">Visit W3Schools.com!</a></>}>
-                                    <HelpOutlineIcon /></Tooltip>
-                                </ListItemIcon>{this.props.store.statePolicies.climate_plan ? this.props.store.statePolicies.climate_plan : <p>none</p>}</ListItem>
+                                <Tooltip interactive title="Climate Action Plans are state- city- or region-wide plans to reduce greenhouse gas emissions and increase resilience. They usually include emissions reduction targets and steps to reach those goals through energy efficiency, land use, green energy, and transportation."><HelpOutlineIcon /></Tooltip>
+                            </ListItemIcon>{this.props.store.statePolicies.climate_plan ? this.props.store.statePolicies.climate_plan : <p>none</p>}</ListItem>
 
 
                             <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 2)}:</span><ListItemIcon style={{ minWidth: 0, marginRight: 5 }}>
@@ -85,15 +90,13 @@ class StateGrade extends Component {
                                         <PolicyExplainer type={'CUB'} /></ListItemIcon>{this.props.store.statePolicies.utility_board ? this.props.store.statePolicies.utility_board : <p>none</p>}</ListItem>
                                 </>}
                             <div>
-                                {this.state.showMore ?  <Button style={{ float: 'left', display: 'inline' }} onClick={() => this.setState({ showMore: false })}>See Less</Button>
-                                : <Button style={{ float: 'left', display: 'inline' }} onClick={() => this.setState({ showMore: true })}>See More</Button> }
-                                
-                                </div>
+                                {this.state.showMore ? <Button style={{ float: 'left', display: 'inline' }} onClick={() => this.setState({ showMore: false })}>See Less</Button>
+                                    : <Button style={{ float: 'left', display: 'inline' }} onClick={() => this.setState({ showMore: true })}>See More</Button>}
+
+                            </div>
                             <br />
                         </List>
 
-
-                        <Button style={{ display: 'inline', float: 'left', margin: 5 }}>Previous</Button>
                         <Button onClick={this.props.directToLetterBuilder} style={{ display: 'inline', float: 'right', margin: 5 }}>Create Your Letter!</Button>
                     </>
                 }
