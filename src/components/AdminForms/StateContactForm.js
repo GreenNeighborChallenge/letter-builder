@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 
 class StateContactForm extends Component {
 
     state = {
+        selectedState: '',
         puc: '',
         doc: '',
         sseo: [{
@@ -10,6 +12,13 @@ class StateContactForm extends Component {
             name: '',
             email: ''
         }]
+    }
+
+    handleStateChange = (event) => {
+        this.setState({
+            selectedState: event.target.value
+        })
+        this.props.stateNameChange(event);
     }
 
     addSseo = () => {
@@ -40,8 +49,9 @@ class StateContactForm extends Component {
         console.log(this.state.doc)
     }
 
-    handleNameChange = (event) => {
-        const nameIndex = this.state.sseo.findIndex(name => name.id === this.state.sseo.id)
+    handleNameChange = (event, id) => {
+        const nameIndex = this.state.sseo.findIndex(name => name.id === id)
+        console.log(nameIndex)
         let nameToChange = [...this.state.sseo]
         nameToChange[nameIndex] = {...nameToChange[nameIndex], name: event.target.value}
         this.setState({
@@ -50,39 +60,51 @@ class StateContactForm extends Component {
         console.log(this.state.sseo)
     }
 
-    handleEmailChange = (event) => {
-        const emailIndex = this.state.sseo.findIndex(email => email.id === this.state.sseo.id)
+    handleEmailChange = (event, id) => {
+        const emailIndex = this.state.sseo.findIndex(email => email.id === id)
+        console.log(emailIndex)
         let emailToChange = [...this.state.sseo]
         emailToChange[emailIndex] = {...emailToChange[emailIndex], email: event.target.value}
         this.setState({
             sseo: emailToChange
         })
-        console.log(this.state.sseo)
-    }    
+        console.log(this.state)
+    }  
+
+    handleSave = (event) => {
+        console.log(this.props.selectedState)
+        console.log(this.state)
+        this.props.dispatch ({ type: "PUT_CONTACT_INFO", payload: this.state })
+    }
 
     render() {
         return (
             <div>
+                State:
+                <input onChange={this.handleStateChange} placeholder="Use abbreviation (i.e. AL)"></input>
                 <h1>State Contact Information</h1>
                 PUC:
                 <input onChange={this.handlePuc}></input>
+                <br />
                 Department of Commerce Email:
                 <input onChange={this.handleDoc}></input>
                 {this.state.sseo.map((office) => {
                     return (
                         <>
                             <p>SSEO Name</p>
-                            < input onChange={this.handleNameChange}></input>
+                            < input onChange={(event) => this.handleNameChange(event, office.id)}></input>
                             <p>SSEO Email</p>
-                            < input onChange={this.handleEmailChange}></input >
+                            < input onChange={(event) => this.handleEmailChange(event, office.id)}></input >
                         </>
                     )
                 })
                 }
                 <button onClick={this.addSseo}>Add Another SSEO</button>
+                <br />
+                <button onClick={this.handleSave}>Save</button>
             </div >
         );
     }
 }
 
-export default StateContactForm;
+export default connect()(StateContactForm);

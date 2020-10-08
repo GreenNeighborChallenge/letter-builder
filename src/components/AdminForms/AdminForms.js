@@ -8,27 +8,23 @@ import StateContactForm from './StateContactForm.js';
 class AdminForms extends Component {
 
     state = {
-        selectedState: ''
+        selectedState: '',
     };
 
+    //this will get passed down so that both
+    //components can use the selected state
     stateNameChange = (event) => {
         this.setState({
             selectedState: event.target.value
         })
     }
 
-    handleSubmit = () => {
-        console.log('clicked submit')
-    }
-
     render() {
+        
         return (
             <div>
-                State:
-                <input onChange={this.stateNameChange}></input>
-                <PolicyInfoForm />
-                <StateContactForm selectedState={this.state.selectedState} />
-                <button onClick={this.handleSubmit}>Submit</button>
+                <StateContactForm stateNameChange={(event) => this.stateNameChange(event)} selectedState ={this.state.selectedState}/>
+                <PolicyInfoForm selectedState={this.state.selectedState}/>
             </div>
         );
     }

@@ -3,7 +3,7 @@ import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import zipSaga from './zip.saga';
-
+import stateContact from './stateContact.saga';
 import statesSaga from './states.saga';
 
 import policyLanguageSaga from './policyLanguage.saga';
@@ -25,5 +25,6 @@ export default function* rootSaga() {
     statesSaga(),
     policyLanguageSaga(),
     repsSaga(),
+    stateContact(),
   ]);
 }
