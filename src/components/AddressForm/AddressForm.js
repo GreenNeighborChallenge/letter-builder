@@ -144,7 +144,6 @@ const AddressForm = ({ dispatch, history, states }) => {
                         <div className={right}>
                             <Button type="submit" variant="outlined" >Find my Representatives!</Button>
                         </div>
-
                     </form>
                 </FormControl>
             </Card>
