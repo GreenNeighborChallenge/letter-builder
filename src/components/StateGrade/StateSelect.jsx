@@ -32,19 +32,22 @@ const styles = theme => ({
 class StateSelect extends Component {
 
     state = {
+        //short_name is the state abbreviation.
+        //named so it matches results from geocode API
         short_name: this.props.default
     }
 
     componentDidMount() {
         this.props.dispatch({type: 'GET_STATES'})
-        console.log(this.state.selectedState)
+
     }
  
     submitState = () => {
         console.log(this.state)
-        //makes new call to geocode API with new state selection
+    
         //updates the zip reducer with new state info
         this.props.dispatch({ type: 'SEND_STATE_ABBREV', payload: this.state })
+        //gets state policies to diplay on DOM
         this.props.dispatch({type: 'GET_STATE_POLICIES', payload: this.state})
     }
 

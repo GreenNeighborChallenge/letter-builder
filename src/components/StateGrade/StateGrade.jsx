@@ -77,7 +77,11 @@ class StateGrade extends Component {
                                     <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 10)}:</span><ListItemIcon style={{ minWidth: 0, marginRight: 5 }}>
                                         <PolicyExplainer type={'CUB'} /></ListItemIcon>{this.props.store.statePolicies.utility_board ? this.props.store.statePolicies.utility_board : <p>none</p>}</ListItem>
                                 </>}
-                            <div><Button style={{ float: 'left', display: 'inline' }} onClick={() => this.setState({ showMore: true })}>See More</Button></div>
+                            <div>
+                                {this.state.showMore ?  <Button style={{ float: 'left', display: 'inline' }} onClick={() => this.setState({ showMore: false })}>See Less</Button>
+                                : <Button style={{ float: 'left', display: 'inline' }} onClick={() => this.setState({ showMore: true })}>See More</Button> }
+                                
+                                </div>
                             <br />
                         </List>
 
