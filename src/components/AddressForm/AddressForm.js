@@ -11,11 +11,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import { Button } from '@material-ui/core/';
 import FormControl from '@material-ui/core/FormControl';
-<<<<<<< HEAD
 import PreviewLetter from '../PreviewLetter/PreviewLetter.js'
 //import css
-=======
->>>>>>> policy-language
 import './AddressForm.css';
 import { withStyles } from '@material-ui/core/styles';
 import { CustomButton } from '../PickReps/RepButtons'
@@ -172,18 +169,11 @@ class AddressForm extends Component {
                                 {/* {this.props.store.address &&
                                 <p>{this.props.store.address.firstName}{this.props.store.address.st}</p>
                             } */}
-<<<<<<< HEAD
                             </section>
                         </CardActions>
                     </div>
                 </Card>
                 <PreviewLetter />
-=======
-                        </section>
-                    </CardActions>
-                    </div>     
-                </Card>
->>>>>>> policy-language
             </div>
 
         );
