@@ -13,6 +13,7 @@ const useStyles = makeStyles({
     root: {
         maxWidth: "100%",
         maxHeight: "100%",
+        background: 'rgb(255,255,255, .85)',
     },
     title: {
         fontSize: 14,
@@ -45,7 +46,7 @@ function LetterBuilder({history}) {
         history.push('/address')
     }
     const directBack = () => {
-        history.push('/grade')
+        history.push('/zip')
     }
     return (
         <div className={classes.container}>
