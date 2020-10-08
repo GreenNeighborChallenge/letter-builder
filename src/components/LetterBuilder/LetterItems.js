@@ -52,12 +52,6 @@ class LetterItems extends Component {
 
 
     render() {
-
-        //will allow this info to still be collected if they aren't edited
-        // const intro = 
-        // const conclusion = 
-        // const subject =
-
         return (
             <>
                 <div>
@@ -66,6 +60,7 @@ class LetterItems extends Component {
                         return (
                             <div className="cardItem" key={policy.id}>
                                 <PolicyButton policy={policy} handleAdd={() => this.handleAdd(policy.id)} />
+                                
                             </div>
                         )
                     })}
