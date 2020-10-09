@@ -92,7 +92,6 @@ class AdminPolicies extends Component {
                     <td>{policy.long_info}</td>
                     <td>{policy.petition_info}</td>
                     <td><button>edit</button></td>
-
                   </tr>
                 )
               })}

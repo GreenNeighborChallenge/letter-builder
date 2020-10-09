@@ -1,5 +1,6 @@
 .cardItem {
-    padding: 5px
+    padding: 5px;
+    margin-top: 10px
 }
 
 .addButton {
@@ -18,5 +19,5 @@
 
 .policies {
     margin-top:0px;
-    margin-bottom: 65px
+    margin-bottom: 0px;
 }

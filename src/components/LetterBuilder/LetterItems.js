@@ -56,6 +56,7 @@ class LetterItems extends Component {
             <>
                 <div>
                     <h1 className="policies">Policies</h1>
+                    <h6 className="policies">Hover over each policy to learn more</h6>
                     {this.props.store.policyLanguage.map((policy) => {
                         return (
                             <div className="cardItem" key={policy.id}>
