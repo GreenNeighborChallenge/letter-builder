@@ -21,7 +21,7 @@ import ZipCode from '../ZipCode/ZipCode';
 import AddressForm from '../AddressForm/AddressForm';
 
 import LetterBuilder from '../LetterBuilder/LetterBuilder.js';
-import AdminLanding from '../AdminLanding/AdminLanding.js';
+import AdminTabs from '../AdminLanding/AdminTabs.js';
 import AdminPolicies from '../AdminPolicies/AdminPolicies';
 import AdminStates from '../AdminStates/AdminStates';
 import PickReps from '../PickReps/PickReps.jsx';
@@ -136,10 +136,10 @@ class App extends Component {
                 authRedirect="/user"
               />
 
-              <ProtectedRoute
+              <Route
                 exact
                 path="/admin_home"
-                component={AdminLanding}
+                component={AdminTabs}
               />
 
               <ProtectedRoute
