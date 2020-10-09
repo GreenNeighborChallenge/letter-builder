@@ -5,7 +5,8 @@ const router = express.Router();
 //user side
 router.get('/', (req, res) => {
   // GET route code here
-  const queryText = `SELECT * FROM "policy_language";`
+  const queryText = `SELECT "policy_language".short_info, "policy_language".long_info, "policy_language".petition_info, "policy_name".name FROM "policy_language"
+                    JOIN "policy_name" ON "policy_name".id = "policy_language".id;;`
   pool.query(queryText)
   .then((result) => {
       // console.log(result.rows)

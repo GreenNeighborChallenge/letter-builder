@@ -13,7 +13,7 @@ router.get('/:state', async (req, res) => {
         await client.query('BEGIN');
         const firstQuery = `
                         SELECT * FROM "state"
-                        WHERE state = $1;`;
+                        WHERE state_abv = $1;`;
 
         const result = await client.query(firstQuery, [selectedState]);
 

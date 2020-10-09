@@ -122,7 +122,7 @@ const AddressForm = ({ dispatch, history, states }) => {
                                 <Controller as={<Select className={select} variant="outlined" >
                                     {states &&
                                         states.map((state) => {
-                                            return (<MenuItem key={state.id} value={state.state}>{state.state}</MenuItem>)
+                                            return (<MenuItem key={state.id} value={state.state_abv}>{state.state_abv}</MenuItem>)
                                         })}
                                 </Select>
                                 } name="st" defaultValue="" control={control} />
