@@ -30,12 +30,12 @@ class AdminStateInfo extends Component {
     deleteConfirm = () => {
         confirmAlert({
           title: 'Confirm to submit',
-          message: 'Are you sure to do this.',
+          message: 'Are you sure you want to delete this state? Once it is deleted it cannot be recovered.',
           buttons: [
             {
               label: 'Yes',
               onClick: () => {
-                  alert('Click Yes');
+                  alert('State Deleted.');
                   this.deleteState();
                 }
             },
@@ -48,7 +48,12 @@ class AdminStateInfo extends Component {
       };
 
       deleteState = () => {
-        console.log(this.props.stateInfo.state_id);
+        this.props.dispatch({
+            type: 'DELETE_STATE', 
+            payload: this.props.stateInfo.state_id
+        });
+
+        this.props.resetDropdown();
       }
 
     render() {
