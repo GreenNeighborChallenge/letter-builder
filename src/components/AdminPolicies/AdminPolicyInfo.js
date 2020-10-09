@@ -75,7 +75,7 @@ class AdminPolicyInfo extends Component {
                     </>
                     :
                     <>
-                        <td>{this.props.policy.policy}</td>
+                        <td>{this.props.policy.name}</td>
                         <td>{this.props.policy.short_info}</td>
                         <td>{this.props.policy.long_info}</td>
                         <td>{this.props.policy.petition_info}</td>
