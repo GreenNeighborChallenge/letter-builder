@@ -79,7 +79,7 @@ const PickReps = ({ dispatch, reps, history, offices }) => {
             <Card className={card} >
                 <CardContent className={cardContent} >
                     <Typography variant="h5" component="h2" gutterBottom align="center" >
-                        Your Representatives
+                        Select Your Representatives
                     </Typography>
                     <Typography variant="body2" color="textSecondary" align="center" >
                         To send an email, select recipients and add your contact information to the the letter. To Create a paper petition, you can skip to the bottom to generate a printable PDF.
