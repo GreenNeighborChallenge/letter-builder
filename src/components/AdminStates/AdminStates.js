@@ -49,7 +49,7 @@ class AdminStates extends Component {
                     <option value="">State</option>
                     {this.props.store.states &&
                         this.props.store.states.map((state) => {
-                            return (<option key={state.id} value={state.id}>{state.state}</option>)
+                            return (<option key={state.id} value={state.id}>{state.state_abv}</option>)
                         })}
                 </select>
 

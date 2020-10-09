@@ -19,10 +19,12 @@ router.get('/', (req, res) => {
 
 router.get('/info/:id', (req, res) => {
     // GET states for address form
-    let queryText = `SELECT * FROM "policy_info"
-    JOIN "state" ON "policy_info".state_id = "state".id
-    JOIN "state_office" ON "state".id = "state_office".state_id
-    WHERE "policy_info".state_id = $1;`;
+    let queryText = `SELECT "state".state_grade, "state".puc, "state".doc, json_agg(json_build_object('policy_name', "policy_name".name, 'policy_data', "policy_info".policy_data)) AS "AdminStateInfo"
+                        FROM "state"
+                    JOIN "policy_info" on "policy_info".state_id = "state".id
+                    JOIN "policy_name" on "policy_info".policy_id = "policy_name".id
+                    WHERE "state".id = $1
+                    GROUP BY "state".id`;
 
     let stateId = req.params.id
 
@@ -50,31 +52,14 @@ router.get('/sseo/:id', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-    let policyQueryText = `DELETE FROM "policy_info"
-    WHERE "state_id" = $1;`
-    let officeQueryText = `DELETE FROM "state_office"
-    WHERE "state_id" = $1;`
-    let stateQueryText = `DELETE FROM "state"
-    WHERE "id" = $1;`
     let stateToDelete = req.params.id
-
-    pool.query(policyQueryText, [stateToDelete]).then(result => {
-        pool.query(officeQueryText, [stateToDelete]).then(result => {
-            pool.query(stateQueryText, [stateToDelete]).then(result => {
-                res.sendStatus(200);
-            }).catch(error => {
-                console.log('error deleting state info from states', error);
-                res.sendStatus(500);
-            })
-            res.sendStatus(200);
-        }).catch(error => {
-            console.log('error deleting state info from state_office', error);
-            res.sendStatus(500);
-        })
-        res.sendStatus(200);
-    }).catch(error => {
-        console.log('error deleting state info from policy_info', error);
-        res.sendStatus(500);
+    let stateQueryText = `DELETE FROM "state"
+                        WHERE "id" = $1;`
+    pool.query(stateQueryText, [stateToDelete])
+    .then((result) => {
+        res.sendStatus(200)
+    }).catch((error) => {
+        console.log('error deleting state', error)
     })
 });
 

@@ -29,8 +29,6 @@ function* addPolicy(action){
 function* policyLanguageSaga() {
   yield takeLatest('FETCH_POLICIES', fetchPolicies);
   yield takeLatest('POLICY_TO_LETTER', addPolicy);
-  yield takeLatest('NEW_POLICY', newPolicy)
-
 }
 
 export default policyLanguageSaga;
