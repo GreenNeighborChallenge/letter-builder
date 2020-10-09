@@ -135,7 +135,6 @@ export default function CustomizedSteppers({ step }) {
     const [activeStep, setActiveStep] = useState(step);
     const steps = getSteps();
 
-
     useEffect(() => {
 
     }, [step]);
