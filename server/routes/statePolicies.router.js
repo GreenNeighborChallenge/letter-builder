@@ -8,12 +8,15 @@ router.get(`/:stateName`, (req, res) => {
 console.log('req.params in stateName', req.params)
   let stateName = req.params.stateName
   console.log(stateName)
-  const queryText = `SELECT * FROM "state" WHERE "state".state = $1;`
+  const queryText = `SELECT * FROM "state" WHERE "state".state_abv = $1;`
   pool.query(queryText, [stateName])
   .then((result) => {
     console.log(result.rows[0].id)
     //gets policies from DB based on id from first query
-    const policyQuery = `SELECT * FROM "policy_info" WHERE "policy_info".state_id = $1;`
+    const policyQuery = `SELECT "policy_info".state_id, "policy_info".policy_id, "policy_info".policy_data, "policy_name".name, "state".state_grade, "policy_name".id AS policy_name_id FROM "policy_info"
+                        JOIN "policy_name" ON "policy_name".id = "policy_info".policy_id
+                        JOIN "state" ON "state".id = "policy_info".state_id
+                        WHERE "policy_info".state_id = $1;`
     pool.query(policyQuery, [result.rows[0].id])
     .then((result) => {
         res.send(result.rows);
