@@ -47,7 +47,7 @@ class StateSelect extends Component {
     
         //updates the zip reducer with new state info
         this.props.dispatch({ type: 'SEND_STATE_ABBREV', payload: this.state })
-        //gets state policies to diplay on DOM
+        //gets state policies to display on DOM
         this.props.dispatch({type: 'GET_STATE_POLICIES', payload: this.state})
     }
 
@@ -65,7 +65,7 @@ class StateSelect extends Component {
            <InputLabel className={classes.label} >State</InputLabel>
             {this.props.store.states.map(state => {
                 return (
-                <MenuItem key={state.id} value={state.state}>{state.state}</MenuItem>
+                <MenuItem key={state.id} value={state.state_abv}>{state.state_abv}</MenuItem>
                 )
 
          })}
