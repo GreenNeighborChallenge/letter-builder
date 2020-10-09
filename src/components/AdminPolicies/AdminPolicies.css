@@ -27,3 +27,15 @@ table {
 h1{
     text-align: center;
 }
+
+button {
+    margin: 5px
+}
+
+textarea {
+    padding: 5px;
+    width: 90%;
+    height: 20vw;
+    resize: none;
+    
+}

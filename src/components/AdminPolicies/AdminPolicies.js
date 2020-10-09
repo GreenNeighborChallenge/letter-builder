@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import AdminPolicyInfo from './AdminPolicyInfo.js'
 
 import './AdminPolicies.css'
 
@@ -52,7 +53,7 @@ class AdminPolicies extends Component {
       addPolicy: false
     })
     console.log(this.state)
-    this.props.dispatch({ type: 'NEW_POLICY', payload: this.state })
+    this.props.dispatch({ type: 'NEW_POLICY_LANGUAGE', payload: this.state })
   }
 
   render() {
@@ -87,11 +88,7 @@ class AdminPolicies extends Component {
               {this.props.store.policyLanguage.map((policy) => {
                 return (
                   <tr key={policy.id}>
-                    <td>{policy.policy}</td>
-                    <td>{policy.short_info}</td>
-                    <td>{policy.long_info}</td>
-                    <td>{policy.petition_info}</td>
-                    <td><button>edit</button></td>
+                  <AdminPolicyInfo policy={policy}/>
                   </tr>
                 )
               })}

@@ -5,7 +5,7 @@ const router = express.Router();
 //user side
 router.get('/', (req, res) => {
   // GET route code here
-  const queryText = `SELECT * FROM "policy_language";`
+  const queryText = `SELECT * FROM "policy_language" ORDER BY "policy_language".id;`
   pool.query(queryText)
   .then((result) => {
       // console.log(result.rows)
@@ -37,5 +37,23 @@ router.post('/', (req, res) => {
   VALUES ($1, $2, $3, $4)`
   pool.query(queryText, [newPolicy.name, newPolicy.short, newPolicy.long, newPolicy.petition])
 });
+
+router.put('/', (req, res) => {
+  let updates = req.body
+  const queryText = `UPDATE "policy_language"
+                    SET "policy" = $1,
+                    "short_info" = $2,
+                    "long_info" = $3,
+                    "petition_info" =$4
+                    WHERE "policy_language".id = $5`
+                  
+  pool.query(queryText, [updates.policyName, updates.short_info, updates.long_info, updates.petition_info, updates.policyId])
+  .then((result) => {
+    res.sendStatus(200)
+  }) .catch ((error) => {
+    res.sendStatus(500)
+    console.log('error updating policy language', error)
+  })
+})
 
 module.exports = router;
