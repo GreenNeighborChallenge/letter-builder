@@ -68,9 +68,9 @@ function PreviewLetter(props) {
     return (
 
         <div>
-            <CustomButton variant="outlined" color="primary" onClick={handleClickOpen}>
+            <Button variant="outlined" onClick={handleClickOpen}>
                 Preview Letter!
-            </CustomButton>
+            </Button>
             <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
                 <DialogTitle id="customized-dialog-title" onClose={handleClose}>
                     Preview

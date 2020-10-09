@@ -14,8 +14,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Stepper from '../Stepper/Stepper'
 import { useLocation } from 'react-router-dom'
 import { useForm, Controller } from "react-hook-form";
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
+
 
 const useStyles = makeStyles({
     root: {
@@ -27,7 +26,7 @@ const useStyles = makeStyles({
     card: {
         textAlign: 'center',
         width: '48em',
-        height: '40em',
+        height: '37em',
         padding: '1em',
         backgroundColor: 'rgb(255,255,255, .85)',
     },

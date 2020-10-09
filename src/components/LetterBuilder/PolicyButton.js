@@ -126,7 +126,7 @@ function PolicyInfo(props) {
                 onClose={handlePopoverClose}
                 disableRestoreFocus
             >
-                <Typography>{props.policy.short_info}</Typography>
+                <Typography>{props.policy.short_info} (Click this button to learn more!)</Typography>
             </Popover>
             {added ?
                 <button className="addButton" onClick={handleDelete}>Delete</button> :
