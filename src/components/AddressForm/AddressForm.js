@@ -1,9 +1,6 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import mapStoreToProps from '../../redux/mapStoreToProps';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -11,16 +8,30 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import { Button } from '@material-ui/core/';
 import FormControl from '@material-ui/core/FormControl';
-import PreviewLetter from '../PreviewLetter/PreviewLetter.js'
-//import css
-import './AddressForm.css';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { CustomButton } from '../PickReps/RepButtons'
 import Checkbox from '@material-ui/core/Checkbox';
+import Stepper from '../Stepper/Stepper'
+import { useLocation } from 'react-router-dom'
+import { useForm, Controller } from "react-hook-form";
 
-const styles = theme => ({
+
+const useStyles = makeStyles({
+    root: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        margin: '1em',
+    },
+    card: {
+        textAlign: 'center',
+        width: '48em',
+        height: '37em',
+        padding: '1em',
+        backgroundColor: 'rgb(255,255,255, .85)',
+    },
     formControl: {
-        margin: theme.spacing(1),
+        margin: '.5em',
         height: '2.5em',
         display: 'inline'
     },
@@ -32,153 +43,118 @@ const styles = theme => ({
         minWidth: 120,
         margin: '-1.4em',
     },
-    card: {
-        textAlign: 'center',
-        position: 'relative',
-        width: '48em',
-        height: '35em',
-        padding: '1em',
-        backgroundColor: 'rgb(255,255,255, .85)',
-    },
-    cardActions: {
+    right: {
         float: 'right',
     },
-    signup: {
+    left: {
         float: 'left',
     },
+    signup: {
+        marginTop: '1em'
+    },
     form: {
-        margin: '2em',
-    }
-
+        margin: '1em',
+    },
+    stepper: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
 });
 
 
-class AddressForm extends Component {
-    state = {
-        firstName: 'patrick',
-        lastName: 'mazurek',
-        email: 'jpmzurk@gmail.com',
-        street: '901 22nd Ave NE',
-        city: 'minneapolis',
-        st: 'MN',
-        zip: '55418',
-    };
+const AddressForm = ({ dispatch, history, states }) => {
+    const { card, form, formControl, label, select, signup, right, root, left, stepper } = useStyles();
+    const { handleSubmit, register, control } = useForm();
+    const location = useLocation();
 
-    //gets states on mount to display in dropdown box
-    componentDidMount() {
-        this.getStates();
+    useEffect(() => {
+        dispatch({ type: 'GET_STATES' })
+
+    }, [location]);
+
+    const currentPath = location.pathname;
+    console.log(currentPath.split("/").pop());
+
+    const onSubmit = (data) => {
+        dispatch({ type: 'ADDRESS_INFO', payload: data })
+        dispatch({ type: 'FETCH_OFFICES', payload: data.st })
+        directToReps()
     }
 
-    //actually gets the states, runs on mount
-    getStates = () => {
-        this.props.dispatch({ type: 'GET_STATES' })
+    const directToReps = () => {
+        history.push('/selectContacts')
     }
 
-    //sends address form info to address saga, takes entire state
-    directToReps = () => {
-        this.props.history.push('/selectContacts')
-        this.props.dispatch({ type: 'ADDRESS_INFO', payload: this.state })
-        this.props.dispatch({ type: 'FETCH_OFFICES', payload: this.state.st })
+    const directBack = () => {
+        history.push('/letterBuilder')
     }
 
-    directBack = () => {
-        this.props.history.push('/letterBuilder')
-    }
-
-    render() {
-        const { classes } = this.props;
-
-        return (
-            <div className="root">
-                <Card className={classes.card}>
-                    <CardContent className="addressFormContainer">
+    return (
+        <div className={root}>
+            <Card className={card}>
+                <FormControl >
+                    <form onSubmit={handleSubmit(onSubmit)} noValidate autoComplete="off">
                         <Typography variant="h5" component="h2" gutterBottom align="center" >
                             Enter your Information
                         </Typography>
                         <Typography variant="body2" color="textSecondary" align="center" >
                             To send emails to your local representatives,
-                        fill in your address and contact information
-                        here and click “find my reps” to make sure your
-                        letter gets to the right people.
+                            fill in your address and contact information
+                            here and click “find my reps” to make sure your
+                            letter gets to the right people.
                         </Typography>
-                        {/* all inputs change state on-change */}
-                        <section className={classes.form} >
-                            <TextField style={{ marginRight: '1em' }} label="First Name" variant="outlined" size="small" onChange={(event) => { this.setState({ ...this.state, firstName: event.target.value }) }} placeholder="First Name" />
-                            <TextField label="Last Name" variant="outlined" size="small" onChange={(event) => { this.setState({ ...this.state, lastName: event.target.value }) }} placeholder="Last Name" />
-                            <br />
+                        <section className={form}>
+                            <TextField inputRef={register} style={{ marginRight: '1em' }} label="First Name" variant="outlined" size="small" name="firstName" placeholder="First Name" />
+                            <TextField inputRef={register} label="Last Name" variant="outlined" size="small" name="lastName" placeholder="Last Name" />
                             <div>
-                                <TextField label="Email" variant="outlined" size="small" style={{ marginTop: '1em' }}
-                                    onChange={(event) => {
-                                        this.setState({
-                                            ...this.state,
-                                            email: event.target.value
-                                        })
-                                    }}
-                                    placeholder="Email Address" />
+                                <TextField inputRef={register} label="Email" variant="outlined" size="small" style={{ marginTop: '1em' }} name="email" placeholder="Email Address" />
                             </div>
-
-                            <div >
-                                <TextField label="StreetAddress" variant="outlined" size="small" multiline style={{ marginTop: '1em', width: "20em" }}
-                                    onChange={(event) => {
-                                        this.setState({
-                                            ...this.state,
-                                            street: event.target.value
-                                        })
-                                    }}
-                                    placeholder="Street Address" />
+                            <div>
+                                <TextField inputRef={register} label="StreetAddress" variant="outlined" size="small" multiline style={{ marginTop: '1em', width: "20em" }} name="street" placeholder="Street Address" />
                             </div>
                         </section>
-
-                        <FormControl className={classes.formControl}>
-                            <TextField label="City" variant="outlined" size="small" onChange={(event) => { this.setState({ ...this.state, city: event.target.value }) }} placeholder="City" />
-                            {/* options come from states reducer once it's "there" */}
-                            <FormControl className={classes.formControl}>
-                                <InputLabel className={classes.label} >State</InputLabel>
-                                <Select
-                                    className={classes.select}
-                                    value={this.state.st}
-                                    variant="outlined"
-                                    onChange={(event) => { this.setState({ ...this.state, st: event.target.value }) }}
-                                >
-                                    <MenuItem disabled> State </MenuItem>
-                                    {this.props.store.states &&
-                                        this.props.store.states.map((state) => {
+                        <section className={formControl}>
+                            <TextField inputRef={register} label="City" variant="outlined" size="small" name="city" placeholder="City" />
+                            <FormControl className={formControl}>
+                                <InputLabel className={label}  >State</InputLabel>
+                                <Controller as={<Select className={select} variant="outlined" >
+                                    {states &&
+                                        states.map((state) => {
                                             return (<MenuItem key={state.id} value={state.state}>{state.state}</MenuItem>)
                                         })}
                                 </Select>
+                                } name="st" defaultValue="" control={control} />
                             </FormControl>
-
-                            <TextField label="Zip Code" variant="outlined" size="small" onChange={(event) => { this.setState({ ...this.state, zip: event.target.value }) }} placeholder="Zip Code" />
-                        </FormControl>
-                    </CardContent>
-                    <div style={{ marginTop: '2em' }}>
-                        <section className={classes.signup}>
+                            <TextField inputRef={register} label="Zip Code" variant="outlined" size="small" name="zip" placeholder="Zip Code" />
+                        </section>
+                        <section className={signup}>
                             <CustomButton variant="outlined" >
                                 Sign Up for our News Letter!
-                            <Checkbox
-                                    size="small"
-                                    inputProps={{ 'aria-label': 'checkbox with small size' }}
-                                />
+                                    <Checkbox size="small" inputProps={{ 'aria-label': 'email signup check box' }} />
                             </CustomButton>
-
                         </section>
-                        <Button onClick={this.directBack}>Back</Button>
-                        <CardActions className={classes.cardActions}>
-                            <section>
-                                <CustomButton variant="outlined" onClick={this.directToReps} >Find my Representatives!</CustomButton>
-                                {/* {this.props.store.address &&
-                                <p>{this.props.store.address.firstName}{this.props.store.address.st}</p>
-                            } */}
-                            </section>
-                        </CardActions>
-                    </div>
-                </Card>
-                <PreviewLetter />
-            </div>
+                        <section className={stepper}>
+                            <Stepper step={2} />
+                        </section>
+                        <div className={left}>
+                            <Button onClick={directBack} variant="outlined">Back</Button>
+                        </div>
+                        <div className={right}>
+                            <Button type="submit" variant="outlined" >Find my Representatives!</Button>
+                        </div>
 
-        );
-    }
+                    </form>
+                </FormControl>
+            </Card>
+        </div>
+
+    );
 }
-const styledAddressForm = withStyles(styles)(AddressForm);
 
-export default connect(mapStoreToProps)(styledAddressForm);
+const mapStoreToProps = (reduxState) => {
+    return {
+        states: reduxState.states,
+    };
+};
+export default connect(mapStoreToProps)(AddressForm);

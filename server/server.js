@@ -10,8 +10,8 @@ const passport = require('./strategies/user.strategy');
 
 // Route includes
 const userRouter = require('./routes/user.router');
-
-const zipRouter = require('./routes/zip.router')
+const adminRouter = require('./routes/admin.router');
+const zipRouter = require('./routes/zip.router');
 
 const statesRouter = require('./routes/states.router');
 const policyRouter = require('./routes/policy.router');
@@ -38,8 +38,9 @@ app.use('/api/zip', zipRouter)
 app.use('/api/states', statesRouter);
 app.use('/api/policy', policyRouter);
 app.use('/api/reps', repsRouter);
-app.use('/api/statePolicies', statePoliciesRouter);
+app.use('/api/admin', adminRouter);
 app.use('/api/offices', officesRouter);
+app.use('/api/statePolicies', statePoliciesRouter);
 
 // Serve static files
 app.use(express.static('build'));

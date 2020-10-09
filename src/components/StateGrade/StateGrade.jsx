@@ -10,6 +10,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import StateSelect from './StateSelect';
+import Stepper from '../Stepper/Stepper'
 import Tooltip from '@material-ui/core/Tooltip';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import LongExplainer from './LongExplainer.jsx';
@@ -31,7 +32,6 @@ const theme = createMuiTheme({
         }
     }
 });
-
 
 class StateGrade extends Component {
 
@@ -81,6 +81,7 @@ class StateGrade extends Component {
                             <Typography variant='h5'>
                                 Your state's existing energy and climate policies:
                         </Typography>
+
                             <List>
 
                                 <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 1, 'name')}:</span><ListItemIcon style={{ minWidth: 0, marginRight: 5 }}>

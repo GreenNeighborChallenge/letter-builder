@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import Card from '@material-ui/core/Card';
 import { Button } from '@material-ui/core';
@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import { RepButton } from './RepButtons'
 import PreviewLetter from '../PreviewLetter/PreviewLetter';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-import ToggleButton from '@material-ui/lab/ToggleButtonGroup';
+import Stepper from '../Stepper/Stepper'
 
 const useStyles = makeStyles({
     root: {
@@ -19,22 +19,19 @@ const useStyles = makeStyles({
     },
     card: {
         width: '48em',
-        height: '35em',
         backgroundColor: 'rgb(255,255,255, .85)',
         display: "flex",
         alignItems: 'center',
         flexDirection: 'column',
-        padding: '1em'
+        padding: '1em', 
     },
     cardContent: {
-        minHeight: '25em',
-        minWidth: '25em',
+        minHeight: '24em',
+        // minWidth: '24em',
+        marginBottom: '-1em'
     },
-    preview: {
-        display: "flex",
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column',
+    left: {
+        float: 'left'
     },
     repButtons: {
         display: 'flex',
@@ -45,12 +42,22 @@ const useStyles = makeStyles({
     },
     noAddress: {
         marginTop: '5em'
-    }
+    },
+    right: {
+        float: 'right'
+    },
+    cardActions: {
+        all: 'unset',
+        width: '48em'
+    },
+    stepper: {
+        paddingTop: '-3em'
+    },
 });
 
 
 const PickReps = ({ dispatch, reps, history, offices }) => {
-    const classes  = useStyles();
+    const {root, card,cardContent, left, repButtons, noAddress, right, cardActions, stepper}  = useStyles();
     const [selections, setSelections] = useState(() => []);
 
     const handleSelections = (event, newSelection) => {
@@ -68,9 +75,9 @@ const PickReps = ({ dispatch, reps, history, offices }) => {
     console.log(selections);
 
     return (
-        <div className={classes.root}>
-            <Card className={classes.card} >
-                <CardContent className={classes.cardContent} >
+        <div className={root}>
+            <Card className={card} >
+                <CardContent className={cardContent} >
                     <Typography variant="h5" component="h2" gutterBottom align="center" >
                         Your Representatives
                     </Typography>
@@ -83,7 +90,7 @@ const PickReps = ({ dispatch, reps, history, offices }) => {
                     {
                         (reps.kind === "civicinfo#representativeInfoResponse" && offices.id) ?
                             <div >
-                                <ToggleButtonGroup value={selections} className={classes.repButtons} onChange={handleSelections}>
+                                <ToggleButtonGroup value={selections} className={repButtons} onChange={handleSelections}>
                                     <RepButton value={offices.gov_email}> {reps.offices[0].name} <br /> {reps.officials[0].name} <br /> {offices.gov_email} </RepButton>
                                     <RepButton value={reps.officials[1].emails[0]} > {reps.offices[1].name} <br /> {reps.officials[1].name} <br />{reps.officials[1].emails[0]} </RepButton>
                                     <RepButton value={reps.officials[2].emails[0]} style={{ marginTop: '1em' }}> {reps.offices[2].name} <br /> {reps.officials[2].name} <br /> {reps.officials[2].emails[0]} </RepButton>
@@ -94,14 +101,20 @@ const PickReps = ({ dispatch, reps, history, offices }) => {
                             </div>
                             :
                             <>
-                                <Typography variant="h6" component="h6" align="center" className={classes.noAddress} >
+                                <Typography variant="h6" component="h6" align="center" className={noAddress} >
                                     No Address Has been entered! <br /> Please go back and and enter your address <br /> to see your representatives
                     </Typography>
                             </>}
                 </CardContent>
-                <CardActions className={classes.preview}>
+                <Stepper step={3} className={stepper}/> 
+                <CardActions className={cardActions}>
+                    
+                <div className={right}>
                     <PreviewLetter selections={selections} />
-                    <Button onClick={directToAddressForm}> Back </Button>
+                </div>
+                <div className={left}>
+                <Button variant="outlined" onClick={directToAddressForm}> Back </Button>
+                </div>
                 </CardActions>
             </Card>
         </div>

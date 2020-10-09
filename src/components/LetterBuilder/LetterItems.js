@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-
+import { Button } from '@material-ui/core/';
 import './LetterItem.css';
-import PolicyButton from './PolicyButton.js'
+import PolicyButton from './PolicyButton.js';
+import Stepper from '../Stepper/Stepper';
 
 class LetterItems extends Component {
 
@@ -52,12 +53,6 @@ class LetterItems extends Component {
 
 
     render() {
-
-        //will allow this info to still be collected if they aren't edited
-        // const intro = 
-        // const conclusion = 
-        // const subject =
-
         return (
             <>
                 <div>
@@ -66,6 +61,7 @@ class LetterItems extends Component {
                         return (
                             <div className="cardItem" key={policy.id}>
                                 <PolicyButton policy={policy} handleAdd={() => this.handleAdd(policy.id)} />
+                                
                             </div>
                         )
                     })}
@@ -84,7 +80,14 @@ class LetterItems extends Component {
                     <textarea className="textArea" defaultValue={this.state.conclusion} onChange={this.handleConclusion}></textarea>
                     < br />
                     {/* <a>Print a PDF instead!</a> */}
-                    <button onClick={this.handleSubmit}>Enter Address</button>
+                    <div style={{margin: '2em 0 -12em -19em'}}> 
+                    <Stepper step={1} />
+                    </div>
+                    <div style={{margin:'9em 0 -9em -25em', padding: '2em 0 0 0'}}> 
+                    
+                    <Button variant="outlined" onClick={this.props.directBack}>Back</Button>
+                    <Button style={{float: 'right', marginBottom: '-3em'}} variant="outlined" onClick={this.handleSubmit}>Enter Address</Button>
+                    </div>
                 </div>
                 
             </>
