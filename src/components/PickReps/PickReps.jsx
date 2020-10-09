@@ -110,7 +110,7 @@ const PickReps = ({ dispatch, reps, history, offices }) => {
                 <CardActions className={cardActions}>
                     
                 <div className={right}>
-                    <PreviewLetter selections={selections} />
+                    <PreviewLetter selections={selections} history={history}/>
                 </div>
                 <div className={left}>
                 <Button variant="outlined" onClick={directToAddressForm}> Back </Button>
