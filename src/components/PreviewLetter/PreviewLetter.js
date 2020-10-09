@@ -63,6 +63,7 @@ function PreviewLetter(props) {
     };
     const handleClose = () => {
         setOpen(false);
+        props.history.push('/confirmation');
     };
 
     return (

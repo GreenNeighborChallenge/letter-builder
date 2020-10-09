@@ -9,7 +9,6 @@ import './AdminState.css';
 
 class AdminStateInfo extends Component {
     state = {
-        heading: 'state infoooo Component',
         SSEOinput: false,
         editPolicies: false,
         editContact: false,
@@ -50,7 +49,7 @@ class AdminStateInfo extends Component {
       deleteState = () => {
         this.props.dispatch({
             type: 'DELETE_STATE', 
-            payload: this.props.stateInfo.state_id
+            payload: this.props.stateInfo.id
         });
 
         this.props.resetDropdown();
@@ -65,27 +64,13 @@ class AdminStateInfo extends Component {
                     <h1>{stateInfo.state} Policy Information</h1>
                     <button>Edit</button>
 
-                    <p>Policy Grade: {stateInfo.policy_grade}</p>
-
-                    <p>Climate Action Plan: {stateInfo.climate_plan}</p>
-
-                    <p>Renewable Portfolio Standard: {stateInfo.portfolio_standard}</p>
-
-                    <p>PACE: {stateInfo.pace}</p>
-
-                    <p>Clean Vehicle Policy: {stateInfo.clean_vehicle}</p>
-
-                    <p>Green Pricing Mandate: {stateInfo.green_pricing}</p>
-
-                    <p>Home Solar Rights: {stateInfo.home_solar}</p>
-
-                    <p>Community Solar: {stateInfo.community_solar}</p>
-
-                    <p>Citizens Utility Board: {stateInfo.utility_board}</p>
-
-                    <p>Community Choice Aggregation: {stateInfo.community_choice}</p>
-
-                    <p>Energy Efficiency Standard: {stateInfo.energy_standard}</p>
+                    {stateInfo.AdminStateInfo.map((stateData) => {
+                        return(
+                            <div>
+                                <p>{stateData.policy_name}: {stateData.policy_data}</p>
+                            </div>
+                        )
+                    })}
 
                 </div>
                 <div className="statePolicies">
@@ -94,14 +79,14 @@ class AdminStateInfo extends Component {
 
                     <p>PUC: {stateInfo.puc}</p>
 
-                    <p>DoC Email: {stateInfo.DoC}</p>
+                    <p>DoC Email: {stateInfo.doc}</p>
 
                 </div>
                 <div className="statePolicies">
                     <h1>{stateInfo.state} SSEO's</h1>
                     {this.state.SSEOinput ?
                         <div>
-                            <button onClick={() => this.saveSSEO(stateInfo.state_id)}>Save</button>
+                            <button onClick={() => this.saveSSEO(stateInfo.id)}>Save</button>
                             <button onClick={() => this.setState({...this.state, SSEOinput: false})}>Cancel</button>
                         </div> :
                         <button onClick={() => this.addSSEO()}>Add Another SSEO</button>
