@@ -54,7 +54,7 @@ const DialogActions = withStyles((theme) => ({
 }))(MuiDialogActions);
 
 
-function PreviewLetter({letter, address, selections}) {
+function PreviewLetter({letter, address, selections, history}) {
     const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
@@ -62,7 +62,7 @@ function PreviewLetter({letter, address, selections}) {
     };
     const handleClose = () => {
         setOpen(false);
-        props.history.push('/confirmation');
+        history.push('/confirmation');
     };
     const addresses = selections.map(address => {
         return address + ','
