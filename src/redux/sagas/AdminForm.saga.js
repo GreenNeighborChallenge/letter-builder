@@ -58,12 +58,23 @@ function* updatePolicyLanguage(action){
     }
 }
 
+function* deletePolicy(action){
+    try{
+        let response = yield axios.delete(`/api/policy/${action.payload}`);
+        console.log(response.data)
+        yield put ({ type: 'FETCH_POLICIES' })
+    } catch(error){
+        console.log('error deleting policy', error)
+    }
+}
+
 function* AdminFormSaga() {
     yield takeLatest('PUT_CONTACT_INFO', putContactInfo);
     yield takeLatest('PUT_POLICY_INFO', putPolicyInfo);
     yield takeLatest('GET_STATE_ID', getStateId);
     yield takeLatest('NEW_POLICY_LANGUAGE', newPolicyLanguage);
     yield takeLatest ('UPDATE_POLICY_LANGUAGE', updatePolicyLanguage);
+    yield takeLatest ('DELETE_POLICY', deletePolicy);
 }
 
 export default AdminFormSaga;

@@ -55,6 +55,7 @@ class AdminPolicyInfo extends Component {
         this.setState({
             isEdit: false
         })
+        this.props.dispatch ({ type: 'DELETE_POLICY', payload: this.state.policyId})
 
     }
 

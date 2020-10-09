@@ -31,6 +31,7 @@ router.get('/:id', (req, res) => {
 
 //admin side
 
+//add new policy
 router.post('/', (req, res) => {
   let newPolicy = req.body
   const queryText=`INSERT INTO "policy_language" ("policy", "short_info", "long_info", "petition_info")
@@ -38,6 +39,7 @@ router.post('/', (req, res) => {
   pool.query(queryText, [newPolicy.name, newPolicy.short, newPolicy.long, newPolicy.petition])
 });
 
+//update a policy
 router.put('/', (req, res) => {
   let updates = req.body
   const queryText = `UPDATE "policy_language"
@@ -55,5 +57,18 @@ router.put('/', (req, res) => {
     console.log('error updating policy language', error)
   })
 })
+
+//delete a policy
+router.delete('/:id', (req, res) => {
+  pool.query(`DELETE FROM "policy_language"
+              WHERE "policy_language".id = $1`, [req.params.id])
+  .then((result) => {
+    res.sendStatus(200)
+  }) .catch((error) => {
+    console.log('error deleting policy', error)
+    res.sendStatus(500)
+  })
+})
+
 
 module.exports = router;
