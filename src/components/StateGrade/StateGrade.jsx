@@ -10,6 +10,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import StateSelect from './StateSelect'
+import Stepper from '../Stepper/Stepper'
 
 
 class StateGrade extends Component {
@@ -34,7 +35,7 @@ class StateGrade extends Component {
 
     render() {
         return (
-            <div style={{backgroundColor: 'white'}}>
+            <div>
                 {this.props.store.statePolicies &&
                     <>
                         <div id='stateTitle' >
@@ -84,10 +85,12 @@ class StateGrade extends Component {
                                 </div>
                             <br />
                         </List>
-
-
-                        <Button style={{ display: 'inline', float: 'left', margin: 5 }}>Previous</Button>
-                        <Button onClick={this.props.directToLetterBuilder} style={{ display: 'inline', float: 'right', margin: 5 }}>Create Your Letter!</Button>
+                        <div style={{margin: '0 0 -2em 3em'}}> 
+                            <Stepper step={0} />
+                        </div>        
+                        
+                        <Button variant="outlined" style={{float: 'left', margin: '2em 0 -1em 0'}}>Previous</Button>
+                        <Button variant="outlined" onClick={this.props.directToLetterBuilder} style={{float: 'right', margin: '2em 0 -1em 0' }}>Create Your Letter!</Button>
                     </>
                 }
             </div>
