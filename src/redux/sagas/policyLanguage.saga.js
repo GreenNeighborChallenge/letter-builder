@@ -12,6 +12,7 @@ function* fetchPolicies(action){
     }
 }
 
+//add a policy to the letter
 function* addPolicy(action){
     try {
         let response = yield axios.get(`/api/policy/${action.payload}`);
@@ -27,8 +28,7 @@ function* addPolicy(action){
 
 function* policyLanguageSaga() {
   yield takeLatest('FETCH_POLICIES', fetchPolicies);
-  yield takeLatest('ADD_POLICY', addPolicy);
-  
+  yield takeLatest('POLICY_TO_LETTER', addPolicy);
 }
 
 export default policyLanguageSaga;

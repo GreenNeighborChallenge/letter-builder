@@ -86,13 +86,13 @@ function PolicyInfo(props) {
     //adding policy to letter
     const [added, addPolicy] = React.useState(false)
     const handleAdd = () => {
-        props.dispatch({ type: 'ADD_POLICY', payload: props.policy.id });
+        props.dispatch({ type: 'POLICY_TO_LETTER', payload: props.policy.id });
         addPolicy(true)
     }
 
     const handleDelete = () => {
         addPolicy(false)
-        props.dispatch({ type: 'DELETE_POLICY', payload: props.policy.petition_info})
+        props.dispatch({ type: 'DELETE_POLICY_FROM_LETTER', payload: props.policy.petition_info})
     }
 
     return (
