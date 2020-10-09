@@ -62,6 +62,7 @@ function PreviewLetter({letter, address, selections}) {
     };
     const handleClose = () => {
         setOpen(false);
+        props.history.push('/confirmation');
     };
     const addresses = selections.map(address => {
         return address + ','
