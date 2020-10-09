@@ -67,6 +67,11 @@ class StateGrade extends Component {
                 <MuiThemeProvider theme={theme}>
                     {this.props.store.statePolicies && this.props.store.policyLanguage &&
                         <>
+
+          
+                            <p>statePolicies: "state_id":1,"policy_id":1,"policy_data":"Updating","name":"Climate Action Plan","state_grade":"A","policy_name_id":1</p>
+                            {JSON.stringify(this.props.store.statePolicies)}
+                           
                             <div id='stateTitle' >
                                 <Typography variant='h4' gutterBottom>Your State: <StateSelect default={this.props.store.zip.short_name} /> </Typography></div>
                             <div className='outline'>
@@ -75,7 +80,7 @@ class StateGrade extends Component {
                     </Typography>
                             </div>
                             <div className='outline' id='grade'>
-                                <Typography variant='h1'>{this.props.store.statePolicies.policy_grade}</Typography>
+                                <Typography variant='h1'>{this.props.store.statePolicies.state_grade}</Typography>
                                 <GradeExplainer />
                             </div>
                             <Typography variant='h5'>
@@ -83,6 +88,14 @@ class StateGrade extends Component {
                         </Typography>
 
                             <List>
+{/* 
+                                {this.props.store.statePolicies.map((policy) =>
+                                <ListItem>
+                                    <span style={{ fontWeight: 'bold' }}>{policy.name}:</span>
+
+                                </ListItem>
+                                
+                                 )} */}
 
                                 <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 1, 'name')}:</span><ListItemIcon style={{ minWidth: 0, marginRight: 5 }}>
                                     <Tooltip interactive title={
@@ -97,115 +110,11 @@ class StateGrade extends Component {
 
                                 <LongExplainer text={this.getById(this.props.store.policyLanguage, 1, 'long')} title={this.getById(this.props.store.policyLanguage, 1, 'name')} />
 
-                                <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 2, 'name')}:</span><ListItemIcon style={{ minWidth: 0, marginRight: 5 }}>
-                                    <Tooltip interactive title={
-                                        <div>
-                                            {this.getById(this.props.store.policyLanguage, 2, 'short')}
-                                            <br />
-                                            <LongExplainer text={this.getById(this.props.store.policyLanguage, 2, 'long')} title={this.getById(this.props.store.policyLanguage, 2, 'name')} />
-                                        </div>
-                                    }>
-                                        <HelpOutlineIcon /></Tooltip>
-                                </ListItemIcon>{this.props.store.statePolicies.portfolio_standard ? this.props.store.statePolicies.portfolio_standard : <p>none</p>}</ListItem>
-
-                                <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 5, 'name')}:</span><ListItemIcon style={{ minWidth: 0, marginRight: 5 }}>
-                                    <Tooltip interactive title={
-                                        <div>
-                                            {this.getById(this.props.store.policyLanguage, 5, 'short')}
-                                            <br />
-                                            <LongExplainer text={this.getById(this.props.store.policyLanguage, 5, 'long')} title={this.getById(this.props.store.policyLanguage, 5, 'name')} />
-                                        </div>
-                                    }>
-                                        <HelpOutlineIcon /></Tooltip>
-                                </ListItemIcon>{this.props.store.statePolicies.green_pricing ? this.props.store.statePolicies.green_pricing : <p>none</p>}</ListItem>
-
-                                <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 3, 'name')}:</span><ListItemIcon style={{ minWidth: 0, marginRight: 5 }}>
-                                    <Tooltip interactive title={
-                                        <div>
-                                            {this.getById(this.props.store.policyLanguage, 3, 'short')}
-                                            <br />
-                                            <LongExplainer text={this.getById(this.props.store.policyLanguage, 3, 'long')} title={this.getById(this.props.store.policyLanguage, 3, 'name')} />
-                                        </div>
-                                    }>
-                                        <HelpOutlineIcon /></Tooltip>
-                                </ListItemIcon>{this.props.store.statePolicies.pace ? this.props.store.statePolicies.pace : <p>none</p>}</ListItem>
-
-                                <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 9, 'name')}:</span><ListItemIcon style={{ minWidth: 0, marginRight: 5 }}>
-                                    <Tooltip interactive title={
-                                        <div>
-                                            {this.getById(this.props.store.policyLanguage, 9, 'short')}
-                                            <br />
-                                            <LongExplainer text={this.getById(this.props.store.policyLanguage, 9, 'long')} title={this.getById(this.props.store.policyLanguage, 9, 'name')} />
-                                        </div>
-                                    }>
-                                        <HelpOutlineIcon /></Tooltip>
-                                </ListItemIcon>{this.props.store.statePolicies.energy_standard ? this.props.store.statePolicies.energy_standard : <p>none</p>}</ListItem>
-
-
 
                                 {/* these items hidden until see more button is clicked */}
                                 {this.state.showMore &&
                                     <>
-
-
-                                        <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 4, 'name')}:</span><ListItemIcon style={{ minWidth: 0, marginRight: 5 }}>
-                                            <Tooltip interactive title={
-                                                <div>
-                                                    {this.getById(this.props.store.policyLanguage, 4, 'short')}
-                                                    <br />
-                                                    <LongExplainer text={this.getById(this.props.store.policyLanguage, 4, 'long')} title={this.getById(this.props.store.policyLanguage, 4, 'name')} />
-                                                </div>
-                                            }>
-                                                <HelpOutlineIcon /></Tooltip>
-                                        </ListItemIcon>{this.props.store.statePolicies.clean_vehicle ? this.props.store.statePolicies.clean_vehicle : <p>none</p>}</ListItem>
-
-
-                                <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 7, 'name')}:</span><ListItemIcon style={{ minWidth: 0, marginRight: 5 }}>
-                                    <Tooltip interactive title={
-                                        <div>
-                                            {this.getById(this.props.store.policyLanguage, 7, 'short')}
-                                            <br />
-                                            <LongExplainer text={this.getById(this.props.store.policyLanguage, 7, 'long')} title={this.getById(this.props.store.policyLanguage, 7, 'name')} />
-                                        </div>
-                                    }>
-                                        <HelpOutlineIcon /></Tooltip>
-                                </ListItemIcon>{this.props.store.statePolicies.community_solar ? this.props.store.statePolicies.community_solar : <p>none</p>}</ListItem>
-
-
-                                <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 6, 'name')}:</span><ListItemIcon style={{ minWidth: 0, marginRight: 5 }}>
-                                    <Tooltip interactive title={
-                                        <div>
-                                            {this.getById(this.props.store.policyLanguage, 6, 'short')}
-                                            <br />
-                                            <LongExplainer text={this.getById(this.props.store.policyLanguage, 6, 'long')} title={this.getById(this.props.store.policyLanguage, 6, 'name')} />
-                                        </div>
-                                    }>
-                                        <HelpOutlineIcon /></Tooltip>
-                                </ListItemIcon>{this.props.store.statePolicies.home_solar ? this.props.store.statePolicies.home_solar : <p>none</p>}</ListItem>
-
-
-                                <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 8, 'name')}:</span><ListItemIcon style={{ minWidth: 0, marginRight: 5 }}>
-                                    <Tooltip interactive title={
-                                        <div>
-                                            {this.getById(this.props.store.policyLanguage, 8, 'short')}
-                                            <br />
-                                            <LongExplainer text={this.getById(this.props.store.policyLanguage, 8, 'long')} title={this.getById(this.props.store.policyLanguage, 8, 'name')} />
-                                        </div>
-                                    }>
-                                        <HelpOutlineIcon /></Tooltip>
-                                </ListItemIcon>{this.props.store.statePolicies.community_choice ? this.props.store.statePolicies.community_choice : <p>none</p>}</ListItem>
-
-
-                                <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 10, 'name')}:</span><ListItemIcon style={{ minWidth: 0, marginRight: 5 }}>
-                                    <Tooltip interactive title={
-                                        <div>
-                                            {this.getById(this.props.store.policyLanguage, 10, 'short')}
-                                            <br />
-                                            <LongExplainer text={this.getById(this.props.store.policyLanguage, 10, 'long')} title={this.getById(this.props.store.policyLanguage, 10, 'name')} />
-                                        </div>
-                                    }>
-                                        <HelpOutlineIcon /></Tooltip>
-                                </ListItemIcon>{this.props.store.statePolicies.community_choice? this.props.store.statePolicies.community_choice : <p>none</p>}</ListItem>
+                                        
                                     </>}
 
                                 <div>
