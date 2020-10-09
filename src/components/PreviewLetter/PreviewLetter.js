@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import { CustomButton } from '../PickReps/RepButtons'
+import {Button, ListItem} from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
@@ -9,10 +8,9 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
-import mapStoreToProps from '../../redux/mapStoreToProps';
+
 import { connect } from 'react-redux'
 import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
-
 import './PreviewLetter.css';
 
 const styles = (theme) => ({
@@ -55,8 +53,9 @@ const DialogActions = withStyles((theme) => ({
     },
 }))(MuiDialogActions);
 
-function PreviewLetter(props) {
-    const [open, setOpen] = React.useState(false);
+
+function PreviewLetter({letter, address, selections}) {
+    const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -64,7 +63,19 @@ function PreviewLetter(props) {
     const handleClose = () => {
         setOpen(false);
     };
-
+    const addresses = selections.map(address => {
+        return address + ','
+    })
+    console.log(selections);
+    console.log(addresses);
+    
+    
+    const policies = letter.body.map((policy) => {
+        return policy 
+    })
+    
+    const emailBody = letter.intro + policies+ letter.conclusion
+    
     return (
 
         <div>
@@ -83,37 +94,42 @@ function PreviewLetter(props) {
                     </Typography>
                     <br />
                     <Typography gutterBottom className="info">
-                        Sender: {props.store.address.email}
+                        Sender: {address.email}
                         <br />
-                        Recipient(s): {props.selections.map(email => {
-                            return email + ", "
-                        })}
+                        <> 
+                        Recipient(s): {selections}
+                        </>
                         <br />
-                        Subject: {props.store.letter.subject}
+                        Subject: {letter.subject}
                         <br />
                         Message:
                     </Typography>
                     <Typography gutterBottom className="body">
-                        {props.store.letter.intro}
+                        {letter.intro}
                         <br />
-                        {props.store.letter.body.map((policy) => {
+                        {letter.body.map((policy, i) => {
                             return (
-                                <p>{policy}</p>
+                                <p key={i}>{policy}</p>
                             )
                         })}
                         <br />
-                        {props.store.letter.conclusion}
+                        {letter.conclusion}
                     </Typography>
                 </DialogContent>
                 <DialogActions>
                     <button>Print PDF <PictureAsPdfIcon /></button>
-                    <Button autoFocus onClick={handleClose} color="primary">
-                        Send Email
+                    <Button autoFocus onClick={handleClose}>
+                    <a href={`mailto:${selections}?subject=${letter.subject}&body=${emailBody}`} >Send Mail</a>
                     </Button>
                 </DialogActions>
             </Dialog>
         </div>
     );
 }
-
+const mapStoreToProps = (reduxState) => {
+    return {
+        letter: reduxState.letter,
+        address: reduxState.address,
+    };
+};
 export default connect(mapStoreToProps)(PreviewLetter);
