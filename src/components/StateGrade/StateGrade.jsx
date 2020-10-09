@@ -88,14 +88,13 @@ class StateGrade extends Component {
                         </Typography>
 
                             <List>
-{/* 
+
                                 {this.props.store.statePolicies.map((policy) =>
                                 <ListItem>
-                                    <span style={{ fontWeight: 'bold' }}>{policy.name}:</span>
-
+                                    <p><span style={{ fontWeight: 'bold' }}>{policy.name}:</span> {policy.policy_data}</p>
                                 </ListItem>
                                 
-                                 )} */}
+                                 )}
 
                                 <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 1, 'name')}:</span><ListItemIcon style={{ minWidth: 0, marginRight: 5 }}>
                                     <Tooltip interactive title={
