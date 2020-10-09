@@ -1,7 +1,7 @@
-const statePoliciesReducer = (state = {}, action) => {
+const statePoliciesReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_STATE_POLICIES':
-            return action.payload[0];
+            return action.payload;
         default:
             return state;
     }
