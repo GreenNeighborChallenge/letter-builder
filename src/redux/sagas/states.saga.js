@@ -44,13 +44,26 @@ function* fetchSSEOInfo(action) {
   } catch (error) {
       console.log('error getting states info', error);
   }
-}
+};
+
+function* deleteState(action) {
+  try {
+      let response = yield axios.delete(`/api/states/${action.payload}`);
+      console.log(response);
+
+      yield put({ type: 'GET_STATES' });
+      yield put({ type: 'FETCH_STATE_INFO', payload: 0 });
+  } catch (error) {
+      console.log('error deleting state info', error);
+  }
+};
 
 function* statesSaga() {
   yield takeLatest('ADDRESS_INFO', updateAddress);
   yield takeLatest('GET_STATES', getStates);
   yield takeLatest('FETCH_STATE_INFO', fetchStateInfo);
-  yield takeLatest('FETCH_SSEO_INFO', fetchSSEOInfo)
+  yield takeLatest('FETCH_SSEO_INFO', fetchSSEOInfo);
+  yield takeLatest('DELETE_STATE', deleteState);
 }
 
 export default statesSaga;
