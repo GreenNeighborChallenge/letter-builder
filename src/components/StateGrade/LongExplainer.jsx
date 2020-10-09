@@ -8,7 +8,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { connect } from 'react-redux'
 
-function LongExplainer() {
+function LongExplainer(props) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -30,11 +30,10 @@ function LongExplainer() {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{props.title}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Let Google help apps determine location. This means sending anonymous location data to
-            Google, even when no apps are running.
+            {props.text}
           </DialogContentText>
         </DialogContent>
         <DialogActions>

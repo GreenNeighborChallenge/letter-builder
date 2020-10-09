@@ -6,7 +6,6 @@ import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { connect } from 'react-redux'
 import LongExplainer from './LongExplainer.jsx'
-import IconButton from '@material-ui/core/Button'
 
 const useStyles = makeStyles((theme) => ({
     popover: {
@@ -53,7 +52,7 @@ function PolicyExplainer(props) {
                 onMouseEnter={handlePopoverOpen}
                 onMouseLeave={handlePopoverClose}
             >
-                <IconButton><HelpOutlineIcon fontSize='small' /></IconButton>
+               <HelpOutlineIcon fontSize='small' />
             </Typography>
             {props.type === "CAP" &&
                 <Popover
