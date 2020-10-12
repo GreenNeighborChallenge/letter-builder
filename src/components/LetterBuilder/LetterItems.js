@@ -51,10 +51,7 @@ class LetterItems extends Component {
         this.props.history.push('/address')
     }
 
-    indexOfState = this.props.store.letter.body.indexOf('[STATE]');
-
     render() {
-        console.log(this.indexOfState);
         return (
             <>
                 <div>
