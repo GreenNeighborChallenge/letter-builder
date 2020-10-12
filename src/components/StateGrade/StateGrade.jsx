@@ -7,11 +7,9 @@ import GradeExplainer from './GradeExplainer.jsx'
 import './StateGrade.css'
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import StateSelect from './StateSelect';
 import Stepper from '../Stepper/Stepper'
 import Tooltip from '@material-ui/core/Tooltip';
-import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import LongExplainer from './LongExplainer.jsx';
 import {
     createMuiTheme,
@@ -67,7 +65,7 @@ class StateGrade extends Component {
 
     render() {
         return (
-            <div style={{ backgroundColor: 'white' }}>
+            <div >
                 <MuiThemeProvider theme={theme}>
                     {this.props.store.statePolicies && this.props.store.policyLanguage &&
                         <>
@@ -84,25 +82,21 @@ class StateGrade extends Component {
 
                             <List>
                                 {this.props.store.statePolicies.map((policy, i) =>
-                            
-                                    <ListItem key={policy.policy_id} style={{paddingTop: 0, paddingBottom: 0}}>
-                                        <Tooltip title={this.getById(this.props.store.policyLanguage, policy.policy_id, 'short') + ' Click to learn more'}>
-                                        <Button onClick={() => this.testClick()}>
-                                        {policy.policy_data ? 
-                                        <p><span style={{ fontWeight: 'bold' }}>{policy.name}:</span> {policy.policy_data}</p>
-                                        : <p><span style={{ fontWeight: 'bold' }}>{policy.name}:</span> none </p> }  
-                                        <ListItemIcon><HelpOutlineIcon /></ListItemIcon>
-                                         </Button>
+
+                                    <ListItem key={policy.policy_id} style={{ paddingTop: 0, paddingBottom: 0 }}>
+                                        <Tooltip title={this.getById(this.props.store.policyLanguage, policy.policy_id, 'short') + ' Click to learn more!'}>
+                                            <div>
+                                                <LongExplainer policy_name={policy.name} text={this.getById(this.props.store.policyLanguage, policy.policy_id, 'long')} title={this.getById(this.props.store.policyLanguage, policy.policy_id, 'name')}/>
+                                              
+                                                {policy.policy_data ?
+                                                    <p style={{display: 'inline'}}>{policy.policy_data}</p>
+                                                    : <p> none </p>}
+                                            </div>
                                         </Tooltip>
-                                        <LongExplainer text={this.getById(this.props.store.policyLanguage, policy.policy_id, 'long')} title={this.getById(this.props.store.policyLanguage, policy.policy_id, 'name')}
-                                            />
                                     </ListItem>
 
-                                    
+
                                 )}
-
-
-                                <LongExplainer text={this.getById(this.props.store.policyLanguage, 1, 'long')} title={this.getById(this.props.store.policyLanguage, 1, 'name')} />
 
 
                                 {/* these items hidden until see more button is clicked */}

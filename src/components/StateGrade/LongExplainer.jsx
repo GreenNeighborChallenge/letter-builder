@@ -7,6 +7,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { connect } from 'react-redux'
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 
 function LongExplainer(props) {
   const [open, setOpen] = React.useState(false);
@@ -20,10 +21,11 @@ function LongExplainer(props) {
   };
 
   return (
-    <div>
-      {/* <Button color="primary" onClick={handleClickOpen}>
-        Learn More
-      </Button> */}
+    <div style={{display: 'inline'}}>
+      <Button color="primary" onClick={handleClickOpen} style={{color: 'black'}}>
+        {props.policy_name}
+        <HelpOutlineIcon />
+      </Button>
       <Dialog
         open={open}
         onClose={handleClose}
