@@ -6,6 +6,7 @@ import { Button } from '@material-ui/core/';
 import './LetterItem.css';
 import PolicyButton from './PolicyButton.js';
 import Stepper from '../Stepper/Stepper';
+import LongExplainer from '../StateGrade/LongExplainer.jsx';
 
 class LetterItems extends Component {
 
@@ -62,8 +63,9 @@ class LetterItems extends Component {
                     <h6 className="policies">Hover over each policy to learn more</h6>
                     {this.props.store.policyLanguage.map((policy) => {
                         return (
-                            <div className="cardItem" key={policy.id}>
-                                <PolicyButton policy={policy} handleAdd={() => this.handleAdd(policy.id)} />
+                            <div className="cardItem" key={policy.policy_id}>
+                                <LongExplainer policy_name={policy.name} title={policy.name} text={policy.long_info} toolTitle={policy.short_info}/>
+                                <PolicyButton policy={policy} handleAdd={() => this.handleAdd(policy.policy_id)}  />
                                 
                             </div>
                         )

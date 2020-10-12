@@ -8,6 +8,29 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { connect } from 'react-redux'
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
+import Tooltip from '@material-ui/core/Tooltip';
+
+import {
+    createMuiTheme,
+    MuiThemeProvider,
+} from "@material-ui/core/styles";
+
+
+//override button styling?
+const defaultTheme = createMuiTheme();
+const theme = createMuiTheme({
+    overrides: {
+        MuiTooltip: {
+            tooltip: {
+                fontSize: "1em",
+                color: "black",
+                backgroundColor: "white",
+                boxShadow: "0 2px 2px 2px rgba(0, 0, 0, .4)",
+                fontWeight: 'normal',
+            }
+        }
+    }
+});
 
 function LongExplainer(props) {
   const [open, setOpen] = React.useState(false);
@@ -22,10 +45,13 @@ function LongExplainer(props) {
 
   return (
     <div style={{display: 'inline'}}>
+      <MuiThemeProvider theme={theme}>
+      <Tooltip title={props.toolTitle}>
       <Button color="primary" onClick={handleClickOpen} style={{color: 'black'}}>
         {props.policy_name}
         <HelpOutlineIcon />
       </Button>
+      </Tooltip>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -44,6 +70,7 @@ function LongExplainer(props) {
           </Button>
         </DialogActions>
       </Dialog>
+      </MuiThemeProvider>
     </div>
   );
 }

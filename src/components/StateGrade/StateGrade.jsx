@@ -9,29 +9,10 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import StateSelect from './StateSelect';
 import Stepper from '../Stepper/Stepper'
-import Tooltip from '@material-ui/core/Tooltip';
 import LongExplainer from './LongExplainer.jsx';
-import {
-    createMuiTheme,
-    MuiThemeProvider,
-} from "@material-ui/core/styles";
 
 
-//override button styling?
-const defaultTheme = createMuiTheme();
-const theme = createMuiTheme({
-    overrides: {
-        MuiTooltip: {
-            tooltip: {
-                fontSize: "1em",
-                color: "black",
-                backgroundColor: "white",
-                boxShadow: "0 2px 2px 2px rgba(0, 0, 0, .4)",
-                fontWeight: 'normal',
-            }
-        }
-    }
-});
+
 
 class StateGrade extends Component {
 
@@ -66,7 +47,6 @@ class StateGrade extends Component {
     render() {
         return (
             <div >
-                <MuiThemeProvider theme={theme}>
                     {this.props.store.statePolicies && this.props.store.policyLanguage &&
                         <>
                             <div id='stateTitle' >
@@ -84,15 +64,16 @@ class StateGrade extends Component {
                                 {this.props.store.statePolicies.map((policy, i) =>
 
                                     <ListItem key={policy.policy_id} style={{ paddingTop: 0, paddingBottom: 0 }}>
-                                        <Tooltip title={this.getById(this.props.store.policyLanguage, policy.policy_id, 'short') + ' Click to learn more!'}>
+                                        {/* <Tooltip title={this.getById(this.props.store.policyLanguage, policy.policy_id, 'short') + ' Click to learn more!'}> */}
                                             <div>
-                                                <LongExplainer policy_name={policy.name} text={this.getById(this.props.store.policyLanguage, policy.policy_id, 'long')} title={this.getById(this.props.store.policyLanguage, policy.policy_id, 'name')}/>
+                                                <LongExplainer policy_name={policy.name} text={this.getById(this.props.store.policyLanguage, policy.policy_id, 'long')} title={this.getById(this.props.store.policyLanguage, policy.policy_id, 'name')}
+                                                toolTitle={this.getById(this.props.store.policyLanguage, policy.policy_id, 'short')}/>
                                               
                                                 {policy.policy_data ?
                                                     <p style={{display: 'inline'}}>{policy.policy_data}</p>
                                                     : <p> none </p>}
                                             </div>
-                                        </Tooltip>
+                                        {/* </Tooltip> */}
                                     </ListItem>
 
 
@@ -116,7 +97,6 @@ class StateGrade extends Component {
                             <Button onClick={this.props.directToLetterBuilder} style={{ display: 'inline', float: 'right', margin: 5 }}>Create Your Letter!</Button>
                         </>
                     }
-                </MuiThemeProvider>
             </div>
         );
 

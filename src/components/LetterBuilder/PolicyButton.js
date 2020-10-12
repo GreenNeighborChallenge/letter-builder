@@ -36,19 +36,19 @@ const styles = (theme) => ({
     },
 });
 
-const DialogTitle = withStyles(styles)((props) => {
-    const { children, classes, onClose, ...other } = props;
-    return (
-        <MuiDialogTitle disableTypography className={classes.root} {...other}>
-            <Typography variant="h6">{children}</Typography>
-            {onClose ? (
-                <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
-                    <CloseIcon />
-                </IconButton>
-            ) : null}
-        </MuiDialogTitle>
-    );
-});
+// const DialogTitle = withStyles(styles)((props) => {
+//     const { children, classes, onClose, ...other } = props;
+//     return (
+//         <MuiDialogTitle disableTypography className={classes.root} {...other}>
+//             <Typography variant="h6">{children}</Typography>
+//             {onClose ? (
+//                 <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+//                     <CloseIcon />
+//                 </IconButton>
+//             ) : null}
+//         </MuiDialogTitle>
+//     );
+// });
 
 const DialogContent = withStyles((theme) => ({
     root: {
@@ -60,33 +60,33 @@ const DialogContent = withStyles((theme) => ({
 
 function PolicyInfo(props) {
     //dialog
-    const [open, setOpen] = React.useState(false);
+    // const [open, setOpen] = React.useState(false);
 
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-    const handleClose = () => {
-        setOpen(false);
-    };
+    // const handleClickOpen = () => {
+    //     setOpen(true);
+    // };
+    // const handleClose = () => {
+    //     setOpen(false);
+    // };
 
     //popover
-    const classes = useStyles();
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    // const classes = useStyles();
+    // const [anchorEl, setAnchorEl] = React.useState(null);
 
-    const handlePopoverOpen = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
+    // const handlePopoverOpen = (event) => {
+    //     setAnchorEl(event.currentTarget);
+    // };
 
-    const handlePopoverClose = () => {
-        setAnchorEl(null);
-    };
+    // const handlePopoverClose = () => {
+    //     setAnchorEl(null);
+    // };
 
-    const popoverOpen = Boolean(anchorEl);
+    // const popoverOpen = Boolean(anchorEl);
 
     //adding policy to letter
     const [added, addPolicy] = React.useState(false)
     const handleAdd = () => {
-        props.dispatch({ type: 'POLICY_TO_LETTER', payload: props.policy.id });
+        props.dispatch({ type: 'POLICY_TO_LETTER', payload: props.policy.policy_id });
         addPolicy(true)
     }
 
@@ -96,8 +96,8 @@ function PolicyInfo(props) {
     }
 
     return (
-        <div>
-            <Button
+        <div style={{display: 'inline'}}>
+            {/* <Button
                 variant="contained"
                 aria-owns={popoverOpen ? 'mouse-over-popover' : undefined}
                 aria-haspopup="true"
@@ -127,12 +127,12 @@ function PolicyInfo(props) {
                 disableRestoreFocus
             >
                 <Typography>{props.policy.short_info} (Click this button to learn more!)</Typography>
-            </Popover>
+            </Popover> */}
             {added ?
                 <button className="addButton" onClick={handleDelete}>Delete</button> :
                 <button className="addButton" onClick={handleAdd}>Add</button>
             }
-            <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+            {/* <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
                 <DialogTitle id="customized-dialog-title" onClose={handleClose}>
                     {props.policy.policy}
                 </DialogTitle>
@@ -141,7 +141,7 @@ function PolicyInfo(props) {
                         {props.policy.long_info}
                     </Typography>
                 </DialogContent>
-            </Dialog>
+            </Dialog> */}
         </div>
     );
 }
