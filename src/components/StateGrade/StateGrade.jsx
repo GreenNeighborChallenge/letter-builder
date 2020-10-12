@@ -10,11 +10,12 @@ import ListItem from '@material-ui/core/ListItem';
 import StateSelect from './StateSelect';
 import Tooltip from '@material-ui/core/Tooltip';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
-import LongExplainer from './LongExplainer.jsx';
 import {
     createMuiTheme,
     MuiThemeProvider,
 } from "@material-ui/core/styles";
+import PolicyExplainer from '../PolicyExplainer/PolicyExplainer';
+
 
 const defaultTheme = createMuiTheme();
 const theme = createMuiTheme({
