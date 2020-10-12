@@ -9,7 +9,6 @@ import { connect } from 'react-redux'
 import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 import Stepper from '../Stepper/Stepper'
 import IconButton from '@material-ui/core/IconButton';
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const useStyles = makeStyles({
