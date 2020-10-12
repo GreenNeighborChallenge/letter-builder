@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import mapStoreToProps from '../../redux/mapStoreToProps';
 
 class StateContactForm extends Component {
 
     state = {
-        state_name: '',
-        state_abv: '',
+        stateId: 0,
+        state_grade: '',
+        gov_email: '',
+        resident_count: 0,
+        resident_mwh: 0,
         puc: '',
         doc: '',
         sseo: [{
@@ -15,18 +19,7 @@ class StateContactForm extends Component {
         }]
     }
 
-    handleStateChange = (event) => {
-        this.setState({
-            state_name: event.target.value
-        })
-        this.props.stateNameChange(event);
-    }
-
-    handleStateAbvChange = (event) => {
-        this.setState({
-            state_abv: event.target.value
-        })
-    }
+    
 
     addSseo = () => {
         console.log(this.state.sseo)
@@ -40,6 +33,19 @@ class StateContactForm extends Component {
             ]
         })
         console.log(this.state.sseo)
+    }
+
+    handleGradeChange =(event) => {
+        this.setState({
+            state_grade: event.target.value,
+            stateId: this.props.store.adminState.id
+        })
+    }
+
+    handleGovChange =(event) => {
+        this.setState({
+            gov_email: event.target.value
+        })
     }
 
     handlePuc = (event) => {
@@ -78,6 +84,18 @@ class StateContactForm extends Component {
         console.log(this.state)
     }  
 
+    handleCountChange = (event) => {
+        this.setState({
+            resident_count: event.target.value
+        })
+    }
+
+    handleMwhChange = (event) => {
+        this.setState({
+            resident_mwh: event.target.value
+        })
+    }
+
     handleSave = (event) => {
         console.log(this.state)
         this.props.dispatch ({ type: "SET_CONTACT_INFO", payload: this.state })
@@ -86,12 +104,15 @@ class StateContactForm extends Component {
     render() {
         return (
             <div>
-                State:
-                <input onChange={this.handleStateChange}></input>
+                
+                <h1>State Information</h1>
                 <br />
-                State Abbreviation:
-                <input onChange={this.handleStateAbvChange} placeholder="i.e. AK"></input>
-                <h1>State Contact Information</h1>
+                State Grade: 
+                <input onChange={this.handleGradeChange}></input>
+                <br />
+                State Governer Email:
+                <input onChange={this.handleGovChange}></input>
+                <br />
                 PUC:
                 <input onChange={this.handlePuc}></input>
                 <br />
@@ -108,7 +129,14 @@ class StateContactForm extends Component {
                     )
                 })
                 }
+                <br />
                 <button onClick={this.addSseo}>Add Another SSEO</button>
+                <br />
+                Resident Count:
+                <input onChange={this.handleCountChange}></input>
+                <br />
+                Resident MWH:
+                <input onChange={this.handleMwhChange}></input>
                 <br />
                 <button onClick={this.handleSave}>Save</button>
             </div >
@@ -116,4 +144,4 @@ class StateContactForm extends Component {
     }
 }
 
-export default connect()(StateContactForm);
+export default connect(mapStoreToProps)(StateContactForm);
