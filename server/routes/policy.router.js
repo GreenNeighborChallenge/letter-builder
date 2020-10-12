@@ -5,8 +5,9 @@ const router = express.Router();
 //user side
 router.get('/', (req, res) => {
   // GET route code here
-  const queryText = `SELECT "policy_language".short_info, "policy_language".long_info, "policy_language".petition_info, "policy_name".name FROM "policy_language"
-                    JOIN "policy_name" ON "policy_name".id = "policy_language".id;;`
+  const queryText = `SELECT "policy_language".short_info, "policy_language".long_info, "policy_language".petition_info, "policy_name".name, "policy_name".id FROM "policy_language"
+                    JOIN "policy_name" ON "policy_name".id = "policy_language".policy_id
+                    ORDER BY "policy_name".id;`
   pool.query(queryText)
   .then((result) => {
       // console.log(result.rows)
@@ -41,23 +42,35 @@ router.post('/', (req, res) => {
 });
 
 //update a policy
-router.put('/', (req, res) => {
+router.put('/', async (req, res) => {
   let updates = req.body
-  const queryText = `UPDATE "policy_language"
-                    SET "policy" = $1,
-                    "short_info" = $2,
-                    "long_info" = $3,
-                    "petition_info" =$4
-                    WHERE "policy_language".id = $5`
-                  
-  pool.query(queryText, [updates.policyName, updates.short_info, updates.long_info, updates.petition_info, updates.policyId])
-  .then((result) => {
-    res.sendStatus(200)
-  }) .catch ((error) => {
-    res.sendStatus(500)
-    console.log('error updating policy language', error)
-  })
+  const client = await pool.connect();
+    try {
+        await client.query('BEGIN');
+
+        const nameQuery = `UPDATE "policy_name"
+                          SET "name" = $1
+                          WHERE "policy_name".id = $2`
+
+        await client.query(nameQuery, [updates.policyName, updates.policyId])
+
+        const languageQuery = `UPDATE "policy_language"
+                              SET "short_info" = $1,
+                              "long_info" = $2,
+                              "petition_info" =$3
+                              WHERE "policy_language".policy_id = $4`
+
+            await client.query(languageQuery, [updates.short_info, updates.long_info, updates.petition_info, updates.policyId])
+        await client.query ('COMMIT');
+        res.sendStatus(200)
+
+    } catch (error) {
+        await client.query('ROLLBACK');
+        res.sendStatus(500)
+    }
 })
+  
+
 
 //delete a policy
 router.delete('/:id', (req, res) => {

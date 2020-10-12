@@ -50,6 +50,7 @@ function* newPolicyLanguage(action){
 
 function* updatePolicyLanguage(action){
     try{
+        console.log(action.payload)
         let response = yield axios.put('/api/policy', action.payload)
         console.log(response.data);
         yield put ({ type: 'FETCH_POLICIES' })

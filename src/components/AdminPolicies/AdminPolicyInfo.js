@@ -8,7 +8,7 @@ class AdminPolicyInfo extends Component {
     state = {
         isEdit: false,
         policyId: this.props.policy.id,
-        policyName: this.props.policy.policy,
+        policyName: this.props.policy.name,
         short_info: this.props.policy.short_info,
         long_info: this.props.policy.long_info,
         petition_info: this.props.policy.petition_info
@@ -48,6 +48,7 @@ class AdminPolicyInfo extends Component {
         this.setState({
             isEdit: false
         })
+        console.log(this.state)
         this.props.dispatch ({ type: 'UPDATE_POLICY_LANGUAGE', payload: this.state})
     }
 
@@ -72,6 +73,7 @@ class AdminPolicyInfo extends Component {
                             <button onClick={this.handleSave}>save</button>
                             <button onClick={this.handleDelete}>delete</button>
                         </td>
+                        
                     </>
                     :
                     <>
