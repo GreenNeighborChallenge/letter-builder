@@ -114,6 +114,7 @@ const PickReps = ({ dispatch, reps, history, offices }) => {
                 <div className={right}>
                 <IconButton onClick={directToPreview} style={{ display: 'inline', float: 'right', color:'black' }}><ArrowForwardIcon /></IconButton>
                     {/* <PreviewLetter selections={selections} /> */}
+
                 </div>
                 
                 <div className={left}>

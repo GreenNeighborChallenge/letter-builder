@@ -12,7 +12,6 @@ import PolicyExplainer from '../PolicyExplainer/PolicyExplainer.jsx';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
-
 class StateGrade extends Component {
 
     state = {

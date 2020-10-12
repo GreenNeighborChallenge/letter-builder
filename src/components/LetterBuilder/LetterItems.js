@@ -59,9 +59,12 @@ class LetterItems extends Component {
     render() {
         return (
             <>
-                <div>
-                    <h1 className="policies">Policies</h1>
-                    <h6 className="policies">Hover over each policy to learn more</h6>
+                <div className="policy">
+                    <div className="header">
+                        <h1 >Policies</h1>
+                        <h6 className="policies">Hover over each policy to learn more</h6>
+                    </div>
+                    <div>
                     {this.props.store.policyLanguage.map((policy) => {
                         return (
                             <div className="cardItem" key={policy.policy_id}>
@@ -71,6 +74,7 @@ class LetterItems extends Component {
                             </div>
                         )
                     })}
+                    </div>
                 </div>
                 <div className="letter">
                     <h1>Your Letter</h1>
