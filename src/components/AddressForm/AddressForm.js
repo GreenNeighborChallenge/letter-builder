@@ -141,11 +141,11 @@ const AddressForm = ({ dispatch, history, states }) => {
                             <Stepper step={1} />
                         </section>
                         <div className={left}>
-                            <IconButton onClick={directBack} ><ArrowBackIcon /></IconButton>
+                            <IconButton onClick={directBack} style={{color:'black' }} ><ArrowBackIcon /></IconButton>
                         </div>
                         <div className={right}>
                             {/* <Button type="submit" variant="outlined" >Find my Representatives!</Button> */}
-                            <IconButton type="submit" ><ArrowForwardIcon /></IconButton>
+                            <IconButton type="submit"style={{color:'black' }} ><ArrowForwardIcon /></IconButton>
                         </div>
 
                     </form>
