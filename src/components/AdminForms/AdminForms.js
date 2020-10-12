@@ -8,14 +8,14 @@ import StateContactForm from './StateContactForm.js';
 class AdminForms extends Component {
 
     state = {
-        selectedState: '',
+        state_name: '',
     };
 
     //this will get passed down so that both
     //components can use the selected state
     stateNameChange = (event) => {
         this.setState({
-            selectedState: event.target.value
+            state_name: event.target.value
         })
     }
 
@@ -23,8 +23,8 @@ class AdminForms extends Component {
         
         return (
             <div>
-                <StateContactForm stateNameChange={(event) => this.stateNameChange(event)} selectedState ={this.state.selectedState}/>
-                <PolicyInfoForm selectedState={this.state.selectedState}/>
+                <StateContactForm stateNameChange={(event) => this.stateNameChange(event)} state_name ={this.state.state_name}/>
+                <PolicyInfoForm state_name={this.state.state_name}/>
             </div>
         );
     }

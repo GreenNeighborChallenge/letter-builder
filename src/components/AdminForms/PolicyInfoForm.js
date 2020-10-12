@@ -6,7 +6,7 @@ import './AdminForms.css';
 class PolicyInfoForm extends Component {
 
     state = {
-        selectedState: '',
+        state_name: '',
         grade: '',
         cap: '',
         rps: '',
@@ -52,7 +52,7 @@ class PolicyInfoForm extends Component {
             default:
         }
         this.setState({
-            selectedState: this.props.store.admin[0].id
+            state_name: this.props.store.admin[0].id
         })
     }
 
@@ -201,7 +201,7 @@ class PolicyInfoForm extends Component {
 
     handleSave = () => {
         console.log(this.state)
-        this.props.dispatch ({ type: 'PUT_POLICY_INFO', payload: this.state})
+        this.props.dispatch ({ type: 'SET_POLICY_INFO', payload: this.state})
     }
 
     render() {

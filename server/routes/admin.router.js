@@ -2,10 +2,10 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-router.get('/:selectedState', (req, res) => {
-    let stateName=req.params.selectedState
+router.get('/:state_name', (req, res) => {
+    let stateName=req.params.state_name
     console.log(stateName)
-    const queryText = `SELECT "state".id FROM "state" WHERE "state".state = $1;`
+    const queryText = `SELECT "state".id FROM "state" WHERE "state".state_name = $1;`
   pool.query(queryText, [stateName])
   .then((result) => {
     console.log(result.rows)
@@ -24,11 +24,11 @@ router.post('/', async (req, res) => {
     try {
         await client.query('BEGIN');
 
-        const queryText = `INSERT INTO "state" ("state", "puc", "doc")
-                            VALUES ($1, $2, $3)
+        const queryText = `INSERT INTO "state" ("state_abv", "state_name", "puc", "doc")
+                            VALUES ($1, $2, $3, $4)
                             RETURNING id;`
 
-        const result = await client.query(queryText, [contactInfo.selectedState, contactInfo.puc, contactInfo.doc])
+        const result = await client.query(queryText, [contactInfo.state_abv, contactInfo.state_name, contactInfo.puc, contactInfo.doc])
 
         const sseoQuery = `INSERT INTO "state_office" ("state_id", "SSEO_name", "SSEO_email")
                         VALUES ($1, $2, $3)`

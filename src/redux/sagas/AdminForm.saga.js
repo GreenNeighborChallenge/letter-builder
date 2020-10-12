@@ -3,7 +3,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 
 //saga for state contact info
-function* putContactInfo(action) {
+function* setContactInfo(action) {
     try {
         let response = yield axios.post(`/api/admin`, action.payload);
         console.log(response.data);
@@ -18,7 +18,7 @@ function* putContactInfo(action) {
 function* getStateId(action) {
     try {
         console.log(action.payload)
-        let response = yield axios.get(`api/admin/${action.payload.selectedState}`);
+        let response = yield axios.get(`api/admin/${action.payload.state_name}`);
         console.log(response.data)
         yield put({ type: 'SET_STATE_ID', payload: response.data })
     } catch (error) {
@@ -27,7 +27,7 @@ function* getStateId(action) {
 }
 
 //sagas for the policy info
-function* putPolicyInfo(action) {
+function* setPolicyInfo(action) {
     try {
         let response = yield axios.post(`/api/admin/policy`, action.payload);
         console.log(response.data)
@@ -70,8 +70,8 @@ function* deletePolicy(action){
 }
 
 function* AdminFormSaga() {
-    yield takeLatest('PUT_CONTACT_INFO', putContactInfo);
-    yield takeLatest('PUT_POLICY_INFO', putPolicyInfo);
+    yield takeLatest('SET_CONTACT_INFO', setContactInfo);
+    yield takeLatest('SET_POLICY_INFO', setPolicyInfo);
     yield takeLatest('GET_STATE_ID', getStateId);
     yield takeLatest('NEW_POLICY_LANGUAGE', newPolicyLanguage);
     yield takeLatest ('UPDATE_POLICY_LANGUAGE', updatePolicyLanguage);

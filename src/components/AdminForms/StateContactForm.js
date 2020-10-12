@@ -4,7 +4,8 @@ import { connect } from 'react-redux'
 class StateContactForm extends Component {
 
     state = {
-        selectedState: '',
+        state_name: '',
+        state_abv: '',
         puc: '',
         doc: '',
         sseo: [{
@@ -16,9 +17,15 @@ class StateContactForm extends Component {
 
     handleStateChange = (event) => {
         this.setState({
-            selectedState: event.target.value
+            state_name: event.target.value
         })
         this.props.stateNameChange(event);
+    }
+
+    handleStateAbvChange = (event) => {
+        this.setState({
+            state_abv: event.target.value
+        })
     }
 
     addSseo = () => {
@@ -72,16 +79,18 @@ class StateContactForm extends Component {
     }  
 
     handleSave = (event) => {
-        console.log(this.props.selectedState)
         console.log(this.state)
-        this.props.dispatch ({ type: "PUT_CONTACT_INFO", payload: this.state })
+        this.props.dispatch ({ type: "SET_CONTACT_INFO", payload: this.state })
     }
 
     render() {
         return (
             <div>
                 State:
-                <input onChange={this.handleStateChange} placeholder="Use abbreviation (i.e. AL)"></input>
+                <input onChange={this.handleStateChange}></input>
+                <br />
+                State Abbreviation:
+                <input onChange={this.handleStateAbvChange} placeholder="i.e. AK"></input>
                 <h1>State Contact Information</h1>
                 PUC:
                 <input onChange={this.handlePuc}></input>
