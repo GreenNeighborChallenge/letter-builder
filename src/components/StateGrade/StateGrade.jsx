@@ -9,7 +9,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import StateSelect from './StateSelect';
 import Stepper from '../Stepper/Stepper'
-import LongExplainer from './LongExplainer.jsx';
+import PolicyExplainer from '../PolicyExplainer/PolicyExplainer.jsx';
 
 
 
@@ -66,7 +66,7 @@ class StateGrade extends Component {
                                     <ListItem key={policy.policy_id} style={{ paddingTop: 0, paddingBottom: 0 }}>
                                         {/* <Tooltip title={this.getById(this.props.store.policyLanguage, policy.policy_id, 'short') + ' Click to learn more!'}> */}
                                             <div>
-                                                <LongExplainer policy_name={policy.name} text={this.getById(this.props.store.policyLanguage, policy.policy_id, 'long')} title={this.getById(this.props.store.policyLanguage, policy.policy_id, 'name')}
+                                                <PolicyExplainer policy_name={policy.name} text={this.getById(this.props.store.policyLanguage, policy.policy_id, 'long')} title={this.getById(this.props.store.policyLanguage, policy.policy_id, 'name')}
                                                 toolTitle={this.getById(this.props.store.policyLanguage, policy.policy_id, 'short')}/>
                                               
                                                 {policy.policy_data ?

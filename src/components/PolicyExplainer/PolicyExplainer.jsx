@@ -9,7 +9,6 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import { connect } from 'react-redux'
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import Tooltip from '@material-ui/core/Tooltip';
-
 import {
     createMuiTheme,
     MuiThemeProvider,
@@ -32,7 +31,7 @@ const theme = createMuiTheme({
     }
 });
 
-function LongExplainer(props) {
+function PolicyExplainer(props) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -75,4 +74,4 @@ function LongExplainer(props) {
   );
 }
 
-export default connect(mapStoreToProps)(LongExplainer)
+export default connect(mapStoreToProps)(PolicyExplainer)

@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Button } from '@material-ui/core/';
 import './LetterItem.css';
-import PolicyButton from './PolicyButton.js';
+import AddPolicy from './AddPolicy.js';
 import Stepper from '../Stepper/Stepper';
-import LongExplainer from '../StateGrade/LongExplainer.jsx';
+import PolicyExplainer from '../PolicyExplainer/PolicyExplainer.jsx';
 
 class LetterItems extends Component {
 
@@ -64,8 +64,8 @@ class LetterItems extends Component {
                     {this.props.store.policyLanguage.map((policy) => {
                         return (
                             <div className="cardItem" key={policy.policy_id}>
-                                <LongExplainer policy_name={policy.name} title={policy.name} text={policy.long_info} toolTitle={policy.short_info}/>
-                                <PolicyButton policy={policy} handleAdd={() => this.handleAdd(policy.policy_id)}  />
+                                <PolicyExplainer policy_name={policy.name} title={policy.name} text={policy.long_info} toolTitle={policy.short_info}/>
+                                <AddPolicy policy={policy} handleAdd={() => this.handleAdd(policy.policy_id)}  />
                                 
                             </div>
                         )
