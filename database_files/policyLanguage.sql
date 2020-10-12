@@ -63,4 +63,4 @@ Citizens Utility Boards are independent state-level organizations that advocate 
 
 
 
-ALTER TABLE policy_language ADD CONSTRAINT policy_language_fk0 FOREIGN KEY (policy_id) REFERENCES policy_name(id);
+ALTER TABLE policy_language ADD CONSTRAINT policy_language_fk0 FOREIGN KEY (policy_id) REFERENCES policy_name(id) ON DELETE CASCADE;
