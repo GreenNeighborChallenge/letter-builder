@@ -10,8 +10,12 @@ import LetterItems from './LetterItems.js'
 const useStyles = makeStyles({
     root: {
         maxWidth: "100%",
-        maxHeight: "",
+        minWidth: '48em', 
+        minHeight: '50em',
         background: 'rgb(255,255,255, .85)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     title: {
         fontSize: 14,

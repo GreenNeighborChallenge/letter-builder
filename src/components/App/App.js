@@ -27,6 +27,7 @@ import AdminStates from '../AdminStates/AdminStates';
 import PickReps from '../PickReps/PickReps.jsx';
 import ConfirmationPage from '../ConfirmationPage/ConfirmationPage';
 import PreviewLetter from '../PreviewLetter/PreviewLetter'
+import PreviewEmail from '../PreviewEmail/PreviewEmail'
 import StateGrade from '../StateGrade/StateGrade.jsx'
 import './App.css';
 
@@ -86,6 +87,11 @@ class App extends Component {
                 exact
                 path="/previewLetter"
                 component={PreviewLetter}
+              />
+                <Route
+                exact
+                path="/previewEmail"
+                component={PreviewEmail}
               />
               <Route
                 exact
