@@ -7,6 +7,7 @@ import './LetterItem.css';
 import AddPolicy from './AddPolicy.js';
 import Stepper from '../Stepper/Stepper';
 import TextField from '@material-ui/core/TextField';
+import PolicyButton from './PolicyButton.js'
 
 class LetterItems extends Component {
 
@@ -90,7 +91,7 @@ class LetterItems extends Component {
                     </div>
                     <div style={{ margin: '4em 0 0em em', padding: '2em 0 0 0' }}>
 
-                        <Button cardItemvariant="outlined" onClick={this.props.directBack}>Back</Button>
+                        <Button cardItem variant="outlined" onClick={this.props.directBack}>Back</Button>
                         <Button variant="outlined" onClick={this.handleSubmit}>Enter Address</Button>
                     </div>
                 </div>

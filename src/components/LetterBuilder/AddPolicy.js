@@ -6,8 +6,6 @@ import "./LetterItem.css"
 
 
 
-
-
 function AddPolicy(props) {
 
     //adding policy to letter
