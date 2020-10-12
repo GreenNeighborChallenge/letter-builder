@@ -96,7 +96,7 @@ function PolicyInfo(props) {
     }
 
     return (
-        <div>
+        <div className="header">
             <Button
                 variant="contained"
                 aria-owns={popoverOpen ? 'mouse-over-popover' : undefined}

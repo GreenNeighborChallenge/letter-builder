@@ -47,7 +47,7 @@ class StateSelect extends Component {
     
         //updates the zip reducer with new state info
         this.props.dispatch({ type: 'SEND_STATE_ABBREV', payload: this.state })
-        //gets state policies to diplay on DOM
+        //gets state policies to display on DOM
         this.props.dispatch({type: 'GET_STATE_POLICIES', payload: this.state})
     }
 
@@ -55,25 +55,24 @@ class StateSelect extends Component {
     const { classes } = this.props;
 
     return (
-      <div>
+     <>
           {this.props.store.states &&
          <FormControl className={classes.formControl}>
            <Select value={this.state.short_name} 
-           onChange={(event) => { this.setState({short_name: event.target.value })}}
+           onChange={(event) => { this.setState({short_name: event.target.value},
+            this.submitState
+            )}}
            className={classes.select}
            variant="outlined">
            <InputLabel className={classes.label} >State</InputLabel>
             {this.props.store.states.map(state => {
                 return (
-                <MenuItem key={state.id} value={state.state}>{state.state}</MenuItem>
-                )
-
-         })}
+                <MenuItem key={state.id} value={state.state_abv}>{state.state_abv}</MenuItem>
+                )  })}
         </Select>
          </FormControl>
   }
-    <Button onClick={this.submitState}>Change State</Button>
-      </div>
+    </>
     );
   }
 }

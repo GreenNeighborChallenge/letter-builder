@@ -23,11 +23,10 @@ img {
   color: white;
 }
 
+
 .image {
-  background-image: url('/stream.jpg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: url('/stream.jpg') no-repeat center center fixed;
+  background-size: cover; 
   padding-top: 1em;
   padding-bottom: 10em;
 }

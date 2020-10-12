@@ -10,6 +10,9 @@ import { RepButton } from './RepButtons'
 import PreviewLetter from '../PreviewLetter/PreviewLetter';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import Stepper from '../Stepper/Stepper'
+import IconButton from '@material-ui/core/IconButton';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const useStyles = makeStyles({
     root: {
@@ -72,23 +75,22 @@ const PickReps = ({ dispatch, reps, history, offices }) => {
         console.log(reps);
     }, [reps]);
 
-    console.log(selections);
+    const directToPreview = () => {
+        dispatch({type: 'PUT_EMAIL', payload: selections})
+        history.push('/previewEmail')
+    }
 
     return (
         <div className={root}>
             <Card className={card} >
                 <CardContent className={cardContent} >
                     <Typography variant="h5" component="h2" gutterBottom align="center" >
-                        Your Representatives
+                        Select Your Representatives
                     </Typography>
                     <Typography variant="body2" color="textSecondary" align="center" >
                         To send an email, select recipients and add your contact information to the the letter. To Create a paper petition, you can skip to the bottom to generate a printable PDF.
                     </Typography>
-                    {/* <Typography variant="body2" component="p" color="textSecondary" align="center" >
-                    (Hover for more information, click to add recipient. Yellow highlighted buttons are recommended for the policies you selected)
-                    </Typography> */}
-                    {
-                        (reps.kind === "civicinfo#representativeInfoResponse" && offices.id) ?
+                    { (reps.kind === "civicinfo#representativeInfoResponse" && offices.id) ?
                             <div >
                                 <ToggleButtonGroup value={selections} className={repButtons} onChange={handleSelections}>
                                     <RepButton value={offices.gov_email}> {reps.offices[0].name} <br /> {reps.officials[0].name} <br /> {offices.gov_email} </RepButton>
@@ -106,14 +108,17 @@ const PickReps = ({ dispatch, reps, history, offices }) => {
                     </Typography>
                             </>}
                 </CardContent>
-                <Stepper step={3} className={stepper}/> 
+                <Stepper step={2} className={stepper}/> 
                 <CardActions className={cardActions}>
                     
                 <div className={right}>
-                    <PreviewLetter selections={selections} />
+                <IconButton onClick={directToPreview} style={{ display: 'inline', float: 'right', color:'black' }}><ArrowForwardIcon /></IconButton>
+                    {/* <PreviewLetter selections={selections} /> */}
+
                 </div>
+                
                 <div className={left}>
-                <Button variant="outlined" onClick={directToAddressForm}> Back </Button>
+                <IconButton onClick={directToAddressForm} style={{ display: 'inline', float: 'left', color:'black' }}><ArrowBackIcon /></IconButton>
                 </div>
                 </CardActions>
             </Card>
