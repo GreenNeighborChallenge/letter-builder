@@ -74,8 +74,8 @@ router.put('/', async (req, res) => {
 
 //delete a policy
 router.delete('/:id', (req, res) => {
-  pool.query(`DELETE FROM "policy_language"
-              WHERE "policy_language".id = $1`, [req.params.id])
+  pool.query(`DELETE FROM "policy_name"
+              WHERE "policy_name".id = $1`, [req.params.id])
   .then((result) => {
     res.sendStatus(200)
   }) .catch((error) => {
