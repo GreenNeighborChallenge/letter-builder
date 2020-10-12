@@ -8,28 +8,9 @@ import './StateGrade.css'
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import StateSelect from './StateSelect';
-import Tooltip from '@material-ui/core/Tooltip';
-import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
-import {
-    createMuiTheme,
-    MuiThemeProvider,
-} from "@material-ui/core/styles";
-import PolicyExplainer from '../PolicyExplainer/PolicyExplainer';
-
-
-const defaultTheme = createMuiTheme();
-const theme = createMuiTheme({
-    overrides: {
-        MuiTooltip: {
-            tooltip: {
-                fontSize: "1em",
-                color: "black",
-                backgroundColor: "white",
-                boxShadow: "0 2px 2px 2px rgba(0, 0, 0, .4)",
-            }
-        }
-    }
-});
+import PolicyExplainer from '../PolicyExplainer/PolicyExplainer.jsx';
+import IconButton from '@material-ui/core/IconButton';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 class StateGrade extends Component {
 
@@ -51,15 +32,18 @@ class StateGrade extends Component {
             else if (arr[i].policy_id === value && key === 'long') {
                 return arr[i].long_info
             }
+            else if (arr[i].policy_id === value && key === 'name') {
+                return arr[i].name
+            }
         }
     }
 
     render() {
         return (
             <div >
-                {this.props.store.statePolicies && this.props.store.policyLanguage &&
+                {this.props.store.statePolicies && this.props.store.policyLanguage && this.props.store.zip.short_name &&
                     <>
-                        <div id='stateTitle' >
+                        <div id='stateTitle'>
                             <Typography variant='h4' gutterBottom>Your State: <StateSelect default={this.props.store.zip.short_name} /> </Typography></div>
                         <div className='outline'>
                             <Typography>Your state's energy and climate policy, graded:</Typography>
@@ -102,10 +86,7 @@ class StateGrade extends Component {
                                                         : <p style={{ display: 'inline' }}> none </p>}
                                                 </div>
                                             </ListItem>
-                                    }
-
-
-                                    )}
+                                    })}
 
                                 </div>}
 
@@ -116,8 +97,8 @@ class StateGrade extends Component {
                             </div>
                             <br />
                         </List>
-
-                        <Button onClick={this.props.directToLetterBuilder} style={{ display: 'inline', float: 'right', margin: 5 }}>Create Your Letter!</Button>
+                                    <IconButton onClick={this.props.directToLetterBuilder} style={{ display: 'inline', float: 'right', margin: 5, color:'black' }}><ArrowForwardIcon /></IconButton>
+                     
                     </>
                 }
             </div>

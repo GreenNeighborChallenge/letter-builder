@@ -6,6 +6,9 @@ import CardContent from '@material-ui/core/CardContent';
 import { connect, useDispatch } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import LetterItems from './LetterItems.js'
+import IconButton from '@material-ui/core/IconButton';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const useStyles = makeStyles({
     root: {
@@ -58,10 +61,13 @@ function LetterBuilder({history}) {
                 <div className={classes.test}>
                     <CardActions>
                             <LetterItems directToAddress={directToAddress} directBack={directBack}/>
+                            <IconButton><ArrowBackIcon /></IconButton>
                     </CardActions>
                 </div>
                     <CardContent>
+                        
                     </CardContent>
+                   
             </Card>
         </div>
     );

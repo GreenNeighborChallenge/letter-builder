@@ -55,25 +55,24 @@ class StateSelect extends Component {
     const { classes } = this.props;
 
     return (
-      <div>
+     <>
           {this.props.store.states &&
          <FormControl className={classes.formControl}>
            <Select value={this.state.short_name} 
-           onChange={(event) => { this.setState({short_name: event.target.value })}}
+           onChange={(event) => { this.setState({short_name: event.target.value},
+            this.submitState
+            )}}
            className={classes.select}
            variant="outlined">
            <InputLabel className={classes.label} >State</InputLabel>
             {this.props.store.states.map(state => {
                 return (
                 <MenuItem key={state.id} value={state.state_abv}>{state.state_abv}</MenuItem>
-                )
-
-         })}
+                )  })}
         </Select>
          </FormControl>
   }
-    <Button onClick={this.submitState}>Change State</Button>
-      </div>
+    </>
     );
   }
 }

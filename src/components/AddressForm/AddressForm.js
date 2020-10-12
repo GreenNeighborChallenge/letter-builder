@@ -14,6 +14,9 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Stepper from '../Stepper/Stepper'
 import { useLocation } from 'react-router-dom'
 import { useForm, Controller } from "react-hook-form";
+import IconButton from '@material-ui/core/IconButton';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 
 const useStyles = makeStyles({
@@ -138,10 +141,11 @@ const AddressForm = ({ dispatch, history, states }) => {
                             <Stepper step={1} />
                         </section>
                         <div className={left}>
-                            <Button onClick={directBack} variant="outlined">Back</Button>
+                            <IconButton onClick={directBack} style={{color:'black' }} ><ArrowBackIcon /></IconButton>
                         </div>
                         <div className={right}>
-                            <Button type="submit" variant="outlined" >Find my Representatives!</Button>
+                            {/* <Button type="submit" variant="outlined" >Find my Representatives!</Button> */}
+                            <IconButton type="submit"style={{color:'black' }} ><ArrowForwardIcon /></IconButton>
                         </div>
 
                     </form>

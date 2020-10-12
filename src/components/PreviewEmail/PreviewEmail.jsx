@@ -8,6 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux'
 import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 import Stepper from '../Stepper/Stepper'
+import IconButton from '@material-ui/core/IconButton';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const useStyles = makeStyles({
     root: {
@@ -107,7 +109,8 @@ function PreviewLetter({ letter, address, selections, history, emails }) {
                         <Stepper step={3}/>
                     </div>
                 <CardActions >
-                    <Button onClick={directToReps}> Back </Button>
+                
+                    <IconButton onClick={directToReps} style={{color:'black' }}><ArrowBackIcon /></IconButton>
                     <div className={right}>
                         <Button >Print PDF <PictureAsPdfIcon /></Button>
                         <Button href={`mailto:${emails}?subject=${letter.subject}&body=${letterBody}`} onClick={directToConfirmation}>
