@@ -4,9 +4,13 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Button } from '@material-ui/core/';
 import './LetterItem.css';
-import PolicyButton from './PolicyButton.js';
+import AddPolicy from './AddPolicy.js';
 import Stepper from '../Stepper/Stepper';
+<<<<<<< HEAD
 import TextField from '@material-ui/core/TextField';
+=======
+import PolicyExplainer from '../PolicyExplainer/PolicyExplainer.jsx';
+>>>>>>> feed6ad64b30d832be9ef699684d2ff8e485d8e9
 
 class LetterItems extends Component {
 
@@ -52,12 +56,10 @@ class LetterItems extends Component {
         this.props.history.push('/address')
     }
 
-    indexOfState = this.props.store.letter.body.indexOf('[STATE]');
-
     render() {
-        console.log(this.indexOfState);
         return (
             <>
+<<<<<<< HEAD
                 <div className="policy">
                     <div className="header">
                         <h1 >Policies</h1>
@@ -73,6 +75,20 @@ class LetterItems extends Component {
                             )
                         })}
                     </div>
+=======
+                <div>
+                    <h1 className="policies">Policies</h1>
+                    <h6 className="policies">Hover over each policy to learn more</h6>
+                    {this.props.store.policyLanguage.map((policy) => {
+                        return (
+                            <div className="cardItem" key={policy.policy_id}>
+                                <PolicyExplainer policy_name={policy.name} title={policy.name} text={policy.long_info} toolTitle={policy.short_info}/>
+                                <AddPolicy policy={policy} handleAdd={() => this.handleAdd(policy.policy_id)}  />
+                                
+                            </div>
+                        )
+                    })}
+>>>>>>> feed6ad64b30d832be9ef699684d2ff8e485d8e9
                 </div>
                 <div className="letter">
                     <h1>Your Letter</h1>

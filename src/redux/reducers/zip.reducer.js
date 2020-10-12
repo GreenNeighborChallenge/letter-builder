@@ -10,6 +10,8 @@ const zipReducer = (state = {}, action) => {
         })
 
         return stateInfo[0];
+        
+      //if user changes state, updates the zip reducer
       case 'SET_STATE_RESPONSE':
         console.log(action.payload)
         return action.payload
