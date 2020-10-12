@@ -135,7 +135,7 @@ const AddressForm = ({ dispatch, history, states }) => {
                             </CustomButton>
                         </section>
                         <section className={stepper}>
-                            <Stepper step={2} />
+                            <Stepper step={1} />
                         </section>
                         <div className={left}>
                             <Button onClick={directBack} variant="outlined">Back</Button>

@@ -53,7 +53,6 @@ const DialogActions = withStyles((theme) => ({
     },
 }))(MuiDialogActions);
 
-
 function PreviewLetter({letter, address, selections, history}) {
     const [open, setOpen] = useState(false);
 
@@ -63,18 +62,17 @@ function PreviewLetter({letter, address, selections, history}) {
     const handleClose = () => {
         setOpen(false);
     };
-    const addresses = selections.map(address => {
-        return address + ','
-    })
-    console.log(selections);
-    console.log(addresses);
+  
+    const emailBody = []
     
-    
-    const policies = letter.body.map((policy) => {
-        return policy 
-    })
-    
-    const emailBody = letter.intro + policies+ letter.conclusion
+    if (letter) {
+      
+        const policies = letter.body.map((policy) => {
+            return policy
+        })
+
+        emailBody = letter.intro + policies + letter.conclusion
+    } 
     
     return (
 

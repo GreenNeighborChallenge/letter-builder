@@ -55,7 +55,6 @@ class StateGrade extends Component {
                             {this.props.store.statePolicies.map((policy) => {
                                 if (policy.policy_id >= 1 && policy.policy_id <= 5)
                                     return <ListItem key={policy.policy_id} style={{ paddingTop: 0, paddingBottom: 0 }}>
-                                        {/* <Tooltip title={this.getById(this.props.store.policyLanguage, policy.policy_id, 'short') + ' Click to learn more!'}> */}
                                         <div>
                                             <PolicyExplainer policy_name={policy.name} text={this.getById(this.props.store.policyLanguage, policy.policy_id, 'long')} title={this.getById(this.props.store.policyLanguage, policy.policy_id, 'name')}
                                                 toolTitle={this.getById(this.props.store.policyLanguage, policy.policy_id, 'short')} />
@@ -64,7 +63,6 @@ class StateGrade extends Component {
                                                 <p style={{ display: 'inline' }}>{policy.policy_data}</p>
                                                 : <p style={{ display: 'inline' }}> none </p>}
                                         </div>
-                                        {/* </Tooltip> */}
                                     </ListItem>
                             })}
 
@@ -76,7 +74,6 @@ class StateGrade extends Component {
                                     {this.props.store.statePolicies.map((policy) => {
                                         if (policy.policy_id >= 6)
                                             return <ListItem key={policy.policy_id} style={{ paddingTop: 0, paddingBottom: 0 }}>
-                                                {/* <Tooltip title={this.getById(this.props.store.policyLanguage, policy.policy_id, 'short') + ' Click to learn more!'}> */}
                                                 <div>
                                                     <PolicyExplainer policy_name={policy.name} text={this.getById(this.props.store.policyLanguage, policy.policy_id, 'long')} title={this.getById(this.props.store.policyLanguage, policy.policy_id, 'name')}
                                                         toolTitle={this.getById(this.props.store.policyLanguage, policy.policy_id, 'short')} />
@@ -85,7 +82,6 @@ class StateGrade extends Component {
                                                         <p style={{ display: 'inline' }}>{policy.policy_data}</p>
                                                         : <p style={{ display: 'inline' }}> none </p>}
                                                 </div>
-                                                {/* </Tooltip> */}
                                             </ListItem>
                                     }
 

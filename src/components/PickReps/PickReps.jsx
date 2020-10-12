@@ -72,7 +72,10 @@ const PickReps = ({ dispatch, reps, history, offices }) => {
         console.log(reps);
     }, [reps]);
 
-    console.log(selections);
+    const directToPreview = () => {
+        dispatch({type: 'PUT_EMAIL', payload: selections})
+        history.push('/previewEmail')
+    }
 
     return (
         <div className={root}>
@@ -84,11 +87,7 @@ const PickReps = ({ dispatch, reps, history, offices }) => {
                     <Typography variant="body2" color="textSecondary" align="center" >
                         To send an email, select recipients and add your contact information to the the letter. To Create a paper petition, you can skip to the bottom to generate a printable PDF.
                     </Typography>
-                    {/* <Typography variant="body2" component="p" color="textSecondary" align="center" >
-                    (Hover for more information, click to add recipient. Yellow highlighted buttons are recommended for the policies you selected)
-                    </Typography> */}
-                    {
-                        (reps.kind === "civicinfo#representativeInfoResponse" && offices.id) ?
+                    { (reps.kind === "civicinfo#representativeInfoResponse" && offices.id) ?
                             <div >
                                 <ToggleButtonGroup value={selections} className={repButtons} onChange={handleSelections}>
                                     <RepButton value={offices.gov_email}> {reps.offices[0].name} <br /> {reps.officials[0].name} <br /> {offices.gov_email} </RepButton>
@@ -106,10 +105,13 @@ const PickReps = ({ dispatch, reps, history, offices }) => {
                     </Typography>
                             </>}
                 </CardContent>
-                <Stepper step={3} className={stepper}/> 
+                <Stepper step={2} className={stepper}/> 
                 <CardActions className={cardActions}>
                     
                 <div className={right}>
+                {/* <Button variant="outlined" onClick={directToPreview}>
+                    Preview Letter!
+                </Button> */}
                     <PreviewLetter selections={selections} />
                 </div>
                 <div className={left}>
