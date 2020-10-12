@@ -7,7 +7,7 @@ import './LetterItem.css';
 import AddPolicy from './AddPolicy.js';
 import Stepper from '../Stepper/Stepper';
 import TextField from '@material-ui/core/TextField';
-import PolicyButton from './PolicyButton.js'
+import PolicyExplainer from '../PolicyExplainer/PolicyExplainer'
 
 class LetterItems extends Component {
 
@@ -62,14 +62,15 @@ class LetterItems extends Component {
                         <h6 className="policies">Hover over each policy to learn more</h6>
                     </div>
                     <div>
-                        {this.props.store.policyLanguage.map((policy) => {
-                            return (
-                                <div className="cardItem" key={policy.id}>
-                                    <PolicyButton policy={policy} handleAdd={() => this.handleAdd(policy.id)} />
-
-                                </div>
-                            )
-                        })}
+                    {this.props.store.policyLanguage.map((policy) => {
+                        return (
+                            <div className="cardItem" key={policy.policy_id}>
+                                <PolicyExplainer policy_name={policy.name} title={policy.name} text={policy.long_info} toolTitle={policy.short_info}/>
+                                <AddPolicy policy={policy} handleAdd={() => this.handleAdd(policy.policy_id)}  />
+                                
+                            </div>
+                        )
+                    })}
                     </div>
                 </div>
                 <div className="letter">
