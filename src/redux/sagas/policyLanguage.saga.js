@@ -12,6 +12,7 @@ function* fetchPolicies(action){
     }
 }
 
+//add a policy to the letter
 function* addPolicy(action){
     try {
         let response = yield axios.get(`/api/policy/${action.payload}`);
@@ -22,22 +23,12 @@ function* addPolicy(action){
     }
 }
 
-//admin side
-function* newPolicy(action){
-    try {
-        let response = yield axios.post(`/api/policy, ${action.payload}`);
-        console.log(response.data);
-        yield put ({ type: 'SET_NEW_POLICY', payload: response.data})
-    } catch (error) {
-        console.log('error setting policy', error)
-    }
-}
+
 
 
 function* policyLanguageSaga() {
   yield takeLatest('FETCH_POLICIES', fetchPolicies);
-  yield takeLatest('ADD_POLICY', addPolicy);
-  yield takeLatest('NEW_POLICY', newPolicy)
+  yield takeLatest('POLICY_TO_LETTER', addPolicy);
 }
 
 export default policyLanguageSaga;

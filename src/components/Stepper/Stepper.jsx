@@ -5,11 +5,11 @@ import clsx from 'clsx';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
-import AddLocationIcon from '@material-ui/icons/AddLocation';
 import CreateIcon from '@material-ui/icons/Create';
 import HomeIcon from '@material-ui/icons/Home';
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
+import FindInPageIcon from '@material-ui/icons/FindInPage';
 import StepConnector from '@material-ui/core/StepConnector';
 
 const ColorlibConnector = withStyles({
@@ -65,10 +65,10 @@ function ColorlibStepIcon(props) {
     const { active, completed } = props;
 
     const icons = {
-        1: <AddLocationIcon />,
-        2: <CreateIcon />,
-        3: <HomeIcon />,
-        4: <GroupAddIcon />,
+        1: <CreateIcon />,
+        2: <HomeIcon />,
+        3: <GroupAddIcon />,
+        4: <FindInPageIcon />,
         5: <MailOutlineIcon />
     };
 
@@ -114,27 +114,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-    return ['Pick Zip', 'Build Letter', 'Enter Information', 'Pick Reps', 'Send Email'];
-}
-
-function getStepContent(step) {
-    switch (step) {
-        case 0:
-            return 'Build Letter';
-        case 1:
-            return 'Enter Information';
-        case 2:
-            return 'Pick Reps';
-        default:
-            return 'Unknown step';
-    }
+    return ['Build Letter', 'Enter Information', 'Pick Reps', 'Preview Email', 'Send and Share'];
 }
 
 export default function CustomizedSteppers({ step }) {
     const classes = useStyles();
     const [activeStep, setActiveStep] = useState(step);
     const steps = getSteps();
-
 
     useEffect(() => {
 

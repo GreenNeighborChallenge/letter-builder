@@ -14,8 +14,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Stepper from '../Stepper/Stepper'
 import { useLocation } from 'react-router-dom'
 import { useForm, Controller } from "react-hook-form";
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
+
 
 const useStyles = makeStyles({
     root: {
@@ -27,7 +26,7 @@ const useStyles = makeStyles({
     card: {
         textAlign: 'center',
         width: '48em',
-        height: '40em',
+        height: '37em',
         padding: '1em',
         backgroundColor: 'rgb(255,255,255, .85)',
     },
@@ -122,7 +121,7 @@ const AddressForm = ({ dispatch, history, states }) => {
                                 <Controller as={<Select className={select} variant="outlined" >
                                     {states &&
                                         states.map((state) => {
-                                            return (<MenuItem key={state.id} value={state.state}>{state.state}</MenuItem>)
+                                            return (<MenuItem key={state.id} value={state.state_abv}>{state.state_abv}</MenuItem>)
                                         })}
                                 </Select>
                                 } name="st" defaultValue="" control={control} />
@@ -136,7 +135,7 @@ const AddressForm = ({ dispatch, history, states }) => {
                             </CustomButton>
                         </section>
                         <section className={stepper}>
-                            <Stepper step={2} />
+                            <Stepper step={1} />
                         </section>
                         <div className={left}>
                             <Button onClick={directBack} variant="outlined">Back</Button>

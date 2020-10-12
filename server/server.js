@@ -39,6 +39,8 @@ app.use('/api/states', statesRouter);
 app.use('/api/policy', policyRouter);
 app.use('/api/reps', repsRouter);
 app.use('/api/admin', adminRouter);
+app.use('/api/offices', officesRouter);
+app.use('/api/statePolicies', statePoliciesRouter);
 
 // Serve static files
 app.use(express.static('build'));

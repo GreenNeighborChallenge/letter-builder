@@ -5,15 +5,18 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import { connect, useDispatch } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import Button from '@material-ui/core/Button';
 import LetterItems from './LetterItems.js'
 
 
 const useStyles = makeStyles({
     root: {
         maxWidth: "100%",
-        maxHeight: "100%",
+        minWidth: '48em', 
+        minHeight: '50em',
         background: 'rgb(255,255,255, .85)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     title: {
         fontSize: 14,
@@ -27,10 +30,12 @@ const useStyles = makeStyles({
         alignItems: "center",
         justifyContent: "center",
     },
-    test: {
-        display: "flex",
-        flexDirection: "column",
-    }
+    stepper: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 'em'
+    },
 });
 
 function LetterBuilder({history}) {
@@ -53,16 +58,11 @@ function LetterBuilder({history}) {
             <Card className={classes.root}>
                 <div className={classes.test}>
                     <CardActions>
-                            <LetterItems directToAddress={directToAddress}/>
+                            <LetterItems directToAddress={directToAddress} directBack={directBack}/>
                     </CardActions>
                 </div>
-                <div>
                     <CardContent>
                     </CardContent>
-                    <CardActions  >
-                    <Button variant="outlined" onClick={directBack}>Back</Button>
-                </CardActions>
-                </div>
             </Card>
         </div>
     );

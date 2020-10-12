@@ -86,17 +86,17 @@ function PolicyInfo(props) {
     //adding policy to letter
     const [added, addPolicy] = React.useState(false)
     const handleAdd = () => {
-        props.dispatch({ type: 'ADD_POLICY', payload: props.policy.id });
+        props.dispatch({ type: 'POLICY_TO_LETTER', payload: props.policy.id });
         addPolicy(true)
     }
 
     const handleDelete = () => {
         addPolicy(false)
-        props.dispatch({ type: 'DELETE_POLICY', payload: props.policy.petition_info})
+        props.dispatch({ type: 'DELETE_POLICY_FROM_LETTER', payload: props.policy.petition_info})
     }
 
     return (
-        <div>
+        <div className="header">
             <Button
                 variant="contained"
                 aria-owns={popoverOpen ? 'mouse-over-popover' : undefined}
@@ -126,7 +126,7 @@ function PolicyInfo(props) {
                 onClose={handlePopoverClose}
                 disableRestoreFocus
             >
-                <Typography>{props.policy.short_info}</Typography>
+                <Typography>{props.policy.short_info} (Click this button to learn more!)</Typography>
             </Popover>
             {added ?
                 <button className="addButton" onClick={handleDelete}>Delete</button> :

@@ -15,19 +15,19 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
-import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import ZipCode from '../ZipCode/ZipCode';
 import AddressForm from '../AddressForm/AddressForm';
 
 import LetterBuilder from '../LetterBuilder/LetterBuilder.js';
-import AdminLanding from '../AdminLanding/AdminLanding.js';
+import AdminTabs from '../AdminLanding/AdminTabs.js';
 import AdminPolicies from '../AdminPolicies/AdminPolicies';
 import AdminStates from '../AdminStates/AdminStates';
 import PickReps from '../PickReps/PickReps.jsx';
 import ConfirmationPage from '../ConfirmationPage/ConfirmationPage';
 import PreviewLetter from '../PreviewLetter/PreviewLetter'
+import PreviewEmail from '../PreviewEmail/PreviewEmail'
 import StateGrade from '../StateGrade/StateGrade.jsx'
 import './App.css';
 
@@ -88,6 +88,11 @@ class App extends Component {
                 path="/previewLetter"
                 component={PreviewLetter}
               />
+                <Route
+                exact
+                path="/previewEmail"
+                component={PreviewEmail}
+              />
               <Route
                 exact
                 path="/home"
@@ -137,10 +142,10 @@ class App extends Component {
                 authRedirect="/user"
               />
 
-              <ProtectedRoute
+              <Route
                 exact
                 path="/admin_home"
-                component={AdminLanding}
+                component={AdminTabs}
               />
 
               <ProtectedRoute

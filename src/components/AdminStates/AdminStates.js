@@ -20,7 +20,6 @@ class AdminStates extends Component {
     }
 
     getStatesInfo = (selectedStateId) => {
-        console.log('this is also running')
         this.props.dispatch({
             type: 'FETCH_STATE_INFO',
             payload: selectedStateId
@@ -34,26 +33,31 @@ class AdminStates extends Component {
         });
     };
 
+    resetDropdown = () => {
+        this.setState({ ...this.state, selectedState: "" });
+    }
+
     render() {
         return (
             <div>
 
-                <select onChange={(event) => {
-                    this.setState({...this.state, selectedState: event.target.value});
+                <select value={this.state.selectedState} onChange={(event) => {
+                    this.setState({ ...this.state, selectedState: event.target.value });
                     this.getStatesInfo(event.target.value);
                     this.getSSEO(event.target.value);
                 }}>
                     <option value="">State</option>
                     {this.props.store.states &&
                         this.props.store.states.map((state) => {
-                            return (<option key={state.id} value={state.id}>{state.state}</option>)
+                            return (<option key={state.id} value={state.id}>{state.state_abv}</option>)
                         })}
                 </select>
 
                 {this.props.store.stateInfo[0] &&
-                <AdminStateInfo 
-                stateInfo={this.props.store.stateInfo[0]}
-                />}
+                    <AdminStateInfo
+                        stateInfo={this.props.store.stateInfo[0]}
+                        resetDropdown={this.resetDropdown}
+                    />}
 
             </div>
         );
