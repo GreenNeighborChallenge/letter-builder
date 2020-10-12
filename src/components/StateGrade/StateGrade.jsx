@@ -5,7 +5,6 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import { connect } from 'react-redux'
 import GradeExplainer from './GradeExplainer.jsx'
 import './StateGrade.css'
-import PolicyExplainer from './PolicyExplainer.jsx';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -19,6 +18,8 @@ import {
     MuiThemeProvider,
 } from "@material-ui/core/styles";
 
+
+//override button styling?
 const defaultTheme = createMuiTheme();
 const theme = createMuiTheme({
     overrides: {
@@ -28,6 +29,7 @@ const theme = createMuiTheme({
                 color: "black",
                 backgroundColor: "white",
                 boxShadow: "0 2px 2px 2px rgba(0, 0, 0, .4)",
+                fontWeight: 'normal',
             }
         }
     }
@@ -36,7 +38,7 @@ const theme = createMuiTheme({
 class StateGrade extends Component {
 
     state = {
-        showMore: false
+        showMore: false,
     }
 
     componentDidMount() {
@@ -44,7 +46,7 @@ class StateGrade extends Component {
         this.props.dispatch({ type: 'FETCH_POLICIES' })
     }
 
-    //searches by policy ID and key, returns values 
+    //searches by policy ID and key, returns policy info
     getById = (arr, value, key) => {
         for (let i = 0; i < arr.length; i++) {
             if (arr[i].policy_id === value && key === 'short') {
@@ -54,6 +56,11 @@ class StateGrade extends Component {
                 return arr[i].long_info
             }
         }
+    }
+
+
+    testClick = () => {
+        console.log("clicked")
     }
 
 
@@ -77,35 +84,23 @@ class StateGrade extends Component {
 
                             <List>
                                 {this.props.store.statePolicies.map((policy, i) =>
-                                   i < 4 ?
-                                    <ListItem key={policy.id}>
-                                        <Tooltip title={this.getById(this.props.store.policyLanguage, policy.policy_id, 'short')}>
+                            
+                                    <ListItem key={policy.policy_id} style={{paddingTop: 0, paddingBottom: 0}}>
+                                        <Tooltip title={this.getById(this.props.store.policyLanguage, policy.policy_id, 'short') + ' Click to learn more'}>
+                                        <Button onClick={() => this.testClick()}>
                                         {policy.policy_data ? 
                                         <p><span style={{ fontWeight: 'bold' }}>{policy.name}:</span> {policy.policy_data}</p>
                                         : <p><span style={{ fontWeight: 'bold' }}>{policy.name}:</span> none </p> }  
+                                        <ListItemIcon><HelpOutlineIcon /></ListItemIcon>
+                                         </Button>
                                         </Tooltip>
+                                        <LongExplainer text={this.getById(this.props.store.policyLanguage, policy.policy_id, 'long')} title={this.getById(this.props.store.policyLanguage, policy.policy_id, 'name')}
+                                            />
                                     </ListItem>
-                                    :
-                                        <ListItem key={policy.id}>
-                                            <Tooltip title={this.getById(this.props.store.policyLanguage, policy.policy_id, 'short')}>
-                                        {policy.policy_data ? 
-                                        <p><span style={{ fontWeight: 'bold' }}>{policy.name}:</span> {policy.policy_data}</p>
-                                        : <p><span style={{ fontWeight: 'bold' }}>{policy.name}:</span> none </p> } 
-                                        </Tooltip>
-                                    </ListItem>
+
                                     
                                 )}
 
-                                <ListItem><span style={{ fontWeight: 'bold' }}>{this.getById(this.props.store.policyLanguage, 1, 'name')}:</span><ListItemIcon style={{ minWidth: 0, marginRight: 5 }}>
-                                    <Tooltip interactive title={
-                                        <div>
-                                            {this.getById(this.props.store.policyLanguage, 1, 'short')}
-                                            <br />
-                                            <LongExplainer text={this.getById(this.props.store.policyLanguage, 1, 'long')} title={this.getById(this.props.store.policyLanguage, 1, 'name')} />
-                                        </div>
-                                    }>
-                                        <HelpOutlineIcon /></Tooltip>
-                                </ListItemIcon>{this.props.store.statePolicies.climate_plan ? this.props.store.statePolicies.climate_plan : <p>none</p>}</ListItem>
 
                                 <LongExplainer text={this.getById(this.props.store.policyLanguage, 1, 'long')} title={this.getById(this.props.store.policyLanguage, 1, 'name')} />
 

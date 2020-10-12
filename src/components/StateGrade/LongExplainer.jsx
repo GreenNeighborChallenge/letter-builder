@@ -21,9 +21,9 @@ function LongExplainer(props) {
 
   return (
     <div>
-      <Button color="primary" onClick={handleClickOpen}>
+      {/* <Button color="primary" onClick={handleClickOpen}>
         Learn More
-      </Button>
+      </Button> */}
       <Dialog
         open={open}
         onClose={handleClose}
