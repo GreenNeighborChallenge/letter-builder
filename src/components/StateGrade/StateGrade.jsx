@@ -33,15 +33,18 @@ class StateGrade extends Component {
             else if (arr[i].policy_id === value && key === 'long') {
                 return arr[i].long_info
             }
+            else if (arr[i].policy_id === value && key === 'name') {
+                return arr[i].name
+            }
         }
     }
 
     render() {
         return (
             <div >
-                {this.props.store.statePolicies && this.props.store.policyLanguage &&
+                {this.props.store.statePolicies && this.props.store.policyLanguage && this.props.store.zip.short_name &&
                     <>
-                        <div id='stateTitle' >
+                        <div id='stateTitle'>
                             <Typography variant='h4' gutterBottom>Your State: <StateSelect default={this.props.store.zip.short_name} /> </Typography></div>
                         <div className='outline'>
                             <Typography>Your state's energy and climate policy, graded:</Typography>
@@ -84,10 +87,7 @@ class StateGrade extends Component {
                                                         : <p style={{ display: 'inline' }}> none </p>}
                                                 </div>
                                             </ListItem>
-                                    }
-
-
-                                    )}
+                                    })}
 
                                 </div>}
 
