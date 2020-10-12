@@ -109,9 +109,10 @@ const PickReps = ({ dispatch, reps, history, offices }) => {
                 <CardActions className={cardActions}>
                     
                 <div className={right}>
-                <Button variant="outlined" onClick={directToPreview}>
+                {/* <Button variant="outlined" onClick={directToPreview}>
                     Preview Letter!
-                </Button>
+                </Button> */}
+                    <PreviewLetter selections={selections} />
                 </div>
                 <div className={left}>
                 <Button variant="outlined" onClick={directToAddressForm}> Back </Button>

@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import Typography from '@material-ui/core/Typography';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHome } from '@fortawesome/free-solid-svg-icons'
 
 const Nav = (props) => {
   let loginLinkData = {
@@ -18,34 +21,18 @@ const Nav = (props) => {
 
   return (
     <>
-    {/* <div className="nav" > */}
-      {/* <div className='title' >
-        <h1 className='leafy'>Letter Builder</h1>
-      </div> */}
     <div className="nav">
       <Link to="/home">
-        <h1 className="nav-title leafy">The Green Neighbor</h1>
+      <i class="fas fa-home"></i>
+      <FontAwesomeIcon icon={faHome} style={{color:'white'}} size="4x"/>
+        <Typography className="nav-title leafy" variant='h2' style={{fontFamily: 'leafy'}}> The Green Neighbor</Typography>
       </Link>
       <div className="nav-right">
-        <Link className="nav-link" to={loginLinkData.path}>
-          {/* Show this link if they are logged in or not,
-          but call this link 'Home' if they are logged in,
-          and call this link 'Login / Register' if they are not */}
-          {loginLinkData.text}
-        </Link>
-        {/* Show the link to the info page and the logout button if the user is logged in */}
-        {props.store.user.id && (
-          <>
-            <Link className="nav-link" to="/info">
-              Info Page
-            </Link>
-            <LogOutButton className="nav-link" />
-          </>
-        )}
+        
         {/* Always show this link since the about page is not protected */}
-        <Link className="nav-link" to="/about">
-          About
-        </Link>
+        <a className="nav-link" target="_blank"  href='https://www.greenneighborchallenge.com/about/'>About</a>
+
+ 
       </div>
     {/* </div> */}
     </div>

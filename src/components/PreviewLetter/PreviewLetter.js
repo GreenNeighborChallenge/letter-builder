@@ -61,7 +61,6 @@ function PreviewLetter({letter, address, selections, history}) {
     };
     const handleClose = () => {
         setOpen(false);
-        history.push('/confirmation');
     };
   
     const emailBody = []

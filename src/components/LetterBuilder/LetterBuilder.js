@@ -7,6 +7,7 @@ import { connect, useDispatch } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import LetterItems from './LetterItems.js'
 
+
 const useStyles = makeStyles({
     root: {
         maxWidth: "100%",
