@@ -54,6 +54,10 @@ class LetterItems extends Component {
     }
 
     render() {
+
+        const fullLetter = this.props.store.letter.body.map(policy => policy + '\n');
+        console.log(fullLetter);
+
         return (
             <>
                 <div>
@@ -76,9 +80,14 @@ class LetterItems extends Component {
                     <textarea className="textArea" height="500px" width="100" defaultValue={this.state.intro} onChange={this.handleIntro}></textarea>
                     <br />
                     {this.props.store.letter.body &&
-                        <textarea className="textArea" value={this.props.store.letter.body.map(policy => policy + '\n')}>
+                        <textarea className="textArea" value={fullLetter[0] && fullLetter.map(language => {
+                            return(
+                                fullLetter[0] ? fullLetter[0].replace("[STATE]", this.props.store.zip.long_name) : ''
+                            )
+                        })}>
                         </textarea>
                     }
+                    {/* fullLetter[0] ? fullLetter[0].replace("[STATE]", this.props.store.zip.long_name) : '' */}
                     <br />
                     <textarea className="textArea" defaultValue={this.state.conclusion} onChange={this.handleConclusion}></textarea>
                     < br />
