@@ -10,6 +10,9 @@ import { RepButton } from './RepButtons'
 import PreviewLetter from '../PreviewLetter/PreviewLetter';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import Stepper from '../Stepper/Stepper'
+import IconButton from '@material-ui/core/IconButton';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const useStyles = makeStyles({
     root: {
@@ -109,13 +112,12 @@ const PickReps = ({ dispatch, reps, history, offices }) => {
                 <CardActions className={cardActions}>
                     
                 <div className={right}>
-                <Button variant="outlined" onClick={directToPreview}>
-                    Preview Letter!
-                </Button>
+                <IconButton onClick={directToPreview} style={{ display: 'inline', float: 'right', color:'black' }}><ArrowForwardIcon /></IconButton>
                     {/* <PreviewLetter selections={selections} /> */}
                 </div>
+                
                 <div className={left}>
-                <Button variant="outlined" onClick={directToAddressForm}> Back </Button>
+                <IconButton onClick={directToAddressForm} style={{ display: 'inline', float: 'left', color:'black' }}><ArrowBackIcon /></IconButton>
                 </div>
                 </CardActions>
             </Card>

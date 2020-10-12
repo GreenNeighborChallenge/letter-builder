@@ -8,6 +8,9 @@ import AddPolicy from './AddPolicy.js';
 import Stepper from '../Stepper/Stepper';
 import TextField from '@material-ui/core/TextField';
 import PolicyExplainer from '../PolicyExplainer/PolicyExplainer.jsx';
+import IconButton from '@material-ui/core/IconButton';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 class LetterItems extends Component {
 
@@ -87,12 +90,16 @@ class LetterItems extends Component {
                         <Stepper step={0} />
                     </div>
                     <div style={{ margin: '4em 0 0em em', padding: '2em 0 0 0' }}>
-
+{/* 
                         <Button cardItem variant="outlined" onClick={this.props.directBack}>Back</Button>
-                        <Button variant="outlined" onClick={this.handleSubmit}>Enter Address</Button>
+                        <Button variant="outlined" >Enter Address</Button> */}
+                        
+                    </div>
+                    <div style={{display: 'inline'}}>
+                    <IconButton onClick={this.props.directBack} style={{ display: 'inline', float: 'left', color:'black' }}><ArrowBackIcon /></IconButton>
+                    <IconButton onClick={this.handleSubmit} style={{ display: 'inline', float: 'right', color:'black' }}><ArrowForwardIcon /></IconButton>
                     </div>
                 </div>
-
             </>
         );
     }

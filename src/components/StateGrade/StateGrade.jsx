@@ -8,8 +8,9 @@ import './StateGrade.css'
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import StateSelect from './StateSelect';
-import Stepper from '../Stepper/Stepper'
 import PolicyExplainer from '../PolicyExplainer/PolicyExplainer.jsx';
+import IconButton from '@material-ui/core/IconButton';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 
 class StateGrade extends Component {
@@ -97,8 +98,8 @@ class StateGrade extends Component {
                             </div>
                             <br />
                         </List>
-
-                        <Button onClick={this.props.directToLetterBuilder} style={{ display: 'inline', float: 'right', margin: 5 }}>Create Your Letter!</Button>
+                                    <IconButton onClick={this.props.directToLetterBuilder} style={{ display: 'inline', float: 'right', margin: 5, color:'black' }}><ArrowForwardIcon /></IconButton>
+                     
                     </>
                 }
             </div>
