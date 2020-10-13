@@ -66,8 +66,13 @@ class LetterItems extends Component {
     }
 
     render() {
+
+        const fullLetter = this.props.store.letter.body.map(policy => policy + '\n');
+        console.log(fullLetter);
+
         const { classes } = this.props
         const { resize, textField } = classes
+
         return (
             <>
                 <div className="policy">
@@ -80,8 +85,7 @@ class LetterItems extends Component {
                         return (
                             <div className="cardItem" key={i}>
                                 <PolicyExplainer policy_name={policy.name} title={policy.name} text={policy.long_info} toolTitle={policy.short_info}/>
-                                <AddPolicy policy={policy} handleAdd={() => this.handleAdd(policy.policy_id)}  />
-                                
+                                <AddPolicy policy={policy} handleAdd={() => this.handleAdd(policy.policy_id)} />                             
                             </div>
                         )
                     })}
@@ -94,9 +98,14 @@ class LetterItems extends Component {
                     <TextField variant="outlined" InputProps={{classes: { input: resize}}}  multiline size="small" className={textField} defaultValue={this.state.intro} onChange={this.handleIntro}></TextField>
                     <br />
                     {this.props.store.letter.body &&
-                        <TextField variant="outlined" InputProps={{classes: { input: resize}}} size="small" value={this.props.store.letter.body.map(policy => policy + '\n')} multiline className={textField}>
+                        <TextField variant="outlined" InputProps={{classes: { input: resize}}} size="small" value={fullLetter[0] ? fullLetter.map(language => {
+                            return(
+                                language ? language.replaceAll("[STATE]", this.props.store.zip.long_name) : ''
+                            )
+                        }): ''} multiline className={textField}>
                         </TextField>
                     }
+                    {/* fullLetter[0] ? fullLetter[0].replace("[STATE]", this.props.store.zip.long_name) : '' */}
                     <br />
                     <TextField variant="outlined" InputProps={{classes: { input: resize}}} multiline defaultValue={this.state.conclusion} onChange={this.handleConclusion} className={textField}></TextField>
                     < br />
