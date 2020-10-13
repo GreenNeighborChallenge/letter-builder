@@ -56,7 +56,6 @@ class LetterItems extends Component {
 
         const fullLetter = this.props.store.letter.body.map(policy => policy + '\n');
         console.log(fullLetter);
-        const backupLetter = [];
 
         return (
             <>
@@ -70,7 +69,7 @@ class LetterItems extends Component {
                         return (
                             <div className="cardItem" key={i}>
                                 <PolicyExplainer policy_name={policy.name} title={policy.name} text={policy.long_info} toolTitle={policy.short_info}/>
-                                <AddPolicy policy={policy} handleAdd={() => this.handleAdd(policy.policy_id)} backupLetter={backupLetter}  />
+                                <AddPolicy policy={policy} handleAdd={() => this.handleAdd(policy.policy_id)}  />
                                 
                             </div>
                         )
@@ -84,11 +83,11 @@ class LetterItems extends Component {
                     <textarea className="textArea" height="500px" width="100" defaultValue={this.state.intro} onChange={this.handleIntro}></textarea>
                     <br />
                     {this.props.store.letter.body &&
-                        <textarea className="textArea" value={fullLetter[0] && fullLetter.map(language => {
+                        <textarea className="textArea" value={fullLetter[0] ? fullLetter.map(language => {
                             return(
                                 language ? language.replaceAll("[STATE]", this.props.store.zip.long_name) : ''
                             )
-                        })}>
+                        }): '' }>
                         </textarea>
                     }
                     {/* fullLetter[0] ? fullLetter[0].replace("[STATE]", this.props.store.zip.long_name) : '' */}
