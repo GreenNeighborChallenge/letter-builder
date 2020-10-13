@@ -47,23 +47,43 @@ const ZipCode = ({ dispatch, store, history, location }) => {
     const classes = useStyles();
 
     let [zip, changeZip] = useState('');
+    let [zipToggle, toggleZip] = useState(false)
 
     const queryString = require('query-string');
     const parsedZipCode = queryString.parse(location.search);
 
     useEffect(() => {
+        //if no zip provided in the url, does nothing
         if (parsedZipCode.zipCode === undefined) {
-            // this.props.dispatch({ type: 'GET_STATE_POLICIES', payload: this.props.stateInfo })
             return false
+        //if zip code provided via query, dispatches to reducer/geocoding api    
         } else {
             console.log('hello from with zip params')
             dispatch({ type: 'SEND_ZIP', payload: parsedZipCode.zipCode })
         }
     }, []);
 
+  
+
+    /* if a zip is provided in the URL. renders a filled, disabled zip code input
+    otherwise renders a blank one w/on change functionality*/
+    const zipField = (props) => {
+        if (parsedZipCode.zipCode) {
+            return <TextField label="zip code" variant="outlined" disabled value={parsedZipCode.zipCode} />
+        } else if (parsedZipCode.zipCode === undefined && zipToggle === true) {
+            return <TextField label="zip code" variant="outlined" disabled value={zip} />
+        } else if (parsedZipCode.zipCode === undefined) {
+            return <div><TextField label="zip code" variant="outlined" onChange={(event) => changeZip(event.target.value)} />
+            <Button variant='contained' onClick={() => sendZip()}>Go</Button>  </div>
+        }
+    }
+
     function sendZip() {
         dispatch({ type: 'SEND_ZIP', payload: zip })
         console.log(zip)
+        toggleZip(true)
+        console.log(zipToggle)
+        
     }
 
     const directToLetterBuilder = () => {
@@ -78,11 +98,6 @@ const ZipCode = ({ dispatch, store, history, location }) => {
             <div className={classes.container}>
                 <Card className={classes.card}>
                     <CardContent>
-                        {/* {JSON.stringify(location)}
-                        {JSON.stringify(location.search)} */}
-                        {JSON.stringify(parsedZipCode)}
-                        {JSON.stringify(parsedZipCode.zipCode)}
-                        {JSON.stringify(Number(parsedZipCode.zipCode))}
                         <div style={{ textAlign: 'center' }}>
                             <Typography color="textSecondary" id='zipTitle' style={{ fontSize: 48, fontFamily: 'leafy', color: 'black' }} gutterBottom>
                                 BE THE CHANGE: State Policy Petition Maker
@@ -94,12 +109,14 @@ const ZipCode = ({ dispatch, store, history, location }) => {
                         <div className='zipBox' >
                             <Typography variant='h4'>Enter Your Zip Code</Typography>
                             <Typography variant="h5" component="h2">to find your state's policies and write to your elected officials</Typography>
-                            <TextField label="zip code" variant="outlined" onChange={(event) => changeZip(event.target.value)} />
+
+                            {zipField()}
+
                             <br />
-                            <Button variant='contained' onClick={sendZip}>Go</Button>
+                            
                         </div>
                         {store.zip.long_name &&
-                            <StateGrade stateInfo={store.zip} directToLetterBuilder={directToLetterBuilder} zipCode={parsedZipCode}/>}
+                            <StateGrade stateInfo={store.zip} directToLetterBuilder={directToLetterBuilder} />}
                     </CardContent>
                 </Card>
             </div>
