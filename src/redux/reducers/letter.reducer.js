@@ -21,13 +21,24 @@ const letterReducer = (state = letterState, action) => {
             };
         case 'DELETE_POLICY_FROM_LETTER':
             const newBody = state.body.filter((petition_info) => {
-                if (action.payload === petition_info){
-                    return false
-                } else return true
-            }) 
+                //action.payload is unchanged petition_info from db
+                console.log(petition_info);
+                console.log(action.payload);
+                if (action.payload === petition_info) {
+                    return {
+                        ...state,
+                        body: [...state.body, '']
+                    }
+                } else return {
+                    ...state,
+                    body: [...state.body, petition_info]
+                }
+            })
             return {
                 ...state,
-                body: newBody}
+                body: newBody
+            }
+
         default:
             return state;
     }

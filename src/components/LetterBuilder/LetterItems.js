@@ -57,6 +57,7 @@ class LetterItems extends Component {
 
         const fullLetter = this.props.store.letter.body.map(policy => policy + '\n');
         console.log(fullLetter);
+        const backupLetter = [];
 
         return (
             <>
@@ -67,7 +68,7 @@ class LetterItems extends Component {
                         return (
                             <div className="cardItem" key={policy.policy_id}>
                                 <PolicyExplainer policy_name={policy.name} title={policy.name} text={policy.long_info} toolTitle={policy.short_info}/>
-                                <AddPolicy policy={policy} handleAdd={() => this.handleAdd(policy.policy_id)}  />
+                                <AddPolicy policy={policy} handleAdd={() => this.handleAdd(policy.policy_id)} backupLetter={backupLetter}  />
                                 
                             </div>
                         )
