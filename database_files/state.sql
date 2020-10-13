@@ -62,6 +62,6 @@ INSERT INTO "state" (id, state_abv, state_name, state_grade, gov_email, puc, doc
 INSERT INTO "state" (id, state_abv, state_name, state_grade, gov_email, puc, doc, resident_count, resident_mwh) VALUES (46, 'VA', 'Vermont', 'D', NULL, NULL, NULL, 3426471, 47886897);
 INSERT INTO "state" (id, state_abv, state_name, state_grade, gov_email, puc, doc, resident_count, resident_mwh) VALUES (47, 'VT', 'Virginia', 'B', 'pshumlin@state.vt.us', NULL, NULL, 307509, 2051388);
 INSERT INTO "state" (id, state_abv, state_name, state_grade, gov_email, puc, doc, resident_count, resident_mwh) VALUES (48, 'WA', 'Washington', 'C', 'Governor.Gregoire@Governor.wa.gov', NULL, NULL, 3056825, 35072781);
-INSERT INTO "state" (id, state_abv, state_name, state_grade, gov_email, puc, doc, resident_count, resident_mwh) VALUES (49, 'WI', 'West Virginia', 'C', 'wisgov@mail.state.wi.us', NULL, NULL, 2668462, 22157659);
-INSERT INTO "state" (id, state_abv, state_name, state_grade, gov_email, puc, doc, resident_count, resident_mwh) VALUES (50, 'WV', 'Wisconsin', 'D', 'governor@state.wv.us', NULL, NULL, 850158, 11587335);
+INSERT INTO "state" (id, state_abv, state_name, state_grade, gov_email, puc, doc, resident_count, resident_mwh) VALUES (49, 'WI', 'Wisconsin', 'C', 'wisgov@mail.state.wi.us', NULL, NULL, 2668462, 22157659);
+INSERT INTO "state" (id, state_abv, state_name, state_grade, gov_email, puc, doc, resident_count, resident_mwh) VALUES (50, 'WV', 'West Virginia', 'D', 'governor@state.wv.us', NULL, NULL, 850158, 11587335);
 INSERT INTO "state" (id, state_abv, state_name, state_grade, gov_email, puc, doc, resident_count, resident_mwh) VALUES (51, 'WY', 'Wyoming', 'D', 'Governor@missc.state.wy.us', NULL, NULL, 261192, 2637424);
