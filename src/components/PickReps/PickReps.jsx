@@ -93,8 +93,8 @@ const PickReps = ({ dispatch, reps, history, offices }) => {
                                     <RepButton value={offices.gov_email}> {reps.offices[0].name} <br /> {reps.officials[0].name} <br /> {offices.gov_email} </RepButton>
                                     <RepButton value={reps.officials[1].emails[0]} > {reps.offices[1].name} <br /> {reps.officials[1].name} <br />{reps.officials[1].emails[0]} </RepButton>
                                     <RepButton value={reps.officials[2].emails[0]} style={{ marginTop: '1em' }}> {reps.offices[2].name} <br /> {reps.officials[2].name} <br /> {reps.officials[2].emails[0]} </RepButton>
-                                    <RepButton value={offices.DoC} style={{ marginTop: '1em' }}> Department of Commerce  <br /> {offices.DoC}  </RepButton>
-                                    <RepButton value={'nothing yet'} style={{ marginTop: '1em' }}> State Sustainability Office   </RepButton>
+                                    <RepButton value={offices.doc} style={{ marginTop: '1em' }}> Department of Commerce  <br /> {offices.doc}  </RepButton>
+                                    <RepButton value={offices.SSEO_email} style={{ marginTop: '1em' }}> {offices.SSEO_name}  {offices.SSEO_email} </RepButton>
                                     <RepButton value={offices.puc} style={{ marginTop: '1em' }}> Public Utilities Commission  {offices.puc} </RepButton>
                                 </ToggleButtonGroup>
                             </div>

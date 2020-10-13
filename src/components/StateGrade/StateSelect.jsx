@@ -59,6 +59,7 @@ class StateSelect extends Component {
           {this.props.store.states &&
          <FormControl className={classes.formControl}>
            <Select value={this.state.short_name} 
+           //DISPATCH ON CHANGE
            onChange={(event) => { this.setState({short_name: event.target.value })}}
            className={classes.select}
            variant="outlined">
