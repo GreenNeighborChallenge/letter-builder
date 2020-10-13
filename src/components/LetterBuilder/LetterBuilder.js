@@ -61,7 +61,7 @@ function LetterBuilder({history}) {
                 <div className={classes.test}>
                     <CardActions>
                             <LetterItems directToAddress={directToAddress} directBack={directBack}/>
-                            <IconButton><ArrowBackIcon /></IconButton>
+                            {/* <IconButton><ArrowBackIcon /></IconButton> */}
                     </CardActions>
                 </div>
                     <CardContent>

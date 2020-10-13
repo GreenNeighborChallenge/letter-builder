@@ -40,6 +40,8 @@ class LetterItems extends Component {
     }
 
     handleAdd = (id) => {
+        console.log('in letter items', id);
+        
         this.props.dispatch({ type: 'ADD_POLICY', payload: id })
     }
 
@@ -65,9 +67,9 @@ class LetterItems extends Component {
                         <h6 className="policies">Hover over each policy to learn more</h6>
                     </div>
                     <div>
-                    {this.props.store.policyLanguage.map((policy) => {
+                    {this.props.store.policyLanguage.map((policy, i) => {
                         return (
-                            <div className="cardItem" key={policy.policy_id}>
+                            <div className="cardItem" key={i}>
                                 <PolicyExplainer policy_name={policy.name} title={policy.name} text={policy.long_info} toolTitle={policy.short_info}/>
                                 <AddPolicy policy={policy} handleAdd={() => this.handleAdd(policy.policy_id)}  />
                                 

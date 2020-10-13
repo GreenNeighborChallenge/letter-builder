@@ -23,7 +23,7 @@ const Nav = (props) => {
     <>
     <div className="nav">
       <Link to="/home">
-      <i class="fas fa-home"></i>
+      <i className="fas fa-home"></i>
       <FontAwesomeIcon icon={faHome} style={{color:'white'}} size="4x"/>
         <Typography className="nav-title leafy" variant='h2' style={{fontFamily: 'leafy'}}> The Green Neighbor</Typography>
       </Link>
