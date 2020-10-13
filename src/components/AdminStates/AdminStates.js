@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import AdminStateInfo from './AdminStateInfo';
+import AdminPolicyInfo from './AdminPolicyInfo';
+import AdminSseo from './AdminSseo';
 
 class AdminStates extends Component {
     state = {
@@ -54,10 +56,14 @@ class AdminStates extends Component {
                 </select>
 
                 {this.props.store.stateInfo[0] &&
-                    <AdminStateInfo
-                        stateInfo={this.props.store.stateInfo[0]}
-                        resetDropdown={this.resetDropdown}
-                    />}
+                    <>
+                        <AdminPolicyInfo stateInfo={this.props.store.stateInfo[0]}/>
+                        <AdminStateInfo
+                            stateInfo={this.props.store.stateInfo[0]}
+                            resetDropdown={this.resetDropdown}
+                        />
+                        <AdminSseo stateInfo={this.props.store.stateInfo[0]}/>
+                    </>}
 
             </div>
         );

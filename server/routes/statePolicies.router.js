@@ -48,4 +48,33 @@ router.post('/sseo/:id', (req, res) => {
   });
 });
 
+//edit state policy data
+router.put('/:id', async(req,res) => {
+  let stateId = req.params.id
+    const client = await pool.connect();
+    //need to delete the value pair of id so
+    //we just have the policy id and the policy data
+    //in the object
+    delete req.body["id"]
+    const policyValuePairs = Object.entries(req.body)
+    try {
+        await client.query('BEGIN')
+        
+        const policyQuery = `UPDATE "policy_info"
+                            SET "policy_data" = $1
+                            WHERE "state_id" = $2 AND "policy_id" = $3`
+
+        for (let [key, value] of policyValuePairs) {
+            console.log(key, value)
+            await client.query(policyQuery, [value, stateId, key])
+        }
+        await client.query('COMMIT');
+        res.sendStatus(200)
+    } catch (error) {
+        await client.query('ROLLBACK');
+        console.log(error)
+        res.sendStatus(500)
+    }
+})
+
 module.exports = router;

@@ -62,8 +62,12 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
   },
   appBar: {
-      backgroundColor: theme.palette.success.light
+      backgroundColor: theme.palette.success.light,
+  },
+  indicator: {
+    backgroundColor: 'yellow'
   }
+  
 }));
 
 export default function NavTabs() {
@@ -82,6 +86,9 @@ export default function NavTabs() {
           value={value}
           onChange={handleChange}
           aria-label="nav tabs example"
+          classes={{
+            indicator: classes.indicator
+          }}
         >
           <LinkTab label="State List" href="/drafts" {...a11yProps(0)} />
           <LinkTab label="Policy List" href="/trash" {...a11yProps(1)} />
