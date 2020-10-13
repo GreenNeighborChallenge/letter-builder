@@ -4,7 +4,6 @@ const router = express.Router();
 
 //user side
 router.get('/', (req, res) => {
-  // GET route code here
 
   const queryText = `SELECT "policy_language".short_info, "policy_language".long_info, "policy_language".petition_info, "policy_name".name, "policy_name".id FROM "policy_language"
                     JOIN "policy_name" ON "policy_name".id = "policy_language".policy_id
@@ -12,7 +11,6 @@ router.get('/', (req, res) => {
 
   pool.query(queryText)
   .then((result) => {
-      // console.log(result.rows)
       res.send(result.rows)
   }).catch((error) => {
     console.log(`Error on detail get query ${error}`);
@@ -36,11 +34,29 @@ router.get('/:id', (req, res) => {
 //admin side
 
 //add new policy
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   let newPolicy = req.body
-  const queryText=`INSERT INTO "policy_language" ("policy", "short_info", "long_info", "petition_info")
-  VALUES ($1, $2, $3, $4)`
-  pool.query(queryText, [newPolicy.name, newPolicy.short, newPolicy.long, newPolicy.petition])
+  const client = await pool.connect();
+  try{
+    await client.query('BEGIN');
+
+    const policyNameQuery=`INSERT INTO "policy_name" ("name") VALUES ($1) RETURNING "id"`
+
+    let result = await client.query(policyNameQuery, [newPolicy.name])
+
+    const queryText=`INSERT INTO "policy_language" ("policy_id", "short_info", "long_info", "petition_info")
+    VALUES ($1, $2, $3, $4)`
+
+    await client.query(queryText, [result.rows[0].id, newPolicy.short, newPolicy.long, newPolicy.petition])
+
+    await client.query ('COMMIT');
+    res.sendStatus(200)
+
+  } catch (error) {
+    await client.query('ROLLBACK');
+    console.log('error adding new policy', error)
+        res.sendStatus(500)
+  }
 });
 
 //update a policy
@@ -68,6 +84,7 @@ router.put('/', async (req, res) => {
 
     } catch (error) {
         await client.query('ROLLBACK');
+        console.log('error updating policy lanugage', error)
         res.sendStatus(500)
     }
 })
