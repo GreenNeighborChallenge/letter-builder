@@ -24,7 +24,7 @@ function* createSSEO(action){
 
 function* updatePolicyInfo(action){
     try{
-        let response = axios.put(`/api/statePolicies/${action.payload.id}`, action.payload);
+        let response = yield axios.put(`/api/statePolicies/${action.payload.id}`, action.payload);
         console.log(response.data)
         yield put ({ type: 'FETCH_STATE_INFO', payload: action.payload.id})
     } catch (error) {
@@ -32,10 +32,22 @@ function* updatePolicyInfo(action){
     }
 }
 
+function* updateStateContact(action){
+    try{
+        console.log(action.payload)
+        let response = yield axios.put(`/api/statePolicies/contact/${action.payload.id}`, action.payload);
+        
+        yield put ({ type: 'FETCH_STATE_INFO', payload: action.payload.id})
+    } catch (error) {
+        console.log('error updating state contact info', error)
+    }
+}
+
 function* policySaga() {
   yield takeLatest('GET_STATE_POLICIES', fetchStatePolicies);
   yield takeLatest('NEW_SSEO', createSSEO);
   yield takeLatest('UPDATE_POLICY_INFO', updatePolicyInfo);
+  yield takeLatest('UPDATE_STATE_CONTACTS', updateStateContact);
 }
 
 export default policySaga;

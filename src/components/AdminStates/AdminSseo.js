@@ -8,7 +8,7 @@ class AdminSseo extends Component {
         
         return (
             <div><div className="statePolicies">
-            <h1>{stateInfo.state} State Offices</h1>
+            {/* <h1>{stateInfo.state} State Offices</h1> */}
             {this.state.SSEOinput ?
                 <p>Enter new info below:</p> :
                 <button onClick={() => this.addSSEO()}>Add Another SSEO</button>
@@ -31,7 +31,7 @@ class AdminSseo extends Component {
                     <input placeholder="SSEO Email"
                         onChange={(event) => this.setState({ ...this.state, newSSEOEmail: event.target.value })}></input>
                     <div>
-                        <button onClick={() => this.saveSSEO(stateInfo.id)}>Save</button>
+                        {/* <button onClick={() => this.saveSSEO(stateInfo.id)}>Save</button> */}
                         <button onClick={() => this.setState({ ...this.state, SSEOinput: false })}>Cancel</button>
                     </div>
                 </div>
