@@ -90,7 +90,7 @@ function PolicyInfo(props) {
         addPolicy(true)
     }
 
-    const handleDelete = () => {
+    const handleDelete = () => {a
         addPolicy(false)
         props.dispatch({ type: 'DELETE_POLICY_FROM_LETTER', payload: props.policy.petition_info})
     }

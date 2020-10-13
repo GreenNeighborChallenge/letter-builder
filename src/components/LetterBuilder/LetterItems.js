@@ -17,11 +17,14 @@ const styles = ({
         width: 400,
         overflow: "scroll",
         maxHeight: '15em',
-        margin: '.5em'
+
     },
     resize: {
         fontSize: 14,
-    }
+        minHeight: '10em',
+        margin: '1em'
+    },
+
   })
 
 class LetterItems extends Component {
@@ -92,7 +95,7 @@ class LetterItems extends Component {
                     </div>
                 </div>
                 <div className="letter">
-                    <h1>Your Letter</h1>
+                    <h1>Create Your Letter</h1>
                     Subject:<TextField size="small" className="subjectLine" defaultValue={this.state.subject} onChange={this.handleSubject}></TextField>
                     < br />
                     <TextField variant="outlined" InputProps={{classes: { input: resize}}}  multiline size="small" className={textField} defaultValue={this.state.intro} onChange={this.handleIntro}></TextField>
