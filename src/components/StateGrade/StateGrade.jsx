@@ -18,8 +18,11 @@ class StateGrade extends Component {
         showMore: false,
     }
 
+
     componentDidMount() {
-        this.props.dispatch({ type: 'GET_STATE_POLICIES', payload: this.props.stateInfo })
+        // this.props.dispatch({ type: 'GET_STATE_POLICIES', payload: this.props.stateInfo })
+        this.props.dispatch({ type: 'GET_STATE_POLICIES', payload: this.props.store.zip})
+        console.log(this.props.stateInfo)
         this.props.dispatch({ type: 'FETCH_POLICIES' })
     }
 
@@ -40,13 +43,16 @@ class StateGrade extends Component {
         }
     }
 
+    
+
     render() {
+
         return (
             <div >
                 {this.props.store.statePolicies && this.props.store.policyLanguage && this.props.store.zip.short_name &&
                     <>
                         <div id='stateTitle'>
-                            <Typography variant='h4' gutterBottom>Your State: <StateSelect default={this.props.store.zip.short_name} /> </Typography></div>
+                            <Typography variant='h4' gutterBottom>Your State: <StateSelect default={this.props.store.zip.short_name} parsedZip={this.props.zipCode} /> </Typography></div>
                         <div className='outline'>
                             <Typography>Your state's energy and climate policy, graded:</Typography>
                         </div>
@@ -100,8 +106,8 @@ class StateGrade extends Component {
                             </div>
                             <br />
                         </List>
-                                    <IconButton onClick={this.props.directToLetterBuilder} style={{ display: 'inline', float: 'right', margin: 5, color:'black' }}><ArrowForwardIcon /></IconButton>
-                     
+                        <IconButton onClick={this.props.directToLetterBuilder} style={{ display: 'inline', float: 'right', margin: 5, color: 'black' }}><ArrowForwardIcon /></IconButton>
+
                     </>
                 }
             </div>
