@@ -56,7 +56,7 @@ const useStyles = makeStyles({
 });
 
 function PreviewLetter({ letter, address, selections, history, emails }) {
-    const { root, card, emailHeader, left, emailBody, right, stepper } = useStyles();
+    const { root, card, emailHeader, emailBody, right, stepper } = useStyles();
 
     const policies = letter.body.map((policy) => {
         return policy
