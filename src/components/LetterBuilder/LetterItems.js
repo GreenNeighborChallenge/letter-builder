@@ -85,8 +85,7 @@ class LetterItems extends Component {
                         return (
                             <div className="cardItem" key={i}>
                                 <PolicyExplainer policy_name={policy.name} title={policy.name} text={policy.long_info} toolTitle={policy.short_info}/>
-                                <AddPolicy policy={policy} handleAdd={() => this.handleAdd(policy.policy_id)} />
-                                
+                                <AddPolicy policy={policy} handleAdd={() => this.handleAdd(policy.policy_id)} />                             
                             </div>
                         )
                     })}
