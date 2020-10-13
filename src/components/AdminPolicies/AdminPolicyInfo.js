@@ -14,12 +14,14 @@ class AdminPolicyInfo extends Component {
         petition_info: this.props.policy.petition_info
     }
 
+    //allows the inputs to render so they can be edited
     handleEdit = () => {
         this.setState({
             isEdit: true,
         })
     }
 
+    //functions to handle input changes
     handleNameChange = (event) => {
         this.setState({
             policyName: event.target.value
@@ -49,6 +51,7 @@ class AdminPolicyInfo extends Component {
             isEdit: false
         })
         console.log(this.state)
+        //goes to admin form saga
         this.props.dispatch ({ type: 'UPDATE_POLICY_LANGUAGE', payload: this.state})
     }
 
@@ -56,6 +59,7 @@ class AdminPolicyInfo extends Component {
         this.setState({
             isEdit: false
         })
+        //goes to admin form saga
         this.props.dispatch ({ type: 'DELETE_POLICY', payload: this.state.policyId})
 
     }

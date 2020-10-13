@@ -10,7 +10,6 @@ import offices from './offices.reducer'
 import reps from './reps.reducer'
 import letter from './letter.reducer';
 import stateInfo from './state.info.reducer';
-import admin from './admin.reducer'
 import sseoInfo from './sseo.reducer';
 import adminState from './adminState.reducer';
 import emails from  './emailAddy.reducer'
@@ -33,7 +32,6 @@ const rootReducer = combineReducers({
   statePolicies,
   offices,
   stateInfo,
-  admin,
   sseoInfo,
   adminState,
   emails
