@@ -54,10 +54,8 @@ const ZipCode = ({ dispatch, store, history, location }) => {
 
     useEffect(() => {
         //if no zip provided in the url, does nothing
-        if (parsedZipCode.zipCode === undefined) {
-            return false
-        //if zip code provided via query, dispatches to reducer/geocoding api    
-        } else {
+        //if zip provided in the url, uses that to dispatch to saga/geocoding api
+        if (parsedZipCode.zipCode) {
             console.log('hello from with zip params')
             dispatch({ type: 'SEND_ZIP', payload: parsedZipCode.zipCode })
         }
@@ -74,6 +72,7 @@ const ZipCode = ({ dispatch, store, history, location }) => {
             return <TextField label="zip code" variant="outlined" disabled value={zip} />
         } else if (parsedZipCode.zipCode === undefined) {
             return <div><TextField label="zip code" variant="outlined" onChange={(event) => changeZip(event.target.value)} />
+            <br />
             <Button variant='contained' onClick={() => sendZip()}>Go</Button>  </div>
         }
     }
