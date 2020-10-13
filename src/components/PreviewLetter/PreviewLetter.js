@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import {Button, ListItem} from '@material-ui/core';
+import {Button} from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
@@ -62,18 +62,12 @@ function PreviewLetter({letter, address, selections, history}) {
     const handleClose = () => {
         setOpen(false);
     };
-  
-    const emailBody = []
-    
-    if (letter) {
-      
-        const policies = letter.body.map((policy) => {
-            return policy
-        })
 
-        emailBody = letter.intro + policies + letter.conclusion
-    } 
-    
+    const policies = letter.body.map((policy) => {
+        return policy
+    })
+    const emailBody = letter.intro + policies + letter.conclusion
+
     return (
 
         <div>

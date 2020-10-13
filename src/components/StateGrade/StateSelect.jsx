@@ -4,7 +4,6 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import { withStyles } from '@material-ui/core/styles';
 
