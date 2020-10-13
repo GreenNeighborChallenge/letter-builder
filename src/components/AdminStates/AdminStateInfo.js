@@ -60,58 +60,25 @@ class AdminStateInfo extends Component {
         const stateInfo = this.props.stateInfo
         return (
             <div className="stateBody">
+                    
                 <div className="statePolicies">
-                    <h1>{stateInfo.state} Policy Information</h1>
+                    <h1>{stateInfo.state} State Information</h1>
                     <button>Edit</button>
 
-                    {stateInfo.AdminStateInfo.map((stateData) => {
-                        return (
-                            <div>
-                                <p>{stateData.policy_name}: {stateData.policy_data}</p>
-                            </div>
-                        )
-                    })}
+                    <p>State Grade: {stateInfo.state_grade}</p>
 
-                </div>
-                <div className="statePolicies">
-                    <h1>{stateInfo.state} Contact Information</h1>
-                    <button>Edit</button>
+                    <p>Resident Count: {stateInfo.resident_count}</p>
+
+                    <p>Resident MWH: {stateInfo.resident_mwh}</p>
 
                     <p>PUC: {stateInfo.puc}</p>
 
                     <p>DoC Email: {stateInfo.doc}</p>
 
-                </div>
-                <div className="statePolicies">
-                    <h1>{stateInfo.state} SSEO's</h1>
-                    {this.state.SSEOinput ?
-                        <p>Enter new info below:</p> :
-                        <button onClick={() => this.addSSEO()}>Add Another SSEO</button>
-                    }
-                    {this.props.store.sseoInfo[0] &&
-                        this.props.store.sseoInfo.map((sseo) => {
-                            return (
-                                <div className="stateSSEOitem">
-                                    <button>Edit</button>
-                                    <p>SSEO Name: {sseo.SSEO_name}</p>
+                    <p>Governor Email: {stateInfo.gov_email}</p>
 
-                                    <p>SSEO Email: {sseo.SSEO_email}</p>
-                                </div>
-                            )
-                        })}
-                    {this.state.SSEOinput &&
-                        <div>
-                            <input placeholder="SSEO Name"
-                                onChange={(event) => this.setState({ ...this.state, newSSEOName: event.target.value })}></input>
-                            <input placeholder="SSEO Email"
-                                onChange={(event) => this.setState({ ...this.state, newSSEOEmail: event.target.value })}></input>
-                            <div>
-                                <button onClick={() => this.saveSSEO(stateInfo.id)}>Save</button>
-                                <button onClick={() => this.setState({ ...this.state, SSEOinput: false })}>Cancel</button>
-                            </div>
-                        </div>
-                    }
                 </div>
+                
                 <button onClick={() => this.deleteConfirm(stateInfo.state_id)}>Delete State Info</button>
             </div>
         );

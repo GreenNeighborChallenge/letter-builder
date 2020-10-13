@@ -19,7 +19,10 @@ router.get('/', (req, res) => {
 
 router.get('/info/:id', (req, res) => {
     // GET states for address form
-    let queryText = `SELECT "state".id, "state".state_grade, "state".puc, "state".doc, json_agg(json_build_object('policy_name', "policy_name".name, 'policy_data', "policy_info".policy_data)) AS "AdminStateInfo"
+    let queryText = `SELECT "state".id, "state".state_grade, "state".puc, "state".doc, "state".resident_count, 
+                    "state".resident_mwh, "state".gov_email, 
+                    json_agg(json_build_object('policy_name', "policy_name".name, 'policy_data', "policy_info".policy_data, 'policy_id', "policy_name".id)) 
+                    AS "AdminStateInfo"
                         FROM "state"
                     JOIN "policy_info" on "policy_info".state_id = "state".id
                     JOIN "policy_name" on "policy_info".policy_id = "policy_name".id
@@ -30,6 +33,7 @@ router.get('/info/:id', (req, res) => {
 
     pool.query(queryText, [stateId]).then(result => {
         res.send(result.rows);
+        console.log(result.rows[0])
     }).catch(error => {
         console.log('error getting states for admin view', error);
         res.sendStatus(500);

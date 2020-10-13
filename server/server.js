@@ -12,13 +12,10 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const adminRouter = require('./routes/admin.router');
 const zipRouter = require('./routes/zip.router');
-
 const statesRouter = require('./routes/states.router');
 const policyRouter = require('./routes/policy.router');
 const repsRouter = require('./routes/reps.router');
-
 const statePoliciesRouter = require ('./routes/statePolicies.router')
-
 const officesRouter = require('./routes/offices.router');
 
 // Body parser middleware
