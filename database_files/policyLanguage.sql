@@ -61,8 +61,4 @@ Citizens Utility Boards are independent state-level organizations that advocate 
 
 Citizens Utility Boards are independent state-level organizations that advocate for fair energy policy from a consumer perspective.', 'Energy policy affects us all, but consumers don''t have enough of a voice when it comes to deciding policy and setting rates in our state. [STATE] should create a Citizens Utility Board that does that stuff. This is the petition text. Citizens Utility Boards are independent state-level organizations that advocate for fair energy policy from a consumer perspective.');
 
-
-
-
-
 ALTER TABLE policy_language ADD CONSTRAINT policy_language_fk0 FOREIGN KEY (policy_id) REFERENCES policy_name(id) ON DELETE CASCADE;

@@ -25,7 +25,9 @@ class StateGrade extends Component {
 
     //searches by policy ID and key, returns policy info
     getById = (arr, value, key) => {
+        
         for (let i = 0; i < arr.length; i++) {
+            console.log(arr[i]);
             if (arr[i].policy_id === value && key === 'short') {
                 return arr[i].short_info
             }
@@ -55,12 +57,13 @@ class StateGrade extends Component {
                         <Typography variant='h5'>Your state's existing energy and climate policies: </Typography>
 
                         <List>
+
                             {this.props.store.statePolicies.map((policy) => {
                                 if (policy.policy_id >= 1 && policy.policy_id <= 5)
                                     return <ListItem key={policy.policy_id} style={{ paddingTop: 0, paddingBottom: 0 }}>
                                         <div>
-                                            <PolicyExplainer policy_name={policy.name} text={this.getById(this.props.store.policyLanguage, policy.policy_id, 'long')} title={this.getById(this.props.store.policyLanguage, policy.policy_id, 'name')}
-                                                toolTitle={this.getById(this.props.store.policyLanguage, policy.policy_id, 'short')} />
+                                            <PolicyExplainer policy_name={policy.name} text={this.getById(this.props.store.policyLanguage, policy.id, 'long')} title={this.getById(this.props.store.policyLanguage, policy.id, 'name')}
+                                                toolTitle={this.getById(this.props.store.policyLanguage, policy.id, 'short')} />
 
                                             {policy.policy_data ?
                                                 <p style={{ display: 'inline' }}>{policy.policy_data}</p>
