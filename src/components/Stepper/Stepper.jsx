@@ -119,16 +119,12 @@ function getSteps() {
 
 export default function CustomizedSteppers({ step }) {
     const classes = useStyles();
-    const [activeStep, setActiveStep] = useState(step);
+    const [activeStep] = useState(step);
     const steps = getSteps();
 
     useEffect(() => {
 
     }, [step]);
-
-    const handleReset = () => {
-        setActiveStep(0);
-    };
 
     return (
         <div >

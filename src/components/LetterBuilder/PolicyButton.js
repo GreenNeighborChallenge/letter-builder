@@ -86,8 +86,6 @@ function PolicyInfo(props) {
     //adding policy to letter
     const [added, addPolicy] = React.useState(false)
     const handleAdd = () => {
-        console.log('in policy button',  props.policy);
-        
         props.dispatch({ type: 'POLICY_TO_LETTER', payload: props.policy.id });
         addPolicy(true)
     }
