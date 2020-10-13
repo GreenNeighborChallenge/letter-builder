@@ -1,28 +1,11 @@
-.cardItem {
-    margin: 1em
-}
+
 
 .addButton {
     margin-left: 5px;
 }
 
-.textArea{
-    height: 150px;
-    width: 350px;
-    white-space: pre-line;
-    font-size: 14px;
-}
-
 .subjectLine {
     width: 280px
-}
-
-.policies {
-    margin: 0 0 0 0em;
-}
-
-.header {
-    margin-top: 1em;
 }
 
 .letter {
@@ -31,11 +14,11 @@
     justify-content: center;
     flex-direction: column;
 }
-
+/* 
 .policy {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     margin: -15em -3em 0 1em;
-}
+} */

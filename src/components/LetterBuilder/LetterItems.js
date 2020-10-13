@@ -10,22 +10,49 @@ import IconButton from '@material-ui/core/IconButton';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid'
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = ({
-    textField: {
-        width: 400,
-        overflow: "scroll",
-        maxHeight: '15em',
-        background: 'rgb'
-    },
     resize: {
         fontSize: 14,
-        minHeight: '13em',
+        minHeight: '9em',
         margin: '1em'
     },
-
-  })
+    textField: {
+        width: 450,
+        height: '12em',
+        overflowX: 'auto',
+        margin: '.5em'
+    },
+    body: {
+        width: 450,
+        overflowX: 'auto',
+        maxHeight: '17em',
+        margin: '.5em'
+    },
+    email: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        margin: '.5em',
+    },
+    policy: {
+        display: 'flex',
+        flexDirection: 'column',
+    },
+    stepper: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    cardActions: {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+    }
+})
 
 class LetterItems extends Component {
     state = {
@@ -69,59 +96,61 @@ class LetterItems extends Component {
     }
 
     render() {
-
-        const fullLetter = this.props.store.letter.body.map(policy => policy + '\n');
-        console.log(fullLetter);
-
         const { classes } = this.props
-        const { resize, textField } = classes
-
+        const { resize, textField, body, email, policy, stepper } = classes
+        const fullLetter = this.props.store.letter.body.map(policy => policy + '\n');
         return (
-            <>
-                <div className="policy">
-                    <div className="header">
-                        <h1 >Policies</h1>
-                        <h6 className="policies">Hover over each policy to learn more</h6>
-                    </div>
-                    <div>
-                    {this.props.store.policyLanguage.map((policy, i) => {
-                        return (
-                            <div className="cardItem" key={i}>
-                                <PolicyExplainer policy_name={policy.name} title={policy.name} text={policy.long_info} toolTitle={policy.short_info}/>
-                                <AddPolicy policy={policy} handleAdd={() => this.handleAdd(policy.policy_id)} />                             
-                            </div>
-                        )
-                    })}
-                    </div>
-                </div>
-                <div className="letter">
+            <Grid container spacing={3}>
+                <Grid xs={12}>
                     <h1>Create Your Letter</h1>
-                    Subject:<TextField size="small" className="subjectLine" defaultValue={this.state.subject} onChange={this.handleSubject}></TextField>
-                    < br />
-                    <TextField variant="outlined" InputProps={{classes: { input: resize}}}  multiline size="small" className={textField} defaultValue={this.state.intro} onChange={this.handleIntro}></TextField>
-                    <br />
-                    {this.props.store.letter.body &&
-                        <TextField variant="outlined" InputProps={{classes: { input: resize}}} size="small" value={fullLetter[0] ? fullLetter.map(language => {
-                            return(
-                                language ? language.replaceAll("[STATE]", this.props.store.zip.long_name) : ''
+                </Grid>
+                <Grid item xs={6} >
+                    <div className={policy}>
+                        <h1>Policies</h1>
+                        <h5>Hover over each policy to learn more</h5>
+                        {this.props.store.policyLanguage.map((policy, i) => {
+                            return (
+                                <div key={i}>
+                                    <PolicyExplainer policy_name={policy.name} title={policy.name} text={policy.long_info} toolTitle={policy.short_info} />
+                                    <AddPolicy policy={policy} handleAdd={() => this.handleAdd(policy.policy_id)} />
+                                </div>
                             )
-                        }): ''} multiline className={textField}>
-                        </TextField>
-                    }
-                    {/* fullLetter[0] ? fullLetter[0].replace("[STATE]", this.props.store.zip.long_name) : '' */}
-                    <br />
-                    <TextField variant="outlined" InputProps={{classes: { input: resize}}} multiline defaultValue={this.state.conclusion} onChange={this.handleConclusion} className={textField}></TextField>
-                    < br />
-                    {/* <a>Print a PDF instead!</a> */}
-                    <div >
-                        <Stepper step={0} />
+                        })}
                     </div>
-                    <div>
-                    <IconButton onClick={this.props.directBack} style={{ display: 'inline', float: 'left', color:'black' }}><ArrowBackIcon /></IconButton>
-                    <IconButton onClick={this.handleSubmit} style={{ display: 'inline', float: 'right', color:'black' }}><ArrowForwardIcon /></IconButton>
+                </Grid>
+                <Grid item xs={6} >
+                    <div className={email}>
+
+                        <div>
+                            Subject:
+                    <TextField size="small" className="subjectLine" defaultValue={this.state.subject} onChange={this.handleSubject}></TextField>
+                        </div>
+                        <TextField variant="outlined" InputProps={{ classes: { input: resize } }} multiline size="small" className={textField} defaultValue={this.state.intro} onChange={this.handleIntro}></TextField>
+                        {this.props.store.letter.body &&
+                            <TextField variant="outlined" InputProps={{ classes: { input: resize } }} size="small" value={fullLetter[0] ? fullLetter.map(language => {
+                                return (
+                                    language ? language.replaceAll("[STATE]", this.props.store.zip.long_name) : ''
+                                )
+                            }) : ''} multiline className={body}>
+                            </TextField>
+                        }
+                        <TextField variant="outlined" InputProps={{ classes: { input: resize } }} multiline defaultValue={this.state.conclusion} onChange={this.handleConclusion} className={textField}></TextField>
+                        {/* <a>Print a PDF instead!</a> */}
                     </div>
-                </div>
-            </>
+                </Grid>
+                <Grid xs={12}>
+                    <section>
+                        <div className={stepper}>
+                            <Stepper step={0} />
+                        </div>
+                        <div>
+                            <IconButton onClick={this.props.directBack} style={{ display: 'inline', float: 'left', color: 'black' }}><ArrowBackIcon /></IconButton>
+                            <IconButton onClick={this.handleSubmit} style={{ display: 'inline', float: 'right', color: 'black' }}><ArrowForwardIcon /></IconButton>
+                        </div>
+                    </section>
+                </Grid>
+
+            </Grid>
         );
     }
 }
