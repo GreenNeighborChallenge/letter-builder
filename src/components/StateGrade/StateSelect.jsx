@@ -39,6 +39,7 @@ class StateSelect extends Component {
 
     componentDidMount() {
         this.props.dispatch({type: 'GET_STATES'})
+        console.log(this.props)
 
     }
  

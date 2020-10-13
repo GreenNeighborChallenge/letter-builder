@@ -18,8 +18,14 @@ class StateGrade extends Component {
         showMore: false,
     }
 
+    
     componentDidMount() {
-        this.props.dispatch({ type: 'GET_STATE_POLICIES', payload: this.props.stateInfo })
+        if (this.props.zipCode.zipCode === undefined) {
+            this.props.dispatch({ type: 'GET_STATE_POLICIES', payload: this.props.stateInfo })
+        } else {
+            console.log('hello from with zip params')
+        }
+        
         this.props.dispatch({ type: 'FETCH_POLICIES' })
     }
 
@@ -44,7 +50,7 @@ class StateGrade extends Component {
                 {this.props.store.statePolicies && this.props.store.policyLanguage && this.props.store.zip.short_name &&
                     <>
                         <div id='stateTitle'>
-                            <Typography variant='h4' gutterBottom>Your State: <StateSelect default={this.props.store.zip.short_name} /> </Typography></div>
+                            <Typography variant='h4' gutterBottom>Your State: <StateSelect default={this.props.store.zip.short_name} parsedZip={this.props.zipCode}/> </Typography></div>
                         <div className='outline'>
                             <Typography>Your state's energy and climate policy, graded:</Typography>
                         </div>

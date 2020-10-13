@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -7,7 +7,6 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField'
 import mapStoreToProps from '../../redux/mapStoreToProps';
-
 import './ZipCode.css'
 import InfoPopover from './InfoPopover'
 import StateGrade from '../StateGrade/StateGrade.jsx'
@@ -41,11 +40,26 @@ const useStyles = makeStyles({
     }
 });
 
-const ZipCode = ({ dispatch, store, history }) => {
+
+
+const ZipCode = ({ dispatch, store, history, location }) => {
 
     const classes = useStyles();
 
     let [zip, changeZip] = useState('');
+
+    const queryString = require('query-string');
+    const parsedZipCode = queryString.parse(location.search);
+
+    useEffect(() => {
+        if (parsedZipCode.zipCode === undefined) {
+            // this.props.dispatch({ type: 'GET_STATE_POLICIES', payload: this.props.stateInfo })
+            return false
+        } else {
+            console.log('hello from with zip params')
+            dispatch({ type: 'SEND_ZIP', payload: parsedZipCode.zipCode })
+        }
+    }, []);
 
     function sendZip() {
         dispatch({ type: 'SEND_ZIP', payload: zip })
@@ -56,12 +70,19 @@ const ZipCode = ({ dispatch, store, history }) => {
         console.log('clicked');
         history.push('/letterBuilder')
     }
+   
 
+    // http://localhost:3001/#/home?zipCode=55406
     return (
         <>
             <div className={classes.container}>
                 <Card className={classes.card}>
                     <CardContent>
+                        {/* {JSON.stringify(location)}
+                        {JSON.stringify(location.search)} */}
+                        {JSON.stringify(parsedZipCode)}
+                        {JSON.stringify(parsedZipCode.zipCode)}
+                        {JSON.stringify(Number(parsedZipCode.zipCode))}
                         <div style={{ textAlign: 'center' }}>
                             <Typography color="textSecondary" id='zipTitle' style={{ fontSize: 48, fontFamily: 'leafy', color: 'black' }} gutterBottom>
                                 BE THE CHANGE: State Policy Petition Maker
@@ -78,7 +99,7 @@ const ZipCode = ({ dispatch, store, history }) => {
                             <Button variant='contained' onClick={sendZip}>Go</Button>
                         </div>
                         {store.zip.long_name &&
-                            <StateGrade stateInfo={store.zip} directToLetterBuilder={directToLetterBuilder}/>}
+                            <StateGrade stateInfo={store.zip} directToLetterBuilder={directToLetterBuilder} zipCode={parsedZipCode}/>}
                     </CardContent>
                 </Card>
             </div>
