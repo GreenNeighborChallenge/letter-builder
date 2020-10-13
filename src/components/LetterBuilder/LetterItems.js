@@ -9,14 +9,27 @@ import PolicyExplainer from '../PolicyExplainer/PolicyExplainer.jsx';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import TextField from '@material-ui/core/TextField';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = ({
+    textField: {
+        width: 400,
+        overflow: "scroll",
+        maxHeight: '15em',
+        margin: '.5em'
+    },
+    resize: {
+        fontSize: 14,
+    }
+  })
 
 class LetterItems extends Component {
-
     state = {
         subject: `Energy Policy in ${this.props.store.zip.long_name}.`,
         intro: `To whom it may concern, 
         As a resident of ${this.props.store.zip.long_name}, I think our state could be doing more to make our air cleaner and healthier, mitigate climate change, and increase citizen control over our energy system. Energy use impacts all of us, but as consumers we don't have a lot of power to make the changes that are urgently needed. I am writing to recommend policy changes that are important to me and to our state.`,
-        conclusion: `       Thank you for taking the time to read my letter. Energy policy is important to ${this.props.store.zip.long_name} residents, and we need to act quickly to ensure a safe, healthy, democratic future. I look forward to hearing back from you, and learning how you plan to act on these recommendations.`
+        conclusion: `Thank you for taking the time to read my letter. Energy policy is important to ${this.props.store.zip.long_name} residents, and we need to act quickly to ensure a safe, healthy, democratic future. I look forward to hearing back from you, and learning how you plan to act on these recommendations.`
     }
 
     //this will update page every time a new policy is added to the letter
@@ -53,6 +66,8 @@ class LetterItems extends Component {
     }
 
     render() {
+        const { classes } = this.props
+        const { resize, textField } = classes
         return (
             <>
                 <div className="policy">
@@ -74,16 +89,16 @@ class LetterItems extends Component {
                 </div>
                 <div className="letter">
                     <h1>Your Letter</h1>
-                    Subject:<input className="subjectLine" defaultValue={this.state.subject} onChange={this.handleSubject}></input>
+                    Subject:<TextField size="small" className="subjectLine" defaultValue={this.state.subject} onChange={this.handleSubject}></TextField>
                     < br />
-                    <textarea className="textArea" height="500px" width="100" defaultValue={this.state.intro} onChange={this.handleIntro}></textarea>
+                    <TextField variant="outlined" InputProps={{classes: { input: resize}}}  multiline size="small" className={textField} defaultValue={this.state.intro} onChange={this.handleIntro}></TextField>
                     <br />
                     {this.props.store.letter.body &&
-                        <textarea className="textArea" defaultValue={this.props.store.letter.body.map(policy => policy + '\n')}>
-                        </textarea>
+                        <TextField variant="outlined" InputProps={{classes: { input: resize}}} size="small" value={this.props.store.letter.body.map(policy => policy + '\n')} multiline className={textField}>
+                        </TextField>
                     }
                     <br />
-                    <textarea className="textArea" defaultValue={this.state.conclusion} onChange={this.handleConclusion}></textarea>
+                    <TextField variant="outlined" InputProps={{classes: { input: resize}}} multiline defaultValue={this.state.conclusion} onChange={this.handleConclusion} className={textField}></TextField>
                     < br />
                     {/* <a>Print a PDF instead!</a> */}
                     <div >
@@ -98,5 +113,6 @@ class LetterItems extends Component {
         );
     }
 }
+const styledLetterItems = withStyles(styles)(LetterItems)
 
-export default withRouter(connect(mapStoreToProps)(LetterItems));
+export default withRouter(connect(mapStoreToProps)(styledLetterItems));
