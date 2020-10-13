@@ -62,18 +62,12 @@ function PreviewLetter({letter, address, selections, history}) {
     const handleClose = () => {
         setOpen(false);
     };
-  
-    const emailBody = []
-    
-    if (letter) {
-      
-        const policies = letter.body.map((policy) => {
-            return policy
-        })
 
-        emailBody = letter.intro + policies + letter.conclusion
-    } 
-    
+    const policies = letter.body.map((policy) => {
+        return policy
+    })
+    const emailBody = letter.intro + policies + letter.conclusion
+
     return (
 
         <div>

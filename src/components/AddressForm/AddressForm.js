@@ -6,13 +6,11 @@ import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import { Button } from '@material-ui/core/';
 import FormControl from '@material-ui/core/FormControl';
 import { makeStyles } from '@material-ui/core/styles';
 import { CustomButton } from '../PickReps/RepButtons'
 import Checkbox from '@material-ui/core/Checkbox';
 import Stepper from '../Stepper/Stepper'
-import { useLocation } from 'react-router-dom'
 import { useForm, Controller } from "react-hook-form";
 import IconButton from '@material-ui/core/IconButton';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
@@ -69,15 +67,11 @@ const useStyles = makeStyles({
 const AddressForm = ({ dispatch, history, states }) => {
     const { card, form, formControl, label, select, signup, right, root, left, stepper } = useStyles();
     const { handleSubmit, register, control } = useForm();
-    const location = useLocation();
 
     useEffect(() => {
         dispatch({ type: 'GET_STATES' })
 
-    }, [location]);
-
-    const currentPath = location.pathname;
-    console.log(currentPath.split("/").pop());
+    }, [dispatch]);
 
     const onSubmit = (data) => {
         dispatch({ type: 'ADDRESS_INFO', payload: data })

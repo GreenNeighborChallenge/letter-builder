@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Button } from '@material-ui/core/';
 import './LetterItem.css';
 import AddPolicy from './AddPolicy.js';
 import Stepper from '../Stepper/Stepper';
-import TextField from '@material-ui/core/TextField';
 import PolicyExplainer from '../PolicyExplainer/PolicyExplainer.jsx';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
@@ -40,8 +38,6 @@ class LetterItems extends Component {
     }
 
     handleAdd = (id) => {
-        console.log('in letter items', id);
-        
         this.props.dispatch({ type: 'ADD_POLICY', payload: id })
     }
 
@@ -52,8 +48,6 @@ class LetterItems extends Component {
     }
 
     handleSubmit = () => {
-        //this.props.dispatch ({ type: 'SET_LETTER', payload: this.state});
-        //this.props.directToAddress()
         this.props.dispatch({ type: 'SET_LETTER', payload: this.state })
         this.props.history.push('/address')
     }
@@ -85,7 +79,7 @@ class LetterItems extends Component {
                     <textarea className="textArea" height="500px" width="100" defaultValue={this.state.intro} onChange={this.handleIntro}></textarea>
                     <br />
                     {this.props.store.letter.body &&
-                        <textarea className="textArea" value={this.props.store.letter.body.map(policy => policy + '\n')}>
+                        <textarea className="textArea" defaultValue={this.props.store.letter.body.map(policy => policy + '\n')}>
                         </textarea>
                     }
                     <br />
@@ -95,13 +89,7 @@ class LetterItems extends Component {
                     <div >
                         <Stepper step={0} />
                     </div>
-                    <div style={{ margin: '4em 0 0em em', padding: '2em 0 0 0' }}>
-{/* 
-                        <Button cardItem variant="outlined" onClick={this.props.directBack}>Back</Button>
-                        <Button variant="outlined" >Enter Address</Button> */}
-                        
-                    </div>
-                    <div style={{display: 'inline'}}>
+                    <div>
                     <IconButton onClick={this.props.directBack} style={{ display: 'inline', float: 'left', color:'black' }}><ArrowBackIcon /></IconButton>
                     <IconButton onClick={this.handleSubmit} style={{ display: 'inline', float: 'right', color:'black' }}><ArrowForwardIcon /></IconButton>
                     </div>
