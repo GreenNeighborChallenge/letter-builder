@@ -8,16 +8,9 @@ import LetterItems from './LetterItems.js'
 
 const useStyles = makeStyles({
     root: {
-        display: 'flex',
-        width: '60em', 
-        maxHeight: '62em',
+        width: '58em', 
+        maxHeight: '58em',
         background: 'rgb(255,255,255, .85)',
-    },
-    title: {
-        fontSize: 14,
-    },
-    pos: {
-        marginBottom: 12,
     },
     container: {
         display: "flex",
@@ -28,7 +21,7 @@ const useStyles = makeStyles({
 });
 
 function LetterBuilder({history, dispatch}) {
-    const classes = useStyles();
+    const {container, root} = useStyles();
 
     useEffect(() => {
         dispatch({ type: 'FETCH_POLICIES' });
@@ -41,8 +34,8 @@ function LetterBuilder({history, dispatch}) {
         history.push('/zip')
     }
     return (
-        <div className={classes.container}>
-            <Card className={classes.root}>
+        <div className={container}>
+            <Card className={root}>
                     <CardContent>
                             <LetterItems directToAddress={directToAddress} directBack={directBack}/>
                     </CardContent>
