@@ -1,8 +1,5 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
-// import { connect } from 'react-redux';
-// import mapStoreToProps from '../mapStoreToProps.js'
-
 
 //saga for state contact info
 function* setContactInfo(action) {
@@ -24,18 +21,6 @@ function* setNewSseo(action){
     }
 }
 
-//this is to get the state id so we are able to 
-//save the correct info in the database
-// function* getStateId(action) {
-//     try {
-//         console.log(action.payload)
-//         let response = yield axios.get(`api/admin/${action.payload.state_name}`);
-//         console.log(response.data)
-//         yield put({ type: 'SET_STATE_ID', payload: response.data })
-//     } catch (error) {
-//         console.log('error getting state id', error)
-//     }
-// }
 
 //set new policy info
 function* setPolicyInfo(action) {
@@ -65,7 +50,7 @@ function* newPolicyLanguage(action) {
     try {
         let response = yield axios.post(`/api/policy`, action.payload);
         console.log(response.data);
-        yield put({ type: 'SET_NEW_POLICY', payload: response.data })
+        yield put({ type: 'PUT_POLICY', payload: response.data })
     } catch (error) {
         console.log('error setting policy', error)
     }
@@ -96,8 +81,7 @@ function* AdminFormSaga() {
     yield takeLatest('SET_NEW_STATE', setNewState);
     yield takeLatest('SET_CONTACT_INFO', setContactInfo);
     yield takeLatest('SET_POLICY_INFO', setPolicyInfo);
-    yield takeLatest('SET_NEW_SSEO', setNewSseo)
-    // yield takeLatest('GET_STATE_ID', getStateId);
+    yield takeLatest('SET_NEW_SSEO', setNewSseo);
     yield takeLatest('NEW_POLICY_LANGUAGE', newPolicyLanguage);
     yield takeLatest('UPDATE_POLICY_LANGUAGE', updatePolicyLanguage);
     yield takeLatest('DELETE_POLICY', deletePolicy);

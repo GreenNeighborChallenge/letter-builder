@@ -15,15 +15,18 @@ class AdminPolicies extends Component {
   };
 
   componentDidMount(){
+    //goes to policy language saga
     this.props.dispatch({ type: 'FETCH_POLICIES'})
   }
 
+  //will allow the inputs for a new policy to render
   addPolicy = () => {
     this.setState({
       addPolicy: true
     })
   }
 
+  //handles the inputs
   handleNameChange = (event) => {
     this.setState({
       name: event.target.value
@@ -53,6 +56,7 @@ class AdminPolicies extends Component {
       addPolicy: false
     })
     console.log(this.state)
+    //goes to Admin Form saga
     this.props.dispatch({ type: 'NEW_POLICY_LANGUAGE', payload: this.state })
   }
 

@@ -13,13 +13,6 @@ class AdminForms extends Component {
         stateCreated: false
     };
 
-    //this will get passed down so that both
-    //components can use the selected state
-    stateNameChange = (event) => {
-        this.setState({
-            state_name: event.target.value
-        })
-    }
 
     handleStateChange = (event) => {
         this.setState({
@@ -35,9 +28,11 @@ class AdminForms extends Component {
     }
 
     handleSave = () => {
+        //will allow the rest of the form to be rendered
         this.setState({
             createdState: !this.state.createdState
         })
+        //goes to Admin Form Saga
         this.props.dispatch({ type: 'SET_NEW_STATE', payload: this.state })
     }
 
