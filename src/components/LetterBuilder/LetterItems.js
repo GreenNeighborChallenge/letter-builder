@@ -99,11 +99,11 @@ class LetterItems extends Component {
                     <TextField variant="outlined" InputProps={{classes: { input: resize}}}  multiline size="small" className={textField} defaultValue={this.state.intro} onChange={this.handleIntro}></TextField>
                     <br />
                     {this.props.store.letter.body &&
-                        <TextField variant="outlined" InputProps={{classes: { input: resize}}} size="small" value={fullLetter[0] && fullLetter.map(language => {
+                        <TextField variant="outlined" InputProps={{classes: { input: resize}}} size="small" value={fullLetter[0] ? fullLetter.map(language => {
                             return(
                                 language ? language.replaceAll("[STATE]", this.props.store.zip.long_name) : ''
                             )
-                        })} multiline className={textField}>
+                        }): ''} multiline className={textField}>
                         </TextField>
                     }
                     {/* fullLetter[0] ? fullLetter[0].replace("[STATE]", this.props.store.zip.long_name) : '' */}
