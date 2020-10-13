@@ -30,14 +30,13 @@ class StateGrade extends Component {
     getById = (arr, value, key) => {
         
         for (let i = 0; i < arr.length; i++) {
-            console.log(arr[i]);
-            if (arr[i].policy_id === value && key === 'short') {
+            if (arr[i].id === value && key === 'short') {
                 return arr[i].short_info
             }
-            else if (arr[i].policy_id === value && key === 'long') {
+            else if (arr[i].id === value && key === 'long') {
                 return arr[i].long_info
             }
-            else if (arr[i].policy_id === value && key === 'name') {
+            else if (arr[i].id === value && key === 'name') {
                 return arr[i].name
             }
         }
@@ -67,9 +66,11 @@ class StateGrade extends Component {
                             {this.props.store.statePolicies.map((policy) => {
                                 if (policy.policy_id >= 1 && policy.policy_id <= 5)
                                     return <ListItem key={policy.policy_id} style={{ paddingTop: 0, paddingBottom: 0 }}>
+                                        {console.log('from map, policy_id', policy.policy_id)}
+                                        {console.log('from map, id', policy.id)}
                                         <div>
-                                            <PolicyExplainer policy_name={policy.name} text={this.getById(this.props.store.policyLanguage, policy.id, 'long')} title={this.getById(this.props.store.policyLanguage, policy.id, 'name')}
-                                                toolTitle={this.getById(this.props.store.policyLanguage, policy.id, 'short')} />
+                                            <PolicyExplainer policy_name={policy.name} text={this.getById(this.props.store.policyLanguage, policy.policy_id, 'long')} title={this.getById(this.props.store.policyLanguage, policy.policy_id, 'name')}
+                                                toolTitle={this.getById(this.props.store.policyLanguage, policy.policy_id, 'short')} />
 
                                             {policy.policy_data ?
                                                 <p style={{ display: 'inline' }}>{policy.policy_data}</p>
