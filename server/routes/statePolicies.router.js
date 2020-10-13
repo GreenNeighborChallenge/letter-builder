@@ -77,4 +77,46 @@ router.put('/:id', async(req,res) => {
     }
 })
 
+router.put('/contact/:id', async(req,res) => {
+  let stateId = req.params.id;
+    const client = await pool.connect();
+    //need to delete the value pair of id so
+    //we just have the policy id and the policy data
+    //in the object
+    delete req.body["id"]
+    //const policyValuePairs = Object.entries(req.body)
+    const stateGrade = req.body.stateGrade;
+    const govEmail = req.body.govEmail;
+    const statePOC = req.body.statePOC;
+    const stateDOC = req.body.stateDOC;
+    const residentCount = req.body.residentCount;
+    const residentMWH = req.body.residentMWH;
+
+    try {
+        await client.query('BEGIN')
+        
+        const policyQuery = `UPDATE "state"
+        SET "state_grade" = $1, 
+        "gov_email" = $2, 
+        "puc" = $3, 
+        "doc" = $4, 
+        "resident_count" = $5, 
+        "resident_mwh" = $6
+        WHERE "id" = $7;`
+
+        await client.query(policyQuery, [stateGrade, govEmail, statePOC, stateDOC, residentCount, residentMWH, stateId])
+
+        // for (let [key, value] of policyValuePairs) {
+        //     console.log(key, value)
+        //     await client.query(policyQuery, [value, stateId, key])
+        // }
+        await client.query('COMMIT');
+        res.sendStatus(200)
+    } catch (error) {
+        await client.query('ROLLBACK');
+        console.log(error)
+        res.sendStatus(500)
+    }
+})
+
 module.exports = router;

@@ -3,30 +3,36 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import { useForm } from "react-hook-form";
+import FormControl from '@material-ui/core/FormControl';
+import Button from '@material-ui/core/button'
+import TextField from '@material-ui/core/TextField';
 
 
 import './AdminState.css';
 
-class AdminStateInfo extends Component {
-    state = {
-        SSEOinput: false,
-        editPolicies: false,
-        editContact: false,
-        newSSEOName: '',
-        newSSEOEmail: '',
-    };
+function AdminStateInfo({ dispatch, store, stateInfo }) {
 
-    addSSEO = () => {
-        this.setState({ ...this.state, SSEOinput: true })
+    const { handleSubmit, register, reset } = useForm();
+
+    const [isEdit, setEdit] = React.useState(false);
+
+    const onSubmit = (data) => {
+        //add the state id to data to send over to the server
+        const newData = { ...data, id: stateInfo.id }
+        console.log(newData)
+        //goes to statePolicy saga
+        dispatch({ type: 'UPDATE_STATE_CONTACTS', payload: newData })
+        //clear the inputs
+        reset()
+        setEdit(!isEdit)
     }
 
-    saveSSEO = (selectedId) => {
-        this.setState({ ...this.state, SSEOinput: false })
-
-        this.props.dispatch({ type: 'NEW_SSEO', payload: { state_info: this.state, stateId: selectedId } })
+    const handleEdit = () => {
+        setEdit(!isEdit)
     }
 
-    deleteConfirm = () => {
+    const deleteConfirm = () => {
         confirmAlert({
             title: 'Confirm to submit',
             message: 'Are you sure you want to delete this state? Once it is deleted it cannot be recovered.',
@@ -46,7 +52,7 @@ class AdminStateInfo extends Component {
         });
     };
 
-    deleteState = () => {
+    const deleteState = () => {
         this.props.dispatch({
             type: 'DELETE_STATE',
             payload: this.props.stateInfo.id
@@ -55,16 +61,41 @@ class AdminStateInfo extends Component {
         this.props.resetDropdown();
     }
 
-    render() {
-        // console.log(this.props.store.stateInfo.climate_plan)
-        const stateInfo = this.props.stateInfo
-        return (
-            <div className="stateBody">
-                    
-                <div className="statePolicies">
-                    <h1>{stateInfo.state} State Information</h1>
-                    <button>Edit</button>
 
+    // const stateInfo = this.props.stateInfo
+    return (
+        <div className="stateBody">
+
+            {isEdit ?
+                <FormControl>
+                    <form onSubmit={handleSubmit(onSubmit)} noValidate autoComplete="off">
+
+
+                        <h1>{stateInfo.state} State Information</h1>
+                        <p>State Grade: </p>
+
+                        <TextField inputRef={register} label={'State Grade'} variant="outlined" size="small" name={'stateGrade'} defaultValue={stateInfo.state_grade} /><br />
+                        <p>Resident Count: </p>
+
+                        <TextField inputRef={register} label={'Resident Count'} variant="outlined" size="small" name={'residentCount'} defaultValue={stateInfo.resident_count} /><br />
+                        <p>Resident MWH: </p>
+
+                        <TextField inputRef={register} label={'Resident MWH'} variant="outlined" size="small" name={'residentMWH'} defaultValue={stateInfo.resident_mwh} /><br />
+                        <p>PUC: {stateInfo.puc}</p>
+
+                        <TextField inputRef={register} label={'PUC'} variant="outlined" size="small" name={'statePOC'} defaultValue={stateInfo.puc} /><br />
+                        <p>DoC Email: </p>
+
+                        <TextField inputRef={register} label={'DoC'} variant="outlined" size="small" name={'stateDOC'} defaultValue={stateInfo.doc} /><br />
+                        <p>Governor Email: </p>
+
+                        <TextField inputRef={register} label={'Governor Email'} variant="outlined" size="small" name={'govEmail'} defaultValue={stateInfo.gov_email} /><br />
+
+                        <Button type="submit">Save</Button>
+                    </form>
+                </FormControl>
+                :
+                <>
                     <p>State Grade: {stateInfo.state_grade}</p>
 
                     <p>Resident Count: {stateInfo.resident_count}</p>
@@ -76,13 +107,15 @@ class AdminStateInfo extends Component {
                     <p>DoC Email: {stateInfo.doc}</p>
 
                     <p>Governor Email: {stateInfo.gov_email}</p>
+                    
+                    <Button onClick={handleEdit}>Edit</Button>
+                </>
+            }
 
-                </div>
-                
-                <button onClick={() => this.deleteConfirm(stateInfo.state_id)}>Delete State Info</button>
-            </div>
-        );
-    }
+            <button onClick={() => this.deleteConfirm(stateInfo.state_id)}>Delete State Info</button>
+        </div>
+    );
+
 }
 
 export default connect(mapStoreToProps)(AdminStateInfo);

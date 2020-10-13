@@ -7,7 +7,8 @@ const router = express.Router();
  */
 router.get('/', (req, res) => {
     // GET states for address form
-    let queryText = `SELECT * FROM "state"`;
+    let queryText = `SELECT * FROM "state"
+                    ORDER BY "state_name";`;
 
     pool.query(queryText).then(result => {
         res.send(result.rows);
