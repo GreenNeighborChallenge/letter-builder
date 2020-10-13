@@ -1,24 +1,17 @@
 import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import LetterItems from './LetterItems.js'
-// import IconButton from '@material-ui/core/IconButton';
-// import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-// import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const useStyles = makeStyles({
     root: {
-        maxWidth: "100%",
-        minWidth: '48em', 
-        minHeight: '50em',
-        background: 'rgb(255,255,255, .85)',
         display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        width: '60em', 
+        maxHeight: '62em',
+        background: 'rgb(255,255,255, .85)',
     },
     title: {
         fontSize: 14,
@@ -50,16 +43,9 @@ function LetterBuilder({history, dispatch}) {
     return (
         <div className={classes.container}>
             <Card className={classes.root}>
-                <div className={classes.test}>
-                    <CardActions>
-                            <LetterItems directToAddress={directToAddress} directBack={directBack}/>
-                            {/* <IconButton><ArrowBackIcon /></IconButton> */}
-                    </CardActions>
-                </div>
                     <CardContent>
-                        
+                            <LetterItems directToAddress={directToAddress} directBack={directBack}/>
                     </CardContent>
-                   
             </Card>
         </div>
     );
