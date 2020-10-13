@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import './LetterItem.css';
 import AddPolicy from './AddPolicy.js';
 import Stepper from '../Stepper/Stepper';
 import PolicyExplainer from '../PolicyExplainer/PolicyExplainer.jsx';
@@ -10,26 +9,33 @@ import IconButton from '@material-ui/core/IconButton';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import TextField from '@material-ui/core/TextField';
-import Grid from '@material-ui/core/Grid'
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = ({
     resize: {
         fontSize: 14,
         minHeight: '9em',
-        margin: '1em'
+        margin: '.5em'
     },
-    textField: {
+    intro: {
         width: 450,
         height: '12em',
         overflowX: 'auto',
-        margin: '.5em'
+        margin: '.5em 1em 0 -.5em'
+    },
+    conclusion: {
+        width: 450,
+        height: '12em',
+        overflowX: 'auto',
+        margin: '.5em 1em .5em -.5em'
     },
     body: {
         width: 450,
         overflowX: 'auto',
-        maxHeight: '17em',
-        margin: '.5em'
+        maxHeight: '14em',
+        margin: '.5em 1em .5em -.5em'
     },
     email: {
         display: 'flex',
@@ -46,11 +52,15 @@ const styles = ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        marginTop: '-2em'
     },
     cardActions: {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
+        marginTop: '-2em'
+    },
+    title: {
+        fontSize: 48, 
+        fontFamily: 'leafy', 
+        color: 'black' 
     }
 })
 
@@ -97,16 +107,17 @@ class LetterItems extends Component {
 
     render() {
         const { classes } = this.props
-        const { resize, textField, body, email, policy, stepper } = classes
+        const { resize, intro, body, email, policy, stepper, conclusion, cardActions, title } = classes
         const fullLetter = this.props.store.letter.body.map(policy => policy + '\n');
+
         return (
             <Grid container spacing={3}>
-                <Grid xs={12}>
-                    <h1>Create Your Letter</h1>
+                <Grid xs={12} >
+                    <Typography className={title} align="center" >Create Your Letter</Typography>
                 </Grid>
                 <Grid item xs={6} >
                     <div className={policy}>
-                        <h1>Policies</h1>
+                        <h2>Policies</h2>
                         <h5>Hover over each policy to learn more</h5>
                         {this.props.store.policyLanguage.map((policy, i) => {
                             return (
@@ -120,12 +131,12 @@ class LetterItems extends Component {
                 </Grid>
                 <Grid item xs={6} >
                     <div className={email}>
-
                         <div>
                             Subject:
-                    <TextField size="small" className="subjectLine" defaultValue={this.state.subject} onChange={this.handleSubject}></TextField>
+                    <TextField size="small" defaultValue={this.state.subject} onChange={this.handleSubject}></TextField>
                         </div>
-                        <TextField variant="outlined" InputProps={{ classes: { input: resize } }} multiline size="small" className={textField} defaultValue={this.state.intro} onChange={this.handleIntro}></TextField>
+                        <TextField variant="outlined" InputProps={{ classes: { input: resize } }} multiline size="small" className={intro} defaultValue={this.state.intro} onChange={this.handleIntro}></TextField>
+                        
                         {this.props.store.letter.body &&
                             <TextField variant="outlined" InputProps={{ classes: { input: resize } }} size="small" value={fullLetter[0] ? fullLetter.map(language => {
                                 return (
@@ -134,7 +145,7 @@ class LetterItems extends Component {
                             }) : ''} multiline className={body}>
                             </TextField>
                         }
-                        <TextField variant="outlined" InputProps={{ classes: { input: resize } }} multiline defaultValue={this.state.conclusion} onChange={this.handleConclusion} className={textField}></TextField>
+                        <TextField variant="outlined" InputProps={{ classes: { input: resize } }} multiline defaultValue={this.state.conclusion} onChange={this.handleConclusion} className={conclusion}></TextField>
                         {/* <a>Print a PDF instead!</a> */}
                     </div>
                 </Grid>
@@ -143,7 +154,7 @@ class LetterItems extends Component {
                         <div className={stepper}>
                             <Stepper step={0} />
                         </div>
-                        <div>
+                        <div className={cardActions}>
                             <IconButton onClick={this.props.directBack} style={{ display: 'inline', float: 'left', color: 'black' }}><ArrowBackIcon /></IconButton>
                             <IconButton onClick={this.handleSubmit} style={{ display: 'inline', float: 'right', color: 'black' }}><ArrowForwardIcon /></IconButton>
                         </div>

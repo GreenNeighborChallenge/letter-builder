@@ -37,9 +37,6 @@ const useStyles = makeStyles({
     noAddress: {
         marginTop: '5em'
     },
-    left: {
-        float: 'left'
-    },
     right: {
         float: 'right'
     },
@@ -53,10 +50,15 @@ const useStyles = makeStyles({
         justifyContent: 'center',
         paddingTop: '-3em'
     },
+    title: {
+        fontSize: 48, 
+        fontFamily: 'leafy', 
+        color: 'black' 
+    }
 });
 
 function PreviewLetter({ letter, address, selections, history, emails }) {
-    const { root, card, emailHeader, emailBody, right, stepper } = useStyles();
+    const { root, card, emailHeader, emailBody, right, stepper, title } = useStyles();
 
     const policies = letter.body.map((policy) => {
         return policy
@@ -73,12 +75,11 @@ function PreviewLetter({ letter, address, selections, history, emails }) {
     return (
         <div className={root}>
             <Card className={card}>
-                <Typography variant="h5" component="h2" gutterBottom align="center" >
+                <Typography variant="h5" component="h2" gutterBottom align="center" className={title}>
                     Preview your Email
                     </Typography>
                 <Typography gutterBottom >
-                    Preview your letter below to make sure everything looks right. Click the "x" in the top right corner
-                    to make any edits. When you are happy with your letter, either hit “send” to email it
+                    Preview your letter below to make sure everything looks right. When you are happy with your letter, either hit “send” to email it
                     to your selected local officials, or “print” to create a printable PDF with a form for signatures.
                 </Typography>
                 <CardContent className={emailHeader}>
