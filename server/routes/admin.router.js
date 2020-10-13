@@ -66,39 +66,33 @@ router.post(`/state`, (req, res) => {
 
 
 
-router.post('/policy', async (req, res) => {
+router.post('/policy/:id', async (req, res) => {
+    let stateId = req.params.id
     const client = await pool.connect();
+    //need to delete the value pair of id so
+    //we just have the policy id and the policy data
+    //in the object
+    delete req.body["id"]
     const policyValuePairs = Object.entries(req.body)
     try {
         await client.query('BEGIN')
-
-        const queryText = `SELECT "state".id from "state"
-                        WHERE "state".state_name = $1`
-
-        const result = await client.query(queryText, [policyValuePairs.state_name])
-
+        
         const policyQuery = `INSERT INTO "policy_info" ("policy_id", "policy_data", "state_id")
         VALUES ($1, $2, $3)`
 
         for (let [key, value] of policyValuePairs) {
-            await client.query(policyQuery, [key, value, result.rows[0]])
+            console.log(key, value)
+            await client.query(policyQuery, [key, value, stateId])
         }
         await client.query('COMMIT');
         res.sendStatus(201)
     } catch (error) {
         await client.query('ROLLBACK');
+        console.log(error)
         res.sendStatus(500)
     }
 })
 
-//     pool.query(policyQuery, [key, value])
-//     .then((result) => {
-//         res.sendStatus(201)
-//     }) .catch((error) =>{
-//         console.log('error setting policy info', error);
-//         res.sendStatus(500)
-//     })
-// }
 
 
 module.exports = router;
