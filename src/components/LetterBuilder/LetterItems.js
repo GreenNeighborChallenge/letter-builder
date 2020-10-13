@@ -82,7 +82,7 @@ class LetterItems extends Component {
                     {this.props.store.letter.body &&
                         <textarea className="textArea" value={fullLetter[0] && fullLetter.map(language => {
                             return(
-                                language ? language.replace("[STATE]", this.props.store.zip.long_name) : ''
+                                language ? language.replaceAll("[STATE]", this.props.store.zip.long_name) : ''
                             )
                         })}>
                         </textarea>
