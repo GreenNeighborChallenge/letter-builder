@@ -17,11 +17,11 @@ const styles = ({
         width: 400,
         overflow: "scroll",
         maxHeight: '15em',
-
+        background: 'rgb'
     },
     resize: {
         fontSize: 14,
-        minHeight: '10em',
+        minHeight: '13em',
         margin: '1em'
     },
 
