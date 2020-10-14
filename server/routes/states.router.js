@@ -61,11 +61,46 @@ router.delete('/:id', (req, res) => {
     let stateQueryText = `DELETE FROM "state"
                         WHERE "id" = $1;`
     pool.query(stateQueryText, [stateToDelete])
-    .then((result) => {
-        res.sendStatus(200)
-    }).catch((error) => {
-        console.log('error deleting state', error)
-    })
+        .then((result) => {
+            res.sendStatus(200)
+        }).catch((error) => {
+            console.log('error deleting state', error)
+        })
 });
+
+router.put('/updates/:id', async (req, res) => {
+    let sseoId = req.params.id
+    console.log(sseoId)
+    const client = await pool.connect();
+    //need to delete the value pair of id so
+    //we just have the policy id and the policy data
+    //in the object
+    const sseoObject = req.body
+    console.log('this is the', sseoObject)
+    delete sseoObject["id"]
+    console.log(sseoId)
+    try {
+        await client.query('BEGIN')
+
+        const queryText = `UPDATE "state_office"
+                        SET "SSEO_name" = $1,
+                        "SSEO_email" = $2
+                        WHERE "id" =$3`
+
+        // for (i = 0; i < sseoObject.sseo.length; i++) {
+        //     pool.query(sseoQuery, [contactInfo.stateId, contactInfo.sseo[i].name, contactInfo.sseo[i].email])
+        // }
+
+
+        await client.query(queryText, [sseoObject.office, sseoObject.email, sseoId])
+        
+        await client.query('COMMIT');
+        res.sendStatus(201)
+    } catch (error) {
+        await client.query('ROLLBACK');
+        console.log(error)
+        res.sendStatus(500)
+    }
+})
 
 module.exports = router;
