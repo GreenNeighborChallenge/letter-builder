@@ -28,10 +28,10 @@ class AdminStates extends Component {
         });
     };
 
-    getSSEO = (selectedStateId) => {
+    getSSEO = (selectedState) => {
         this.props.dispatch({
             type: 'FETCH_SSEO_INFO',
-            payload: selectedStateId
+            payload: selectedState
         });
     };
 
