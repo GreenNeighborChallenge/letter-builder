@@ -15,7 +15,8 @@ function AdminSseo({ handleSave, dispatch, sseoInfo, stateInfo }) {
         console.log(sseoInfo)
         const newData = { ...data, id: stateInfo.id }
         console.log('this is the', newData)
-        dispatch({ type: 'SET_NEW_SSEO', payload: newData })
+        //goes to state saga
+        dispatch({ type: 'SET_NEW_STATE_SSEO', payload: newData })
         //reset inputs
         reset()
         //stop displaying the inputs for a new sseo

@@ -71,6 +71,16 @@ function* updateSseo(action) {
   }
 }
 
+function* setNewStateSseo(action){
+  try{
+    let response = yield axios.post('api/states', action.payload)
+    console.log(response.data)
+    yield put ({ type: 'FETCH_SSEO_INFO', payload: action.payload.id})
+} catch(error){
+    console.log('error setting new sseo', error)
+}
+}
+
 function* statesSaga() {
   yield takeLatest('ADDRESS_INFO', updateAddress);
   yield takeLatest('GET_STATES', getStates);
@@ -78,6 +88,7 @@ function* statesSaga() {
   yield takeLatest('FETCH_SSEO_INFO', fetchSSEOInfo);
   yield takeLatest('DELETE_STATE', deleteState);
   yield takeLatest('UPDATE_SSEO', updateSseo);
+  yield takeLatest('SET_NEW_STATE_SSEO', setNewStateSseo)
 }
 
 export default statesSaga;
