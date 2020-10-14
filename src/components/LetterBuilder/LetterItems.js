@@ -12,6 +12,7 @@ import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+import { InputLabel } from '@material-ui/core';
 
 const styles = ({
     resize: {
@@ -19,23 +20,21 @@ const styles = ({
         minHeight: '9em',
         margin: '.5em'
     },
-    intro: {
-        width: 450,
-        height: '12em',
-        overflowX: 'auto',
-        margin: '.5em 1em 0 -.5em'
+    resizeSubject: {
+        fontSize: 14,
+        margin: '.4em 0 0 0'
     },
-    conclusion: {
+    textField: {
         width: 450,
         height: '12em',
         overflowX: 'auto',
-        margin: '.5em 1em .5em -.5em'
+        margin: '.5em 1em 0 -1em'
     },
     body: {
         width: 450,
         overflowX: 'auto',
         maxHeight: '14em',
-        margin: '.5em 1em .5em -.5em'
+        margin: '0em 1em .5em -1em'
     },
     email: {
         display: 'flex',
@@ -47,6 +46,7 @@ const styles = ({
     policy: {
         display: 'flex',
         flexDirection: 'column',
+        margin: '1em 0 0 1em',
     },
     stepper: {
         display: 'flex',
@@ -58,9 +58,32 @@ const styles = ({
         marginTop: '-2em'
     },
     title: {
-        fontSize: 48, 
-        fontFamily: 'leafy', 
-        color: 'black' 
+        fontSize: 48,
+        fontFamily: 'leafy',
+        color: 'black',
+        marginBottom: '-.25em'
+    },
+    subject: {
+        minWidth: '25ch',
+    },
+    label: {
+        display: 'inline',
+        margin: '3em 0 0 -1em'
+    },
+    back: {
+        color: 'black'
+    },
+    next: {
+        float: 'right',
+        color: 'black'
+    },
+    policyHeader: {
+        margin: '.7em 0 .5em .3em',
+        fontFamily: 'leafy',
+        color: 'black',
+    },
+    policyLabel: {
+        margin: '-1em 0 .5em .5em',
     }
 })
 
@@ -107,18 +130,23 @@ class LetterItems extends Component {
 
     render() {
         const { classes } = this.props
-        const { resize, intro, body, email, policy, stepper, conclusion, cardActions, title } = classes
+        const { resize, textField, body, policy, stepper, cardActions, 
+                title, subject, back, next, label, resizeSubject, policyHeader, policyLabel
+        } = classes
         const fullLetter = this.props.store.letter.body.map(policy => policy + '\n');
 
         return (
             <Grid container spacing={3}>
                 <Grid xs={12} >
                     <Typography className={title} align="center" >Create Your Letter</Typography>
+                    {/* <Typography variant="body2" align="center" gutterBottom> Add policies to your letter and customize your introduction and conclusion </Typography> */}
                 </Grid>
                 <Grid item xs={6} >
                     <div className={policy}>
-                        <h2>Policies</h2>
-                        <h5>Hover over each policy to learn more</h5>
+                        <div >
+                            <Typography variant="h4" gutterBottom className={policyHeader}>Policies</Typography>
+                            <Typography variant="body2" className={policyLabel}>Hover over each policy to learn more</Typography>
+                        </div>
                         {this.props.store.policyLanguage.map((policy, i) => {
                             return (
                                 <div key={i}>
@@ -130,33 +158,32 @@ class LetterItems extends Component {
                     </div>
                 </Grid>
                 <Grid item xs={6} >
-                    <div className={email}>
+                    <div >
+                        <Typography variant="overline" display="block" gutterBottom className={label}> Subject:  </Typography>
+                        <TextField size="small" defaultValue={this.state.subject} onChange={this.handleSubject} className={subject} InputProps={{ classes: { input: resizeSubject } }}></TextField>
                         <div>
-                            Subject:
-                    <TextField size="small" defaultValue={this.state.subject} onChange={this.handleSubject}></TextField>
+                            <TextField variant="outlined" InputProps={{ classes: { input: resize } }} multiline size="small" className={textField} defaultValue={this.state.intro} onChange={this.handleIntro}></TextField>
+                            {this.props.store.letter.body &&
+                                <TextField variant="outlined" InputProps={{ classes: { input: resize } }} size="small" value={fullLetter[0] ? fullLetter.map(language => {
+                                    return (
+                                        language ? language.replaceAll("[STATE]", this.props.store.zip.long_name) : ''
+                                    )
+                                }) : ''} multiline className={body}>
+                                </TextField>
+                            }
+                            <TextField variant="outlined" InputProps={{ classes: { input: resize } }} multiline defaultValue={this.state.conclusion} onChange={this.handleConclusion} className={textField}></TextField>
+                            {/* <a>Print a PDF instead!</a> */}
                         </div>
-                        <TextField variant="outlined" InputProps={{ classes: { input: resize } }} multiline size="small" className={intro} defaultValue={this.state.intro} onChange={this.handleIntro}></TextField>
-                        
-                        {this.props.store.letter.body &&
-                            <TextField variant="outlined" InputProps={{ classes: { input: resize } }} size="small" value={fullLetter[0] ? fullLetter.map(language => {
-                                return (
-                                    language ? language.replaceAll("[STATE]", this.props.store.zip.long_name) : ''
-                                )
-                            }) : ''} multiline className={body}>
-                            </TextField>
-                        }
-                        <TextField variant="outlined" InputProps={{ classes: { input: resize } }} multiline defaultValue={this.state.conclusion} onChange={this.handleConclusion} className={conclusion}></TextField>
-                        {/* <a>Print a PDF instead!</a> */}
                     </div>
                 </Grid>
                 <Grid xs={12}>
-                    <section>
+                    <section >
                         <div className={stepper}>
                             <Stepper step={0} />
                         </div>
                         <div className={cardActions}>
-                            <IconButton onClick={this.props.directBack} style={{ display: 'inline', float: 'left', color: 'black' }}><ArrowBackIcon /></IconButton>
-                            <IconButton onClick={this.handleSubmit} style={{ display: 'inline', float: 'right', color: 'black' }}><ArrowForwardIcon /></IconButton>
+                            <IconButton onClick={this.props.directBack} className={back}><ArrowBackIcon /></IconButton>
+                            <IconButton onClick={this.handleSubmit} className={next}><ArrowForwardIcon /></IconButton>
                         </div>
                     </section>
                 </Grid>

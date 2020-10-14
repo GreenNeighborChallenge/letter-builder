@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux'
 import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
@@ -57,13 +56,13 @@ const useStyles = makeStyles({
     }
 });
 
-function PreviewLetter({ letter, address, selections, history, emails }) {
+function PreviewLetter({ letter, address, history, emails }) {
     const { root, card, emailHeader, emailBody, right, stepper, title } = useStyles();
 
     const policies = letter.body.map((policy) => {
         return policy
     })
-    const letterBody = letter.intro + policies + letter.conclusion;
+    const letterBody = encodeURIComponent(letter.intro + policies + letter.conclusion);
     
     const directToConfirmation = () => {
         history.push('/confirmation')
@@ -109,16 +108,15 @@ function PreviewLetter({ letter, address, selections, history, emails }) {
                 <div className={stepper} > 
                         <Stepper step={3}/>
                     </div>
-                <CardActions >
-                
+                <section >
                     <IconButton onClick={directToReps} style={{color:'black' }}><ArrowBackIcon /></IconButton>
                     <div className={right}>
                         <Button >Print PDF <PictureAsPdfIcon /></Button>
-                        <Button href={`mailto:${emails}?subject=${letter.subject}&body=${letterBody}`} target="_blank" onClick={directToConfirmation} >
+                        <Button target="_blank" href={`mailto:${emails}?subject=${letter.subject}&body=${letterBody}`}  onClick={directToConfirmation} >
                             Send Mail
                         </Button>
                     </div>
-                </CardActions>
+                </section>
             </Card>
         </div>
     );
