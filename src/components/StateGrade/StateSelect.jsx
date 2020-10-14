@@ -38,9 +38,14 @@ class StateSelect extends Component {
 
     componentDidMount() {
         this.props.dispatch({type: 'GET_STATES'})
-        console.log(this.props)
     }
- 
+
+    //add component did update here
+    componentDidUpdate(prevProps) {
+        if (prevProps.store.zip.short_name !== this.props.store.zip.short_name) {
+        }
+    }
+
     submitState = () => {
         console.log(this.state)
     
@@ -50,6 +55,7 @@ class StateSelect extends Component {
         this.props.dispatch({type: 'GET_STATE_POLICIES', payload: this.state})
     }
 
+  
   render() {
     const { classes } = this.props;
 

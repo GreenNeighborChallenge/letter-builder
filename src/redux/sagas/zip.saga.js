@@ -10,6 +10,7 @@ function* fetchGeo(action) {
         yield put({type: 'GET_STATE_POLICIES', payload: response.data[0] })
     } catch (error) {
         console.log('error in fetchGEO', error)
+        yield put({type: 'UNSET_ZIP_RESPONSE' })
     }
 }
 

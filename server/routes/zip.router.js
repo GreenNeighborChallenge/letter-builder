@@ -22,7 +22,7 @@ router.get('/:zip', (req, res) => {
                             return arrToSearch
                         }
                         else {
-                            return false
+                            return res.sendStatus(500);
                         }
                     }
                 }

@@ -59,8 +59,9 @@ const ZipCode = ({ dispatch, store, history, location }) => {
         if (parsedZipCode.zipCode) {
             dispatch({ type: 'SEND_ZIP', payload: parsedZipCode.zipCode })
         }
-    }, []);
+    }, [zip]);
 
+    console.log(zip)
     /* if a zip is provided in the URL. renders a filled, disabled zip code input
     otherwise renders a blank one w/on change functionality*/
     const zipField = (props) => {
@@ -72,9 +73,10 @@ const ZipCode = ({ dispatch, store, history, location }) => {
         
         } else if (parsedZipCode.zipCode === undefined && zipClicked === true) {
             return <div>
-                <TextField label="zip code" variant="outlined" disabled value={zip} />
-
-            </div>
+                <TextField label="zip code" variant="outlined" onChange={(event) => changeZip(event.target.value)}  />
+                <br />
+                <Button variant='contained' onClick={() => sendZip()}>Go</Button>  </div>
+         
         } else if (parsedZipCode.zipCode === undefined) {
             return <div><TextField label="zip code" variant="outlined" onChange={(event) => changeZip(event.target.value)} />
                 <br />
@@ -82,7 +84,7 @@ const ZipCode = ({ dispatch, store, history, location }) => {
         }
     }
 
-    function sendZip(props) {
+    function sendZip() {
 
         dispatch({ type: 'SEND_ZIP', payload: zip })
         console.log(zip)
