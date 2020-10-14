@@ -10,6 +10,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import './ZipCode.css'
 import InfoPopover from './InfoPopover'
 import StateGrade from '../StateGrade/StateGrade.jsx'
+import ZipError from "./ZipError"
 
 
 const useStyles = makeStyles({
@@ -47,7 +48,7 @@ const ZipCode = ({ dispatch, store, history, location }) => {
     const classes = useStyles();
 
     let [zip, changeZip] = useState('');
-    let [zipToggle, toggleZip] = useState(false)
+    let [zipClicked, changeZipClick] = useState(false)
 
     const queryString = require('query-string');
     const parsedZipCode = queryString.parse(location.search);
@@ -64,17 +65,16 @@ const ZipCode = ({ dispatch, store, history, location }) => {
     otherwise renders a blank one w/on change functionality*/
     const zipField = (props) => {
         if (parsedZipCode.zipCode) {
-            return <TextField label="zip code" variant="outlined" disabled value={parsedZipCode.zipCode} />
-        }
-        // else if (Object.keys(store.zip).length === 0 && zipToggle === true) {
-        //     return <div>
-        //     <TextField label="zip code" variant="outlined" onChange={(event) => changeZip(event.target.value)} />
-        //     <br />
-        //     <Button variant='contained' onClick={() => sendZip()}>Go</Button>  
-        //     <p>Whoops! Please enter a valid zip code.</p></div>
-        // } 
-        else if (parsedZipCode.zipCode === undefined && zipToggle === true) {
-            return <TextField label="zip code" variant="outlined" disabled value={zip} />
+            return <div><TextField label="zip code" variant="outlined" disabled value={parsedZipCode.zipCode} />
+                {/* <br />
+                <Button variant='contained' onClick={() => sendZip()}>Go</Button>  */}
+                 </div>
+        
+        } else if (parsedZipCode.zipCode === undefined && zipClicked === true) {
+            return <div>
+                <TextField label="zip code" variant="outlined" disabled value={zip} />
+
+            </div>
         } else if (parsedZipCode.zipCode === undefined) {
             return <div><TextField label="zip code" variant="outlined" onChange={(event) => changeZip(event.target.value)} />
                 <br />
@@ -87,21 +87,13 @@ const ZipCode = ({ dispatch, store, history, location }) => {
         dispatch({ type: 'SEND_ZIP', payload: zip })
         console.log(zip)
 
-        // toggleZip(true)
-        // // console.log(zipToggle)
-        // invalidZipMessage()
+        changeZipClick(true)
+        
     }
 
     const directToLetterBuilder = () => {
         console.log('clicked');
         history.push('/letterBuilder')
-    }
-
-    const invalidZipMessage = () => {
-        if (Object.keys(store.zip).length === 0) {
-            console.log(store.zip)
-            return <p>Whoops! Please enter a valid zip code.</p>
-        }
     }
 
     // http://localhost:3001/#/home?zipCode=55406
@@ -124,12 +116,13 @@ const ZipCode = ({ dispatch, store, history, location }) => {
 
                             {zipField()}
 
-                            <br />
-                            {/* {invalidZipMessage()} */}
+                            {zipClicked === true && Object.keys(store.zip).length === 0 && <ZipError />}
+                      
+                      
 
                         </div>
                         {store.zip.long_name &&
-                            <StateGrade stateInfo={store.zip} directToLetterBuilder={directToLetterBuilder} />}
+                            <StateGrade directToLetterBuilder={directToLetterBuilder} />}
                     </CardContent>
                 </Card>
             </div>

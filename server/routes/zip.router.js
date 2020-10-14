@@ -32,7 +32,7 @@ router.get('/:zip', (req, res) => {
                 console.log(stateInfo)
                 res.send(stateInfo)
                 // res.send(response.data)
-                //if no matching results sends 500 error
+                //if no results sends 500 error
             } else {
                 res.sendStatus(500);
             }
