@@ -2,10 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField'
+import { FormHelperText, CardContent, Button, Typography, TextField } from '@material-ui/core'
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import './ZipCode.css'
 import InfoPopover from './InfoPopover'
@@ -38,6 +35,11 @@ const useStyles = makeStyles({
         alignContent: "center",
         alignItems: "center",
         justifyContent: "center",
+    },
+    helpText: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
     }
 });
 
@@ -46,12 +48,12 @@ const useStyles = makeStyles({
 const ZipCode = ({ dispatch, store, history, location }) => {
 
     const classes = useStyles();
-
-    let [zip, changeZip] = useState('');
-    let [zipClicked, changeZipClick] = useState(false)
-
+    const [zip, changeZip] = useState('');
+    const [zipClicked, changeZipClick] = useState(false)
     const queryString = require('query-string');
     const parsedZipCode = queryString.parse(location.search);
+    const [helperText, setHelperText] = useState('');
+    const [errorState, setErrorState] = useState(false);
 
     useEffect(() => {
         //if no zip provided in the url, does nothing
@@ -75,12 +77,17 @@ const ZipCode = ({ dispatch, store, history, location }) => {
     }
 
     function sendZip() {
-
-        dispatch({ type: 'SEND_ZIP', payload: zip })
-        console.log(zip)
-
         changeZipClick(true)
-        
+        if (zip.length !== 5) {
+            changeZipClick(false)
+            setErrorState(true);
+            setHelperText('You must enter a valid zip code');
+        } else  {
+            setErrorState(false);
+            dispatch({ type: 'SEND_ZIP', payload: zip })
+            setHelperText('')
+            console.log(zip)
+        } 
     }
 
     const directToLetterBuilder = () => {
@@ -104,15 +111,14 @@ const ZipCode = ({ dispatch, store, history, location }) => {
                             The petition maker will walk you through your state's existing energy policies, what they mean, who has influence over them,
                             and help you send a letter to them advocating for green policies.
                         </Typography> <span style={{ display: 'inline', float: 'right' }}><InfoPopover /></span>
-                        
+
                         <div className='zipBox' >
                             <Typography variant='h4'>Enter Your Zip Code</Typography>
                             <Typography variant="h5" component="h2">to find your state's policies and write to your elected officials</Typography>
-
                             {zipField()}
-
+                            <FormHelperText error={errorState} className={classes.helpText}> {helperText} </FormHelperText>    
                             {zipClicked === true && Object.keys(store.zip).length === 0 && <ZipError />}
-                      
+
                         </div>
                         {store.zip.long_name &&
                             <StateGrade directToLetterBuilder={directToLetterBuilder} />}
