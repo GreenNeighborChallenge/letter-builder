@@ -12,13 +12,12 @@ import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import { InputLabel } from '@material-ui/core';
 
 const styles = ({
     resize: {
         fontSize: 14,
         minHeight: '9em',
-        margin: '.5em'
+        // margin: '.25em'
     },
     resizeSubject: {
         fontSize: 14,
@@ -34,7 +33,7 @@ const styles = ({
         width: 450,
         overflowX: 'auto',
         maxHeight: '14em',
-        margin: '0em 1em .5em -1em'
+        margin: '-1em 1em .25em -1em'
     },
     email: {
         display: 'flex',
@@ -52,7 +51,7 @@ const styles = ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: '-2em'
+        marginTop: '-2.5em'
     },
     cardActions: {
         marginTop: '-2em'
@@ -78,12 +77,13 @@ const styles = ({
         color: 'black'
     },
     policyHeader: {
-        margin: '.7em 0 .5em .3em',
+        margin: '.3em 0 .5em .2em',
         fontFamily: 'leafy',
         color: 'black',
+        fontSize: 40,
     },
     policyLabel: {
-        margin: '-1em 0 .5em .5em',
+        margin: '-2em 0 .5em .5em',
     }
 })
 
@@ -144,8 +144,8 @@ class LetterItems extends Component {
                 <Grid item xs={6} >
                     <div className={policy}>
                         <div >
-                            <Typography variant="h4" gutterBottom className={policyHeader}>Policies</Typography>
-                            <Typography variant="body2" className={policyLabel}>Hover over each policy to learn more</Typography>
+                            <Typography gutterBottom className={policyHeader}>Policies</Typography>
+                            <Typography variant="subtitle2" className={policyLabel}>Hover over each policy to learn more</Typography>
                         </div>
                         {this.props.store.policyLanguage.map((policy, i) => {
                             return (
