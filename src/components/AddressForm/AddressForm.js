@@ -1,21 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import Card from '@material-ui/core/Card';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
-import FormControl from '@material-ui/core/FormControl';
-import { makeStyles } from '@material-ui/core/styles';
-import { CustomButton } from '../PickReps/RepButtons'
-import Checkbox from '@material-ui/core/Checkbox';
-import Stepper from '../Stepper/Stepper'
 import { useForm, Controller } from "react-hook-form";
-import IconButton from '@material-ui/core/IconButton';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-
+import {FormControl, FormHelperText, Checkbox, Typography, TextField, Select,
+    MenuItem, InputLabel, Card, IconButton, makeStyles
+} from '@material-ui/core';
+import Stepper from '../Stepper/Stepper'
+import { CustomButton } from '../PickReps/RepButtons'
 
 const useStyles = makeStyles({
     root: {
@@ -27,7 +19,8 @@ const useStyles = makeStyles({
     card: {
         textAlign: 'center',
         width: '48em',
-        height: '40em',
+        minHeight: '40em',
+        maxHeight: '42em',
         padding: '1em',
         backgroundColor: 'rgb(255,255,255, .85)',
     },
@@ -65,13 +58,22 @@ const useStyles = makeStyles({
         fontSize: 48, 
         fontFamily: 'leafy', 
         color: 'black' 
+    },
+    helpText:  {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
     }
 });
 
 
 const AddressForm = ({ dispatch, history, states }) => {
-    const { card, form, formControl, label, select, signup, right, root, left, stepper, title } = useStyles();
+    const { card, form, formControl, label, select, signup, 
+        right, root, left, stepper, title, helpText
+    } = useStyles();
     const { handleSubmit, register, control } = useForm();
+    const [helperText, setHelperText] = useState('');
+    const [errorState, setErrorState] = useState(false);
 
     useEffect(() => {
         dispatch({ type: 'GET_STATES' })
@@ -79,9 +81,15 @@ const AddressForm = ({ dispatch, history, states }) => {
     }, [dispatch]);
 
     const onSubmit = (data) => {
+        if ((data.email === '') || (data.street === '') || (data.city === '') || (data.st === '') || (data.zip === '') ) {
+            setErrorState(true);
+            setHelperText('You must enter a full address and an email address');
+        } else {
+            setErrorState(false);
         dispatch({ type: 'ADDRESS_INFO', payload: data })
         dispatch({ type: 'FETCH_OFFICES', payload: data.st })
         directToReps()
+        }
     }
 
     const directToReps = () => {
@@ -110,14 +118,14 @@ const AddressForm = ({ dispatch, history, states }) => {
                             <TextField inputRef={register} style={{ marginRight: '1em' }} label="First Name" variant="outlined" size="small" name="firstName" placeholder="First Name" />
                             <TextField inputRef={register} label="Last Name" variant="outlined" size="small" name="lastName" placeholder="Last Name" />
                             <div>
-                                <TextField inputRef={register} label="Email" variant="outlined" size="small" style={{ marginTop: '1em' }} name="email" placeholder="Email Address" />
+                                <TextField inputRef={register} label="Email" variant="outlined" size="small" style={{ marginTop: '1em' }} name="email" placeholder="Email Address" error={errorState}/>
                             </div>
                             <div>
-                                <TextField inputRef={register} label="StreetAddress" variant="outlined" size="small" multiline style={{ marginTop: '1em', width: "20em" }} name="street" placeholder="Street Address" />
+                                <TextField inputRef={register} label="StreetAddress" variant="outlined" size="small" multiline style={{ marginTop: '1em', width: "20em" }} name="street" placeholder="Street Address" error={errorState}/>
                             </div>
                         </section>
                         <section className={formControl}>
-                            <TextField inputRef={register} label="City" variant="outlined" size="small" name="city" placeholder="City" />
+                            <TextField inputRef={register} label="City" variant="outlined" size="small" name="city" placeholder="City" error={errorState}/>
                             <FormControl className={formControl}>
                                 <InputLabel className={label}  >State</InputLabel>
                                 <Controller as={<Select className={select} variant="outlined" >
@@ -126,10 +134,11 @@ const AddressForm = ({ dispatch, history, states }) => {
                                             return (<MenuItem key={state.id} value={state.state_abv}>{state.state_abv}</MenuItem>)
                                         })}
                                 </Select>
-                                } name="st" defaultValue="" control={control} />
+                                } name="st" defaultValue="" control={control} error={errorState}/>
                             </FormControl>
-                            <TextField inputRef={register} label="Zip Code" variant="outlined" size="small" name="zip" placeholder="Zip Code" />
+                            <TextField inputRef={register} label="Zip Code" variant="outlined" size="small" name="zip" placeholder="Zip Code" error={errorState} />
                         </section>
+                        <FormHelperText error={errorState} className={helpText}> {helperText} </FormHelperText>
                         <section className={signup}>
                             <CustomButton variant="outlined" >
                                 Sign Up for our News Letter!
