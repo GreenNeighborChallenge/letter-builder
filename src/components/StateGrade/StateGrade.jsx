@@ -12,6 +12,7 @@ import PolicyExplainer from '../PolicyExplainer/PolicyExplainer.jsx';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
+
 class StateGrade extends Component {
 
     state = {
@@ -20,7 +21,6 @@ class StateGrade extends Component {
 
 
     componentDidMount() {
-        // this.props.dispatch({ type: 'GET_STATE_POLICIES', payload: this.props.stateInfo })
         this.props.dispatch({ type: 'GET_STATE_POLICIES', payload: this.props.store.zip})
         console.log(this.props.stateInfo)
         this.props.dispatch({ type: 'FETCH_POLICIES' })
@@ -51,7 +51,7 @@ class StateGrade extends Component {
                 {this.props.store.statePolicies && this.props.store.policyLanguage && this.props.store.zip.short_name &&
                     <>
                         <div id='stateTitle'>
-                            <Typography variant='h4' gutterBottom>Your State: <StateSelect default={this.props.store.zip.short_name} parsedZip={this.props.zipCode} /> </Typography></div>
+                            <Typography variant='h4' gutterBottom>Your State: <StateSelect /> </Typography></div>
                         <div className='outline'>
                             <Typography>Your state's energy and climate policy, graded:</Typography>
                         </div>
@@ -66,15 +66,13 @@ class StateGrade extends Component {
                             {this.props.store.statePolicies.map((policy) => {
                                 if (policy.policy_id >= 1 && policy.policy_id <= 5)
                                     return <ListItem key={policy.policy_id} style={{ paddingTop: 0, paddingBottom: 0 }}>
-                                        {console.log('from map, policy_id', policy.policy_id)}
-                                        {console.log('from map, id', policy.id)}
                                         <div>
                                             <PolicyExplainer policy_name={policy.name} text={this.getById(this.props.store.policyLanguage, policy.policy_id, 'long')} title={this.getById(this.props.store.policyLanguage, policy.policy_id, 'name')}
                                                 toolTitle={this.getById(this.props.store.policyLanguage, policy.policy_id, 'short')} />
 
                                             {policy.policy_data ?
                                                 <p style={{ display: 'inline' }}>{policy.policy_data}</p>
-                                                : <p style={{ display: 'inline' }}> none </p>}
+                                                : <p style={{ display: 'inline' }}> None </p>}
                                         </div>
                                     </ListItem>
                             })}
@@ -93,7 +91,7 @@ class StateGrade extends Component {
 
                                                     {policy.policy_data ?
                                                         <p style={{ display: 'inline' }}>{policy.policy_data}</p>
-                                                        : <p style={{ display: 'inline' }}> none </p>}
+                                                        : <p style={{ display: 'inline' }}> None </p>}
                                                 </div>
                                             </ListItem>
                                     })}

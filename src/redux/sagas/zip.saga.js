@@ -7,8 +7,10 @@ function* fetchGeo(action) {
     try {
         let response = yield axios.get(`/api/zip/${action.payload}`)
         yield put({type: 'SET_ZIP_RESPONSE', payload: response.data})
+        yield put({type: 'GET_STATE_POLICIES', payload: response.data[0] })
     } catch (error) {
         console.log('error in fetchGEO', error)
+        yield put({type: 'UNSET_ZIP_RESPONSE' })
     }
 }
 
