@@ -1,30 +1,16 @@
 import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import LetterItems from './LetterItems.js'
-// import IconButton from '@material-ui/core/IconButton';
-// import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-// import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const useStyles = makeStyles({
     root: {
-        maxWidth: "100%",
-        minWidth: '48em', 
-        minHeight: '50em',
+        width: '58em', 
+        maxHeight: '58em',
         background: 'rgb(255,255,255, .85)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    title: {
-        fontSize: 14,
-    },
-    pos: {
-        marginBottom: 12,
     },
     container: {
         display: "flex",
@@ -35,7 +21,7 @@ const useStyles = makeStyles({
 });
 
 function LetterBuilder({history, dispatch}) {
-    const classes = useStyles();
+    const {container, root} = useStyles();
 
     useEffect(() => {
         dispatch({ type: 'FETCH_POLICIES' });
@@ -48,18 +34,11 @@ function LetterBuilder({history, dispatch}) {
         history.push('/zip')
     }
     return (
-        <div className={classes.container}>
-            <Card className={classes.root}>
-                <div className={classes.test}>
-                    <CardActions>
-                            <LetterItems directToAddress={directToAddress} directBack={directBack}/>
-                            {/* <IconButton><ArrowBackIcon /></IconButton> */}
-                    </CardActions>
-                </div>
+        <div className={container}>
+            <Card className={root}>
                     <CardContent>
-                        
+                            <LetterItems directToAddress={directToAddress} directBack={directBack}/>
                     </CardContent>
-                   
             </Card>
         </div>
     );

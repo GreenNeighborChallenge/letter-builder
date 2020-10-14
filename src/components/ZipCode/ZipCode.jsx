@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -7,7 +7,6 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField'
 import mapStoreToProps from '../../redux/mapStoreToProps';
-
 import './ZipCode.css'
 import InfoPopover from './InfoPopover'
 import StateGrade from '../StateGrade/StateGrade.jsx'
@@ -41,22 +40,58 @@ const useStyles = makeStyles({
     }
 });
 
-const ZipCode = ({ dispatch, store, history }) => {
+
+
+const ZipCode = ({ dispatch, store, history, location }) => {
 
     const classes = useStyles();
 
     let [zip, changeZip] = useState('');
+    let [zipToggle, toggleZip] = useState(false)
+
+    const queryString = require('query-string');
+    const parsedZipCode = queryString.parse(location.search);
+
+    useEffect(() => {
+        //if no zip provided in the url, does nothing
+        //if zip provided in the url, uses that to dispatch to saga/geocoding api
+        if (parsedZipCode.zipCode) {
+            console.log('hello from with zip params')
+            dispatch({ type: 'SEND_ZIP', payload: parsedZipCode.zipCode })
+        }
+    }, []);
+
+  
+
+    /* if a zip is provided in the URL. renders a filled, disabled zip code input
+    otherwise renders a blank one w/on change functionality*/
+    const zipField = (props) => {
+        if (parsedZipCode.zipCode) {
+            return <TextField label="zip code" variant="outlined" disabled value={parsedZipCode.zipCode} />
+        } else if (parsedZipCode.zipCode === undefined && zipToggle === true) {
+            return <TextField label="zip code" variant="outlined" disabled value={zip} />
+        } else if (parsedZipCode.zipCode === undefined) {
+            return <div><TextField label="zip code" variant="outlined" onChange={(event) => changeZip(event.target.value)} />
+            <br />
+            <Button variant='contained' onClick={() => sendZip()}>Go</Button>  </div>
+        }
+    }
 
     function sendZip() {
         dispatch({ type: 'SEND_ZIP', payload: zip })
         console.log(zip)
+        toggleZip(true)
+        console.log(zipToggle)
+        
     }
 
     const directToLetterBuilder = () => {
         console.log('clicked');
         history.push('/letterBuilder')
     }
+   
 
+    // http://localhost:3001/#/home?zipCode=55406
     return (
         <>
             <div className={classes.container}>
@@ -73,12 +108,14 @@ const ZipCode = ({ dispatch, store, history }) => {
                         <div className='zipBox' >
                             <Typography variant='h4'>Enter Your Zip Code</Typography>
                             <Typography variant="h5" component="h2">to find your state's policies and write to your elected officials</Typography>
-                            <TextField label="zip code" variant="outlined" onChange={(event) => changeZip(event.target.value)} />
+
+                            {zipField()}
+
                             <br />
-                            <Button variant='contained' onClick={sendZip}>Go</Button>
+                            
                         </div>
                         {store.zip.long_name &&
-                            <StateGrade stateInfo={store.zip} directToLetterBuilder={directToLetterBuilder}/>}
+                            <StateGrade stateInfo={store.zip} directToLetterBuilder={directToLetterBuilder} />}
                     </CardContent>
                 </Card>
             </div>

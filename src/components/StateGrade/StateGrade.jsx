@@ -18,33 +18,40 @@ class StateGrade extends Component {
         showMore: false,
     }
 
+
     componentDidMount() {
-        this.props.dispatch({ type: 'GET_STATE_POLICIES', payload: this.props.stateInfo })
+        // this.props.dispatch({ type: 'GET_STATE_POLICIES', payload: this.props.stateInfo })
+        this.props.dispatch({ type: 'GET_STATE_POLICIES', payload: this.props.store.zip})
+        console.log(this.props.stateInfo)
         this.props.dispatch({ type: 'FETCH_POLICIES' })
     }
 
     //searches by policy ID and key, returns policy info
     getById = (arr, value, key) => {
+        
         for (let i = 0; i < arr.length; i++) {
-            if (arr[i].policy_id === value && key === 'short') {
+            if (arr[i].id === value && key === 'short') {
                 return arr[i].short_info
             }
-            else if (arr[i].policy_id === value && key === 'long') {
+            else if (arr[i].id === value && key === 'long') {
                 return arr[i].long_info
             }
-            else if (arr[i].policy_id === value && key === 'name') {
+            else if (arr[i].id === value && key === 'name') {
                 return arr[i].name
             }
         }
     }
 
+    
+
     render() {
+
         return (
             <div >
                 {this.props.store.statePolicies && this.props.store.policyLanguage && this.props.store.zip.short_name &&
                     <>
                         <div id='stateTitle'>
-                            <Typography variant='h4' gutterBottom>Your State: <StateSelect default={this.props.store.zip.short_name} /> </Typography></div>
+                            <Typography variant='h4' gutterBottom>Your State: <StateSelect default={this.props.store.zip.short_name} parsedZip={this.props.zipCode} /> </Typography></div>
                         <div className='outline'>
                             <Typography>Your state's energy and climate policy, graded:</Typography>
                         </div>
@@ -55,9 +62,12 @@ class StateGrade extends Component {
                         <Typography variant='h5'>Your state's existing energy and climate policies: </Typography>
 
                         <List>
+
                             {this.props.store.statePolicies.map((policy) => {
                                 if (policy.policy_id >= 1 && policy.policy_id <= 5)
                                     return <ListItem key={policy.policy_id} style={{ paddingTop: 0, paddingBottom: 0 }}>
+                                        {console.log('from map, policy_id', policy.policy_id)}
+                                        {console.log('from map, id', policy.id)}
                                         <div>
                                             <PolicyExplainer policy_name={policy.name} text={this.getById(this.props.store.policyLanguage, policy.policy_id, 'long')} title={this.getById(this.props.store.policyLanguage, policy.policy_id, 'name')}
                                                 toolTitle={this.getById(this.props.store.policyLanguage, policy.policy_id, 'short')} />
@@ -97,8 +107,8 @@ class StateGrade extends Component {
                             </div>
                             <br />
                         </List>
-                                    <IconButton onClick={this.props.directToLetterBuilder} style={{ display: 'inline', float: 'right', margin: 5, color:'black' }}><ArrowForwardIcon /></IconButton>
-                     
+                        <IconButton onClick={this.props.directToLetterBuilder} style={{ display: 'inline', float: 'right', margin: 5, color: 'black' }}><ArrowForwardIcon /></IconButton>
+
                     </>
                 }
             </div>

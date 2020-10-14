@@ -26,9 +26,12 @@ function* getStates(action) {
 
 function* fetchStateInfo(action) {
   try {
-    let response = yield axios.get(`/api/states/info/${action.payload}`);
-    console.log(response.data);
-    yield put({ type: 'UPDATE_STATE_INFO', payload: response.data })
+
+    console.log('got to fetchStateInfo');
+      let response = yield axios.get(`/api/states/info/${action.payload}`);
+      console.log('this is trying to update', response.data);
+      yield put({ type: 'UPDATE_STATE_INFO', payload: response.data })
+
   } catch (error) {
     console.log('error getting states info', error);
   }

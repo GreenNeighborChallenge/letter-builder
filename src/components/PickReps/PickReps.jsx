@@ -54,11 +54,16 @@ const useStyles = makeStyles({
     stepper: {
         paddingTop: '-3em'
     },
+    title: {
+        fontSize: 48, 
+        fontFamily: 'leafy', 
+        color: 'black' 
+    }
 });
 
 
 const PickReps = ({ dispatch, reps, history, offices }) => {
-    const {root, card,cardContent, left, repButtons, noAddress, right, cardActions, stepper}  = useStyles();
+    const {root, card,cardContent, left, repButtons, noAddress, right, cardActions, stepper, title}  = useStyles();
     const [selections, setSelections] = useState(() => []);
 
     const handleSelections = (event, newSelection) => {
@@ -82,7 +87,7 @@ const PickReps = ({ dispatch, reps, history, offices }) => {
         <div className={root}>
             <Card className={card} >
                 <CardContent className={cardContent} >
-                    <Typography variant="h5" component="h2" gutterBottom align="center" >
+                    <Typography variant="h5" component="h2" gutterBottom align="center" className={title}>
                         Select Your Representatives
                     </Typography>
                     <Typography variant="body2" color="textSecondary" align="center" >

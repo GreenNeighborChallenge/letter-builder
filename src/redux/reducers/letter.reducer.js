@@ -20,14 +20,39 @@ const letterReducer = (state = letterState, action) => {
                 conclusion: action.payload.conclusion
             };
         case 'DELETE_POLICY_FROM_LETTER':
+            // const newBody = state.body.filter((petition_info) => {
+            //     //action.payload is unchanged petition_info from db
+            //     console.log(petition_info);
+            //     console.log(action.payload);
+            //     if (action.payload == petition_info) {
+            //         return {
+            //             ...state,
+            //             body: [...state.body, '']
+            //         }
+            //     } else return {
+            //         ...state,
+            //         body: [...state.body, petition_info]
+            //     }
+            // })
+            // return {
+            //     ...state,
+            //     body: newBody
+            // }
+
             const newBody = state.body.filter((petition_info) => {
-                if (action.payload === petition_info){
+                console.log(petition_info);
+                console.log(action.payload);
+                if (action.payload === petition_info) {
                     return false
+                } else if (state.body.length === 1){
+                    return {...state, body: []}
                 } else return true
-            }) 
+            })
             return {
                 ...state,
-                body: newBody}
+                body: newBody
+            }
+
         default:
             return state;
     }

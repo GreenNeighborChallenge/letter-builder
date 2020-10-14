@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux'
 import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
@@ -37,9 +36,6 @@ const useStyles = makeStyles({
     noAddress: {
         marginTop: '5em'
     },
-    left: {
-        float: 'left'
-    },
     right: {
         float: 'right'
     },
@@ -53,15 +49,20 @@ const useStyles = makeStyles({
         justifyContent: 'center',
         paddingTop: '-3em'
     },
+    title: {
+        fontSize: 48, 
+        fontFamily: 'leafy', 
+        color: 'black' 
+    }
 });
 
-function PreviewLetter({ letter, address, selections, history, emails }) {
-    const { root, card, emailHeader, emailBody, right, stepper } = useStyles();
+function PreviewLetter({ letter, address, history, emails }) {
+    const { root, card, emailHeader, emailBody, right, stepper, title } = useStyles();
 
     const policies = letter.body.map((policy) => {
         return policy
     })
-    const letterBody = letter.intro + policies + letter.conclusion;
+    const letterBody = encodeURIComponent(letter.intro + policies + letter.conclusion);
     
     const directToConfirmation = () => {
         history.push('/confirmation')
@@ -73,12 +74,11 @@ function PreviewLetter({ letter, address, selections, history, emails }) {
     return (
         <div className={root}>
             <Card className={card}>
-                <Typography variant="h5" component="h2" gutterBottom align="center" >
+                <Typography variant="h5" component="h2" gutterBottom align="center" className={title}>
                     Preview your Email
                     </Typography>
                 <Typography gutterBottom >
-                    Preview your letter below to make sure everything looks right. Click the "x" in the top right corner
-                    to make any edits. When you are happy with your letter, either hit “send” to email it
+                    Preview your letter below to make sure everything looks right. When you are happy with your letter, either hit “send” to email it
                     to your selected local officials, or “print” to create a printable PDF with a form for signatures.
                 </Typography>
                 <CardContent className={emailHeader}>
@@ -108,16 +108,15 @@ function PreviewLetter({ letter, address, selections, history, emails }) {
                 <div className={stepper} > 
                         <Stepper step={3}/>
                     </div>
-                <CardActions >
-                
+                <section >
                     <IconButton onClick={directToReps} style={{color:'black' }}><ArrowBackIcon /></IconButton>
                     <div className={right}>
                         <Button >Print PDF <PictureAsPdfIcon /></Button>
-                        <Button href={`mailto:${emails}?subject=${letter.subject}&body=${letterBody}`} target="_blank" onClick={directToConfirmation} >
+                        <Button target="_blank" href={`mailto:${emails}?subject=${letter.subject}&body=${letterBody}`}  onClick={directToConfirmation} >
                             Send Mail
                         </Button>
                     </div>
-                </CardActions>
+                </section>
             </Card>
         </div>
     );

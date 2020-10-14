@@ -18,6 +18,7 @@ function AdminSseo({ dispatch, store, stateInfo }) {
     const onSubmit = (data, sseo) => {
        
         
+
         console.log(sseoId)
         //add the state id to data to send over to the server
         const newData = { ...data, id: sseoId }
@@ -57,6 +58,7 @@ function AdminSseo({ dispatch, store, stateInfo }) {
                             </>
                         )
                     })}
+
                 </div>
             }
             {(isEdit === true && store.sseoInfo[0]) &&

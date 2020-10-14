@@ -53,7 +53,7 @@ const DialogActions = withStyles((theme) => ({
     },
 }))(MuiDialogActions);
 
-function PreviewLetter({letter, address, selections, history}) {
+function PreviewLetter({letter, address, selections}) {
     const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {

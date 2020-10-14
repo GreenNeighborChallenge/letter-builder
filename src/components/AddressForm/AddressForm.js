@@ -27,7 +27,7 @@ const useStyles = makeStyles({
     card: {
         textAlign: 'center',
         width: '48em',
-        height: '37em',
+        height: '40em',
         padding: '1em',
         backgroundColor: 'rgb(255,255,255, .85)',
     },
@@ -61,11 +61,16 @@ const useStyles = makeStyles({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    title: {
+        fontSize: 48, 
+        fontFamily: 'leafy', 
+        color: 'black' 
+    }
 });
 
 
 const AddressForm = ({ dispatch, history, states }) => {
-    const { card, form, formControl, label, select, signup, right, root, left, stepper } = useStyles();
+    const { card, form, formControl, label, select, signup, right, root, left, stepper, title } = useStyles();
     const { handleSubmit, register, control } = useForm();
 
     useEffect(() => {
@@ -92,7 +97,7 @@ const AddressForm = ({ dispatch, history, states }) => {
             <Card className={card}>
                 <FormControl >
                     <form onSubmit={handleSubmit(onSubmit)} noValidate autoComplete="off">
-                        <Typography variant="h5" component="h2" gutterBottom align="center" >
+                        <Typography variant="h5" component="h2" gutterBottom align="center" className={title}>
                             Enter your Information
                         </Typography>
                         <Typography variant="body2" color="textSecondary" align="center" >
