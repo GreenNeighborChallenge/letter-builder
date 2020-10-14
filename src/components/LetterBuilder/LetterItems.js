@@ -129,11 +129,14 @@ class LetterItems extends Component {
     }
 
     render() {
+        // const fullLetter = this.props.store.letter.body.map(policy => policy + '\n' );
+        const fullLetter = this.props.store.letter.body.join('\n', '\n');
+        console.log(fullLetter);
+
         const { classes } = this.props
         const { resize, textField, body, policy, stepper, cardActions, 
                 title, subject, back, next, label, resizeSubject, policyHeader, policyLabel
         } = classes
-        const fullLetter = this.props.store.letter.body.map(policy => policy + '\n');
 
         return (
             <Grid container spacing={3}>
@@ -164,13 +167,9 @@ class LetterItems extends Component {
                         <div>
                             <TextField variant="outlined" InputProps={{ classes: { input: resize } }} multiline size="small" className={textField} defaultValue={this.state.intro} onChange={this.handleIntro}></TextField>
                             {this.props.store.letter.body &&
-                                <TextField variant="outlined" InputProps={{ classes: { input: resize } }} size="small" value={fullLetter[0] ? fullLetter.map(language => {
-                                    return (
-                                        language ? language.replaceAll("[STATE]", this.props.store.zip.long_name) : ''
-                                    )
-                                }) : ''} multiline className={body}>
-                                </TextField>
-                            }
+                        <TextField variant="outlined" InputProps={{classes: { input: resize}}} size="small" value={fullLetter ? fullLetter.replaceAll("[STATE]", this.props.store.zip.long_name) : ''} multiline className={textField}>
+                        </TextField>
+                    }
                             <TextField variant="outlined" InputProps={{ classes: { input: resize } }} multiline defaultValue={this.state.conclusion} onChange={this.handleConclusion} className={textField}></TextField>
                             {/* <a>Print a PDF instead!</a> */}
                         </div>
