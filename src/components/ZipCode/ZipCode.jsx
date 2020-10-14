@@ -66,17 +66,7 @@ const ZipCode = ({ dispatch, store, history, location }) => {
     otherwise renders a blank one w/on change functionality*/
     const zipField = (props) => {
         if (parsedZipCode.zipCode) {
-            return <div><TextField label="zip code" variant="outlined" disabled value={parsedZipCode.zipCode} />
-                {/* <br />
-                <Button variant='contained' onClick={() => sendZip()}>Go</Button>  */}
-                 </div>
-        
-        } else if (parsedZipCode.zipCode === undefined && zipClicked === true) {
-            return <div>
-                <TextField label="zip code" variant="outlined" onChange={(event) => changeZip(event.target.value)}  />
-                <br />
-                <Button variant='contained' onClick={() => sendZip()}>Go</Button>  </div>
-         
+            return <TextField label="zip code" variant="outlined" disabled value={parsedZipCode.zipCode} />
         } else if (parsedZipCode.zipCode === undefined) {
             return <div><TextField label="zip code" variant="outlined" onChange={(event) => changeZip(event.target.value)} />
                 <br />
@@ -107,11 +97,14 @@ const ZipCode = ({ dispatch, store, history, location }) => {
                         <div style={{ textAlign: 'center' }}>
                             <Typography color="textSecondary" id='zipTitle' style={{ fontSize: 48, fontFamily: 'leafy', color: 'black' }} gutterBottom>
                                 BE THE CHANGE: State Policy Petition Maker
-                        </Typography></div>
+                        </Typography>
+                        </div>
+
                         <Typography className={classes.pos} color="textSecondary" variant='body1' style={{ display: 'inline' }}>
                             The petition maker will walk you through your state's existing energy policies, what they mean, who has influence over them,
                             and help you send a letter to them advocating for green policies.
                         </Typography> <span style={{ display: 'inline', float: 'right' }}><InfoPopover /></span>
+                        
                         <div className='zipBox' >
                             <Typography variant='h4'>Enter Your Zip Code</Typography>
                             <Typography variant="h5" component="h2">to find your state's policies and write to your elected officials</Typography>
@@ -120,8 +113,6 @@ const ZipCode = ({ dispatch, store, history, location }) => {
 
                             {zipClicked === true && Object.keys(store.zip).length === 0 && <ZipError />}
                       
-                      
-
                         </div>
                         {store.zip.long_name &&
                             <StateGrade directToLetterBuilder={directToLetterBuilder} />}

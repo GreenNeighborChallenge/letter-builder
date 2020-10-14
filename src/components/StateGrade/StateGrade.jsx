@@ -51,7 +51,7 @@ class StateGrade extends Component {
                 {this.props.store.statePolicies && this.props.store.policyLanguage && this.props.store.zip.short_name &&
                     <>
                         <div id='stateTitle'>
-                            <Typography variant='h4' gutterBottom>Your State: <StateSelect parsedZip={this.props.zipCode} /> </Typography></div>
+                            <Typography variant='h4' gutterBottom>Your State: <StateSelect /> </Typography></div>
                         <div className='outline'>
                             <Typography>Your state's energy and climate policy, graded:</Typography>
                         </div>
@@ -72,7 +72,7 @@ class StateGrade extends Component {
 
                                             {policy.policy_data ?
                                                 <p style={{ display: 'inline' }}>{policy.policy_data}</p>
-                                                : <p style={{ display: 'inline' }}> none </p>}
+                                                : <p style={{ display: 'inline' }}> None </p>}
                                         </div>
                                     </ListItem>
                             })}
@@ -91,7 +91,7 @@ class StateGrade extends Component {
 
                                                     {policy.policy_data ?
                                                         <p style={{ display: 'inline' }}>{policy.policy_data}</p>
-                                                        : <p style={{ display: 'inline' }}> none </p>}
+                                                        : <p style={{ display: 'inline' }}> None </p>}
                                                 </div>
                                             </ListItem>
                                     })}

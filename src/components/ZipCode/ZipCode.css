@@ -12,4 +12,12 @@
     vertical-align: baseline;
   }
 
+  .errorMsg {
+    font-style: italic;
+  }
+
+  .errorBox {
+      margin-top: 1em;
+  }
+
   

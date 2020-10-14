@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import {Typography} from '@material-ui/core'
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -10,8 +11,8 @@ function ZipError(props) {
   // a default value of 'Functional Component'
 
   return (
-    <div>
-      <h2>Please enter a valid zip code!</h2>
+    <div className='errorBox'>
+      <Typography variant='subtitle1' className='errorMsg'>Please enter a valid zip code</Typography>
     </div>
   );
 }
