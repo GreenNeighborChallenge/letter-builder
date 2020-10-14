@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import { confirmAlert } from 'react-confirm-alert'; // Import
-import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import { useForm } from "react-hook-form";
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/button'
@@ -32,34 +30,7 @@ function AdminStateInfo({ dispatch, store, stateInfo }) {
         setEdit(!isEdit)
     }
 
-    const deleteConfirm = () => {
-        confirmAlert({
-            title: 'Confirm to submit',
-            message: 'Are you sure you want to delete this state? Once it is deleted it cannot be recovered.',
-            buttons: [
-                {
-                    label: 'Yes',
-                    onClick: () => {
-                        alert('State Deleted.');
-                        this.deleteState();
-                    }
-                },
-                {
-                    label: 'No',
-                    onClick: () => alert('Nothing Deleted.')
-                }
-            ]
-        });
-    };
-
-    const deleteState = () => {
-        this.props.dispatch({
-            type: 'DELETE_STATE',
-            payload: this.props.stateInfo.id
-        });
-
-        this.props.resetDropdown();
-    }
+    
 
 
     // const stateInfo = this.props.stateInfo
@@ -111,8 +82,6 @@ function AdminStateInfo({ dispatch, store, stateInfo }) {
                     <Button onClick={handleEdit}>Edit</Button>
                 </>
             }
-
-            <button onClick={() => this.deleteConfirm(stateInfo.state_id)}>Delete State Info</button>
         </div>
     );
 

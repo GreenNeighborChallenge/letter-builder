@@ -36,7 +36,7 @@ function* updateStateContact(action){
     try{
         console.log(action.payload)
         let response = yield axios.put(`/api/statePolicies/contact/${action.payload.id}`, action.payload);
-        
+        console.log(response.data)
         yield put ({ type: 'FETCH_STATE_INFO', payload: action.payload.id})
     } catch (error) {
         console.log('error updating state contact info', error)
