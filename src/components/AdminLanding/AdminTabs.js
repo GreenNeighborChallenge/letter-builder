@@ -59,8 +59,8 @@ function LinkTab(props) {
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
-    minHeight: '50em'
+    backgroundColor: 'rgb(255,255,255, .9)',
+    minHeight: '40em'
   },
   appBar: {
       backgroundColor: theme.palette.success.light,

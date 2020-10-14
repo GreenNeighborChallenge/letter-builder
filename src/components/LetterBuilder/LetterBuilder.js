@@ -4,7 +4,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import LetterItems from './LetterItems.js'
+import LetterItems from './LetterItems.jsx'
 
 const useStyles = makeStyles({
     root: {

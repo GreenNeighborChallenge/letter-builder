@@ -3,11 +3,13 @@ import { connect } from 'react-redux';
 import { useForm, Controller } from "react-hook-form";
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import {FormControl, FormHelperText, Checkbox, Typography, TextField, Select,
+import {
+    FormControl, FormHelperText, Checkbox, Typography, TextField, Select,
     MenuItem, InputLabel, Card, IconButton, makeStyles
 } from '@material-ui/core';
 import Stepper from '../Stepper/Stepper'
 import { CustomButton } from '../PickReps/RepButtons'
+
 
 const useStyles = makeStyles({
     root: {
@@ -55,11 +57,11 @@ const useStyles = makeStyles({
         justifyContent: 'center',
     },
     title: {
-        fontSize: 48, 
-        fontFamily: 'leafy', 
-        color: 'black' 
+        fontSize: 48,
+        fontFamily: 'leafy',
+        color: 'black'
     },
-    helpText:  {
+    helpText: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -68,7 +70,7 @@ const useStyles = makeStyles({
 
 
 const AddressForm = ({ dispatch, history, states }) => {
-    const { card, form, formControl, label, select, signup, 
+    const { card, form, formControl, label, select, signup,
         right, root, left, stepper, title, helpText
     } = useStyles();
     const { handleSubmit, register, control } = useForm();
@@ -81,14 +83,14 @@ const AddressForm = ({ dispatch, history, states }) => {
     }, [dispatch]);
 
     const onSubmit = (data) => {
-        if ((data.email === '') || (data.street === '') || (data.city === '') || (data.st === '') || (data.zip === '') ) {
+        if ((data.email === '') || (data.street === '') || (data.city === '') || (data.st === '') || (data.zip === '')) {
             setErrorState(true);
             setHelperText('You must enter a full address and an email address');
         } else {
             setErrorState(false);
-        dispatch({ type: 'ADDRESS_INFO', payload: data })
-        dispatch({ type: 'FETCH_OFFICES', payload: data.st })
-        directToReps()
+            dispatch({ type: 'ADDRESS_INFO', payload: data })
+            dispatch({ type: 'FETCH_OFFICES', payload: data.st })
+            directToReps()
         }
     }
 
@@ -118,14 +120,14 @@ const AddressForm = ({ dispatch, history, states }) => {
                             <TextField inputRef={register} style={{ marginRight: '1em' }} label="First Name" variant="outlined" size="small" name="firstName" placeholder="First Name" />
                             <TextField inputRef={register} label="Last Name" variant="outlined" size="small" name="lastName" placeholder="Last Name" />
                             <div>
-                                <TextField inputRef={register} label="Email" variant="outlined" size="small" style={{ marginTop: '1em' }} name="email" placeholder="Email Address" error={errorState}/>
+                                <TextField inputRef={register} label="Email" variant="outlined" size="small" style={{ marginTop: '1em' }} name="email" placeholder="Email Address" error={errorState} />
                             </div>
                             <div>
-                                <TextField inputRef={register} label="StreetAddress" variant="outlined" size="small" multiline style={{ marginTop: '1em', width: "20em" }} name="street" placeholder="Street Address" error={errorState}/>
+                                <TextField inputRef={register} label="StreetAddress" variant="outlined" size="small" multiline style={{ marginTop: '1em', width: "20em" }} name="street" placeholder="Street Address" error={errorState} />
                             </div>
                         </section>
                         <section className={formControl}>
-                            <TextField inputRef={register} label="City" variant="outlined" size="small" name="city" placeholder="City" error={errorState}/>
+                            <TextField inputRef={register} label="City" variant="outlined" size="small" name="city" placeholder="City" error={errorState} />
                             <FormControl className={formControl}>
                                 <InputLabel className={label}  >State</InputLabel>
                                 <Controller as={<Select className={select} variant="outlined" >
@@ -134,7 +136,7 @@ const AddressForm = ({ dispatch, history, states }) => {
                                             return (<MenuItem key={state.id} value={state.state_abv}>{state.state_abv}</MenuItem>)
                                         })}
                                 </Select>
-                                } name="st" defaultValue="" control={control} error={errorState}/>
+                                } name="st" defaultValue="" control={control} error={errorState} />
                             </FormControl>
                             <TextField inputRef={register} label="Zip Code" variant="outlined" size="small" name="zip" placeholder="Zip Code" error={errorState} />
                         </section>
@@ -149,11 +151,11 @@ const AddressForm = ({ dispatch, history, states }) => {
                             <Stepper step={1} />
                         </section>
                         <div className={left}>
-                            <IconButton onClick={directBack} style={{color:'black' }} ><ArrowBackIcon /></IconButton>
+                            <IconButton onClick={directBack} style={{ color: 'black' }} ><ArrowBackIcon /></IconButton>
                         </div>
                         <div className={right}>
                             {/* <Button type="submit" variant="outlined" >Find my Representatives!</Button> */}
-                            <IconButton type="submit"style={{color:'black' }} ><ArrowForwardIcon /></IconButton>
+                            <IconButton type="submit" style={{ color: 'black' }} ><ArrowForwardIcon /></IconButton>
                         </div>
 
                     </form>
