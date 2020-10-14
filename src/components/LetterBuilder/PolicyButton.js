@@ -10,7 +10,6 @@ import CloseIcon from '@material-ui/icons/Close';
 import Button from '@material-ui/core/Button';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { connect } from 'react-redux'
-import "./LetterItem.css"
 
 //this is for the popover
 const useStyles = makeStyles((theme) => ({
@@ -20,6 +19,9 @@ const useStyles = makeStyles((theme) => ({
     paper: {
         padding: theme.spacing(1),
     },
+    button: {
+        padding: '.5em'
+    }
 }));
 
 //this is for the dialog
@@ -96,9 +98,10 @@ function PolicyInfo(props) {
     }
 
     return (
-        <div className="header">
+        <div >
             <Button
-                variant="contained"
+                className={classes.button}
+                variant="outlined"
                 aria-owns={popoverOpen ? 'mouse-over-popover' : undefined}
                 aria-haspopup="true"
                 onMouseEnter={handlePopoverOpen}
