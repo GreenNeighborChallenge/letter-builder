@@ -40,15 +40,16 @@ class StateSelect extends Component {
         this.props.dispatch({type: 'GET_STATES'})
     }
 
-    //add component did update here
+    //ensures default value is updated additional queries
     componentDidUpdate(prevProps) {
         if (prevProps.store.zip.short_name !== this.props.store.zip.short_name) {
+            this.setState({
+                short_name: this.props.store.zip.short_name
+            })
         }
     }
 
     submitState = () => {
-        console.log(this.state)
-    
         //updates the zip reducer with new state info
         this.props.dispatch({ type: 'SEND_STATE_ABBREV', payload: this.state })
         //gets state policies to display on DOM
