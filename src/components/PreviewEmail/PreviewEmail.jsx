@@ -55,7 +55,7 @@ const useStyles = makeStyles({
     },
 });
 
-function PreviewLetter({ letter, address, selections, history, emails }) {
+function PreviewLetter({ letter, address, selections, history, emails, zip }) {
     const { root, card, emailHeader, emailBody, right, stepper } = useStyles();
 
     const policies = letter.body.map((policy) => {
@@ -70,6 +70,9 @@ function PreviewLetter({ letter, address, selections, history, emails }) {
     const directToReps = () => {
         history.push('/selectContacts')
     }
+
+    const fullLetter = letter.body.join('\n', '\n');
+
     return (
         <div className={root}>
             <Card className={card}>
@@ -96,11 +99,7 @@ function PreviewLetter({ letter, address, selections, history, emails }) {
                     <Typography gutterBottom className={emailBody}>
                         {letter.intro}
                         <br />
-                        {letter.body.map((policy, i) => {
-                            return (
-                                <p key={i}>{policy}</p>
-                            )
-                        })}
+                        {fullLetter ? fullLetter.replaceAll("[STATE]", zip.long_name) : ''}
                         <br />
                         {letter.conclusion}
                     </Typography>
@@ -113,7 +112,7 @@ function PreviewLetter({ letter, address, selections, history, emails }) {
                     <IconButton onClick={directToReps} style={{color:'black' }}><ArrowBackIcon /></IconButton>
                     <div className={right}>
                         <Button >Print PDF <PictureAsPdfIcon /></Button>
-                        <Button href={`mailto:${emails}?subject=${letter.subject}&body=${letterBody}`} target="_blank" onClick={directToConfirmation} >
+                        <Button href={`mailto:${emails}?subject=${letter.subject}&body=${fullLetter.replaceAll("[STATE]", zip.long_name)}`} target="_blank" onClick={directToConfirmation} >
                             Send Mail
                         </Button>
                     </div>
@@ -127,7 +126,8 @@ const mapStoreToProps = (reduxState) => {
     return {
         letter: reduxState.letter,
         address: reduxState.address,
-        emails: reduxState.emails
+        emails: reduxState.emails,
+        zip: reduxState.zip
     };
 };
 export default connect(mapStoreToProps)(PreviewLetter);
