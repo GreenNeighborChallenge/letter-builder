@@ -60,6 +60,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
+    minHeight: '50em'
   },
   appBar: {
       backgroundColor: theme.palette.success.light,
