@@ -34,7 +34,6 @@ router.get('/info/:id', (req, res) => {
 
     pool.query(queryText, [stateId]).then(result => {
         res.send(result.rows);
-        console.log(result.rows[0])
     }).catch(error => {
         console.log('error getting states for admin view', error);
         res.sendStatus(500);
@@ -56,6 +55,7 @@ router.get('/sseo/:id', (req, res) => {
     })
 });
 
+//delete a state
 router.delete('/:id', (req, res) => {
     let stateToDelete = req.params.id
     let stateQueryText = `DELETE FROM "state"
@@ -68,15 +68,14 @@ router.delete('/:id', (req, res) => {
         })
 });
 
+//update a sseo
 router.put('/updates/:id', async (req, res) => {
     let sseoId = req.params.id
-    console.log(sseoId)
     const client = await pool.connect();
+    const sseoObject = req.body
     //need to delete the value pair of id so
     //we just have the policy id and the policy data
     //in the object
-    const sseoObject = req.body
-    console.log('this is the', sseoObject)
     delete sseoObject["id"]
     console.log(sseoId)
     try {
@@ -87,13 +86,8 @@ router.put('/updates/:id', async (req, res) => {
                         "SSEO_email" = $2
                         WHERE "id" =$3`
 
-        // for (i = 0; i < sseoObject.sseo.length; i++) {
-        //     pool.query(sseoQuery, [contactInfo.stateId, contactInfo.sseo[i].name, contactInfo.sseo[i].email])
-        // }
-
-
         await client.query(queryText, [sseoObject.office, sseoObject.email, sseoId])
-        
+
         await client.query('COMMIT');
         res.sendStatus(201)
     } catch (error) {
@@ -103,21 +97,33 @@ router.put('/updates/:id', async (req, res) => {
     }
 })
 
+//add a new sseo
 router.post('/', (req, res) => {
     let contactInfo = req.body
-    console.log(contactInfo)
     const sseoQuery = `INSERT INTO "state_office" ("state_id", "SSEO_name", "SSEO_email")
     VALUES ($1, $2, $3)`
 
     pool.query(sseoQuery, [contactInfo.id, contactInfo.office, contactInfo.email])
         .then((result) => {
-            console.log(result)
             res.sendStatus(201)
-        }) .catch((error) => {
+        }).catch((error) => {
             console.log('error adding new sseo', error)
             res.sendStatus(500)
         })
 })
+
+//delete a sseo
+router.delete('/sseo/:id', (req, res) => {
+    let sseoToDelete = req.params.id
+    let sseoQueryText = `DELETE FROM "state_office"
+                        WHERE "id" = $1;`
+    pool.query(sseoQueryText, [sseoToDelete])
+        .then((result) => {
+            res.sendStatus(200)
+        }).catch((error) => {
+            console.log('error deleting sseo', error)
+        })
+});
 
 module.exports = router;
 

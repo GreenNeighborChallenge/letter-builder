@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+//delete alert
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+//bring in other components
 import AdminStateInfo from './AdminStateInfo';
 import AdminPolicyInfo from './AdminPolicyInfo';
 import AdminSseo from './AdminSseo';
@@ -39,6 +43,36 @@ class AdminStates extends Component {
         this.setState({ ...this.state, selectedState: "" });
     }
 
+    //brings up a message before deleting
+    deleteConfirm = () => {
+        confirmAlert({
+            title: 'Confirm to submit',
+            message: 'Are you sure you want to delete this state? Once it is deleted it cannot be recovered.',
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: () => {
+                        alert('State Deleted.');
+                        this.deleteState();
+                    }
+                },
+                {
+                    label: 'No',
+                    onClick: () => alert('Nothing Deleted.')
+                }
+            ]
+        });
+    };
+
+    deleteState = () => {
+        this.props.dispatch({
+            type: 'DELETE_STATE',
+            payload: this.state.selectedState
+        });
+
+        this.resetDropdown();
+    }
+
     render() {
         return (
             <>
@@ -57,14 +91,14 @@ class AdminStates extends Component {
 
                 {this.props.store.stateInfo[0] &&
                     <>
-                        <AdminPolicyInfo stateInfo={this.props.store.stateInfo[0]}/>
+                        <AdminPolicyInfo stateInfo={this.props.store.stateInfo[0]} />
                         <AdminStateInfo
                             stateInfo={this.props.store.stateInfo[0]}
                             resetDropdown={this.resetDropdown}
                         />
-                        <AdminSseo stateInfo={this.props.store.stateInfo[0]}/>
+                        <AdminSseo stateInfo={this.props.store.stateInfo[0]} />
                     </>}
-
+                <button onClick={() => this.deleteConfirm(this.state.selectedState)}>Delete State</button>
             </>
         );
     }
