@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 import './AdminPolicies.css'
 
@@ -55,6 +57,27 @@ class AdminPolicyInfo extends Component {
         this.props.dispatch ({ type: 'UPDATE_POLICY_LANGUAGE', payload: this.state})
     }
 
+    handleConfirm = () => {
+        confirmAlert({
+            title: 'Confirm to submit',
+            message: 'Are you sure you want to delete this policy? Once it is deleted it cannot be recovered.',
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: () => {
+                        alert('Policy Deleted.');
+                        this.handleDelete();
+                    }
+                },
+                {
+                    label: 'No',
+                    onClick: () => alert('Nothing Deleted.')
+                }
+            ]
+        });
+    };
+
+
     handleDelete = () => {
         this.setState({
             isEdit: false
@@ -75,7 +98,7 @@ class AdminPolicyInfo extends Component {
                         <td><textarea defaultValue={this.state.petition_info} onChange={this.handlePetitionChange}></textarea></td>
                         <td>
                             <button onClick={this.handleSave}>save</button>
-                            <button onClick={this.handleDelete}>delete</button>
+                            <button onClick={this.handleConfirm}>delete</button>
                         </td>
                         
                     </>
