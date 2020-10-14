@@ -9,7 +9,6 @@ import InfoPopover from './InfoPopover'
 import StateGrade from '../StateGrade/StateGrade.jsx'
 import ZipError from "./ZipError"
 
-
 const useStyles = makeStyles({
     root: {
         maxWidth: "55%",
