@@ -6,7 +6,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/button'
 import TextField from '@material-ui/core/TextField';
 
-function AdminSseo({ dispatch, store, stateInfo, handleSave }) {
+function AdminSseo({ handleAdd }) {
 
     const { handleSubmit, register, reset } = useForm();
 
@@ -16,7 +16,7 @@ function AdminSseo({ dispatch, store, stateInfo, handleSave }) {
         //reset inputs
         reset()
         //stop displaying the inputs for a new sseo
-        handleSave();
+        handleAdd();
     }
 
     return(
@@ -26,8 +26,8 @@ function AdminSseo({ dispatch, store, stateInfo, handleSave }) {
                 <TextField inputRef={register} label="SSEO_name" variant="outlined" size="small" name="office" />
                 <p>Office Email:</p>
                 <TextField inputRef={register} label="SSEO_email" variant="outlined" size="small" name="email" />
-                </form>
             <Button type="submit">Save</Button>
+            </form>
         </FormControl>
     )
 }

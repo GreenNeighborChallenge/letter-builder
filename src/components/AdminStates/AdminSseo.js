@@ -17,13 +17,13 @@ function AdminSseo({ dispatch, store, stateInfo }) {
 
     const onSubmit = (data, sseo) => {
        
-        console.log(data)
+        
         console.log(sseoId)
         //add the state id to data to send over to the server
-        // const newData = { ...data, id: id }
-        // console.log(newData)
+        const newData = { ...data, id: sseoId }
+        console.log(newData)
         // //goes to states saga
-        dispatch({ type: 'UPDATE_SSEO', payload: data })
+        dispatch({ type: 'UPDATE_SSEO', payload: newData })
         // //clear the inputs
         // reset()
         setEdit(!isEdit)
@@ -69,7 +69,6 @@ function AdminSseo({ dispatch, store, stateInfo }) {
                                     <TextField inputRef={register} label={sseo.SSEO_name} variant="outlined" size="small" name="office" defaultValue={sseo.SSEO_name} />
                                     <p>Office Email:</p>
                                     <TextField inputRef={register} label={sseo.SSEO_email} variant="outlined" size="small" name="email" defaultValue={sseo.SSEO_email} />
-                                    <input type="hidden" value={sseo.id}></input>
                                     <Button type="submit">Save</Button>
                                 </>
                             )
