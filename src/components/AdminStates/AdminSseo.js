@@ -81,7 +81,7 @@ function AdminSseo({ dispatch, store, stateInfo }) {
             }
             {
                 isNewSseo &&
-                <NewSseo handleSave={handleSave} />
+                <NewSseo handleSave={handleSave} sseoInfo={store.sseoInfo} stateInfo={stateInfo}/>
             }
 
 

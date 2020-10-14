@@ -61,3 +61,4 @@ INSERT INTO state_office (id, state_id, "SSEO_name", "SSEO_email") VALUES (50, 5
 INSERT INTO state_office (id, state_id, "SSEO_name", "SSEO_email") VALUES (51, 51, NULL, NULL);
 
 ALTER TABLE state_office ADD CONSTRAINT state_office_fk0 FOREIGN KEY (state_id) REFERENCES "state"(id) ON DELETE CASCADE;
+SELECT setval('state_office_id_seq', (SELECT MAX(id) FROM state_office)+1);

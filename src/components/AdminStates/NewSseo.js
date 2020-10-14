@@ -6,17 +6,20 @@ import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/button'
 import TextField from '@material-ui/core/TextField';
 
-function AdminSseo({ handleAdd }) {
+function AdminSseo({ handleSave, dispatch, sseoInfo, stateInfo }) {
 
     const { handleSubmit, register, reset } = useForm();
 
     const onSubmit = (data) => {
-        console.log('clicked')
-        // dispatch({ type: 'SET_NEW_SSEO', payload: data })
+        console.log(data)
+        console.log(sseoInfo)
+        const newData = { ...data, id: stateInfo.id }
+        console.log('this is the', newData)
+        dispatch({ type: 'SET_NEW_SSEO', payload: newData })
         //reset inputs
         reset()
         //stop displaying the inputs for a new sseo
-        handleAdd();
+        handleSave();
     }
 
     return(

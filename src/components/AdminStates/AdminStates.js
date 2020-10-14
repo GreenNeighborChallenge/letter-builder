@@ -62,7 +62,7 @@ class AdminStates extends Component {
                             stateInfo={this.props.store.stateInfo[0]}
                             resetDropdown={this.resetDropdown}
                         />
-                        {/* <AdminSseo stateInfo={this.props.store.stateInfo[0]}/> */}
+                        <AdminSseo stateInfo={this.props.store.stateInfo[0]}/>
                     </>}
 
             </div>
