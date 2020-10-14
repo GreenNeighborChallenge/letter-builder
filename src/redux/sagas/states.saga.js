@@ -62,8 +62,10 @@ function* deleteState(action) {
 
 function* updateSseo(action) {
   try {
-    let response = yield axios.put(`/api/states/updates/${action.payload.id}`, action.payload)
-    console.log(response.data)
+
+    yield axios.put(`/api/states/updates/${action.payload.id}`, action.payload)
+    yield put({ type: 'FETCH_SSEO_INFO', payload: action.payload.id})
+   
   } catch (error) {
     console.log('error updating sseo', error)
   }

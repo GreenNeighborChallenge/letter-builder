@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { connect } from 'react-redux';
 import { useForm } from "react-hook-form";
@@ -6,19 +6,17 @@ import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/button'
 import TextField from '@material-ui/core/TextField';
 import NewSseo from './NewSseo'
+import { Typography } from '@material-ui/core'
 
 function AdminSseo({ dispatch, store, stateInfo }) {
 
-    const { handleSubmit, register, reset } = useForm();
+    const { handleSubmit, register} = useForm();
 
-    const [isEdit, setEdit] = React.useState(false);
-    const [isNewSseo, setSseo] = React.useState(false);
-    const [sseoId, setSseoId] = React.useState(null);
+    const [isEdit, setEdit] = useState(false);
+    const [isNewSseo, setSseo] = useState(false);
+    const [sseoId, setSseoId] = useState(null);
 
     const onSubmit = (data, sseo) => {
-       
-        
-
         console.log(sseoId)
         //add the state id to data to send over to the server
         const newData = { ...data, id: sseoId }
@@ -44,8 +42,8 @@ function AdminSseo({ dispatch, store, stateInfo }) {
     }
 
     return (
-        <div className="statePolicies">
-            <h1> State Offices</h1>
+        <section className="statePolicies">
+            <Typography variant="h5"> State Offices </Typography>
             <Button onClick={handleAdd}>Add a new SSEO</Button>
             {(isEdit === false && store.sseoInfo[0]) &&
                 <div> 
@@ -53,8 +51,8 @@ function AdminSseo({ dispatch, store, stateInfo }) {
                         return (
                             <>
                             <Button onClick={() => handleEdit(sseo.id)}>Edit</Button>
-                                <p>Office Name: {sseo.SSEO_name}</p>
-                                <p>Office Email: {sseo.SSEO_email}</p>
+                                <Typography variant="body1">Office Name: {sseo.SSEO_name}</Typography>
+                                <Typography variant="body1">Office Email: {sseo.SSEO_email}</Typography>
                             </>
                         )
                     })}
@@ -67,9 +65,9 @@ function AdminSseo({ dispatch, store, stateInfo }) {
                         {store.sseoInfo.map((sseo) => {
                             return (
                                 <>
-                                    <p>Office Name:</p>
+                                    <Typography variant="body1">Office Name:</Typography>
                                     <TextField inputRef={register} label={sseo.SSEO_name} variant="outlined" size="small" name="office" defaultValue={sseo.SSEO_name} />
-                                    <p>Office Email:</p>
+                                    <Typography variant="body1">Office Email:</Typography>
                                     <TextField inputRef={register} label={sseo.SSEO_email} variant="outlined" size="small" name="email" defaultValue={sseo.SSEO_email} />
                                     <Button type="submit">Save</Button>
                                 </>
@@ -85,7 +83,7 @@ function AdminSseo({ dispatch, store, stateInfo }) {
             }
 
 
-        </div >
+        </section >
     );
 }
 

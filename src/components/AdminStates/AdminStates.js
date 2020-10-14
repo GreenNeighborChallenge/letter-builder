@@ -41,7 +41,7 @@ class AdminStates extends Component {
 
     render() {
         return (
-            <div>
+            <>
 
                 <select value={this.state.selectedState} onChange={(event) => {
                     this.setState({ ...this.state, selectedState: event.target.value });
@@ -62,10 +62,10 @@ class AdminStates extends Component {
                             stateInfo={this.props.store.stateInfo[0]}
                             resetDropdown={this.resetDropdown}
                         />
-                        {/* <AdminSseo stateInfo={this.props.store.stateInfo[0]}/> */}
+                        <AdminSseo stateInfo={this.props.store.stateInfo[0]}/>
                     </>}
 
-            </div>
+            </>
         );
     }
 }
