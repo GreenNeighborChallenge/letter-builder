@@ -29,7 +29,7 @@ const useStyles = makeStyles({
         minHeight: '35em',
         backgroundColor: 'rgb(255,255,255, .85)',
         display: "flex",
-        alignItems: 'center',  
+        alignItems: 'center',
         flexDirection: 'column',
     },
     container: {
@@ -56,40 +56,53 @@ const ZipCode = ({ dispatch, store, history, location }) => {
         //if no zip provided in the url, does nothing
         //if zip provided in the url, uses that to dispatch to saga/geocoding api
         if (parsedZipCode.zipCode) {
-            console.log('hello from with zip params')
             dispatch({ type: 'SEND_ZIP', payload: parsedZipCode.zipCode })
         }
     }, []);
-
-  
 
     /* if a zip is provided in the URL. renders a filled, disabled zip code input
     otherwise renders a blank one w/on change functionality*/
     const zipField = (props) => {
         if (parsedZipCode.zipCode) {
             return <TextField label="zip code" variant="outlined" disabled value={parsedZipCode.zipCode} />
-        } else if (parsedZipCode.zipCode === undefined && zipToggle === true) {
+        }
+        // else if (Object.keys(store.zip).length === 0 && zipToggle === true) {
+        //     return <div>
+        //     <TextField label="zip code" variant="outlined" onChange={(event) => changeZip(event.target.value)} />
+        //     <br />
+        //     <Button variant='contained' onClick={() => sendZip()}>Go</Button>  
+        //     <p>Whoops! Please enter a valid zip code.</p></div>
+        // } 
+        else if (parsedZipCode.zipCode === undefined && zipToggle === true) {
             return <TextField label="zip code" variant="outlined" disabled value={zip} />
         } else if (parsedZipCode.zipCode === undefined) {
             return <div><TextField label="zip code" variant="outlined" onChange={(event) => changeZip(event.target.value)} />
-            <br />
-            <Button variant='contained' onClick={() => sendZip()}>Go</Button>  </div>
+                <br />
+                <Button variant='contained' onClick={() => sendZip()}>Go</Button>  </div>
         }
     }
 
-    function sendZip() {
+    function sendZip(props) {
+
         dispatch({ type: 'SEND_ZIP', payload: zip })
         console.log(zip)
-        toggleZip(true)
-        console.log(zipToggle)
-        
+
+        // toggleZip(true)
+        // // console.log(zipToggle)
+        // invalidZipMessage()
     }
 
     const directToLetterBuilder = () => {
         console.log('clicked');
         history.push('/letterBuilder')
     }
-   
+
+    const invalidZipMessage = () => {
+        if (Object.keys(store.zip).length === 0) {
+            console.log(store.zip)
+            return <p>Whoops! Please enter a valid zip code.</p>
+        }
+    }
 
     // http://localhost:3001/#/home?zipCode=55406
     return (
@@ -103,7 +116,7 @@ const ZipCode = ({ dispatch, store, history, location }) => {
                         </Typography></div>
                         <Typography className={classes.pos} color="textSecondary" variant='body1' style={{ display: 'inline' }}>
                             The petition maker will walk you through your state's existing energy policies, what they mean, who has influence over them,
-                        and help you send a letter to them advocating for green policies. 
+                            and help you send a letter to them advocating for green policies.
                         </Typography> <span style={{ display: 'inline', float: 'right' }}><InfoPopover /></span>
                         <div className='zipBox' >
                             <Typography variant='h4'>Enter Your Zip Code</Typography>
@@ -112,7 +125,8 @@ const ZipCode = ({ dispatch, store, history, location }) => {
                             {zipField()}
 
                             <br />
-                            
+                            {/* {invalidZipMessage()} */}
+
                         </div>
                         {store.zip.long_name &&
                             <StateGrade stateInfo={store.zip} directToLetterBuilder={directToLetterBuilder} />}

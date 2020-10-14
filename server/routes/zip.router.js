@@ -10,13 +10,36 @@ router.get('/:zip', (req, res) => {
     console.log('in zipRouter')
     console.log(req.params.zip)
     axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${req.params.zip}&key=${process.env.zip_key}`)
-    .then( response => {
-        console.log(response.data); 
-        res.send(response.data)
-    }).catch(error => {
-        res.sendStatus(500);
-        console.log(error);
-    })
+        .then(response => {
+            console.log(response.data);
+            if (response.data.results[0]) {
+
+                let addressInfo = response.data.results[0].address_components
+
+                function searchResult(arrToSearch, zipVar) {
+                    for (var i = 0; i < arrToSearch.length; i++) {
+                        if (arrToSearch[i].long_name === zipVar) {
+                            return arrToSearch
+                        }
+                        else {
+                            return false
+                        }
+                    }
+                }
+                let stateInfo = searchResult(addressInfo, req.params.zip).filter((obj) => {
+                    return obj.types.includes("administrative_area_level_1");
+                })
+                console.log(stateInfo)
+                res.send(stateInfo)
+                // res.send(response.data)
+                //if no matching results sends 500 error
+            } else {
+                res.sendStatus(500);
+            }
+        }).catch(error => {
+            res.sendStatus(500);
+            console.log(error);
+        })
 });
 
 
