@@ -65,3 +65,5 @@ INSERT INTO "state" (id, state_abv, state_name, state_grade, gov_email, puc, doc
 INSERT INTO "state" (id, state_abv, state_name, state_grade, gov_email, puc, doc, resident_count, resident_mwh) VALUES (49, 'WI', 'Wisconsin', 'C', 'wisgov@mail.state.wi.us', NULL, NULL, 2668462, 22157659);
 INSERT INTO "state" (id, state_abv, state_name, state_grade, gov_email, puc, doc, resident_count, resident_mwh) VALUES (50, 'WV', 'West Virginia', 'D', 'governor@state.wv.us', NULL, NULL, 850158, 11587335);
 INSERT INTO "state" (id, state_abv, state_name, state_grade, gov_email, puc, doc, resident_count, resident_mwh) VALUES (51, 'WY', 'Wyoming', 'D', 'Governor@missc.state.wy.us', NULL, NULL, 261192, 2637424);
+
+SELECT setval('state_id_seq', (SELECT MAX(id) FROM state)+1);

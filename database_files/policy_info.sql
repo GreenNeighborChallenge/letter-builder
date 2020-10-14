@@ -523,3 +523,5 @@ INSERT INTO policy_info (id, state_id, policy_id, policy_data) VALUES (510, 51, 
 ALTER TABLE policy_info ADD CONSTRAINT policy_info_fk0 FOREIGN KEY (state_id) REFERENCES "state"(id) ON DELETE CASCADE;
 
 ALTER TABLE policy_info ADD CONSTRAINT policy_info_fk1 FOREIGN KEY (policy_id) REFERENCES "policy_name"(id) ON DELETE CASCADE;
+
+SELECT setval('policy_info_id_seq', (SELECT MAX(id) FROM policy_info)+1);

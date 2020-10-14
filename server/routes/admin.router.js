@@ -21,8 +21,8 @@ router.get('/:state_name', (req, res) => {
 router.put('/', (req, res) => {
     let contactInfo = req.body
     console.log(contactInfo)
-
-    const queryText = `UPDATE "state" 
+    
+        const queryText = `UPDATE "state" 
                         SET "state_grade"=$1,
                          "puc"=$2, 
                          "doc"=$3, 
@@ -31,29 +31,30 @@ router.put('/', (req, res) => {
                          "gov_email"=$6
                         WHERE "id" = $7`
 
-    pool.query(queryText, [contactInfo.state_grade, contactInfo.puc, contactInfo.doc, contactInfo.resident_count, contactInfo.resident_mwh, contactInfo.gov_email, contactInfo.stateId])
+       pool.query(queryText, [contactInfo.state_grade, contactInfo.puc, contactInfo.doc, contactInfo.resident_count, contactInfo.resident_mwh, contactInfo.gov_email, contactInfo.stateId])
         .then(result => {
             res.sendStatus(201)
-        }).catch(error => {
+        }).catch (error =>  {
             console.log('error setting state info', error)
             res.sendStatus(500)
         })
 });
 //add new sseo
 router.post('/', (req, res) => {
-    let contactInfo = req.body
-    console.log(contactInfo)
+    let contactInfo=req.body
     const sseoQuery = `INSERT INTO "state_office" ("state_id", "SSEO_name", "SSEO_email")
     VALUES ($1, $2, $3)`
 
-    pool.query(sseoQuery, [contactInfo.id, contactInfo.office, contactInfo.email])
-        .then((result) => {
+    for (i = 0; i < contactInfo.sseo.length; i++) {
+        pool.query(sseoQuery, [contactInfo.stateId, contactInfo.sseo[i].name, contactInfo.sseo[i].email])
+        .then(result => {
             console.log(result)
             res.sendStatus(201)
-        }) .catch((error) => {
-            console.log('error adding new sseo', error)
+        }) .catch(error => {
+            console.log('error setting new sseo', error)
             res.sendStatus(500)
         })
+    }
 })
 
 //add new state
@@ -83,7 +84,7 @@ router.post('/policy/:id', async (req, res) => {
     const policyValuePairs = Object.entries(req.body)
     try {
         await client.query('BEGIN')
-
+        
         const policyQuery = `INSERT INTO "policy_info" ("policy_id", "policy_data", "state_id")
         VALUES ($1, $2, $3)`
 

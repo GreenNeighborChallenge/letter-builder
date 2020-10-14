@@ -103,4 +103,22 @@ router.put('/updates/:id', async (req, res) => {
     }
 })
 
+router.post('/', (req, res) => {
+    let contactInfo = req.body
+    console.log(contactInfo)
+    const sseoQuery = `INSERT INTO "state_office" ("state_id", "SSEO_name", "SSEO_email")
+    VALUES ($1, $2, $3)`
+
+    pool.query(sseoQuery, [contactInfo.id, contactInfo.office, contactInfo.email])
+        .then((result) => {
+            console.log(result)
+            res.sendStatus(201)
+        }) .catch((error) => {
+            console.log('error adding new sseo', error)
+            res.sendStatus(500)
+        })
+})
+
 module.exports = router;
+
+

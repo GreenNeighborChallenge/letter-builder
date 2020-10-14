@@ -16,3 +16,5 @@ INSERT INTO policy_name (id, name) VALUES (7, 'Community Solar');
 INSERT INTO policy_name (id, name) VALUES (8, 'Community Choice Aggregation (CCA)');
 INSERT INTO policy_name (id, name) VALUES (9, 'Energy Efficiency Standards');
 INSERT INTO policy_name (id, name) VALUES (10, 'Citizens Utility Board');
+
+SELECT setval('policy_name_id_seq', (SELECT MAX(id) FROM policy_name)+1);
