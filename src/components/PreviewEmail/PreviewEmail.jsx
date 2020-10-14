@@ -112,7 +112,7 @@ function PreviewLetter({ letter, address, selections, history, emails, zip }) {
                     <IconButton onClick={directToReps} style={{color:'black' }}><ArrowBackIcon /></IconButton>
                     <div className={right}>
                         <Button >Print PDF <PictureAsPdfIcon /></Button>
-                        <Button href={`mailto:${emails}?subject=${letter.subject}&body=${fullLetter.replaceAll("[STATE]", zip.long_name)}`} target="_blank" onClick={directToConfirmation} >
+                        <Button href={`mailto:${emails}?subject=${letter.subject}&body=${letter.intro}${fullLetter.replaceAll("[STATE]", zip.long_name)}${letter.conclusion}`} target="_blank" onClick={directToConfirmation} >
                             Send Mail
                         </Button>
                     </div>
