@@ -13,10 +13,11 @@ Javascript, React, Node.js, Express.js, Google Geocoding API, Google Civic API, 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
 
 ## Screenshots
-![Title page](public/images/title_page.png)
-![Letter builder](public/images/Letter_builder.png)
-![Pick Reps](public/images/pick_reps.png)
-![Admin form](public/images/admin_form.png)
+
+![Title](public/Images/title_page.png)
+![Letter builder](public/Images/Letter_builder.png)
+![Pick Reps](public/Images/pick_reps.png)
+![Admin form](public/Images/admin_form.png)
 
 ### Prerequisites
 
