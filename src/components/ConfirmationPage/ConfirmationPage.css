@@ -1,6 +1,6 @@
 .confirmation {
     width: 50%;
-    height: 100%;
+    height: 18em;
     padding: 20px;
     text-align: center;
     position: relative;
@@ -16,10 +16,6 @@
 
 .confirmationBtnShare {
     float: left;
-}
-
-.confirmationBtnShare:hover {
-    background-color: rgba(255, 255, 255, 0.5);
 }
 
 .confirmationBtnHome {
