@@ -51,7 +51,11 @@ function AdminPolicyInfo({ dispatch, store, stateInfo }) {
                     {stateInfo.AdminStateInfo.map((stateData) => {
                         return (
                             <div>
-                                <p>{stateData.policy_name}: {stateData.policy_data ? stateData.policy_data : 'None Provided'}</p>
+
+                                {stateData.policy_data === null ?
+                                 <p>{stateData.policy_name}: {stateData.policy_data}</p>: 
+                                 <p>{stateData.policy_name}: None</p>}
+
                             </div>
                         )
                     })}

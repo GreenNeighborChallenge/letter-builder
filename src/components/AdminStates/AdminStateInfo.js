@@ -66,6 +66,7 @@ function AdminStateInfo({ dispatch, store, stateInfo }) {
                 </FormControl>
                 :
                 <>
+
                     <h1>State Information</h1>
                     <Button onClick={handleEdit}>Edit</Button>
 
@@ -75,12 +76,15 @@ function AdminStateInfo({ dispatch, store, stateInfo }) {
 
                     <p>Resident MWH: {stateInfo.resident_mwh ? stateInfo.resident_mwh : 'None Provided'}</p>
 
-                    <p>PUC: {stateInfo.puc ? stateInfo.puc : 'None Provided'}</p>
+                    {stateInfo.puc=== null ? <p>PUC: None</p>
+                    : <p>PUC: {stateInfo.puc}</p>}
+                    
+                    {stateInfo.doc=== null ? <p>DoC Email: None</p>
+                    : <p>DoC Email: {stateInfo.doc}</p>}
 
-                    <p>DoC Email: {stateInfo.doc ? stateInfo.doc : 'None Provided'}</p>
-
-                    <p>Governor Email: {stateInfo.gov_email ? stateInfo.gov_email : 'None Provided'}</p>
-
+                    {stateInfo.gov_email=== null ? <p>Governor Email: None</p>
+                    : <p>Governor Email: {stateInfo.gov_email}</p>}
+                    
                 </>
             }
         </div>
