@@ -9,9 +9,14 @@ const letterState = {
 const letterReducer = (state = letterState, action) => {
     switch (action.type) {
         case 'SET_POLICY':
+            const updatedBody = [...state.body, action.payload.policy + '\n']
+            console.log(updatedBody);
+            const filteredBody = updatedBody.join('')
+            console.log(filteredBody);
+            
             return {
                 ...state,
-                body: [...state.body, (action.payload.policy + '\n')],
+                body: filteredBody,
                 bodyIds: [...state.bodyIds, action.payload.id]
             };
         case 'SET_LETTER':

@@ -68,6 +68,10 @@ const LetterItems = ({ directBack, history, dispatch, zip, letter, policyLanguag
         }
     }
 
+    // const fullBody = `${letter.body.join('\n', '\n').replaceAll("[STATE]", zip.long_name)}`
+    // const bigFullLetter = `${email.intro}${fullBody}${email.conclusion}`;
+    // console.log(bigFullLetter);
+
     return (
         <FormControl>
             <form onSubmit={handleSubmit(onSubmit)} noValidate autoComplete="off">
