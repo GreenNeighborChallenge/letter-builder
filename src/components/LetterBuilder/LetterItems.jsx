@@ -35,17 +35,6 @@ const LetterItems = ({ directBack, history, dispatch, zip, letter, policyLanguag
 
     }, []);
 
-    // useEffect(() => {
-    //     bodyCreator()
-
-    // }, []);
-
-    // const bodyCreator = () => {
-    //     if (letter.body) {
-    //         return setEmailBody(letter.body.join('')) 
-    //     } 
-    // }
-
     console.log(letter.bodyIds);
 
     const { handleSubmit, register } = useForm();
@@ -81,9 +70,6 @@ const LetterItems = ({ directBack, history, dispatch, zip, letter, policyLanguag
             history.push('/address')
         }
     }
-
-
-    // console.log(fullBody);
 
     return (
         <FormControl>
