@@ -51,14 +51,17 @@ const useStyles = makeStyles({
         paddingTop: '-3em'
     },
     title: {
-        fontSize: 48, 
-        fontFamily: 'leafy', 
-        color: 'black' 
+        fontSize: 48,
+        fontFamily: 'leafy',
+        color: 'black'
+    },
+    bodyText:{
+        whiteSpace: 'pre-line'
     }
 });
 
 function PreviewLetter({ letter, address, history, emails, dispatch }) {
-    const { root, card, emailHeader, emailBodyStyle, right, stepper, title } = useStyles();
+    const { root, card, emailHeader, emailBodyStyle, right, stepper, title, bodyText } = useStyles();
 
     const directToConfirmation = () => {
         history.push('/confirmation')
@@ -66,10 +69,10 @@ function PreviewLetter({ letter, address, history, emails, dispatch }) {
 
     const directToReps = () => {
         history.push('/selectContacts')
-        dispatch({type: 'DELETE_BODY'})
+        dispatch({ type: 'DELETE_BODY' })
     }
- 
-    const fullEmail = encodeURIComponent(letter.intro + letter.body + letter.conclusion) 
+
+    const fullEmail = encodeURIComponent(letter.intro + '\n' +  '\n' + letter.body + letter.conclusion)
 
     return (
         <div className={root}>
@@ -84,7 +87,7 @@ function PreviewLetter({ letter, address, history, emails, dispatch }) {
                 <CardContent className={emailHeader}>
                     <Typography gutterBottom align="left">
                         Sender: {address.email}
-                        <br />
+                       
                         <>
                             Recipient(s): {emails}
                         </>
@@ -93,23 +96,30 @@ function PreviewLetter({ letter, address, history, emails, dispatch }) {
                         <br />
                         Message:
                     </Typography>
-                    <Typography gutterBottom className={emailBodyStyle}>
-                        {letter.intro}
-                        <br />
-                        {letter.body}
-                        <br />
-                        {letter.conclusion}
-                    </Typography>
-                </CardContent> 
-                <div className={stepper} > 
-                        <Stepper step={3}/>
+                    <div className={emailBodyStyle}>
+                        <Typography gutterBottom >
+                            {letter.intro}
+                        </Typography>
+                        <Typography gutterBottom className={bodyText}>
+                            <br />
+                            {console.log(letter.body)}
+                            {letter.body}
+                        </Typography>
+                        <Typography gutterBottom >
+                            <br />
+                            {letter.conclusion}
+                        </Typography>
                     </div>
+                </CardContent>
+                <div className={stepper} >
+                    <Stepper step={3} />
+                </div>
                 <section >
-                    <IconButton onClick={directToReps} style={{color:'black' }}><ArrowBackIcon /></IconButton>
+                    <IconButton onClick={directToReps} style={{ color: 'black' }}><ArrowBackIcon /></IconButton>
                     <div className={right}>
                         <Button >Print PDF <PictureAsPdfIcon /></Button>
-                        <IconButton 
-                            style={{color:'black' }} 
+                        <IconButton
+                            style={{ color: 'black' }}
                             href={`mailto:${emails}?subject=${letter.subject}&body=${fullEmail}`} target="_blank" onClick={directToConfirmation}
                         ><ArrowForwardIcon /></IconButton>
                     </div>
