@@ -8,16 +8,16 @@ On the admin side, Green Neighbor staff can edit and update all of the data that
 
 Javascript, React, Node.js, Express.js, Google Geocoding API, Google Civic API, PostgreSQL, Material-UI, HTML5, CSS, Passport
 
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
-
 ## Screenshots
 
 ![Title](public/Images/title_page.png)
 ![Letter builder](public/Images/Letter_builder.png)
 ![Pick Reps](public/Images/pick_reps.png)
 ![Admin form](public/Images/admin_form.png)
+
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
 
 ### Prerequisites
 
