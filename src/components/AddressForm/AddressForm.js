@@ -115,7 +115,7 @@ const AddressForm = ({ dispatch, history, states }) => {
                         <Typography variant="body2" color="textSecondary" align="center" >
                             To send emails to your local representatives,
                             fill in your address and contact information
-                            here and click “find my reps” to make sure your
+                            here and click next to make sure your
                             letter gets to the right people.
                         </Typography>
                         <section className={form}>
