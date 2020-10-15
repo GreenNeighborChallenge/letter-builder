@@ -75,9 +75,9 @@ class AdminStates extends Component {
 
     render() {
         return (
-            <>
+            <div>
 
-                <select value={this.state.selectedState} onChange={(event) => {
+                <select className="inputs" value={this.state.selectedState} onChange={(event) => {
                     this.setState({ ...this.state, selectedState: event.target.value });
                     this.getStatesInfo(event.target.value);
                     this.getSSEO(event.target.value);
@@ -97,9 +97,9 @@ class AdminStates extends Component {
                             resetDropdown={this.resetDropdown}
                         />
                         <AdminSseo stateInfo={this.props.store.stateInfo[0]} />
+                        <button className="prettyBtn" onClick={() => this.deleteConfirm(this.state.selectedState)}>Delete State</button>
                     </>}
-                <button onClick={() => this.deleteConfirm(this.state.selectedState)}>Delete State</button>
-            </>
+                </div>
         );
     }
 }

@@ -117,37 +117,37 @@ class StateContactForm extends Component {
                 <h1>State Information</h1>
                 <br />
                 State Grade: 
-                <input onChange={this.handleGradeChange}></input>
+                <input className="inputs" onChange={this.handleGradeChange}></input>
                 <br />
                 State Governer Email:
-                <input onChange={this.handleGovChange}></input>
+                <input className="inputs" onChange={this.handleGovChange}></input>
                 <br />
                 PUC:
-                <input onChange={this.handlePuc}></input>
+                <input className="inputs" onChange={this.handlePuc}></input>
                 <br />
                 Department of Commerce Email:
-                <input onChange={this.handleDoc}></input>
+                <input className="inputs" onChange={this.handleDoc}></input>
                 {this.state.sseo.map((office) => {
                     return (
                         <>
                             <p>SSEO Name</p>
-                            < input onChange={(event) => this.handleNameChange(event, office.id)}></input>
+                            < input className="inputs" onChange={(event) => this.handleNameChange(event, office.id)}></input>
                             <p>SSEO Email</p>
-                            < input onChange={(event) => this.handleEmailChange(event, office.id)}></input >
+                            < input className="inputs" onChange={(event) => this.handleEmailChange(event, office.id)}></input >
                         </>
                     )
                 })
                 }
                 <br />
-                <button onClick={this.addSseo}>Add Another SSEO</button>
+                <button className="prettyBtn" onClick={this.addSseo}>Add Another SSEO</button>
                 <br />
                 Resident Count:
-                <input onChange={this.handleCountChange}></input>
+                <input className="inputs" onChange={this.handleCountChange}></input>
                 <br />
                 Resident MWH:
-                <input onChange={this.handleMwhChange}></input>
+                <input className="inputs" onChange={this.handleMwhChange}></input>
                 <br />
-                <button onClick={this.handleSave}>Save</button>
+                <button className="prettyBtn" onClick={this.handleSave}>SAVE</button>
             </div >
         );
     }

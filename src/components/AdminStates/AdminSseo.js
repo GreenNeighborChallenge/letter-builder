@@ -75,18 +75,18 @@ function AdminSseo({ dispatch, store, stateInfo }) {
     }
 
     return (
-        <section className="statePolicies">
+        <section className="stateBody">
             <Typography variant="h5"> State Offices </Typography>
             <Button onClick={handleAdd}>Add a new SSEO</Button>
             {(isEdit === false && store.sseoInfo[0]) &&
                 <div>
                     {store.sseoInfo.map((sseo) => {
                         return (
-                            <>
+                            <div className="sseoList">
                                 <Button onClick={() => handleEdit(sseo.id)}>Edit</Button>
                                 <Typography variant="body1">Office Name: {sseo.SSEO_name}</Typography>
                                 <Typography variant="body1">Office Email: {sseo.SSEO_email}</Typography>
-                            </>
+                            </div>
                         )
                     })}
 
@@ -97,14 +97,12 @@ function AdminSseo({ dispatch, store, stateInfo }) {
                     <form onSubmit={handleSubmit(onSubmit)} noValidate autoComplete="off">
                         {store.sseoInfo.map((sseo) => {
                             return (
-                                <>
-                                    <Typography variant="body1">Office Name:</Typography>
-                                    <TextField inputRef={register} label={sseo.SSEO_name} variant="outlined" size="small" name="office" defaultValue={sseo.SSEO_name} />
-                                    <Typography variant="body1">Office Email:</Typography>
-                                    <TextField inputRef={register} label={sseo.SSEO_email} variant="outlined" size="small" name="email" defaultValue={sseo.SSEO_email} />
+                                <div className="sseoList">
+                                    <TextField className="sseoList" inputRef={register} label={sseo.SSEO_name} variant="outlined" size="small" name="office" defaultValue={sseo.SSEO_name} />
+                                    <TextField className="sseoList" inputRef={register} label={sseo.SSEO_email} variant="outlined" size="small" name="email" defaultValue={sseo.SSEO_email} />
                                     <Button type="submit">Save</Button>
                                     <Button onClick={() => deleteConfirm(sseo.id)}>Delete</Button>
-                                </>
+                                </div>
                             )
                         })}
                     </form>
