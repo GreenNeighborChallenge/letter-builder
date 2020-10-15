@@ -11,6 +11,7 @@ import {
     Grid, Typography, TextField, IconButton,
     FormHelperText, FormControl
 } from '@material-ui/core';
+import { useForm } from "react-hook-form";
 
 const LetterItems = ({ directBack, history, dispatch, zip, letter, policyLanguage }) => {
     const { resize, textField, body, policy, stepper, cardActions,
@@ -26,10 +27,14 @@ const LetterItems = ({ directBack, history, dispatch, zip, letter, policyLanguag
         conclusion: `Thank you for taking the time to read my letter. Energy policy is important to ${zip.long_name} residents, and we need to act quickly to ensure a safe, healthy, democratic future. I look forward to hearing back from you, and learning how you plan to act on these recommendations.`
     });
 
-    useEffect(() => {
-    }, [letter]);
+    const { handleSubmit, register, } = useForm();
 
-    const fullLetter = letter.body.map(policy => policy + '\n');
+    // useEffect(() => {
+
+    // }, []);
+    
+    // const fullLetter = letter.body.map(policy => policy + '\n');
+
 
     const handleSubject = (event) => {
         setEmail({
@@ -43,32 +48,27 @@ const LetterItems = ({ directBack, history, dispatch, zip, letter, policyLanguag
         })
     }
 
-    const handleAdd = (id) => {
-        dispatch({ type: 'ADD_POLICY', payload: id })
-    }
-
     const handleConclusion = (event) => {
         setEmail({
             conclusion: event.target.value
         })
     }
 
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        console.log(letter.body);
-        if (letter.body.length === 0) {
+    const onSubmit = (data) => {
+        const newData = {...data, ...email}
+        if (data.body === '') {
             setErrorState(true);
             setHelperText('You must pick one policy');
         } else {
             setErrorState(false);
-            dispatch({ type: 'SET_LETTER', payload: email })
+            dispatch({ type: 'SET_FULL_LETTER', payload: newData })
             history.push('/address')
         }
     }
 
     return (
         <FormControl>
-            <form>
+            <form onSubmit={handleSubmit(onSubmit)} noValidate autoComplete="off">
                 <Grid container spacing={3}>
                     <Grid xs={12} >
                         <Typography className={title} align="center" >Create Your Letter</Typography>
@@ -83,8 +83,8 @@ const LetterItems = ({ directBack, history, dispatch, zip, letter, policyLanguag
                             {policyLanguage.map((policy, i) => {
                                 return (
                                     <div key={i}>
-                                        <PolicyExplainer policy_name={policy.name} title={policy.name} text={policy.long_info} toolTitle={policy.short_info} />
-                                        <AddPolicy policy={policy} handleAdd={() => handleAdd(policy.policy_id)} />
+                                        <PolicyExplainer policy_name={policy.name} title={policy.name} text={policy.long_info} toolTitle={policy.short_info}/>
+                                        <AddPolicy policy={policy} zip={zip}/>
                                     </div>
                                 )
                             })}
@@ -93,21 +93,17 @@ const LetterItems = ({ directBack, history, dispatch, zip, letter, policyLanguag
 
                     <Grid item xs={6} >
                         <Typography className={label}>Subject: </Typography>
-                        <TextField size="small" defaultValue={email.subject} onChange={handleSubject} className={subject} InputProps={{ classes: { input: resizeSubject }, disableUnderline: true }}></TextField>
-                        <TextField variant="outlined" InputProps={{ classes: { input: resize } }} multiline size="small" className={textField} defaultValue={email.intro} onChange={handleIntro}></TextField>
+                        <TextField size="small" defaultValue={email.subject} onChange={handleSubject} className={subject} InputProps={{ classes: { input: resizeSubject }, disableUnderline: true }}/>
+                        <TextField variant="outlined" InputProps={{ classes: { input: resize } }} 
+                           multiline size="small" className={textField} defaultValue={email.intro} onChange={handleIntro}/>
 
                         {letter.body &&
-                            <TextField variant="outlined" InputProps={{ classes: { input: resize } }} size="small" error={errorState}
-                                value={fullLetter[0] ? fullLetter.map(language => {
-                                return (
-                                    language ? language.replaceAll("[STATE]", zip.long_name) : ''
-                                )
-                            }) : ''} multiline className={body}>
-                            </TextField>
+                            <TextField variant="outlined" InputProps={{ classes: { input: resize } }} size="small" error={errorState} 
+                                value={letter.body} multiline className={body} inputRef={register} name="body"/>
                         }
                         <FormHelperText className={error} error={errorState}> {helperText} </FormHelperText>
 
-                        <TextField variant="outlined" InputProps={{ classes: { input: resize } }} multiline defaultValue={email.conclusion} onChange={handleConclusion} className={textField}></TextField>
+                        <TextField variant="outlined" InputProps={{ classes: { input: resize } }} multiline defaultValue={email.conclusion} onChange={handleConclusion} className={textField}/>
                         {/* <a>Print a PDF instead!</a> */}
                     </Grid>
                     <Grid xs={12}>
@@ -116,7 +112,7 @@ const LetterItems = ({ directBack, history, dispatch, zip, letter, policyLanguag
                         </div>
                         <div className={cardActions}>
                             <IconButton onClick={directBack} className={back}><ArrowBackIcon /></IconButton>
-                            <IconButton onClick={handleSubmit} type="submit" className={next}><ArrowForwardIcon /></IconButton>
+                            <IconButton type="submit" className={next}><ArrowForwardIcon /></IconButton>
                         </div>
                     </Grid>
                 </Grid>

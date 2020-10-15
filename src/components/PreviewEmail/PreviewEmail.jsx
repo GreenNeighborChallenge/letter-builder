@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState }  from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
@@ -27,7 +27,7 @@ const useStyles = makeStyles({
         padding: '1em',
         margin: '1em',
     },
-    emailBody: {
+    emailBodyStyle: {
         minHeight: '10em',
         border: '1px solid black',
         padding: '1em',
@@ -56,24 +56,19 @@ const useStyles = makeStyles({
     }
 });
 
-function PreviewLetter({ letter, address, selections, history, emails, zip }) {
-    const { root, card, emailHeader, emailBody, right, stepper, title } = useStyles();
+function PreviewLetter({ letter, address, history, emails, zip }) {
+    const { root, card, emailHeader, emailBodyStyle, right, stepper, title } = useStyles();
+    const [email, setEmail] = useState('')
 
-
-    const policies = letter.body.map((policy) => {
-        return policy
-    })
-    const letterBody = encodeURIComponent(letter.intro + policies + letter.conclusion);
-    
     const directToConfirmation = () => {
         history.push('/confirmation')
-
     }
+
     const directToReps = () => {
         history.push('/selectContacts')
     }
-
-    const fullLetter = letter.body.join('\n', '\n');
+ 
+    const fullEmail = encodeURIComponent(letter.intro + letter.body + letter.conclusion) 
 
     return (
         <div className={root}>
@@ -97,10 +92,10 @@ function PreviewLetter({ letter, address, selections, history, emails, zip }) {
                         <br />
                         Message:
                     </Typography>
-                    <Typography gutterBottom className={emailBody}>
+                    <Typography gutterBottom className={emailBodyStyle}>
                         {letter.intro}
                         <br />
-                        {fullLetter ? fullLetter.replaceAll("[STATE]", zip.long_name) : ''}
+                        {letter.body}
                         <br />
                         {letter.conclusion}
                     </Typography>
@@ -112,7 +107,7 @@ function PreviewLetter({ letter, address, selections, history, emails, zip }) {
                     <IconButton onClick={directToReps} style={{color:'black' }}><ArrowBackIcon /></IconButton>
                     <div className={right}>
                         <Button >Print PDF <PictureAsPdfIcon /></Button>
-                        <Button href={`mailto:${emails}?subject=${letter.subject}&body=${letter.intro}${fullLetter.replaceAll("[STATE]", zip.long_name)}${letter.conclusion}`} target="_blank" onClick={directToConfirmation} >
+                        <Button href={`mailto:${emails}?subject=${letter.subject}&body=${fullEmail}`} target="_blank" onClick={directToConfirmation} >
                             Send Mail
                         </Button>
                     </div>

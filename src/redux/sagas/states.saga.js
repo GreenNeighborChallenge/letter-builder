@@ -15,7 +15,6 @@ function* updateAddress(action) {
 function* getStates(action) {
   try {
     let response = yield axios.get(`/api/states`);
-    console.log(response.data);
     yield put({ type: 'UPDATE_STATES', payload: response.data })
   } catch (error) {
     console.log('error getting states', error);

@@ -46,7 +46,7 @@ function PolicyExplainer(props) {
     <div style={{display: 'inline'}}>
       <MuiThemeProvider theme={theme}>
       <Tooltip  title={props.toolTitle}>
-      <Button color="primary" onClick={handleClickOpen} style={{color: 'black'}}>
+      <Button color="primary" onClick={handleClickOpen} style={{color: 'black'}} id={props.id}>
         {props.policy_name}
         <HelpOutlineIcon />
       </Button>
