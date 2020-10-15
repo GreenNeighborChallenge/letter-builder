@@ -154,7 +154,6 @@ const AddressForm = ({ dispatch, history, states }) => {
                             <IconButton onClick={directBack} style={{ color: 'black' }} ><ArrowBackIcon /></IconButton>
                         </div>
                         <div className={right}>
-                            {/* <Button type="submit" variant="outlined" >Find my Representatives!</Button> */}
                             <IconButton type="submit" style={{ color: 'black' }} ><ArrowForwardIcon /></IconButton>
                         </div>
 

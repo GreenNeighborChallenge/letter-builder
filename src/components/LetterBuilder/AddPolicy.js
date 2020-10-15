@@ -10,18 +10,21 @@ const useStyles = makeStyles({
     }
 });
 
-function AddPolicy({ policy, dispatch}) {
+function AddPolicy({ policy, zip, dispatch}) {
     const { root } = useStyles();
     //adding policy to letter
     const [addPolicy, setAddPolicy] = useState(false)
+    
     const handleAdd = () => {
-        dispatch({ type: 'POLICY_TO_LETTER', payload: policy.id });
+        const data = {state: zip.long_name, id: policy.id }
+        dispatch({ type: 'POLICY_TO_LETTER', payload: data });
         setAddPolicy(true)
     }
 
-    const handleDelete = () => {
+    const handleDelete = (e) => {        
         setAddPolicy(false)
-        dispatch({ type: 'DELETE_POLICY_FROM_LETTER', payload: policy.petition_info})
+        const filteredPolicy = policy.petition_info.replaceAll("[STATE]", zip.long_name)
+        dispatch({ type: 'DELETE_POLICY_FROM_LETTER', payload: filteredPolicy})
     }
 
     return (
