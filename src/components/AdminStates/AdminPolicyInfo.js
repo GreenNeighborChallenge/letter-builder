@@ -28,7 +28,7 @@ function AdminPolicyInfo({ dispatch, store, stateInfo }) {
     }
 
     return (
-        <div>
+        <div className="stateBody">
             <h1>State Policy Info</h1>
             {isEdit ?
                 <FormControl>
@@ -47,14 +47,15 @@ function AdminPolicyInfo({ dispatch, store, stateInfo }) {
                 </FormControl>
                 :
                 <>
+                <Button className="policyEdit" onClick={handleEdit}>Edit</Button>
                     {stateInfo.AdminStateInfo.map((stateData) => {
                         return (
                             <div>
-                                <p>{stateData.policy_name}: {stateData.policy_data}</p>
+                                <p>{stateData.policy_name}: {stateData.policy_data ? stateData.policy_data : 'None Provided'}</p>
                             </div>
                         )
                     })}
-                    <Button onClick={handleEdit}>Edit</Button>
+                    
                 </>
             }
         </div>

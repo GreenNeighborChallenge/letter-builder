@@ -30,7 +30,7 @@ function AdminStateInfo({ dispatch, store, stateInfo }) {
         setEdit(!isEdit)
     }
 
-    
+
 
 
     // const stateInfo = this.props.stateInfo
@@ -40,12 +40,11 @@ function AdminStateInfo({ dispatch, store, stateInfo }) {
             {isEdit ?
                 <FormControl>
                     <form onSubmit={handleSubmit(onSubmit)} noValidate autoComplete="off">
-
-
-                        <h1>{stateInfo.state} State Information</h1>
+                        
+                        <h1>State Information</h1>
                         <p>State Grade: </p>
 
-                        <TextField inputRef={register} label={'State Grade'} variant="outlined" size="small" name={'stateGrade'} defaultValue={stateInfo.state_grade} /><br />
+                        <TextField inputRef={register} label={'State Grade'} variant="outlined" size="small" name={'stateGrade'} defaultValue={stateInfo.state_grade ? stateInfo.state_grade : 'None'} /><br />
                         <p>Resident Count: </p>
 
                         <TextField inputRef={register} label={'Resident Count'} variant="outlined" size="small" name={'residentCount'} defaultValue={stateInfo.resident_count} /><br />
@@ -67,19 +66,21 @@ function AdminStateInfo({ dispatch, store, stateInfo }) {
                 </FormControl>
                 :
                 <>
-                    <p>State Grade: {stateInfo.state_grade}</p>
-
-                    <p>Resident Count: {stateInfo.resident_count}</p>
-
-                    <p>Resident MWH: {stateInfo.resident_mwh}</p>
-
-                    <p>PUC: {stateInfo.puc}</p>
-
-                    <p>DoC Email: {stateInfo.doc}</p>
-
-                    <p>Governor Email: {stateInfo.gov_email}</p>
-                    
+                    <h1>State Information</h1>
                     <Button onClick={handleEdit}>Edit</Button>
+
+                    <p>State Grade: {stateInfo.state_grade ? stateInfo.state_grade : 'None Provided'}</p>
+
+                    <p>Resident Count: {stateInfo.resident_count ? stateInfo.resident_count : 'None Provided'}</p>
+
+                    <p>Resident MWH: {stateInfo.resident_mwh ? stateInfo.resident_mwh : 'None Provided'}</p>
+
+                    <p>PUC: {stateInfo.puc ? stateInfo.puc : 'None Provided'}</p>
+
+                    <p>DoC Email: {stateInfo.doc ? stateInfo.doc : 'None Provided'}</p>
+
+                    <p>Governor Email: {stateInfo.gov_email ? stateInfo.gov_email : 'None Provided'}</p>
+
                 </>
             }
         </div>

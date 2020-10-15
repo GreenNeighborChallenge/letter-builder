@@ -10,8 +10,28 @@
     width: 80%;
     text-align: center;
     position: relative;
+    border: 2px solid black;
+    margin-bottom: 10px;
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
 }
 
+.sseoList {
+    display: inline-block;
+    background: rgba(204, 204, 204, 0.7);
+    border: 2px solid white;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+}
+
+
+.sseoTextField {
+    float: left;
+    margin-top: 50px;
+}
 
 .stateSSEOitem {
     border-top: 2px solid black;

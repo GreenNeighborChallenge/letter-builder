@@ -39,15 +39,15 @@ class AdminForms extends Component {
     render() {
 
         return (
-            <div>
+            <div className="fullAdminForm">
                 <h1>New State</h1>
                 State:
-                <input onChange={this.handleStateChange}></input>
+                <input className="inputs" onChange={this.handleStateChange}></input>
                 <br />
                 State Abbreviation:
-                <input onChange={this.handleStateAbvChange} placeholder="i.e. AK"></input>
+                <input className="inputs" onChange={this.handleStateAbvChange} placeholder="i.e. AK"></input>
                 <br />
-                <button onClick={this.handleSave}>save</button>
+                <button className="prettyBtn" onClick={this.handleSave}>SAVE</button>
                 {this.state.createdState &&
                     <>
                         <StateContactForm state_name={this.state.state_name} />
