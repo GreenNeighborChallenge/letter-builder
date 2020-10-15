@@ -16,7 +16,7 @@ import {
 
 
 //override button styling?
-const defaultTheme = createMuiTheme();
+// const defaultTheme = createMuiTheme();
 const theme = createMuiTheme({
     overrides: {
         MuiTooltip: {

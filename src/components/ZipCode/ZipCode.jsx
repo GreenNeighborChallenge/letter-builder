@@ -84,6 +84,7 @@ const ZipCode = ({ dispatch, store, history, location }) => {
         } else  {
             setErrorState(false);
             dispatch({ type: 'SEND_ZIP', payload: zip })
+            dispatch({type: 'DELETE_BODY'})
             setHelperText('')
             console.log(zip)
         } 
