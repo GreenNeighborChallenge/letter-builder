@@ -1,48 +1,49 @@
-# Letter Builder
+# Green Neighbor Letter Builder
 
-This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
+Full stack web app built for the Green Neighbor Challenge. This app helps users learn about energy policies in their state, and contact their elected officials to advocate for green policies. Users can view educational info about major policies, see how their state ranks, and then begin the letter builder. The letter builder helps them pick the issues they care about, customize the letter text, identify their reps, and send the letter!
 
-Please follow these instructions carefully. 
+On the admin side, Green Neighbor staff can edit and update all of the data that fills the letter builder, including petition text, policy info, and state by state data. 
 
-## Prerequisites
+## Built With
 
-Before you get started, make sure you have the following software installed on your computer:
+Javascript, React, Node.js, Express.js, Google Geocoding API, Google Civic API, PostgreSQL, Material-UI, HTML5, CSS, Passport
+
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
+
+## Screenshots
+![Title page](/public/images/title_page.png)
+![Letter builder](/public/images/Letter_builder.png)
+![Pick Reps](/public/images/pick_reps.png)
+![Admin form](/public/images/admin_form.png)
+
+### Prerequisites
 
 - [Node.js](https://nodejs.org/en/)
-- [PostrgeSQL](https://www.postgresql.org/)
-- [Nodemon](https://nodemon.io/)
+- [Postico](https://eggerapps.at/postico/)
 
-## Create database and table
+### Installing
 
-See database.sql for detail to set up this app's database
+- NPM install.
 
+- Copy and paste entry in database.sql file in home directory to create necessary tables in Postico.
 
-## Development Setup Instructions
+### Completed Features
 
-- Run `npm install`
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm run server`
-- Run `npm run client`
-- Navigate to `localhost:3000`
+- [x] Find state by zip code
+- [x] View summary and long info about green policies
+- [x] Create letter, including adding policy text blocks and editing intro/conclusion text
+- [x] Find elected reps by Address
+- [x] Share to social media
+- [x] Admin - edit policy text and state data
+- [x] Admin - add/delete states, policies, state offices
 
-Directory Structure:
+### Next Steps
 
-- `src/` contains the React application
-- `public/` contains static assets for the client-side
-- `build/` after you build the project, contains the transpiled code from `src/` and `public/` that will be viewed on the production site
-- `server/` contains the Express App
+- [x] Integration with MailChimp for newsletter sign up
+- [x]  Print letter as PDF
 
-- src/components
-  - App/App
-  - Footer/Footer
-  - Nav/Nav
-  - AboutPage/AboutPage
-  - InfoPage/InfoPage
-  - UserPage/UserPage
-  - LoginPage/LoginPage
-  - RegisterPage/RegisterPage
-  - LogOutButton/LogOutButton
-  - ProtectedRoute/ProtectedRoute
+## Authors
 
-
-
+[Jenni Schubert](https://github.com/jjschubert) , [Riley Webster](https://github.com/rileyww77/), [Patrick Mazurek](https://github.com/jpmzurk), [Paul Buysse](https://github.com/paulbuysse)
