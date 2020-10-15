@@ -18,7 +18,7 @@ const LetterItems = ({ directBack, history, dispatch, zip, letter, policyLanguag
     const { resize, textField, body, policy, stepper, cardActions,
         title, subject, back, next, label, resizeSubject, policyHeader, policyLabel, error, about
     } = useStyles();
-
+    // const [emailBody, setEmailBody] = useState('')
     const [helperText, setHelperText] = useState('');
     const [errorState, setErrorState] = useState(false);
     const [email, setEmail] = useState({
@@ -29,13 +29,26 @@ const LetterItems = ({ directBack, history, dispatch, zip, letter, policyLanguag
     });
 
     useEffect(() => {
-        if (letter.bodyIds) { 
-        dispatch({type: 'FETCH_BODY', payload: {bodyIds: letter.bodyIds, state: zip.long_name }})}
+        if (letter.bodyIds) {
+            dispatch({ type: 'FETCH_BODY', payload: { bodyIds: letter.bodyIds, state: zip.long_name } })
+        }
+
     }, []);
+
+    // useEffect(() => {
+    //     bodyCreator()
+
+    // }, []);
+
+    // const bodyCreator = () => {
+    //     if (letter.body) {
+    //         return setEmailBody(letter.body.join('')) 
+    //     } 
+    // }
 
     console.log(letter.bodyIds);
 
-    const { handleSubmit, register} = useForm();
+    const { handleSubmit, register } = useForm();
 
     const handleSubject = (event) => {
         setEmail({
@@ -49,6 +62,7 @@ const LetterItems = ({ directBack, history, dispatch, zip, letter, policyLanguag
         })
     }
 
+
     const handleConclusion = (event) => {
         setEmail({
             conclusion: event.target.value
@@ -56,7 +70,7 @@ const LetterItems = ({ directBack, history, dispatch, zip, letter, policyLanguag
     }
 
     const onSubmit = (data) => {
-        const newData = {...data, ...email}
+        const newData = { ...data, ...email }
         newData.bodyIds = letter.bodyIds
         if (data.body === '') {
             setErrorState(true);
@@ -68,17 +82,13 @@ const LetterItems = ({ directBack, history, dispatch, zip, letter, policyLanguag
         }
     }
 
-    // const fullBody = `${letter.body.join('\n', '\n').replaceAll("[STATE]", zip.long_name)}`
-    // const bigFullLetter = `${email.intro}${fullBody}${email.conclusion}`;
-    // console.log(bigFullLetter);
-
     return (
         <FormControl>
             <form onSubmit={handleSubmit(onSubmit)} noValidate autoComplete="off">
                 <Grid container spacing={3}>
                     <Grid item xs={12} >
-                        <AboutBuilder className={about}/>
-                        <Typography className={title} align="center" >Create Your Letter </Typography>                        
+                        <AboutBuilder className={about} />
+                        <Typography className={title} align="center" >Create Your Letter </Typography>
                     </Grid>
                     <Grid item xs={6} >
                         <div className={policy}>
@@ -89,8 +99,8 @@ const LetterItems = ({ directBack, history, dispatch, zip, letter, policyLanguag
                             {policyLanguage.map((policy, i) => {
                                 return (
                                     <div key={i}>
-                                        <PolicyExplainer policy_name={policy.name} title={policy.name} text={policy.long_info} toolTitle={policy.short_info}/>
-                                        <AddPolicy policy={policy} zip={zip}/>
+                                        <PolicyExplainer policy_name={policy.name} title={policy.name} text={policy.long_info} toolTitle={policy.short_info} />
+                                        <AddPolicy policy={policy} zip={zip} />
                                     </div>
                                 )
                             })}
@@ -98,17 +108,15 @@ const LetterItems = ({ directBack, history, dispatch, zip, letter, policyLanguag
                     </Grid>
                     <Grid item xs={6} >
                         <Typography className={label}>Subject: </Typography>
-                        <TextField size="small" defaultValue={email.subject} onChange={handleSubject} className={subject} InputProps={{ classes: { input: resizeSubject }, disableUnderline: true }}/>
-                        <TextField variant="outlined" InputProps={{ classes: { input: resize } }} 
-                           multiline size="small" className={textField} defaultValue={email.intro} onChange={handleIntro}/>
+                        <TextField size="small" defaultValue={email.subject} onChange={handleSubject} className={subject} InputProps={{ classes: { input: resizeSubject }, disableUnderline: true }} />
+                        <TextField variant="outlined" InputProps={{ classes: { input: resize } }}
+                            multiline size="small" className={textField} defaultValue={email.intro} onChange={handleIntro} />
+                        <TextField variant="outlined" InputProps={{ classes: { input: resize } }} size="small" error={errorState}
+                            value={letter.body} multiline className={body} inputRef={register} name="body" defaultValue={''} />
 
-                        {letter.body &&
-                            <TextField variant="outlined" InputProps={{ classes: { input: resize } }} size="small" error={errorState} 
-                                value={letter.body} multiline className={body} inputRef={register} name="body" defaultValue={''}/>
-                        }
                         <FormHelperText className={error} error={errorState}> {helperText} </FormHelperText>
 
-                        <TextField variant="outlined" InputProps={{ classes: { input: resize } }} multiline defaultValue={email.conclusion} onChange={handleConclusion} className={textField}/>
+                        <TextField variant="outlined" InputProps={{ classes: { input: resize } }} multiline defaultValue={email.conclusion} onChange={handleConclusion} className={textField} />
                         {/* <a>Print a PDF instead!</a> */}
                     </Grid>
                     <Grid item xs={12}>
