@@ -12,10 +12,11 @@ import {
     FormHelperText, FormControl
 } from '@material-ui/core';
 import { useForm } from "react-hook-form";
+import AboutBuilder from './AboutBuilder.jsx'
 
 const LetterItems = ({ directBack, history, dispatch, zip, letter, policyLanguage }) => {
     const { resize, textField, body, policy, stepper, cardActions,
-        title, subject, back, next, label, resizeSubject, policyHeader, policyLabel, error
+        title, subject, back, next, label, resizeSubject, policyHeader, policyLabel, error, about
     } = useStyles();
 
     const [helperText, setHelperText] = useState('');
@@ -27,14 +28,14 @@ const LetterItems = ({ directBack, history, dispatch, zip, letter, policyLanguag
         conclusion: `Thank you for taking the time to read my letter. Energy policy is important to ${zip.long_name} residents, and we need to act quickly to ensure a safe, healthy, democratic future. I look forward to hearing back from you, and learning how you plan to act on these recommendations.`
     });
 
-    const { handleSubmit, register, } = useForm();
+    useEffect(() => {
+        if (letter.bodyIds) { 
+        dispatch({type: 'FETCH_BODY', payload: {bodyIds: letter.bodyIds, state: zip.long_name }})}
+    }, []);
 
-    // useEffect(() => {
+    console.log(letter.bodyIds);
 
-    // }, []);
-    
-    // const fullLetter = letter.body.map(policy => policy + '\n');
-
+    const { handleSubmit, register} = useForm();
 
     const handleSubject = (event) => {
         setEmail({
@@ -56,6 +57,7 @@ const LetterItems = ({ directBack, history, dispatch, zip, letter, policyLanguag
 
     const onSubmit = (data) => {
         const newData = {...data, ...email}
+        newData.bodyIds = letter.bodyIds
         if (data.body === '') {
             setErrorState(true);
             setHelperText('You must pick one policy');
@@ -70,15 +72,15 @@ const LetterItems = ({ directBack, history, dispatch, zip, letter, policyLanguag
         <FormControl>
             <form onSubmit={handleSubmit(onSubmit)} noValidate autoComplete="off">
                 <Grid container spacing={3}>
-                    <Grid xs={12} >
-                        <Typography className={title} align="center" >Create Your Letter</Typography>
-                        <Typography variant="subtitle2" align="center"> Add policies to your letter and customize your introduction and conclusion </Typography>
+                    <Grid item xs={12} >
+                        <AboutBuilder className={about}/>
+                        <Typography className={title} align="center" >Create Your Letter </Typography>                        
                     </Grid>
                     <Grid item xs={6} >
                         <div className={policy}>
                             <div >
                                 <Typography gutterBottom className={policyHeader}>Policies</Typography>
-                                <Typography variant="body1" className={policyLabel}>Hover over each policy to learn more</Typography>
+                                <Typography variant="body2" color="textSecondary" className={policyLabel}>Hover over each policy to learn more</Typography>
                             </div>
                             {policyLanguage.map((policy, i) => {
                                 return (
@@ -90,7 +92,6 @@ const LetterItems = ({ directBack, history, dispatch, zip, letter, policyLanguag
                             })}
                         </div>
                     </Grid>
-
                     <Grid item xs={6} >
                         <Typography className={label}>Subject: </Typography>
                         <TextField size="small" defaultValue={email.subject} onChange={handleSubject} className={subject} InputProps={{ classes: { input: resizeSubject }, disableUnderline: true }}/>
@@ -99,14 +100,14 @@ const LetterItems = ({ directBack, history, dispatch, zip, letter, policyLanguag
 
                         {letter.body &&
                             <TextField variant="outlined" InputProps={{ classes: { input: resize } }} size="small" error={errorState} 
-                                value={letter.body} multiline className={body} inputRef={register} name="body"/>
+                                value={letter.body} multiline className={body} inputRef={register} name="body" defaultValue={''}/>
                         }
                         <FormHelperText className={error} error={errorState}> {helperText} </FormHelperText>
 
                         <TextField variant="outlined" InputProps={{ classes: { input: resize } }} multiline defaultValue={email.conclusion} onChange={handleConclusion} className={textField}/>
                         {/* <a>Print a PDF instead!</a> */}
                     </Grid>
-                    <Grid xs={12}>
+                    <Grid item xs={12}>
                         <div className={stepper}>
                             <Stepper step={0} />
                         </div>

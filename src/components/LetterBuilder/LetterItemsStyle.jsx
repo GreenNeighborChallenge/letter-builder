@@ -46,7 +46,7 @@ const useStyles = makeStyles({
         fontSize: 48,
         fontFamily: 'leafy',
         color: 'black',
-        marginBottom: '-.25em'
+        margin: '-.2em 0 -.25em 0'
     },
     label: {
         margin: '0 0 -2.45em -1em',
@@ -75,6 +75,10 @@ const useStyles = makeStyles({
     },
     error: {
         margin: '-0em 0 0em -1em'
+    },
+    about: {
+        float: 'right',
+        marginRight: ''
     }
 })
 

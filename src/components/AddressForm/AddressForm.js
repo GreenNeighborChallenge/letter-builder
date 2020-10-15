@@ -73,7 +73,7 @@ const AddressForm = ({ dispatch, history, states }) => {
     const { card, form, formControl, label, select, signup,
         right, root, left, stepper, title, helpText
     } = useStyles();
-    const { handleSubmit, register, control } = useForm();
+    const { handleSubmit, register, control, reset } = useForm();
     const [helperText, setHelperText] = useState('');
     const [errorState, setErrorState] = useState(false);
 
@@ -90,6 +90,7 @@ const AddressForm = ({ dispatch, history, states }) => {
             setErrorState(false);
             dispatch({ type: 'ADDRESS_INFO', payload: data })
             dispatch({ type: 'FETCH_OFFICES', payload: data.st })
+            reset()
             directToReps()
         }
     }
@@ -100,6 +101,7 @@ const AddressForm = ({ dispatch, history, states }) => {
 
     const directBack = () => {
         history.push('/letterBuilder')
+        // dispatch({type: 'DELETE_BODY'})
     }
 
     return (

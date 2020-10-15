@@ -1,4 +1,4 @@
-import React, { useEffect, useState }  from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
@@ -9,6 +9,7 @@ import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 import Stepper from '../Stepper/Stepper'
 import IconButton from '@material-ui/core/IconButton';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 const useStyles = makeStyles({
     root: {
@@ -56,9 +57,8 @@ const useStyles = makeStyles({
     }
 });
 
-function PreviewLetter({ letter, address, history, emails, zip }) {
+function PreviewLetter({ letter, address, history, emails, dispatch }) {
     const { root, card, emailHeader, emailBodyStyle, right, stepper, title } = useStyles();
-    const [email, setEmail] = useState('')
 
     const directToConfirmation = () => {
         history.push('/confirmation')
@@ -66,6 +66,7 @@ function PreviewLetter({ letter, address, history, emails, zip }) {
 
     const directToReps = () => {
         history.push('/selectContacts')
+        dispatch({type: 'DELETE_BODY'})
     }
  
     const fullEmail = encodeURIComponent(letter.intro + letter.body + letter.conclusion) 
@@ -107,9 +108,10 @@ function PreviewLetter({ letter, address, history, emails, zip }) {
                     <IconButton onClick={directToReps} style={{color:'black' }}><ArrowBackIcon /></IconButton>
                     <div className={right}>
                         <Button >Print PDF <PictureAsPdfIcon /></Button>
-                        <Button href={`mailto:${emails}?subject=${letter.subject}&body=${fullEmail}`} target="_blank" onClick={directToConfirmation} >
-                            Send Mail
-                        </Button>
+                        <IconButton 
+                            style={{color:'black' }} 
+                            href={`mailto:${emails}?subject=${letter.subject}&body=${fullEmail}`} target="_blank" onClick={directToConfirmation}
+                        ><ArrowForwardIcon /></IconButton>
                     </div>
                 </section>
             </Card>

@@ -91,7 +91,7 @@ const PickReps = ({ dispatch, reps, history, offices }) => {
     }, [reps]);
 
     const directToPreview = () => {
-        if ((selections == '')) {
+        if ((selections === '')) {
             setErrorState(true);
             setHelperText('You must pick an email recipient to preview Your letter');
         } else {
