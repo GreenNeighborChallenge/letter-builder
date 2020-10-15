@@ -87,7 +87,7 @@ function PreviewLetter({ letter, address, history, emails, dispatch }) {
                 <CardContent className={emailHeader}>
                     <Typography gutterBottom align="left">
                         Sender: {address.email}
-                       
+                        <br />
                         <>
                             Recipient(s): {emails}
                         </>
