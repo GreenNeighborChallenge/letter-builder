@@ -24,8 +24,8 @@ function AddPolicy({ policy, zip, dispatch}) {
     const handleDelete = (e) => {        
         setAddPolicy(false)
         const filteredPolicy = policy.petition_info.replaceAll("[STATE]", zip.long_name)
-        
-        dispatch({ type: 'DELETE_POLICY_FROM_LETTER', payload: filteredPolicy})
+
+        dispatch({ type: 'DELETE_POLICY_FROM_LETTER', payload: {text: filteredPolicy, id: policy.id}})
     }
 
     return (

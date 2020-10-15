@@ -23,9 +23,18 @@ const letterReducer = (state = letterState, action) => {
             };
         case 'DELETE_POLICY_FROM_LETTER':
             const body = state.body
-            const removingItem = action.payload + '\n'
+            const removingItem = action.payload.text + '\n'
             const newBody = body.filter(petition => {
                 if (removingItem === petition) {
+                    return false
+                } else if (state.body.length === 1) {
+                    return { ...state, body: [] }
+                } else return true
+            })
+            const bodyIds = state.bodyIds
+            const removingId = action.payload.id
+            const newIds = bodyIds.filter(id => {
+                if (removingId === id) {
                     return false
                 } else if (state.body.length === 1) {
                     return { ...state, body: [] }
@@ -34,7 +43,8 @@ const letterReducer = (state = letterState, action) => {
 
             return {
                 ...state,
-                body: newBody
+                body: newBody,
+                bodyIds: newIds
             }
         case 'SET_FULL_LETTER':
             return action.payload
