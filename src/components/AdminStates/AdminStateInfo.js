@@ -67,6 +67,7 @@ function AdminStateInfo({ dispatch, store, stateInfo }) {
                 </FormControl>
                 :
                 <>
+                
                     <p>State Grade: {stateInfo.state_grade}</p>
 
                     <p>Resident Count: {stateInfo.resident_count}</p>
