@@ -74,11 +74,14 @@ function AdminStateInfo({ dispatch, store, stateInfo }) {
 
                     <p>Resident MWH: {stateInfo.resident_mwh}</p>
 
-                    <p>PUC: {stateInfo.puc}</p>
+                    {stateInfo.puc=== null ? <p>PUC: None</p>
+                    : <p>PUC: {stateInfo.puc}</p>}
+                    
+                    {stateInfo.doc=== null ? <p>DoC Email: None</p>
+                    : <p>DoC Email: {stateInfo.doc}</p>}
 
-                    <p>DoC Email: {stateInfo.doc}</p>
-
-                    <p>Governor Email: {stateInfo.gov_email}</p>
+                    {stateInfo.gov_email=== null ? <p>Governor Email: None</p>
+                    : <p>Governor Email: {stateInfo.gov_email}</p>}
                     
                     <Button onClick={handleEdit}>Edit</Button>
                 </>
