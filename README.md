@@ -42,8 +42,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Next Steps
 
-- [x] Integration with MailChimp for newsletter sign up
-- [x]  Print letter as PDF
+- [ ] Integration with MailChimp for newsletter sign up
+- [ ]  Print letter as PDF
 
 ## Authors
 
