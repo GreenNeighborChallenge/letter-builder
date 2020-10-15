@@ -9,6 +9,7 @@ import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import Stepper from '../Stepper/Stepper'
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles({
     root: {
@@ -38,9 +39,10 @@ const useStyles = makeStyles({
         justifyContent: 'space-around',
         padding: '1em',
         margin: '1em',
+        maxHeight: '25em'
     },
-    noAddress: {
-        margin: '5em 0 1em 0'
+    hidden: {
+        visibility: 'hidden',
     },
     right: {
         float: 'right'
@@ -60,18 +62,20 @@ const useStyles = makeStyles({
     addMarginTop: {
         marginTop: '1em'
     },
-    helpText:  {
+    helpText: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         fontSize: 18,
         margin: '-1em 0 0 0'
-    }
+    },
+
+
 });
 
 
 const PickReps = ({ dispatch, reps, history, offices }) => {
-    const { root, card, cardContent, left, repButtons, noAddress, right,
+    const { root, card, cardContent, left, repButtons, hidden, right,
         cardActions, stepper, title, addMarginTop, helpText
     } = useStyles();
 
@@ -111,24 +115,34 @@ const PickReps = ({ dispatch, reps, history, offices }) => {
                     <Typography variant="body2" color="textSecondary" align="center" >
                         To send an email, select recipients and add your contact information to the the letter. To Create a paper petition, you can skip to the bottom to generate a printable PDF.
                     </Typography>
-                    {(reps.kind === "civicinfo#representativeInfoResponse" && offices.id) ?
-                        <div >
-                            <ToggleButtonGroup value={selections} className={repButtons} onChange={handleSelections}>
-                                <RepButton value={offices.gov_email}> {reps.offices[0].name} <br /> {reps.officials[0].name} <br /> {offices.gov_email} </RepButton>
-                                <RepButton value={reps.officials[1].emails[0]} > {reps.offices[1].name} <br /> {reps.officials[1].name} <br />{reps.officials[1].emails[0]} </RepButton>
-                                <RepButton value={reps.officials[2].emails[0]} className={addMarginTop}> {reps.offices[2].name} <br /> {reps.officials[2].name} <br /> {reps.officials[2].emails[0]} </RepButton>
-                                <RepButton value={offices.doc} className={addMarginTop}> Department of Commerce  <br /> {offices.doc}  </RepButton>
-                                <RepButton value={offices.SSEO_email} className={addMarginTop}> {offices.SSEO_name}  {offices.SSEO_email} </RepButton>
-                                <RepButton value={offices.puc} className={addMarginTop}> Public Utilities Commission  {offices.puc} </RepButton>
-                            </ToggleButtonGroup>
-                        </div>
+                    {(reps.kind === "civicinfo#representativeInfoResponse" && (reps.offices.length > 0)) ?
+                        <ToggleButtonGroup value={selections} className={repButtons} onChange={handleSelections} >
+                            
+                                    {reps.officials &&
+                                        <RepButton value={offices.gov_email}  className={addMarginTop}> {reps.offices[0].name} <br /> {reps.officials[0].name} <br /> {offices.gov_email} </RepButton>}
+
+                                    {(reps.officials.length > 1) &&
+                                        <RepButton value={reps.officials[1].emails[0]} className={addMarginTop} > {reps.offices[1].name} <br /> {reps.officials[1].name} <br />{reps.officials[1].emails[0]} </RepButton>
+                                    }
+                                    {(reps.officials.length > 2) &&
+                                        <RepButton value={reps.officials[2].emails[0]} className={addMarginTop}> {reps.offices[2].name} <br /> {reps.officials[2].name} <br /> {reps.officials[2].emails[0]} </RepButton>
+                                      
+                                    }
+                                    {offices.doc &&
+                                        <RepButton value={offices.doc} className={addMarginTop}> Department of Commerce  <br /> {offices.doc}  </RepButton>
+                                    }
+                                    {offices.SSEO_email &&
+                                        <RepButton value={offices.SSEO_email} className={addMarginTop}> {offices.SSEO_name}  {offices.SSEO_email} </RepButton>}
+
+                                    {offices.puc &&
+                                        <RepButton value={offices.puc} className={addMarginTop}> Public Utilities Commission  {offices.puc} </RepButton>}
+                               
+                        </ToggleButtonGroup>
                         :
                         <>
-                            <Typography variant="h6" component="h6" align="center" className={noAddress} error={errorState}  >
-                                No Address Has been entered! <br /> Please go back and and enter your address <br /> to see your representatives
-                                </Typography>
-                        </>}
-                        <FormHelperText error={errorState} className={helpText}> {helperText} </FormHelperText>
+                        </>
+                    }
+                    <FormHelperText error={errorState} className={helpText}> {helperText} </FormHelperText>
                 </CardContent>
                 <Stepper step={2} className={stepper} />
                 <CardActions className={cardActions}>
