@@ -28,7 +28,7 @@ const useStyles = makeStyles({
         float: 'left'
     },
     text: {
-        margin: '0 0 0 0'
+        margin: '1em 0 0 0'
     },
     confirmationBtnHome: {
         float: 'right'
@@ -48,14 +48,14 @@ const useStyles = makeStyles({
         background: 'rgba(255,255,255, .85)',
     },
     photo : {
-        height: '55%',
-        width: '55%',
+        height: '40%',
+        width: '45%',
         borderRadius: "4em",
         margin: '.5em 0 -.7em 0'
     },
     share: {
-        margin: '.5em 0 0 0',
-        fontSize: 25, 
+        margin: '.1em 0 .2em 0',
+        fontSize: 26, 
         fontFamily: 'leafy', 
     }
 });
@@ -63,20 +63,20 @@ const useStyles = makeStyles({
 const ConfirmationPage = () => {
     const { root, header, subheader, subSubheader, share, text, shareButtons, confirmationBtnHome, photo, card} = useStyles();
 
-    const facebookProps = {
-        url: "https://www.greenneighborchallenge.com/",
-        network: "Facebook",
-        text: "Advocate for green energy with Green Neighbor",
-        longtext:
-            `The Green Neighbor Challenge is a web tool and social media campaign to help anyone with a utility bill (including renters) find and sign up for green energy in the US. Together, we can create a cleaner future for all!.`
-    };
-    const twitterProps = {
-        url: "https://www.greenneighborchallenge.com/",
-        network: "Twitter",
-        text: "Join the movement",
-        longtext:
-            `The Green Neighbor Challenge is a web tool and social media campaign to help anyone with a utility bill (including renters) find and sign up for green energy in the US. Together, we can create a cleaner future for all!.`
-    };
+    // const facebookProps = {
+    //     url: "https://www.greenneighborchallenge.com/",
+    //     network: "Facebook",
+    //     text: "Advocate for green energy with Green Neighbor",
+    //     longtext:
+    //         `The Green Neighbor Challenge is a web tool and social media campaign to help anyone with a utility bill (including renters) find and sign up for green energy in the US. Together, we can create a cleaner future for all!.`
+    // };
+    // const twitterProps = {
+    //     url: "https://www.greenneighborchallenge.com/",
+    //     network: "Twitter",
+    //     text: "Join the movement",
+    //     longtext:
+    //         `The Green Neighbor Challenge is a web tool and social media campaign to help anyone with a utility bill (including renters) find and sign up for green energy in the US. Together, we can create a cleaner future for all!.`
+    // };
 
     const shareBlockProps = {
         url: "https://www.greenneighborchallenge.com/",
