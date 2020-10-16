@@ -26,7 +26,6 @@ const useStyles = makeStyles({
     },
     cardContent: {
         minHeight: '24em',
-        // minWidth: '24em',
         marginBottom: '-1em'
     },
     left: {
@@ -37,7 +36,6 @@ const useStyles = makeStyles({
         flexWrap: 'wrap',
         justifyContent: 'space-around',
         padding: '0 0 2em 0',
-        // margin: '1em',
         maxHeight: '25em'
     },
     hidden: {
@@ -96,7 +94,6 @@ const PickReps = ({ dispatch, reps, history, offices }) => {
     }, [reps]);
 
     const directToPreview = () => {
-        console.log('these are the selections', selections);
         if ((selections.length === 0)) {
             setErrorState(true);
             setHelperText('You must pick an email recipient to preview Your letter');

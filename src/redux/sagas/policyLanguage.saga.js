@@ -21,7 +21,7 @@ function* addPolicy(action) {
         const policy = response.data[0].petition_info
         const filteredPolicy = policy.replaceAll("[STATE]", state)
         const policyWithId = { policy: filteredPolicy, id: policy_id }
-        console.log(policyWithId);
+
         yield put({ type: 'SET_POLICY', payload: policyWithId })
     } catch (error) {
         console.log('error setting policy', error)

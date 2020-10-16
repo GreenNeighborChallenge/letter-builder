@@ -6,10 +6,9 @@ function* fetchReps(action){
         const {street, city, st, zip} = action.payload
         const address = (street +  city + st + zip )
         const URIaddress = encodeURIComponent(address)
-        console.log(URIaddress);
         
         let response = yield axios.get(`/api/reps/${URIaddress}`);
-        console.log(response.data);
+
         yield put ({ type: 'PUT_REPS', payload: response.data})
     } catch (error) {
         console.log('error setting reps', error)

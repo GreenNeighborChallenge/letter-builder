@@ -12,7 +12,7 @@ const zipReducer = (state = {}, action) => {
         
       //if user changes state, updates the zip reducer
       case 'SET_STATE_RESPONSE':
-        console.log(action.payload)
+        // console.log(action.payload)
         return action.payload
       case 'UNSET_ZIP_RESPONSE':
         return {isLoading: false,

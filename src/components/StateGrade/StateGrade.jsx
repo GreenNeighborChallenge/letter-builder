@@ -22,7 +22,7 @@ class StateGrade extends Component {
 
     componentDidMount() {
         this.props.dispatch({ type: 'GET_STATE_POLICIES', payload: this.props.store.zip})
-        console.log(this.props.stateInfo)
+        // console.log(this.props.stateInfo)
         this.props.dispatch({ type: 'FETCH_POLICIES' })
     }
 
