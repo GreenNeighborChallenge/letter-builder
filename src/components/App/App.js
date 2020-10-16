@@ -144,7 +144,7 @@ class App extends Component {
                 authRedirect="/user"
               />
 
-              <Route
+              <ProtectedRoute
                 exact
                 path="/admin_home"
                 component={AdminTabs}

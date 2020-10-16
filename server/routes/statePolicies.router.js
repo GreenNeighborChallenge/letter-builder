@@ -1,7 +1,9 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
-
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 
 router.get(`/:stateName`, (req, res) => {
 //uses state name to find state ID in DB
@@ -31,7 +33,7 @@ console.log('req.params in stateName', req.params)
   })
 })
 
-router.post('/sseo/:id', (req, res) => {
+router.post('/sseo/:id', rejectUnauthenticated, (req, res) => {
   let queryText = `INSERT INTO state_office ("state_id", "SSEO_name", "SSEO_email")
   VALUES ($1, $2, $3);`
 
@@ -49,7 +51,7 @@ router.post('/sseo/:id', (req, res) => {
 });
 
 //edit state policy data
-router.put('/:id', async(req,res) => {
+router.put('/:id', rejectUnauthenticated, async(req,res) => {
   let stateId = req.params.id
     const client = await pool.connect();
     //need to delete the value pair of id so
@@ -77,7 +79,7 @@ router.put('/:id', async(req,res) => {
     }
 })
 
-router.put('/contact/:id', async(req,res) => {
+router.put('/contact/:id', rejectUnauthenticated, async(req,res) => {
   let stateId = req.params.id;
     const client = await pool.connect();
     //need to delete the value pair of id so

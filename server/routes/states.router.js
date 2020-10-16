@@ -1,6 +1,9 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {
+    rejectUnauthenticated,
+  } = require('../modules/authentication-middleware');
 
 /**
  * GET route template
@@ -56,7 +59,7 @@ router.get('/sseo/:id', (req, res) => {
 });
 
 //delete a state
-router.delete('/:id', (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
     let stateToDelete = req.params.id
     let stateQueryText = `DELETE FROM "state"
                         WHERE "id" = $1;`
@@ -69,7 +72,7 @@ router.delete('/:id', (req, res) => {
 });
 
 //update a sseo
-router.put('/updates/:id', async (req, res) => {
+router.put('/updates/:id', rejectUnauthenticated, async (req, res) => {
     let sseoId = req.params.id
     const client = await pool.connect();
     const sseoObject = req.body
@@ -98,7 +101,7 @@ router.put('/updates/:id', async (req, res) => {
 })
 
 //add a new sseo
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
     let contactInfo = req.body
     const sseoQuery = `INSERT INTO "state_office" ("state_id", "SSEO_name", "SSEO_email")
     VALUES ($1, $2, $3)`
@@ -113,7 +116,7 @@ router.post('/', (req, res) => {
 })
 
 //delete a sseo
-router.delete('/sseo/:id', (req, res) => {
+router.delete('/sseo/:id', rejectUnauthenticated, (req, res) => {
     let sseoToDelete = req.params.id
     let sseoQueryText = `DELETE FROM "state_office"
                         WHERE "id" = $1;`

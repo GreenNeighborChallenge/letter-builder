@@ -1,6 +1,9 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {
+    rejectUnauthenticated,
+  } = require('../modules/authentication-middleware');
 
 //getting the id for a state based on the state name
 router.get('/:state_name', (req, res) => {
@@ -18,7 +21,7 @@ router.get('/:state_name', (req, res) => {
 })
 
 //update state info
-router.put('/', (req, res) => {
+router.put('/', rejectUnauthenticated, (req, res) => {
     let contactInfo = req.body
     console.log(contactInfo)
     
@@ -40,7 +43,7 @@ router.put('/', (req, res) => {
         })
 });
 //add new sseo
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
     let contactInfo=req.body
     const sseoQuery = `INSERT INTO "state_office" ("state_id", "SSEO_name", "SSEO_email")
     VALUES ($1, $2, $3)`
@@ -58,7 +61,7 @@ router.post('/', (req, res) => {
 })
 
 //add new state
-router.post(`/state`, (req, res) => {
+router.post(`/state`, rejectUnauthenticated, (req, res) => {
     const queryText = `INSERT INTO "state" ("state_name", "state_abv") 
                         VALUES ($1, $2)
                         RETURNING "id"`
@@ -74,7 +77,7 @@ router.post(`/state`, (req, res) => {
 
 
 //add new policy data for a state
-router.post('/policy/:id', async (req, res) => {
+router.post('/policy/:id', rejectUnauthenticated, async (req, res) => {
     let stateId = req.params.id
     const client = await pool.connect();
     //need to delete the value pair of id so

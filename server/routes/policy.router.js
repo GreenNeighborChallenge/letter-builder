@@ -1,6 +1,9 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 
 //user side
 router.get('/', (req, res) => {
@@ -34,7 +37,7 @@ router.get('/:id', (req, res) => {
 //admin side
 
 //add new policy
-router.post('/', async (req, res) => {
+router.post('/', rejectUnauthenticated, async (req, res) => {
   let newPolicy = req.body
   const client = await pool.connect();
   try{
@@ -60,7 +63,7 @@ router.post('/', async (req, res) => {
 });
 
 //update a policy
-router.put('/', async (req, res) => {
+router.put('/', rejectUnauthenticated, async (req, res) => {
   let updates = req.body
   const client = await pool.connect();
     try {
@@ -92,7 +95,7 @@ router.put('/', async (req, res) => {
 
 
 //delete a policy
-router.delete('/:id', (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
   pool.query(`DELETE FROM "policy_name"
               WHERE "policy_name".id = $1`, [req.params.id])
   .then((result) => {

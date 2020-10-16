@@ -53,8 +53,9 @@ function AdminPolicyInfo({ dispatch, store, stateInfo }) {
                             <div>
 
                                 {stateData.policy_data ?
-                                 <p>{stateData.policy_name}: {stateData.policy_data}</p> : 
-                                 <p>{stateData.policy_name}: None </p>}
+
+                                 <p>{stateData.policy_name}: {stateData.policy_data}</p>: 
+                                 <p>{stateData.policy_name}: None</p>}
 
                             </div>
                         )
