@@ -18,7 +18,7 @@ router.get('/:zip', (req, res) => {
 
                 function searchResult(arrToSearch, zipVar) {
                     for (var i = 0; i < arrToSearch.length; i++) {
-                        if (arrToSearch[i].long_name === zipVar) {
+                        if (arrToSearch[i].long_name === zipVar && arrToSearch[i].types.includes('postal_code')) {
                             return arrToSearch
                         }
                         else {
@@ -27,6 +27,7 @@ router.get('/:zip', (req, res) => {
                     }
                 }
                 let stateInfo = searchResult(addressInfo, req.params.zip).filter((obj) => {
+
                     return obj.types.includes("administrative_area_level_1");
                 })
                 console.log(stateInfo)
