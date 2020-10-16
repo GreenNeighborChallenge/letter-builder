@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Button from '@material-ui/core/button'
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import AdminPolicyInfo from './AdminPolicyInfo.js'
 
@@ -78,19 +79,22 @@ class AdminPolicies extends Component {
     return (
       <div>
         <h1>Policy Language</h1>
-        <button onClick={this.addPolicy} className="policyButton">Add New Policy</button>
+        <Button onClick={this.addPolicy} className="prettyBtn" variant="outlined">Add New Policy</Button>
+        <br />
+        <br />
         {this.state.addPolicy === true &&
           <div className="form">
-            <input placeholder="Policy Name" value={this.state.name} onChange={this.handleNameChange}></input>
-            <h5 onClick={this.handleFormFill}>Note: If you want to use a states name in the text, replace the states name with [STATE]. Example: [STATE] should adopt the Green Vehicle Policy...</h5>
+            <input placeholder="Policy Name" onChange={this.handleNameChange} className="inputs"></input>
+            <h5>Note: If you want to use a states name in the text, replace the states name with [STATE].</h5>
+            <h5>Example: [STATE] should adopt the Green Vehicle Policy...</h5>
             <br />
-            <textarea placeholder="Petition Info" value={this.state.petition} onChange={this.handlePetitionChange}></textarea>
+            <textarea placeholder="Petition Info" onChange={this.handlePetitionChange} className="inputs"></textarea>
             <br />
-            <textarea placeholder="Short Info" value={this.state.short} onChange={this.handleShortChange}></textarea>
+            <textarea placeholder="Short Info" onChange={this.handleShortChange} className="inputs"></textarea>
             <br />
-            <textarea placeholder="Long Info" value={this.state.long} onChange={this.handleLongChange}></textarea>
+            <textarea placeholder="Long Info" onChange={this.handleLongChange} className="inputs"></textarea>
             <br />
-            <button onClick={this.handleSubmit} className="submitButton">Submit</button>
+            <Button onClick={this.handleSubmit} className="submitButton" variant="outlined">Submit</Button>
           </div>}
         <div>
           <table>

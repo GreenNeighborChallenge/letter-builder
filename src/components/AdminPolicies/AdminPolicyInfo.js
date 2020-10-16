@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Button from '@material-ui/core/button'
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
@@ -92,23 +93,23 @@ class AdminPolicyInfo extends Component {
             <>
                 {this.state.isEdit ?
                     <>
-                        <td><input defaultValue={this.state.policyName} onChange={this.handleNameChange}></input></td>
-                        <td><textarea defaultValue={this.state.short_info} onChange={this.handleShortChange}></textarea></td>
-                        <td><textarea defaultValue={this.state.long_info} onChange={this.handleLongChange}></textarea></td>
-                        <td><textarea defaultValue={this.state.petition_info} onChange={this.handlePetitionChange}></textarea></td>
+                        <td><input defaultValue={this.state.policyName} onChange={this.handleNameChange} className="inputs"></input></td>
+                        <td><textarea defaultValue={this.state.short_info} onChange={this.handleShortChange} className="inputs"></textarea></td>
+                        <td><textarea defaultValue={this.state.long_info} onChange={this.handleLongChange} className="inputs"></textarea></td>
+                        <td><textarea defaultValue={this.state.petition_info} onChange={this.handlePetitionChange} className="inputs"></textarea></td>
                         <td>
-                            <button onClick={this.handleSave}>save</button>
-                            <button onClick={this.handleConfirm}>delete</button>
+                            <Button onClick={this.handleSave} variant="outlined" className="prettyBtn">save</Button>
+                            <Button onClick={this.handleConfirm} variant="outlined" className="prettyBtn">delete</Button>
                         </td>
                         
                     </>
                     :
                     <>
-                        <td className="policytableItem">{this.props.policy.name}</td>
-                        <td className="policytableItem">{this.props.policy.short_info}</td>
-                        <td className="policytableItem">{this.props.policy.long_info}</td>
-                        <td className="policytableItem">{this.props.policy.petition_info}</td>
-                        <td><button onClick={this.handleEdit}>edit</button></td>
+                        <td>{this.props.policy.name}</td>
+                        <td>{this.props.policy.short_info}</td>
+                        <td>{this.props.policy.long_info}</td>
+                        <td>{this.props.policy.petition_info}</td>
+                        <td><Button onClick={this.handleEdit} variant="outlined" className="prettyBtn">edit</Button></td>
                     </>
                 }
             </>

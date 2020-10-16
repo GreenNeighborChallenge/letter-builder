@@ -42,12 +42,14 @@ function AdminPolicyInfo({ dispatch, store, stateInfo }) {
                                 </>
                             )
                         })}
-                        <Button type="submit">Save</Button>
+                        <Button type="submit" variant="outlined" className="editSaveBtn">Save</Button>
+                        <br />
                     </form>
                 </FormControl>
                 :
                 <>
-                <Button className="policyEdit" onClick={handleEdit}>Edit</Button>
+                <Button variant="outlined" className="editSaveBtn" onClick={handleEdit}>Edit</Button>
+                <br />
                     {stateInfo.AdminStateInfo.map((stateData) => {
                         return (
                             <div>

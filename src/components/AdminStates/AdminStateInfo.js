@@ -44,7 +44,7 @@ function AdminStateInfo({ dispatch, store, stateInfo }) {
             {isEdit ?
                 <FormControl>
                     <form onSubmit={handleSubmit(onSubmit)} noValidate autoComplete="off">
-                        
+
                         <h1>State Information</h1>
                         <p>State Grade: </p>
 
@@ -64,31 +64,31 @@ function AdminStateInfo({ dispatch, store, stateInfo }) {
                         <p>Governor Email: </p>
 
                         <TextField inputRef={register} label={'Governor Email'} variant="outlined" size="small" name={'govEmail'} defaultValue={stateInfo.gov_email} /><br />
-
-                        <Button type="submit">Save</Button>
+                        <br />
+                        <Button type="submit" variant="outlined" className="editSaveBtn">Save</Button>
                     </form>
                 </FormControl>
                 :
                 <>
 
                     <h1>State Information</h1>
-                    <Button onClick={handleEdit}>Edit</Button>
-
+                    <Button onClick={handleEdit} variant="outlined" className="editSaveBtn">Edit</Button>
+                    <br />
                     <p>State Grade: {stateInfo.state_grade ? stateInfo.state_grade : 'None Provided'}</p>
 
                     <p>Resident Count: {stateInfo.resident_count ? stateInfo.resident_count : 'None Provided'}</p>
 
                     <p>Resident MWH: {stateInfo.resident_mwh ? stateInfo.resident_mwh : 'None Provided'}</p>
 
-                    {stateInfo.puc=== null ? <p>PUC: None</p>
-                    : <p>PUC: {stateInfo.puc}</p>}
-                    
-                    {stateInfo.doc=== null ? <p>DoC Email: None</p>
-                    : <p>DoC Email: {stateInfo.doc}</p>}
+                    {stateInfo.puc === null ? <p>PUC: None</p>
+                        : <p>PUC: {stateInfo.puc}</p>}
 
-                    {stateInfo.gov_email=== null ? <p>Governor Email: None</p>
-                    : <p>Governor Email: {stateInfo.gov_email}</p>}
-                    
+                    {stateInfo.doc === null ? <p>DoC Email: None</p>
+                        : <p>DoC Email: {stateInfo.doc}</p>}
+
+                    {stateInfo.gov_email === null ? <p>Governor Email: None</p>
+                        : <p>Governor Email: {stateInfo.gov_email}</p>}
+
                 </>
             }
         </div>

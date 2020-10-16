@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import './AdminForms.css';
 
 class StateContactForm extends Component {
 
@@ -119,6 +120,12 @@ class StateContactForm extends Component {
                 State Grade: 
                 <input className="inputs" onChange={this.handleGradeChange}></input>
                 <br />
+                Resident Count:
+                <input className="inputs" onChange={this.handleCountChange}></input>
+                <br />
+                Resident MWH:
+                <input className="inputs" onChange={this.handleMwhChange}></input>
+                <br />
                 State Governer Email:
                 <input className="inputs" onChange={this.handleGovChange}></input>
                 <br />
@@ -127,25 +134,22 @@ class StateContactForm extends Component {
                 <br />
                 Department of Commerce Email:
                 <input className="inputs" onChange={this.handleDoc}></input>
+                <br />
+                <br />
                 {this.state.sseo.map((office) => {
                     return (
-                        <>
-                            <p>SSEO Name</p>
+                        <div className="sseoInputs">
+                            <p>SSEO Name:</p>
                             < input className="inputs" onChange={(event) => this.handleNameChange(event, office.id)}></input>
-                            <p>SSEO Email</p>
+                            <p className="sseoTitle">SSEO Email:</p>
                             < input className="inputs" onChange={(event) => this.handleEmailChange(event, office.id)}></input >
-                        </>
+                        </div>
                     )
                 })
                 }
                 <br />
-                <button className="prettyBtn" onClick={this.addSseo}>Add Another SSEO</button>
+                <a className="sseoButton" onClick={this.addSseo}>Add Another SSEO</a>
                 <br />
-                Resident Count:
-                <input className="inputs" onChange={this.handleCountChange}></input>
-                <br />
-                Resident MWH:
-                <input className="inputs" onChange={this.handleMwhChange}></input>
                 <br />
                 <button className="prettyBtn" onClick={this.handleSave}>SAVE</button>
             </div >
