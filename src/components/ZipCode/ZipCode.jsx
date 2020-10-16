@@ -97,7 +97,6 @@ const ZipCode = ({ dispatch, store, history, location }) => {
     }
 
     const directToLetterBuilder = () => {
-        console.log('clicked');
         history.push('/letterBuilder')
     }
 

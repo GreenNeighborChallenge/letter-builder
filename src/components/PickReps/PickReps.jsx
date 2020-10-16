@@ -36,8 +36,8 @@ const useStyles = makeStyles({
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'space-around',
-        padding: '1em',
-        margin: '1em',
+        padding: '0 0 2em 0',
+        // margin: '1em',
         maxHeight: '25em'
     },
     hidden: {
@@ -68,14 +68,16 @@ const useStyles = makeStyles({
         fontSize: 18,
         margin: '-1em 0 0 0'
     },
-
+    subheader: {
+        marginTop: '-1em'
+    }
 
 });
 
 
 const PickReps = ({ dispatch, reps, history, offices }) => {
     const { root, card, cardContent, left, repButtons, right,
-        cardActions, stepper, title, addMarginTop, helpText
+        cardActions, stepper, title, addMarginTop, helpText, subheader
     } = useStyles();
 
     const [selections, setSelections] = useState(() => []);
@@ -112,7 +114,7 @@ const PickReps = ({ dispatch, reps, history, offices }) => {
                     <Typography variant="h5" component="h2" gutterBottom align="center" className={title}>
                         Select Your Representatives
                     </Typography>
-                    <Typography variant="body2" color="textSecondary" align="center" >
+                    <Typography variant="body2" color="textSecondary" align="center" className={subheader}>
                         To send an email, select recipients and add your contact information to the the letter. To create a paper petition, you can skip to the bottom to generate a printable PDF.
                     </Typography>
                     {(reps.kind === "civicinfo#representativeInfoResponse" && (reps.offices.length > 0)) ?

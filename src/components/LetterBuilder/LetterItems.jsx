@@ -33,20 +33,22 @@ const LetterItems = ({ directBack, history, dispatch, zip, letter, policyLanguag
             dispatch({ type: 'FETCH_BODY', payload: { bodyIds: letter.bodyIds, state: zip.long_name } })
         }
 
-    }, [dispatch]);
+    }, []);
 
-    console.log(letter.bodyIds);
+    console.log(email);
 
     const { handleSubmit, register } = useForm();
 
     const handleSubject = (event) => {
         setEmail({
+            ...email,
             subject: event.target.value
         })
     }
 
     const handleIntro = (event) => {
         setEmail({
+            ...email, 
             intro: event.target.value
         })
     }
@@ -54,11 +56,14 @@ const LetterItems = ({ directBack, history, dispatch, zip, letter, policyLanguag
 
     const handleConclusion = (event) => {
         setEmail({
+            ...email, 
             conclusion: event.target.value
         })
     }
 
     const onSubmit = (data) => {
+        console.log(email);
+        console.log(data);
         const newData = { ...data, ...email }
         newData.bodyIds = letter.bodyIds
         if (data.body === '') {
@@ -101,7 +106,7 @@ const LetterItems = ({ directBack, history, dispatch, zip, letter, policyLanguag
                         <TextField variant="outlined" InputProps={{ classes: { input: resize } }}
                             multiline size="small" className={textField} defaultValue={email.intro} onChange={handleIntro} />
                         <TextField variant="outlined" InputProps={{ classes: { input: resize } }} size="small" error={errorState}
-                            value={letter.body} multiline className={body} inputRef={register} name="body" defaultValue={''} />
+                            value={letter.body} multiline className={body} inputRef={register} name="body" />
 
                         <FormHelperText className={error} error={errorState}> {helperText} </FormHelperText>
 
