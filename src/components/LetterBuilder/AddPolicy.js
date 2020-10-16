@@ -22,7 +22,7 @@ function AddPolicy({ policy, zip, dispatch, letter }) {
         if (result === true) {
             setAddPolicy(true)
         }
-    }, []);
+    }, [policy.id, letter.bodyIds]);
 
     const handleAdd = () => {
         const data = { state: zip.long_name, id: policy.id }

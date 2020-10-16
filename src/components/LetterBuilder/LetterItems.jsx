@@ -33,7 +33,7 @@ const LetterItems = ({ directBack, history, dispatch, zip, letter, policyLanguag
             dispatch({ type: 'FETCH_BODY', payload: { bodyIds: letter.bodyIds, state: zip.long_name } })
         }
 
-    }, []);
+    }, [dispatch]);
 
     console.log(letter.bodyIds);
 

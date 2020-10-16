@@ -9,13 +9,10 @@ const letterState = {
 const letterReducer = (state = letterState, action) => {
     switch (action.type) {
         case 'SET_POLICY':   
-            // const lineAddedText = action.payload.policy
-            console.log(action.payload.policy);
-            
-            const updatedBody = [...state.body, action.payload.policy + '\n' + '\n']
-            const filteredBody = updatedBody.join('')
-            console.log(filteredBody);
-            
+            const updatedBody = [...state.body, action.payload.policy + 
+                '\n' + 
+                '\n']
+            const filteredBody = updatedBody.join('')            
             return {
                 ...state,
                 body: filteredBody,
@@ -30,7 +27,9 @@ const letterReducer = (state = letterState, action) => {
             };
         case 'DELETE_POLICY_FROM_LETTER':
             const body = state.body
-            const removingItem = action.payload.text + '\n' + '\n'
+            const removingItem = action.payload.text + 
+                '\n' + 
+                '\n'
             const result = body.replace(removingItem, '')
             const bodyIds = state.bodyIds
             const removingId = action.payload.id

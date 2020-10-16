@@ -9,7 +9,6 @@ import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import Stepper from '../Stepper/Stepper'
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles({
     root: {
@@ -75,7 +74,7 @@ const useStyles = makeStyles({
 
 
 const PickReps = ({ dispatch, reps, history, offices }) => {
-    const { root, card, cardContent, left, repButtons, hidden, right,
+    const { root, card, cardContent, left, repButtons, right,
         cardActions, stepper, title, addMarginTop, helpText
     } = useStyles();
 
