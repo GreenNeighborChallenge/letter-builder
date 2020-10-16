@@ -32,41 +32,43 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <form className="formPanel" onSubmit={this.login}>
-        <h2>Admin Login</h2>
-        {this.props.store.errors.loginMessage && (
-          <h3 className="alert" role="alert">
-            {this.props.store.errors.loginMessage}
-          </h3>
-        )}
-        <div>
-          <label htmlFor="username">
-            Username:
+      <div style={{ padding: '5em 5em 5em 5em' }} >
+        <form className="formPanel" onSubmit={this.login}>
+          <h2>Admin Login</h2>
+          {this.props.store.errors.loginMessage && (
+            <h3 className="alert" role="alert">
+              {this.props.store.errors.loginMessage}
+            </h3>
+          )}
+          <div>
+            <label htmlFor="username">
+              Username:
             <input
-              type="text"
-              name="username"
-              required
-              value={this.state.username}
-              onChange={this.handleInputChangeFor('username')}
-            />
-          </label>
-        </div>
-        <div>
-          <label htmlFor="password">
-            Password:
+                type="text"
+                name="username"
+                required
+                value={this.state.username}
+                onChange={this.handleInputChangeFor('username')}
+              />
+            </label>
+          </div>
+          <div>
+            <label htmlFor="password">
+              Password:
             <input
-              type="password"
-              name="password"
-              required
-              value={this.state.password}
-              onChange={this.handleInputChangeFor('password')}
-            />
-          </label>
-        </div>
-        <div>
-          <input className="btn" type="submit" name="submit" value="Log In" />
-        </div>
-      </form>
+                type="password"
+                name="password"
+                required
+                value={this.state.password}
+                onChange={this.handleInputChangeFor('password')}
+              />
+            </label>
+          </div>
+          <div>
+            <input className="btn" type="submit" name="submit" value="Log In" />
+          </div>
+        </form>
+      </div>
     );
   }
 }
