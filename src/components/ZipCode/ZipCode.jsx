@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import { FormHelperText, CardContent, Button, Typography, TextField } from '@material-ui/core'
+import { FormHelperText, CardContent, Button, Typography, TextField, Card, CircularProgress } from '@material-ui/core'
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import './ZipCode.css'
-import InfoPopover from './InfoPopover'
-import StateGrade from '../StateGrade/StateGrade.jsx'
-import ZipError from "./ZipError"
+import './ZipCode.css';
+import InfoPopover from './InfoPopover';
+import StateGrade from '../StateGrade/StateGrade.jsx';
+import ZipError from "./ZipError";
 
 const useStyles = makeStyles({
     root: {
@@ -56,10 +55,12 @@ const ZipCode = ({ dispatch, store, history, location }) => {
     const classes = useStyles();
     const [zip, changeZip] = useState('');
     const [zipClicked, changeZipClick] = useState(false)
-    const queryString = require('query-string');
-    const parsedZipCode = queryString.parse(location.search);
     const [helperText, setHelperText] = useState('');
     const [errorState, setErrorState] = useState(false);
+
+    const queryString = require('query-string');
+    const parsedZipCode = queryString.parse(location.search);
+   
 
     useEffect(() => {
         //if no zip provided in the url, does nothing
@@ -121,8 +122,9 @@ const ZipCode = ({ dispatch, store, history, location }) => {
                             <Typography variant='h4'>Enter Your Zip Code</Typography>
                             <Typography variant="h5" component="h2" className={classes.subtitle}>Find your state's policies and write to your elected officials</Typography>
                             {zipField()}
-                            <FormHelperText error={errorState} className={classes.helpText}> {helperText} </FormHelperText>    
-                            {zipClicked === true && Object.keys(store.zip).length === 0 && <ZipError />}
+                            <FormHelperText error={errorState} className={classes.helpText}> {helperText} </FormHelperText> 
+                            {store.zip.isLoading && <CircularProgress />}   
+                            {store.zip.zipFail && <ZipError />}
 
                         </div>
                         {store.zip.long_name &&
