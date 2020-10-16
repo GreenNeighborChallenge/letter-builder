@@ -28,13 +28,12 @@ const Nav = (props) => {
         <Typography className="nav-title leafy" variant='h2' style={{fontFamily: 'leafy'}}> The Green Neighbor</Typography>
       </Link>
       <div className="nav-right">
-        
         {/* Always show this link since the about page is not protected */}
         <a className="nav-link" target="_blank"  href='https://www.greenneighborchallenge.com/about/'>About</a>
-
- 
-      </div>
-    {/* </div> */}
+        {props.store.user.id &&
+        <a className="nav-link" target="_blank" onClick={() => props.dispatch({ type: 'LOGOUT' })}>Logout</a>
+        }
+        </div>
     </div>
     </>
   );
