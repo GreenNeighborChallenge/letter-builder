@@ -8,6 +8,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import AdminStateInfo from './AdminStateInfo';
 import AdminPolicyInfo from './AdminPolicyInfo';
 import AdminSseo from './AdminSseo';
+import LogOutButton from '../LogOutButton/LogOutButton';
 
 class AdminStates extends Component {
     state = {
