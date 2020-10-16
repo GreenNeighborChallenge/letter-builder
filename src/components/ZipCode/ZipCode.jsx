@@ -15,10 +15,17 @@ const useStyles = makeStyles({
         maxHeight: "100%",
     },
     title: {
-        fontSize: 14,
+        fontSize: 48,
+        fontFamily: 'leafy',
+        color: 'black',
+        marginBottom: 0
+    },
+    subtitle: {
+        marginTop: '.25em',
     },
     pos: {
         marginBottom: 12,
+        display: 'inline',
     },
     card: {
         maxWidth: "45em",
@@ -66,11 +73,11 @@ const ZipCode = ({ dispatch, store, history, location }) => {
     otherwise renders a blank one w/on change functionality*/
     const zipField = (props) => {
         if (parsedZipCode.zipCode) {
-            return <TextField label="zip code" variant="outlined" disabled value={parsedZipCode.zipCode} />
-        } else if (parsedZipCode.zipCode === undefined) {
-            return <div><TextField label="zip code" variant="outlined" onChange={(event) => changeZip(event.target.value)} />
+            return <div className='zipField'><TextField label="zip code" variant="outlined" disabled value={parsedZipCode.zipCode} /></div> 
+        } else {
+            return <div className='zipField'><TextField label="zip code" variant="outlined" onChange={(event) => changeZip(event.target.value)} />
                 <br />
-                <Button variant='contained' onClick={() => sendZip()}>Go</Button>  </div>
+                <Button style={{marginTop: '1em'}} variant='contained' onClick={() => sendZip()}>Go</Button>  </div>
         }
     }
 
@@ -101,19 +108,19 @@ const ZipCode = ({ dispatch, store, history, location }) => {
                 <Card className={classes.card}>
                     <CardContent>
                         <div style={{ textAlign: 'center' }}>
-                            <Typography color="textSecondary" id='zipTitle' style={{ fontSize: 48, fontFamily: 'leafy', color: 'black' }} gutterBottom>
+                            <Typography color="textSecondary" id='zipTitle' className={classes.title} gutterBottom>
                                 BE THE CHANGE: State Policy Petition Maker
                         </Typography>
                         </div>
 
-                        <Typography className={classes.pos} color="textSecondary" variant='body1' style={{ display: 'inline' }}>
+                        <Typography className={classes.pos} color="textSecondary" variant='body1'>
                             The petition maker will walk you through your state's existing energy policies, what they mean, who has influence over them,
                             and help you send a letter to them advocating for green policies.
                         </Typography> <span style={{ display: 'inline', float: 'right' }}><InfoPopover /></span>
 
                         <div className='zipBox' >
                             <Typography variant='h4'>Enter Your Zip Code</Typography>
-                            <Typography variant="h5" component="h2">to find your state's policies and write to your elected officials</Typography>
+                            <Typography variant="h5" component="h2" className={classes.subtitle}>Find your state's policies and write to your elected officials</Typography>
                             {zipField()}
                             <FormHelperText error={errorState} className={classes.helpText}> {helperText} </FormHelperText>    
                             {zipClicked === true && Object.keys(store.zip).length === 0 && <ZipError />}
