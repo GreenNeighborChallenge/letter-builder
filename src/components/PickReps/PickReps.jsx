@@ -114,7 +114,7 @@ const PickReps = ({ dispatch, reps, history, offices }) => {
                         Select Your Representatives
                     </Typography>
                     <Typography variant="body2" color="textSecondary" align="center" >
-                        To send an email, select recipients and add your contact information to the the letter. To Create a paper petition, you can skip to the bottom to generate a printable PDF.
+                        To send an email, select recipients and add your contact information to the the letter. To create a paper petition, you can skip to the bottom to generate a printable PDF.
                     </Typography>
                     {(reps.kind === "civicinfo#representativeInfoResponse" && (reps.offices.length > 0)) ?
                         <ToggleButtonGroup value={selections} className={repButtons} onChange={handleSelections} >
