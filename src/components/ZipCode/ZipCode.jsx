@@ -62,7 +62,6 @@ const ZipCode = ({ dispatch, store, history, location }) => {
         }
     }, [zip]);
 
-    console.log(zip)
     /* if a zip is provided in the URL. renders a filled, disabled zip code input
     otherwise renders a blank one w/on change functionality*/
     const zipField = (props) => {

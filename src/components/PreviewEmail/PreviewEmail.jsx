@@ -72,7 +72,9 @@ function PreviewLetter({ letter, address, history, emails, dispatch }) {
         dispatch({ type: 'DELETE_BODY' })
     }
 
-    const fullEmail = encodeURIComponent(letter.intro + '\n' +  '\n' + letter.body + letter.conclusion)
+    const fullEmail = encodeURIComponent(letter.intro + 
+        '\n' +  
+        '\n' + letter.body + letter.conclusion)
 
     return (
         <div className={root}>
