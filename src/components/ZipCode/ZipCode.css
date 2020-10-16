@@ -20,6 +20,10 @@
     font-family: 'Roboto', Helvetica, sans-serif;
   }
 
+  .zipField {
+      margin-top: 2em;
+  }
+
   /* .errorBox {
       margin-top: 1em;
   } */
