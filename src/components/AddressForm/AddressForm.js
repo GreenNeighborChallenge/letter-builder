@@ -65,13 +65,16 @@ const useStyles = makeStyles({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    subheader: {
+        margin: '-1em 0 1.5em 0'
     }
 });
 
 
 const AddressForm = ({ dispatch, history, states }) => {
     const { card, form, formControl, label, select, signup,
-        right, root, left, stepper, title, helpText
+        right, root, left, stepper, title, helpText, subheader
     } = useStyles();
     const { handleSubmit, register, control, reset } = useForm();
     const [helperText, setHelperText] = useState('');
@@ -112,7 +115,7 @@ const AddressForm = ({ dispatch, history, states }) => {
                         <Typography variant="h5" component="h2" gutterBottom align="center" className={title}>
                             Enter your Information
                         </Typography>
-                        <Typography variant="body2" color="textSecondary" align="center" >
+                        <Typography variant="body2" color="textSecondary" align="center" className={subheader}>
                             To send emails to your local representatives,
                             fill in your address and contact information
                             here and click next to make sure your

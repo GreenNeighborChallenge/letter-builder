@@ -104,11 +104,9 @@ function PreviewLetter({ letter, address, history, emails, dispatch }) {
                         </Typography>
                         <Typography gutterBottom className={bodyText}>
                             <br />
-                            {console.log(letter.body)}
                             {letter.body}
                         </Typography>
                         <Typography gutterBottom >
-                            <br />
                             {letter.conclusion}
                         </Typography>
                     </div>
