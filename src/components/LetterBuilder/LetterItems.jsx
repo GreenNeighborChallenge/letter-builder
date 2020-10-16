@@ -18,7 +18,8 @@ const LetterItems = ({ directBack, history, dispatch, zip, letter, policyLanguag
     const { resize, textField, body, policy, stepper, cardActions,
         title, subject, back, next, label, resizeSubject, policyHeader, policyLabel, error, about
     } = useStyles();
-    // const [emailBody, setEmailBody] = useState('')
+
+    const { handleSubmit, register } = useForm();
     const [helperText, setHelperText] = useState('');
     const [errorState, setErrorState] = useState(false);
     const [email, setEmail] = useState({
@@ -35,10 +36,6 @@ const LetterItems = ({ directBack, history, dispatch, zip, letter, policyLanguag
 
     }, []);
 
-    console.log(email);
-
-    const { handleSubmit, register } = useForm();
-
     const handleSubject = (event) => {
         setEmail({
             ...email,
@@ -53,7 +50,6 @@ const LetterItems = ({ directBack, history, dispatch, zip, letter, policyLanguag
         })
     }
 
-
     const handleConclusion = (event) => {
         setEmail({
             ...email, 
@@ -62,8 +58,6 @@ const LetterItems = ({ directBack, history, dispatch, zip, letter, policyLanguag
     }
 
     const onSubmit = (data) => {
-        console.log(email);
-        console.log(data);
         const newData = { ...data, ...email }
         newData.bodyIds = letter.bodyIds
         if (data.body === '') {
