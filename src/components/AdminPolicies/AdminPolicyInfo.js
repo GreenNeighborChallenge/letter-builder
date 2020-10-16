@@ -104,10 +104,10 @@ class AdminPolicyInfo extends Component {
                     </>
                     :
                     <>
-                        <td>{this.props.policy.name}</td>
-                        <td>{this.props.policy.short_info}</td>
-                        <td>{this.props.policy.long_info}</td>
-                        <td>{this.props.policy.petition_info}</td>
+                        <td className="policytableItem">{this.props.policy.name}</td>
+                        <td className="policytableItem">{this.props.policy.short_info}</td>
+                        <td className="policytableItem">{this.props.policy.long_info}</td>
+                        <td className="policytableItem">{this.props.policy.petition_info}</td>
                         <td><button onClick={this.handleEdit}>edit</button></td>
                     </>
                 }

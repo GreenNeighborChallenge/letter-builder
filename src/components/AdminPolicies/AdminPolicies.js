@@ -14,9 +14,9 @@ class AdminPolicies extends Component {
     long: ''
   };
 
-  componentDidMount(){
+  componentDidMount() {
     //goes to policy language saga
-    this.props.dispatch({ type: 'FETCH_POLICIES'})
+    this.props.dispatch({ type: 'FETCH_POLICIES' })
   }
 
   //will allow the inputs for a new policy to render
@@ -56,8 +56,22 @@ class AdminPolicies extends Component {
       addPolicy: false
     })
     console.log(this.state)
-    //goes to Admin Form saga
+    //goes to Admin Form sagas
     this.props.dispatch({ type: 'NEW_POLICY_LANGUAGE', payload: this.state })
+  }
+
+  handleFormFill = () => {
+    this.setState({
+      ...this.state,
+      name: 'Citizens Utility Board',
+      petition: `Energy policy affects us all, but consumers don't have enough of a voice when it comes to deciding policy and setting rates in our state. [STATE] should create a Citizens Utility Board that does that stuff. This is the petition text. Citizens Utility Boards are independent state-level organizations that advocate for fair energy policy from a consumer perspective.`,
+      short: 'Citizens Utility Boards are independent state-level organizations that advocate for fair energy policy from a consumer perspective.',
+      long: `Citizens Utility Boards Longer Text
+
+      Citizens Utility Boards are independent state-level organizations that advocate for fair energy policy from a consumer perspective.Citizens Utility Boards are independent state-level organizations that advocate for fair energy policy from a consumer perspective.Citizens Utility Boards are independent state-level organizations that advocate for fair energy policy from a consumer perspective.
+      
+      Citizens Utility Boards are independent state-level organizations that advocate for fair energy policy from a consumer perspective.`
+    })
   }
 
   render() {
@@ -67,14 +81,14 @@ class AdminPolicies extends Component {
         <button onClick={this.addPolicy} className="policyButton">Add New Policy</button>
         {this.state.addPolicy === true &&
           <div className="form">
-            <input placeholder="Policy Name" onChange={this.handleNameChange}></input>
-            <h5>Note: If you want to use a states name in the text, replace the states name with [STATE]. Example: [STATE] should adopt the Green Vehicle Policy...</h5>
+            <input placeholder="Policy Name" value={this.state.name} onChange={this.handleNameChange}></input>
+            <h5 onClick={this.handleFormFill}>Note: If you want to use a states name in the text, replace the states name with [STATE]. Example: [STATE] should adopt the Green Vehicle Policy...</h5>
             <br />
-            <textarea placeholder="Petition Info" onChange={this.handlePetitionChange}></textarea>
+            <textarea placeholder="Petition Info" value={this.state.petition} onChange={this.handlePetitionChange}></textarea>
             <br />
-            <textarea placeholder="Short Info" onChange={this.handleShortChange}></textarea>
+            <textarea placeholder="Short Info" value={this.state.short} onChange={this.handleShortChange}></textarea>
             <br />
-            <textarea placeholder="Long Info" onChange={this.handleLongChange}></textarea>
+            <textarea placeholder="Long Info" value={this.state.long} onChange={this.handleLongChange}></textarea>
             <br />
             <button onClick={this.handleSubmit} className="submitButton">Submit</button>
           </div>}
@@ -93,7 +107,7 @@ class AdminPolicies extends Component {
               {this.props.store.policyLanguage.map((policy) => {
                 return (
                   <tr key={policy.id}>
-                  <AdminPolicyInfo policy={policy}/>
+                    <AdminPolicyInfo policy={policy} />
                   </tr>
                 )
               })}
