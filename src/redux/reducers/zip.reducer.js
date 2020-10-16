@@ -1,8 +1,8 @@
 const zipReducer = (state = {}, action) => {
     switch (action.type) {
       case 'SET_ZIP_RESPONSE':
-        console.log('in zipReducer')
-        console.log(action.payload)
+        // console.log('in zipReducer')
+        // console.log(action.payload)
       //   //array to search
       //   console.log(action.payload.results[0].address_components)
 
@@ -16,7 +16,7 @@ const zipReducer = (state = {}, action) => {
         
       //if user changes state, updates the zip reducer
       case 'SET_STATE_RESPONSE':
-        console.log(action.payload)
+        // console.log(action.payload)
         return action.payload
       case 'UNSET_ZIP_RESPONSE':
         return {};
