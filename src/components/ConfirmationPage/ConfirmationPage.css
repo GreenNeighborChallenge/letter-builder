@@ -1,25 +1,8 @@
-.confirmation {
-    width: 50%;
-    height: 18em;
-    padding: 25px 20px 50px 20px;
-    text-align: center;
-    position: relative;
-    background: rgba(255,255,255, .85);
-    left: 25%
-}
 
 .confirmationBody {
     margin-bottom: 10em;
     height: auto;
     position: relative;
-}
-
-.confirmationBtnShare {
-    float: left;
-}
-
-.confirmationBtnHome {
-    float: right;
 }
 
 .confirmationBtnHome:hover {
