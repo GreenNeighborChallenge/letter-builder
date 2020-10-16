@@ -2,7 +2,7 @@ table, thead, tr, td, th {
     border: 1px solid black;
     border-collapse: collapse;
     font-size: small;
-    text-align: center;
+    text-align: left;
 }
 
 table {
@@ -50,7 +50,6 @@ textarea {
     width: 90%;
     height: 12vw;
     resize: none;
-    
 }
 
 .inputs {
@@ -69,3 +68,4 @@ input.inputs{
 textarea.inputs{
     background: rgb(247, 247, 246);
 }
+
