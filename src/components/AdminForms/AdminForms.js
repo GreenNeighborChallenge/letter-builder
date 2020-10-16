@@ -40,20 +40,24 @@ class AdminForms extends Component {
 
         return (
             <div className="fullAdminForm">
-                <h1>New State</h1>
+                <div className="adminFormCenter">
+                    <h1>New State</h1>
                 State:
                 <input className="inputs" onChange={this.handleStateChange}></input>
-                <br />
+                    <br />
                 State Abbreviation:
                 <input className="inputs" onChange={this.handleStateAbvChange} placeholder="i.e. AK"></input>
-                <br />
-                <button className="prettyBtn" onClick={this.handleSave}>SAVE</button>
-                {this.state.createdState &&
-                    <>
-                        <StateContactForm state_name={this.state.state_name} />
-                        <PolicyInfoForm state_name={this.state.state_name} />
-                    </>
-                }
+                    <br />
+                    <button className="prettyBtn" onClick={this.handleSave}>SAVE</button>
+                    {this.state.createdState &&
+                        <>
+                            <br />
+                            <StateContactForm state_name={this.state.state_name} />
+                            <br />
+                            <PolicyInfoForm state_name={this.state.state_name} />
+                        </>
+                    }
+                </div>
             </div>
         );
     }

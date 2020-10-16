@@ -6,6 +6,8 @@ import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/button'
 import TextField from '@material-ui/core/TextField';
 
+import './AdminState.css'
+
 function AdminSseo({ handleSave, dispatch, sseoInfo, stateInfo }) {
 
     const { handleSubmit, register, reset } = useForm();
@@ -23,16 +25,19 @@ function AdminSseo({ handleSave, dispatch, sseoInfo, stateInfo }) {
         handleSave();
     }
 
-    return(
-        <FormControl>
-            <form onSubmit={handleSubmit(onSubmit)} noValidate autoComplete="off">
-                <p>Office Name:</p>
-                <TextField inputRef={register} label="SSEO_name" variant="outlined" size="small" name="office" />
-                <p>Office Email:</p>
-                <TextField inputRef={register} label="SSEO_email" variant="outlined" size="small" name="email" />
-            <Button type="submit">Save</Button>
-            </form>
-        </FormControl>
+    return (
+        <div className="newSseo">
+            <FormControl>
+                <form onSubmit={handleSubmit(onSubmit)} noValidate autoComplete="off">
+                    Office Name: <TextField inputRef={register} className="sseoList" label="SSEO_name" variant="outlined" size="small" name="office" />
+                    <br />
+                    <br />
+                    Office Email: <TextField inputRef={register} className="sseoList" label="SSEO_email" variant="outlined" size="small" name="email" />
+                    <br />
+                    <Button type="submit" className="prettyBtn">Save</Button>
+                </form>
+            </FormControl>
+        </div>
     )
 }
 

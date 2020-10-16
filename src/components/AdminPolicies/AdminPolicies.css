@@ -24,6 +24,19 @@ table {
     margin-bottom: 15px;
 }
 
+.prettyBtn {
+    padding: 10px;
+    background: rgba(204, 204, 204, 0);
+    font-size: 15px;
+    border: none;
+    border-radius: 3px;
+    float: right;
+}
+
+.prettyBtn:hover {
+   background: rgba(204, 204, 204, 0.5);
+}
+
 h1{
     text-align: center;
 }
@@ -35,7 +48,24 @@ button {
 textarea {
     padding: 5px;
     width: 90%;
-    height: 20vw;
+    height: 12vw;
     resize: none;
     
+}
+
+.inputs {
+    align-self: right;
+    background: rgba(204, 204, 204, 0);
+    border-radius: 3px;
+    border: 1.5px solid #babbb7;
+    padding: 5px;
+    margin-top: 20px;
+}
+
+input.inputs{
+    background: rgb(247, 247, 246);
+}
+
+textarea.inputs{
+    background: rgb(247, 247, 246);
 }

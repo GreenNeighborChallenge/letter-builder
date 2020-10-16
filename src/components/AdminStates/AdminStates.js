@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import Button from '@material-ui/core/button'
 //delete alert
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
@@ -98,7 +99,8 @@ class AdminStates extends Component {
                             resetDropdown={this.resetDropdown}
                         />
                         <AdminSseo stateInfo={this.props.store.stateInfo[0]} />
-                        <button className="prettyBtn" onClick={() => this.deleteConfirm(this.state.selectedState)}>Delete State</button>
+                        <Button className="prettyBtn" variant="outlined" onClick={() => this.deleteConfirm(this.state.selectedState)}>Delete State</Button>
+                        <br />
                     </>}
                 </div>
         );

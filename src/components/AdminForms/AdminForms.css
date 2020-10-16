@@ -10,7 +10,49 @@
      background: rgba(204, 204, 204, 0);
      border-radius: 3px;
      border: 1.5px solid #babbb7;
-     padding: 5px
+     padding: 5px;
+ }
+
+
+ .adminFormCenter{
+     align-content: center;
+     position: center;
+     align-self: center;
+     text-align: left;
+ }
+
+ .sseoInputs{
+     display: flex;
+     align-self: right;
+     background: rgba(204, 204, 204, 0);
+     height: 45px;
+     padding: 5px;
+ }
+
+ .sseoTitle{
+     margin-left: 10px
+ }
+
+ .policyInfo{
+     margin: 20px
+ }
+
+ .inputsFields{
+     text-align: left;
+ }
+
+ .sseoButton {
+    padding: 10px;
+    background: rgba(204, 204, 204, 0);
+    font-size: 15px;
+    border: none;
+    border-radius: 3px;
+    color: blue
+ }
+
+ .sseoButton:hover{
+    background: rgba(204, 204, 204, 0.5);
+    cursor: default;
  }
 
  .prettyBtn {
@@ -19,6 +61,7 @@
      font-size: 15px;
      border: none;
      border-radius: 3px;
+     float: right;
  }
 
  .prettyBtn:hover {
@@ -35,4 +78,6 @@
     margin-left: auto;
     margin-right: auto;
     padding: 10px;
+    display: flex;
+    justify-content: center;
  }

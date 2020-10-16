@@ -8,6 +8,7 @@
 
 .stateBody {
     width: 80%;
+    height: 80%;
     text-align: center;
     position: relative;
     border: 2px solid black;
@@ -20,19 +21,39 @@
 
 .sseoList {
     display: inline-block;
-    background: rgba(204, 204, 204, 0.7);
-    border: 2px solid white;
-    border-radius: 5px;
-    margin: 5px;
-    padding: 5px;
+    margin-right: 25px;
+    padding: 15px;
 }
 
+.sseoItem{
+    margin: 10px;
+}
 
 .sseoTextField {
     float: left;
     margin-top: 50px;
+    margin-right: 10px
 }
 
 .stateSSEOitem {
     border-top: 2px solid black;
 }
+
+.newSseo {
+    display: inline;
+}
+
+.editSaveBtn{
+    float: right;
+}
+
+.addSseoBtn {
+    color: blue;
+    cursor: default;
+    
+    margin-bottom: 5px;
+}
+
+.addSseoBtn:hover {
+    background: rgba(204, 204, 204, 0.5);
+ }
