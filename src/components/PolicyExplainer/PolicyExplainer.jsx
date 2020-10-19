@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -34,6 +34,10 @@ const theme = createMuiTheme({
 function PolicyExplainer(props) {
   const [open, setOpen] = React.useState(false);
 
+  useEffect(() => {
+    props.dispatch({ type: 'FETCH_RECS', payload: {stateName: props.stateName, policyId: props.policyId}  })
+  }, []);
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -44,8 +48,11 @@ function PolicyExplainer(props) {
 
   return (
     <div style={{ display: 'inline' }}>
+      {props.store.recs.policy_data === "null" &&
+          <p>hello world</p>}
       <MuiThemeProvider theme={theme}>
         <Tooltip title={props.toolTitle}>
+        
           <Button color="primary" onClick={handleClickOpen} style={{ color: 'black' }} id={props.id}>
             {props.policy_name}
             <HelpOutlineIcon />

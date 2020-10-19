@@ -13,6 +13,7 @@ import stateInfo from './state.info.reducer';
 import sseoInfo from './sseo.reducer';
 import adminState from './adminState.reducer';
 import emails from  './emailAddy.reducer'
+import recs from './recs.reducer'
 
 
 // rootReducer is the primary reducer for our entire project
@@ -34,7 +35,8 @@ const rootReducer = combineReducers({
   stateInfo,
   sseoInfo,
   adminState,
-  emails
+  emails,
+  recs
 });
 
 export default rootReducer;

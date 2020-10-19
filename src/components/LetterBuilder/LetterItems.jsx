@@ -87,7 +87,7 @@ const LetterItems = ({ directBack, history, dispatch, zip, letter, policyLanguag
                             {policyLanguage.map((policy, i) => {
                                 return (
                                     <div key={i}>
-                                        <PolicyExplainer policy_name={policy.name} title={policy.name} text={policy.long_info} toolTitle={policy.short_info} />
+                                        <PolicyExplainer policy_name={policy.name} title={policy.name} text={policy.long_info} toolTitle={policy.short_info} stateName={zip.long_name} policyId={policy.id}/>
                                         <AddPolicy policy={policy} zip={zip} />
                                     </div>
                                 )
