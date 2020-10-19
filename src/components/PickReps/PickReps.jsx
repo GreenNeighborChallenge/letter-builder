@@ -70,8 +70,10 @@ const useStyles = makeStyles({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        fontSize: 18,
-        marginTop: '-1em'
+        fontSize: 12,
+        color: '#F44336',
+        fontFamily: 'Roboto, Helvetica, sans-serif',
+        marginTop: '-2em'
     },
     subheader: {
         width: '46em',
@@ -83,6 +85,11 @@ const useStyles = makeStyles({
     repSection: {
         margin: '1em 0 -.6em 0',
         minHeight: '21em'
+    },
+    errorMsg: {
+        fontSize: '12px',
+        color: '#F44336',
+        fontFamily: 'Roboto, Helvetica, sans-serif',
     }
 });
 

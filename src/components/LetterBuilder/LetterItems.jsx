@@ -24,7 +24,7 @@ const LetterItems = ({ directBack, history, dispatch, zip, letter, policyLanguag
     const [errorState, setErrorState] = useState(false);
     const [email, setEmail] = useState({
         subject: `Energy Policy in ${zip.long_name}.`,
-        intro: `To whom it may concern, 
+        intro: `To whom it may concern,
         As a resident of ${zip.long_name}, I think our state could be doing more to make our air cleaner and healthier, mitigate climate change, and increase citizen control over our energy system. Energy use impacts all of us, but as consumers we don't have a lot of power to make the changes that are urgently needed. I am writing to recommend policy changes that are important to me and to our state.`,
         conclusion: `Thank you for taking the time to read my letter. Energy policy is important to ${zip.long_name} residents, and we need to act quickly to ensure a safe, healthy, democratic future. I look forward to hearing back from you, and learning how you plan to act on these recommendations.`
     });
@@ -97,7 +97,7 @@ const LetterItems = ({ directBack, history, dispatch, zip, letter, policyLanguag
                     <Grid item xs={6} >
                         <Typography className={label}>Subject: </Typography>
                         <TextField size="small" defaultValue={email.subject} onChange={handleSubject} className={subject} InputProps={{ classes: { input: resizeSubject }, disableUnderline: true }} />
-                        <TextField variant="outlined" InputProps={{ classes: { input: resize } }}
+                        <TextField variant="outlined" InputProps={{ classes: { input: resize} }}
                             multiline size="small" className={textField} defaultValue={email.intro} onChange={handleIntro} />
                         <TextField variant="outlined" InputProps={{ classes: { input: resize } }} size="small" error={errorState}
                             value={letter.body} multiline className={body} inputRef={register} name="body" />
