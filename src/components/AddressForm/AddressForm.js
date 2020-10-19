@@ -21,7 +21,7 @@ const useStyles = makeStyles({
     card: {
         textAlign: 'center',
         width: '48em',
-        minHeight: '40em',
+        minHeight: '35em',
         maxHeight: '42em',
         padding: '1em',
         backgroundColor: 'rgb(255,255,255, .85)',
@@ -41,9 +41,11 @@ const useStyles = makeStyles({
     },
     right: {
         float: 'right',
+        color: 'black'
     },
     left: {
         float: 'left',
+        color: 'black'
     },
     signup: {
         marginTop: '1em'
@@ -55,11 +57,13 @@ const useStyles = makeStyles({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        marginBottom: '-1em'
     },
     title: {
         fontSize: 48,
         fontFamily: 'leafy',
-        color: 'black'
+        color: 'black',
+        marginBottom: '-.1em'
     },
     helpText: {
         display: 'flex',
@@ -67,13 +71,20 @@ const useStyles = makeStyles({
         justifyContent: 'center',
     },
     subheader: {
-        margin: '-1em 0 1.5em 0'
+        margin: 'auto',
+        width: '46em'
+    },
+    black: {
+        color: 'black'
+    },
+    cardActions: {
+        width: '48em'
     }
 });
 
 
 const AddressForm = ({ dispatch, history, states }) => {
-    const { card, form, formControl, label, select, signup,
+    const { card, form, formControl, label, select, signup, black, cardActions,
         right, root, left, stepper, title, helpText, subheader
     } = useStyles();
     const { handleSubmit, register, control, reset } = useForm();
@@ -152,16 +163,13 @@ const AddressForm = ({ dispatch, history, states }) => {
                                     <Checkbox size="small" inputProps={{ 'aria-label': 'email signup check box' }} />
                             </CustomButton>
                         </section>
-                        <section className={stepper}>
-                            <Stepper step={1} />
+                        <section className={cardActions}>
+                            <div className={stepper}>
+                                <Stepper step={1} />
+                            </div>
+                            <IconButton onClick={directBack} className={left} ><ArrowBackIcon /></IconButton>
+                            <IconButton type="submit" className={right} ><ArrowForwardIcon /></IconButton>
                         </section>
-                        <div className={left}>
-                            <IconButton onClick={directBack} style={{ color: 'black' }} ><ArrowBackIcon /></IconButton>
-                        </div>
-                        <div className={right}>
-                            <IconButton type="submit" style={{ color: 'black' }} ><ArrowForwardIcon /></IconButton>
-                        </div>
-
                     </form>
                 </FormControl>
             </Card>

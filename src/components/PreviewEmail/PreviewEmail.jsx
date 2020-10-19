@@ -22,15 +22,17 @@ const useStyles = makeStyles({
         background: 'rgb(255,255,255, .85)',
         padding: '1em',
     },
-    emailHeader: {
+    email: {
         minWidth: '30em',
         border: '1px solid black',
         padding: '1em',
         margin: '1em',
+        borderRadius: '.3em',
     },
     emailBodyStyle: {
         minHeight: '10em',
         border: '1px solid black',
+        borderRadius: '.3em',
         padding: '1em',
         background: 'rgb(255,255,255, .4)',
     },
@@ -53,15 +55,24 @@ const useStyles = makeStyles({
     title: {
         fontSize: 48,
         fontFamily: 'leafy',
-        color: 'black'
+        color: 'black',
+        margin: "0 0 -.1em .25em"
     },
-    bodyText:{
-        whiteSpace: 'pre-line'
+    bodyText: {
+        whiteSpace: 'pre-line',
+    },
+    subHeader: {
+        width: '50em',
+        margin: 'auto',
+        paddingBottom: '.5em'
+    },
+    black: {
+        color: 'black'
     }
 });
 
 function PreviewLetter({ letter, address, history, emails, dispatch }) {
-    const { root, card, emailHeader, emailBodyStyle, right, stepper, title, bodyText } = useStyles();
+    const { root, card, email, emailBodyStyle, right, stepper, title, bodyText, subHeader, black } = useStyles();
 
     const directToConfirmation = () => {
         history.push('/confirmation')
@@ -72,8 +83,12 @@ function PreviewLetter({ letter, address, history, emails, dispatch }) {
         dispatch({ type: 'DELETE_BODY' })
     }
 
-    const fullEmail = encodeURIComponent(letter.intro + 
-        '\n' +  
+    const directToPdf = () => {
+        history.push('/pdf')
+    }
+
+    const fullEmail = encodeURIComponent(letter.intro +
+        '\n' +
         '\n' + letter.body + letter.conclusion)
 
     return (
@@ -82,11 +97,13 @@ function PreviewLetter({ letter, address, history, emails, dispatch }) {
                 <Typography variant="h5" component="h2" gutterBottom align="center" className={title}>
                     Preview your Email
                     </Typography>
-                <Typography gutterBottom >
-                    Preview your letter below to make sure everything looks right. When you are happy with your letter, either hit “send” to email it
-                    to your selected local officials, or “print” to create a printable PDF with a form for signatures.
+              
+                    <Typography variant="body2" gutterBottom align="center" color="textSecondary" className={subHeader}>
+                        Preview your letter below to make sure everything looks right. When you are happy with your letter, either hit “send” to email it
+                        to your selected local officials, or “print” to create a printable PDF with a form for signatures.
                 </Typography>
-                <CardContent className={emailHeader}>
+           
+                <CardContent className={email}>
                     <Typography gutterBottom align="left">
                         Sender: {address.email}
                         <br />
@@ -115,11 +132,11 @@ function PreviewLetter({ letter, address, history, emails, dispatch }) {
                     <Stepper step={3} />
                 </div>
                 <section >
-                    <IconButton onClick={directToReps} style={{ color: 'black' }}><ArrowBackIcon /></IconButton>
+                    <IconButton onClick={directToReps} className={black}><ArrowBackIcon /></IconButton>
                     <div className={right}>
-                        <Button >Print PDF <PictureAsPdfIcon /></Button>
+                        <Button onClick={directToPdf}>Create pdf<PictureAsPdfIcon /></Button>
                         <IconButton
-                            style={{ color: 'black' }}
+                            className={black}
                             href={`mailto:${emails}?subject=${letter.subject}&body=${fullEmail}`} target="_blank" onClick={directToConfirmation}
                         ><ArrowForwardIcon /></IconButton>
                     </div>
