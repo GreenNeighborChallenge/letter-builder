@@ -15,9 +15,6 @@ table {
     margin-bottom: 5px;
 }
 
-.submitButton {
-    margin-bottom: 5px;
-}
 
 .policyButton {
     margin-left: 1350px;
@@ -52,14 +49,7 @@ textarea {
     resize: none;
 }
 
-.inputs {
-    align-self: right;
-    background: rgba(204, 204, 204, 0);
-    border-radius: 3px;
-    border: 1.5px solid #babbb7;
-    padding: 5px;
-    margin-top: 20px;
-}
+
 
 input.inputs{
     background: rgb(247, 247, 246);

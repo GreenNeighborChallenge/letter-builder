@@ -1,10 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Button from '@material-ui/core/button'
+import { Button, TextField, Typography } from '@material-ui/core'
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import AdminPolicyInfo from './AdminPolicyInfo.js'
-
+import { withStyles } from '@material-ui/core/styles';
 import './AdminPolicies.css'
+
+const styles = theme => ({
+  resize: {
+      fontSize: 14,
+      minHeight: '9em',
+  },
+  input: {
+      margin: '1em'
+  },
+  textField: {
+    alignSelf: 'right',
+    background: 'rgba(204, 204, 204, 0)',
+    padding: '5px',
+    marginTop: '20px',
+    width: '90%'
+  },
+  submitBtn: {
+    margin: '1em'
+  }
+})
 
 class AdminPolicies extends Component {
   state = {
@@ -72,25 +92,26 @@ class AdminPolicies extends Component {
   }
 
   render() {
+    const { classes } = this.props;
     return (
       <div>
-        <h1>Policy Language</h1>
-        <Button onClick={this.addPolicy} className="prettyBtn" variant="outlined">Add New Policy</Button>
+        <Typography variant="h4" align="center">Policy Language</Typography>
+        <Button onClick={this.addPolicy} variant="outlined" style={{float: 'right'}}>Add New Policy</Button>
         <br />
         <br />
         {this.state.addPolicy === true &&
           <div className="form">
-            <input placeholder="Policy Name" value={this.state.name} onChange={this.handleNameChange} className="inputs"></input>
-            <h5 onClick={this.handleFormFill}>Note: If you want to use a states name in the text, replace the states name with [STATE].</h5>
-            <h5>Example: [STATE] should adopt the Green Vehicle Policy...</h5>
+            <TextField variant="outlined" size="small"  placeholder="Policy Name" value={this.state.name} onChange={this.handleNameChange} className={classes.input}/>
+            <Typography onClick={this.handleFormFill}>Note: If you want to use a states name in the text, replace the states name with [STATE].</Typography>
+            <Typography>Example: [STATE] should adopt the Green Vehicle Policy...</Typography>
+         
+            <TextField variant="outlined" placeholder="Petition Info" value={this.state.petition} onChange={this.handlePetitionChange} InputProps={{ classes: { input: classes.resize} }} className={classes.textField} multiline/>
+      
+            <TextField variant="outlined"  placeholder="Short Info" value={this.state.short} onChange={this.handleShortChange} InputProps={{ classes: { input: classes.resize} }} className={classes.textField} multiline/>
+        
+            <TextField variant="outlined" placeholder="Long Info" value={this.state.long} onChange={this.handleLongChange} InputProps={{ classes: { input: classes.resize} }} className={classes.textField} multiline/>
             <br />
-            <textarea placeholder="Petition Info" value={this.state.petition} onChange={this.handlePetitionChange} className="inputs"></textarea>
-            <br />
-            <textarea placeholder="Short Info" value={this.state.short} onChange={this.handleShortChange} className="inputs"></textarea>
-            <br />
-            <textarea placeholder="Long Info" value={this.state.long} onChange={this.handleLongChange} className="inputs"></textarea>
-            <br />
-            <Button onClick={this.handleSubmit} className="submitButton" variant="outlined">Submit</Button>
+            <Button onClick={this.handleSubmit} className={classes.submitBtn} variant="outlined">Submit</Button>
           </div>}
         <div>
           <table>
@@ -119,4 +140,6 @@ class AdminPolicies extends Component {
   }
 }
 
-export default connect(mapStoreToProps)(AdminPolicies);
+const styledAdminPolicies = withStyles(styles)(AdminPolicies)
+
+export default connect(mapStoreToProps)(styledAdminPolicies);

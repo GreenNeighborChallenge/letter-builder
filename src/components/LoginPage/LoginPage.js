@@ -6,8 +6,8 @@ import LoginForm from '../LoginForm/LoginForm';
 class LoginPage extends Component {
   render() {
     return (
-      <div>
-        <LoginForm />
+      <div >
+        <LoginForm  />
 
         <center>
           {/* <button
