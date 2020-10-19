@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import {
-    Card, CardActions, Typography, CardContent,
+    Card, Typography, 
     IconButton, makeStyles, FormHelperText
 } from '@material-ui/core';
 import { RepButton } from './RepButtons'
@@ -23,13 +23,12 @@ const useStyles = makeStyles({
         alignItems: 'center',
         flexDirection: 'column',
         padding: '1em',
+        minHeight: '35em',
+        maxHeight: '42em',
     },
     cardContent: {
         minHeight: '24em',
         marginBottom: '-1em'
-    },
-    left: {
-        float: 'left'
     },
     repButtons: {
         display: 'flex',
@@ -42,19 +41,27 @@ const useStyles = makeStyles({
         visibility: 'hidden',
     },
     right: {
-        float: 'right'
+        float: 'right',
+        color: 'black'
+    },
+    left: {
+        float: 'left',
+        color: 'black'
     },
     cardActions: {
-        all: 'unset',
         width: '48em'
     },
     stepper: {
-        paddingTop: '-3em'
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: '-1.05em'
     },
     title: {
         fontSize: 48,
         fontFamily: 'leafy',
-        color: 'black'
+        color: 'black',
+        marginBottom: '-.1em'
     },
     addMarginTop: {
         marginTop: '1em'
@@ -63,19 +70,33 @@ const useStyles = makeStyles({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        fontSize: 18,
-        margin: '-1em 0 0 0'
+        fontSize: 12,
+        color: '#F44336',
+        fontFamily: 'Roboto, Helvetica, sans-serif',
+        marginTop: '-2em'
     },
     subheader: {
-        marginTop: '-1em'
+        width: '46em',
+        margin: 'auto'
+    },
+    noReps: {
+        height: '10em'
+    },
+    repSection: {
+        margin: '1em 0 -.6em 0',
+        minHeight: '21em'
+    },
+    errorMsg: {
+        fontSize: '12px',
+        color: '#F44336',
+        fontFamily: 'Roboto, Helvetica, sans-serif',
     }
-
 });
 
 
 const PickReps = ({ dispatch, reps, history, offices }) => {
-    const { root, card, cardContent, left, repButtons, right,
-        cardActions, stepper, title, addMarginTop, helpText, subheader
+    const { root, card, cardContent, left, repButtons, right, noReps,
+        cardActions, stepper, title, addMarginTop, helpText, subheader, repSection
     } = useStyles();
 
     const [selections, setSelections] = useState(() => []);
@@ -96,7 +117,7 @@ const PickReps = ({ dispatch, reps, history, offices }) => {
     const directToPreview = () => {
         if ((selections.length === 0)) {
             setErrorState(true);
-            setHelperText('You must pick an email recipient to preview Your letter');
+            setHelperText('You must pick an email recipient to preview your letter');
         } else {
             setErrorState(false);
             dispatch({ type: 'PUT_EMAIL', payload: selections })
@@ -107,51 +128,54 @@ const PickReps = ({ dispatch, reps, history, offices }) => {
     return (
         <div className={root}>
             <Card className={card} >
-                <CardContent className={cardContent} >
+                <div className={cardContent} >
                     <Typography variant="h5" component="h2" gutterBottom align="center" className={title}>
                         Select Your Representatives
                     </Typography>
                     <Typography variant="body2" color="textSecondary" align="center" className={subheader}>
                         To send an email, select recipients and add your contact information to the the letter. To create a paper petition, you can skip to the bottom to generate a printable PDF.
                     </Typography>
-                    {(reps.kind === "civicinfo#representativeInfoResponse" && (reps.offices.length > 0)) ?
-                        <ToggleButtonGroup value={selections} className={repButtons} onChange={handleSelections} >
-                            
-                                    {reps.officials &&
-                                        <RepButton value={offices.gov_email}  className={addMarginTop}> {reps.offices[0].name} <br /> {reps.officials[0].name} <br /> {offices.gov_email} </RepButton>}
+                    <div className={repSection}>
+                        {(reps.kind === "civicinfo#representativeInfoResponse" && (reps.offices.length > 0)) ?
+                            <ToggleButtonGroup value={selections} className={repButtons} onChange={handleSelections} >
 
-                                    {(reps.officials.length > 1) &&
-                                        <RepButton value={reps.officials[1].emails[0]} className={addMarginTop} > {reps.offices[1].name} <br /> {reps.officials[1].name} <br />{reps.officials[1].emails[0]} </RepButton>
-                                    }
-                                    {(reps.officials.length > 2) &&
-                                        <RepButton value={reps.officials[2].emails[0]} className={addMarginTop}> {reps.offices[2].name} <br /> {reps.officials[2].name} <br /> {reps.officials[2].emails[0]} </RepButton>
-                                      
-                                    }
-                                    {offices.doc &&
-                                        <RepButton value={offices.doc} className={addMarginTop}> Department of Commerce  <br /> {offices.doc}  </RepButton>
-                                    }
-                                    {offices.SSEO_email &&
-                                        <RepButton value={offices.SSEO_email} className={addMarginTop}> {offices.SSEO_name}  {offices.SSEO_email} </RepButton>}
+                                {reps.officials &&
+                                    <RepButton value={offices.gov_email} className={addMarginTop}> {reps.offices[0].name} <br /> {reps.officials[0].name} <br /> {offices.gov_email} </RepButton>}
 
-                                    {offices.puc &&
-                                        <RepButton value={offices.puc} className={addMarginTop}> Public Utilities Commission  {offices.puc} </RepButton>}
-                               
-                        </ToggleButtonGroup>
-                        :
-                        <>
-                        </>
-                    }
-                    <FormHelperText error={errorState} className={helpText}> {helperText} </FormHelperText>
-                </CardContent>
-                <Stepper step={2} className={stepper} />
-                <CardActions className={cardActions}>
-                    <div className={right}>
-                        <IconButton onClick={directToPreview} style={{ display: 'inline', float: 'right', color: 'black' }}><ArrowForwardIcon /></IconButton>
+                                {(reps.officials.length > 1) &&
+                                    <RepButton value={reps.officials[1].emails[0]} className={addMarginTop} > {reps.offices[1].name} <br /> {reps.officials[1].name} <br />{reps.officials[1].emails[0]} </RepButton>
+                                }
+                                {(reps.officials.length > 2) &&
+                                    <RepButton value={reps.officials[2].emails[0]} className={addMarginTop}> {reps.offices[2].name} <br /> {reps.officials[2].name} <br /> {reps.officials[2].emails[0]} </RepButton>
+
+                                }
+                                {offices.doc &&
+                                    <RepButton value={offices.doc} className={addMarginTop}> Department of Commerce  <br /> {offices.doc}  </RepButton>
+                                }
+                                {offices.SSEO_email &&
+                                    <RepButton value={offices.SSEO_email} className={addMarginTop}> {offices.SSEO_name}  {offices.SSEO_email} </RepButton>}
+
+                                {offices.puc &&
+                                    <RepButton value={offices.puc} className={addMarginTop}> Public Utilities Commission  {offices.puc} </RepButton>}
+
+                            </ToggleButtonGroup>
+                            :
+                            <div className={noReps}>
+                            </div>
+                        }
+                        <FormHelperText error={errorState} className={helpText}> {helperText} </FormHelperText>
                     </div>
-                    <div className={left}>
-                        <IconButton onClick={directToAddressForm} style={{ display: 'inline', float: 'left', color: 'black' }}><ArrowBackIcon /></IconButton>
+                </div>
+                <section className={cardActions}>
+                    <div className={stepper} > 
+                    <Stepper step={2} />
                     </div>
-                </CardActions>
+               
+                    <IconButton onClick={directToPreview} className={right}><ArrowForwardIcon /></IconButton>
+
+
+                    <IconButton onClick={directToAddressForm} className={left}><ArrowBackIcon /></IconButton>
+                </section>
             </Card>
         </div>
     );

@@ -11,9 +11,9 @@ const useStyles = makeStyles({
     },
     textField: {
         width: 450,
-        height: '12em',
+        height: '10.5em',
         overflowX: 'auto',
-        margin: '.5em 1em 0 -1em'
+        margin: '.5em 1em 1.5em -1em'
     },
     body: {
         width: 450,
