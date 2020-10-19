@@ -59,7 +59,7 @@ export default function MouseOverPopover() {
         disableRestoreFocus
       >
         <Typography>
-            You'll choose from different pre-written, editable policy recommendations to help move your state toward 100% green energy, reduce overall emissions, and increase citizen control and empowerment.
+            You'll choose from different pre-written, addable policy recommendations to help move your state toward 100% green energy, reduce overall emissions, and increase citizen control and empowerment.
             <br />
             <br />
             At the end, you'll have the option to fill in your contact information and email the letter to your selected representatives, or create a printable PDF with a petition page to collect signatures from your community.

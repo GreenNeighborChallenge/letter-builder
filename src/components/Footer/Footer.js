@@ -8,8 +8,7 @@ import { Link } from 'react-router-dom';
 // It doesn't dispatch any redux actions or display any part of redux state
 // or even care what the redux state is, so it doesn't need 'connect()'
 
-const Footer = () => <footer>&copy; Prime Digital Academy ||
-
+const Footer = () => <footer>
 <Link className='footerLink' to='/login'>
           Admin Log In
         </Link>
