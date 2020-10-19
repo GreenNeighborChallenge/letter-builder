@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { connect } from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
 //for the forms
 import { useForm } from "react-hook-form";
 import FormControl from '@material-ui/core/FormControl';
@@ -13,8 +14,19 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 //bring in other components
 import NewSseo from './NewSseo'
 
+const useStyles = makeStyles({
+    sseoItem: {
+        margin: '5px'
+    }
+})
 
 function AdminSseo({ dispatch, store, stateInfo }) {
+    
+    const classes = useStyles();
+
+    useEffect(() => {
+
+    }, [store.sseoInfo])
 
     const { handleSubmit, register } = useForm();
 
@@ -31,7 +43,7 @@ function AdminSseo({ dispatch, store, stateInfo }) {
         dispatch({ type: 'UPDATE_SSEO', payload: newData })
         // //clear the inputs
         // reset()
-        setEdit(!isEdit)
+        setEdit(false)
     }
 
     const handleEdit = (id) => {
@@ -44,7 +56,7 @@ function AdminSseo({ dispatch, store, stateInfo }) {
     }
 
     const handleSave = () => {
-        setSseo(!isNewSseo)
+        setSseo(false)
     }
 
     //brings up a message before deleting
@@ -77,13 +89,13 @@ function AdminSseo({ dispatch, store, stateInfo }) {
     return (
         <section className="stateBody">
             <Typography variant="h5"> State Offices </Typography>
-            <Button onClick={handleAdd}>Add a new SSEO</Button>
+            
             {(isEdit === false && store.sseoInfo[0]) &&
                 <div>
                     {store.sseoInfo.map((sseo) => {
                         return (
                             <div className="sseoList">
-                                <Button onClick={() => handleEdit(sseo.id)}>Edit</Button>
+                                <Button variant="outlined" onClick={() => handleEdit(sseo.id)}>Edit</Button>
                                 <Typography variant="body1">Office Name: {sseo.SSEO_name}</Typography>
                                 <Typography variant="body1">Office Email: {sseo.SSEO_email}</Typography>
                             </div>
@@ -98,20 +110,23 @@ function AdminSseo({ dispatch, store, stateInfo }) {
                         {store.sseoInfo.map((sseo) => {
                             return (
                                 <div className="sseoList">
-                                    <TextField className="sseoList" inputRef={register} label={sseo.SSEO_name} variant="outlined" size="small" name="office" defaultValue={sseo.SSEO_name} />
-                                    <TextField className="sseoList" inputRef={register} label={sseo.SSEO_email} variant="outlined" size="small" name="email" defaultValue={sseo.SSEO_email} />
-                                    <Button type="submit">Save</Button>
-                                    <Button onClick={() => deleteConfirm(sseo.id)}>Delete</Button>
+                                    <TextField className={classes.sseoItem} inputRef={register} label={sseo.SSEO_name} variant="outlined" size="small" name="office" defaultValue={sseo.SSEO_name} />
+                                    <TextField className={classes.sseoItem} inputRef={register} label={sseo.SSEO_email} variant="outlined" size="small" name="email" defaultValue={sseo.SSEO_email} />
+                                    <Button variant="outlined" type="submit" className={classes.sseoItem}>Save</Button>
+                                    <Button variant="outlined" className={classes.sseoItem} onClick={() => deleteConfirm(sseo.id)}>Delete</Button>
                                 </div>
                             )
                         })}
                     </form>
                 </FormControl>
             }
+            <br />
             {
                 isNewSseo &&
                 <NewSseo handleSave={handleSave} sseoInfo={store.sseoInfo} stateInfo={stateInfo} />
             }
+            <br />
+            <a onClick={handleAdd} className="addSseoBtn">Add a new SSEO</a>
         </section >
     );
 }

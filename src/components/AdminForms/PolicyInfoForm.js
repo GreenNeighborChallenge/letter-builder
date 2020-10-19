@@ -32,21 +32,21 @@ function PolicyInfoForm({ dispatch, store }) {
     return (
         <div>
             <h1>State Policy Info</h1>
+            <div className="inputFields">
             <FormControl>
                 <form onSubmit={handleSubmit(onSubmit)} noValidate autoComplete="off">
                     {store.policyLanguage.map((policy) => {
                         return (
-                            <>
-                                <p>{policy.name}:</p>
-                                <TextField inputRef={register} label={policy.name} variant="outlined" size="small" name={policy.id} placeholder={policy.name} />
+                            <div className="policyInfo">
+                                {policy.name}: <TextField inputRef={register}  variant="outlined" size="small" name={policy.id}  />
                                 <br />
-                            </>
+                            </div>
                         )
                     })}
-                    <Button type="submit">save</Button>
+                    <Button type="submit" className="prettyBtn" variant="outlined">save</Button>
                 </form>
             </FormControl>
-
+            </div>
         </div>
     );
 }

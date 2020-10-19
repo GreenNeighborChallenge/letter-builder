@@ -17,7 +17,7 @@ function SimpleDialog(props) {
     <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
       <DialogTitle id="simple-dialog-title">How did we grade your state?</DialogTitle>
       <div style={{padding: 10}}>
-     <Typography variant='body1'>We use data from <a href='http://www.solarpowerrocks.com' target="_blank" rel="noopener noreferrer">solarpowerrocks.com </a> to calculate these grades.</Typography>
+     <Typography variant='body1'>We are currently using grades from the scorecard created by <a href='http://www.solarpowerrocks.com' target="_blank" rel="noopener noreferrer">solarpowerrocks.com </a>, which rates states on their Renwable Portfolio Standards, solar carve-outs, net metering policies, interconnection, community solar programs, and solar tax incentives. Future versions of this tool will be updated to reflect scores for climate action plans, PACE, vehicle standards, CCAs, and green pricing mandates. </Typography>
      </div>
     </Dialog>
   );

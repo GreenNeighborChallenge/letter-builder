@@ -14,6 +14,7 @@ function AdminStateInfo({ dispatch, store, stateInfo }) {
     const { handleSubmit, register, reset } = useForm();
 
     const [isEdit, setEdit] = React.useState(false);
+    const [fillPuc, setPuc] = React.useState('');
 
     const onSubmit = (data) => {
         //add the state id to data to send over to the server
@@ -30,7 +31,10 @@ function AdminStateInfo({ dispatch, store, stateInfo }) {
         setEdit(!isEdit)
     }
 
-
+    const handlePUCFill = () => {
+        console.log('this is working', fillPuc)
+        setPuc('mpsc_commissioners@michigan.gov')
+    }
 
 
     // const stateInfo = this.props.stateInfo
@@ -40,7 +44,7 @@ function AdminStateInfo({ dispatch, store, stateInfo }) {
             {isEdit ?
                 <FormControl>
                     <form onSubmit={handleSubmit(onSubmit)} noValidate autoComplete="off">
-                        
+
                         <h1>State Information</h1>
                         <p>State Grade: </p>
 
@@ -51,40 +55,40 @@ function AdminStateInfo({ dispatch, store, stateInfo }) {
                         <p>Resident MWH: </p>
 
                         <TextField inputRef={register} label={'Resident MWH'} variant="outlined" size="small" name={'residentMWH'} defaultValue={stateInfo.resident_mwh} /><br />
-                        <p>PUC: {stateInfo.puc}</p>
+                        <p onClick={handlePUCFill}>PUC:</p>
 
-                        <TextField inputRef={register} label={'PUC'} variant="outlined" size="small" name={'statePOC'} defaultValue={stateInfo.puc} /><br />
+                        <TextField inputRef={register} label={'PUC'} variant="outlined" size="small" name={'statePOC'} defaultValue={stateInfo.puc} value={fillPuc} /><br />
                         <p>DoC Email: </p>
 
                         <TextField inputRef={register} label={'DoC'} variant="outlined" size="small" name={'stateDOC'} defaultValue={stateInfo.doc} /><br />
                         <p>Governor Email: </p>
 
                         <TextField inputRef={register} label={'Governor Email'} variant="outlined" size="small" name={'govEmail'} defaultValue={stateInfo.gov_email} /><br />
-
-                        <Button type="submit">Save</Button>
+                        <br />
+                        <Button type="submit" variant="outlined" className="editSaveBtn">Save</Button>
                     </form>
                 </FormControl>
                 :
                 <>
 
                     <h1>State Information</h1>
-                    <Button onClick={handleEdit}>Edit</Button>
-
+                    <Button onClick={handleEdit} variant="outlined" className="editSaveBtn">Edit</Button>
+                    <br />
                     <p>State Grade: {stateInfo.state_grade ? stateInfo.state_grade : 'None Provided'}</p>
 
                     <p>Resident Count: {stateInfo.resident_count ? stateInfo.resident_count : 'None Provided'}</p>
 
                     <p>Resident MWH: {stateInfo.resident_mwh ? stateInfo.resident_mwh : 'None Provided'}</p>
 
-                    {stateInfo.puc=== null ? <p>PUC: None</p>
-                    : <p>PUC: {stateInfo.puc}</p>}
-                    
-                    {stateInfo.doc=== null ? <p>DoC Email: None</p>
-                    : <p>DoC Email: {stateInfo.doc}</p>}
+                    {stateInfo.puc === null ? <p>PUC: None</p>
+                        : <p>PUC: {stateInfo.puc}</p>}
 
-                    {stateInfo.gov_email=== null ? <p>Governor Email: None</p>
-                    : <p>Governor Email: {stateInfo.gov_email}</p>}
-                    
+                    {stateInfo.doc === null ? <p>DoC Email: None</p>
+                        : <p>DoC Email: {stateInfo.doc}</p>}
+
+                    {stateInfo.gov_email === null ? <p>Governor Email: None</p>
+                        : <p>Governor Email: {stateInfo.gov_email}</p>}
+
                 </>
             }
         </div>

@@ -21,7 +21,7 @@ const useStyles = makeStyles({
     card: {
         textAlign: 'center',
         width: '48em',
-        minHeight: '40em',
+        minHeight: '35em',
         maxHeight: '42em',
         padding: '1em',
         backgroundColor: 'rgb(255,255,255, .85)',
@@ -41,9 +41,11 @@ const useStyles = makeStyles({
     },
     right: {
         float: 'right',
+        color: 'black'
     },
     left: {
         float: 'left',
+        color: 'black'
     },
     signup: {
         marginTop: '1em'
@@ -55,11 +57,13 @@ const useStyles = makeStyles({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        marginBottom: '-1em'
     },
     title: {
         fontSize: 48,
         fontFamily: 'leafy',
-        color: 'black'
+        color: 'black',
+        marginBottom: '-.1em'
     },
     helpText: {
         display: 'flex',
@@ -67,13 +71,17 @@ const useStyles = makeStyles({
         justifyContent: 'center',
     },
     subheader: {
-        margin: '-1em 0 1.5em 0'
+        margin: 'auto',
+        width: '46em'
+    },
+    cardActions: {
+        width: '48em'
     }
 });
 
 
 const AddressForm = ({ dispatch, history, states }) => {
-    const { card, form, formControl, label, select, signup,
+    const { card, form, formControl, label, select, signup, cardActions,
         right, root, left, stepper, title, helpText, subheader
     } = useStyles();
     const { handleSubmit, register, control, reset } = useForm();
@@ -124,12 +132,12 @@ const AddressForm = ({ dispatch, history, states }) => {
                         <section className={form}>
                             <TextField inputRef={register} style={{ marginRight: '1em' }} label="First Name" variant="outlined" size="small" name="firstName" placeholder="First Name" />
                             <TextField inputRef={register} label="Last Name" variant="outlined" size="small" name="lastName" placeholder="Last Name" />
-                            <div>
+                            <br/>
                                 <TextField inputRef={register} label="Email" variant="outlined" size="small" style={{ marginTop: '1em' }} name="email" placeholder="Email Address" error={errorState} />
-                            </div>
-                            <div>
-                                <TextField inputRef={register} label="StreetAddress" variant="outlined" size="small" multiline style={{ marginTop: '1em', width: "20em" }} name="street" placeholder="Street Address" error={errorState} />
-                            </div>
+                           <br/>
+
+                            <TextField inputRef={register} label="StreetAddress" variant="outlined" size="small" multiline style={{ marginTop: '1em', width: "20em" }} name="street" placeholder="Street Address" error={errorState} />
+
                         </section>
                         <section className={formControl}>
                             <TextField inputRef={register} label="City" variant="outlined" size="small" name="city" placeholder="City" error={errorState} />
@@ -152,16 +160,13 @@ const AddressForm = ({ dispatch, history, states }) => {
                                     <Checkbox size="small" inputProps={{ 'aria-label': 'email signup check box' }} />
                             </CustomButton>
                         </section>
-                        <section className={stepper}>
-                            <Stepper step={1} />
+                        <section className={cardActions}>
+                            <div className={stepper}>
+                                <Stepper step={1} />
+                            </div>
+                            <IconButton onClick={directBack} className={left} ><ArrowBackIcon /></IconButton>
+                            <IconButton type="submit" className={right} ><ArrowForwardIcon /></IconButton>
                         </section>
-                        <div className={left}>
-                            <IconButton onClick={directBack} style={{ color: 'black' }} ><ArrowBackIcon /></IconButton>
-                        </div>
-                        <div className={right}>
-                            <IconButton type="submit" style={{ color: 'black' }} ><ArrowForwardIcon /></IconButton>
-                        </div>
-
                     </form>
                 </FormControl>
             </Card>
