@@ -37,7 +37,7 @@ function AdminPolicyInfo({ dispatch, store, stateInfo }) {
                             return (
                                 <>
                                     <p>{policy.policy_name}:</p>
-                                    <TextField inputRef={register} label={policy.policy_name} variant="outlined" size="small" name={policy.policy_id} defaultValue={policy.policy_data} />
+                                    <TextField inputRef={register} placeholder={policy.policy_name} variant="outlined" size="small" name={policy.policy_id} defaultValue={policy.policy_data} />
                                     <br />
                                 </>
                             )

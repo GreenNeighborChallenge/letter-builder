@@ -10,9 +10,12 @@ const styles = theme => ({
   resize: {
       fontSize: 14,
       minHeight: '9em',
+      background: 'rgb(247, 247, 246)',
+      padding: '1em',
   },
   input: {
-      margin: '1em'
+      margin: '1em',
+      background: 'rgb(247, 247, 246)'
   },
   textField: {
     alignSelf: 'right',
@@ -105,11 +108,11 @@ class AdminPolicies extends Component {
             <Typography onClick={this.handleFormFill}>Note: If you want to use a states name in the text, replace the states name with [STATE].</Typography>
             <Typography>Example: [STATE] should adopt the Green Vehicle Policy...</Typography>
          
-            <TextField variant="outlined" placeholder="Petition Info" value={this.state.petition} onChange={this.handlePetitionChange} InputProps={{ classes: { input: classes.resize} }} className={classes.textField} multiline/>
+            <TextField placeholder="Petition Info" value={this.state.petition} onChange={this.handlePetitionChange} InputProps={{ classes: { input: classes.resize} }} className={classes.textField} multiline/>
       
-            <TextField variant="outlined"  placeholder="Short Info" value={this.state.short} onChange={this.handleShortChange} InputProps={{ classes: { input: classes.resize} }} className={classes.textField} multiline/>
+            <TextField placeholder="Short Info" value={this.state.short} onChange={this.handleShortChange} InputProps={{ classes: { input: classes.resize} }} className={classes.textField} multiline/>
         
-            <TextField variant="outlined" placeholder="Long Info" value={this.state.long} onChange={this.handleLongChange} InputProps={{ classes: { input: classes.resize} }} className={classes.textField} multiline/>
+            <TextField placeholder="Long Info" value={this.state.long} onChange={this.handleLongChange} InputProps={{ classes: { input: classes.resize} }} className={classes.textField} multiline/>
             <br />
             <Button onClick={this.handleSubmit} className={classes.submitBtn} variant="outlined">Submit</Button>
           </div>}
