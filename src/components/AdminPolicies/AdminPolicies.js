@@ -67,11 +67,7 @@ class AdminPolicies extends Component {
       name: 'Citizens Utility Board',
       petition: `Energy policy affects us all, but consumers don't have enough of a voice when it comes to deciding policy and setting rates in our state. [STATE] should create a Citizens Utility Board that does that stuff. This is the petition text. Citizens Utility Boards are independent state-level organizations that advocate for fair energy policy from a consumer perspective.`,
       short: 'Citizens Utility Boards are independent state-level organizations that advocate for fair energy policy from a consumer perspective.',
-      long: `Citizens Utility Boards Longer Text
-
-      Citizens Utility Boards are independent state-level organizations that advocate for fair energy policy from a consumer perspective.Citizens Utility Boards are independent state-level organizations that advocate for fair energy policy from a consumer perspective.Citizens Utility Boards are independent state-level organizations that advocate for fair energy policy from a consumer perspective.
-      
-      Citizens Utility Boards are independent state-level organizations that advocate for fair energy policy from a consumer perspective.`
+      long: `Citizens Utility Boards are independent state-level organizations that advocate for fair energy policy from a consumer perspective.Citizens Utility Boards are independent state-level organizations that advocate for fair energy policy from a consumer perspective.Citizens Utility Boards are independent state-level organizations that advocate for fair energy policy from a consumer perspective. Citizens Utility Boards are independent state-level organizations that advocate for fair energy policy from a consumer perspective.`
     })
   }
 

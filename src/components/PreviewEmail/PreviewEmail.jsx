@@ -100,7 +100,7 @@ function PreviewLetter({ letter, address, history, emails, dispatch }) {
               
                     <Typography variant="body2" gutterBottom align="center" color="textSecondary" className={subHeader}>
                         Preview your letter below to make sure everything looks right. When you are happy with your letter, either hit “send” to email it
-                        to your selected local officials, or “print” to create a printable PDF with a form for signatures.
+                        to your selected local officials, or “print” to create a printable PDF.
                 </Typography>
            
                 <CardContent className={email}>
