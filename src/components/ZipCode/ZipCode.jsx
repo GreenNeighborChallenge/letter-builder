@@ -120,9 +120,13 @@ const ZipCode = ({ dispatch, store, history, location }) => {
 
                         <div className='zipBox' >
                             <Typography variant='h4'>Enter Your Zip Code</Typography>
+                            <br />
                             <Typography variant="h5" component="h2" className={classes.subtitle}>Find your state's policies and write to your elected officials</Typography>
+                            <br />
                             {zipField()}
+                            <br />
                             <FormHelperText error={errorState} className={classes.helpText}> {helperText} </FormHelperText> 
+                            <br />
                             {store.zip.isLoading && <CircularProgress />}   
                             {store.zip.zipFail && <ZipError />}
 
