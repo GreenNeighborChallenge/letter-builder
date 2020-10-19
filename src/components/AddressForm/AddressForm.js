@@ -135,12 +135,12 @@ const AddressForm = ({ dispatch, history, states }) => {
                         <section className={form}>
                             <TextField inputRef={register} style={{ marginRight: '1em' }} label="First Name" variant="outlined" size="small" name="firstName" placeholder="First Name" />
                             <TextField inputRef={register} label="Last Name" variant="outlined" size="small" name="lastName" placeholder="Last Name" />
-                            <div>
+                            <br/>
                                 <TextField inputRef={register} label="Email" variant="outlined" size="small" style={{ marginTop: '1em' }} name="email" placeholder="Email Address" error={errorState} />
-                            </div>
-                            <div>
-                                <TextField inputRef={register} label="StreetAddress" variant="outlined" size="small" multiline style={{ marginTop: '1em', width: "20em" }} name="street" placeholder="Street Address" error={errorState} />
-                            </div>
+                           <br/>
+
+                            <TextField inputRef={register} label="StreetAddress" variant="outlined" size="small" multiline style={{ marginTop: '1em', width: "20em" }} name="street" placeholder="Street Address" error={errorState} />
+
                         </section>
                         <section className={formControl}>
                             <TextField inputRef={register} label="City" variant="outlined" size="small" name="city" placeholder="City" error={errorState} />

@@ -55,6 +55,7 @@ const useStyles = makeStyles({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        marginBottom: '-1.05em'
     },
     title: {
         fontSize: 48,
@@ -80,7 +81,8 @@ const useStyles = makeStyles({
         height: '10em'
     },
     repSection: {
-        marginTop: '.5em'
+        margin: '1em 0 -.6em 0',
+        minHeight: '21em'
     }
 });
 
@@ -161,12 +163,11 @@ const PickReps = ({ dispatch, reps, history, offices }) => {
                     <div className={stepper} > 
                     <Stepper step={2} />
                     </div>
-
+               
                     <IconButton onClick={directToPreview} className={right}><ArrowForwardIcon /></IconButton>
 
 
                     <IconButton onClick={directToAddressForm} className={left}><ArrowBackIcon /></IconButton>
-
                 </section>
             </Card>
         </div>
