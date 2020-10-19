@@ -114,7 +114,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-    return ['Build Letter', 'Enter Information', 'Pick Reps', 'Preview Letter', 'Send and Share'];
+    return ['Build Letter', 'Enter Information', 'Select Reps', 'Preview Letter', 'Send and Share'];
 }
 
 export default function CustomizedSteppers({ step }) {
@@ -123,7 +123,6 @@ export default function CustomizedSteppers({ step }) {
     const steps = getSteps();
 
     useEffect(() => {
-
     }, [step]);
 
     return (
