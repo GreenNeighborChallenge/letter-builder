@@ -109,7 +109,7 @@ const ZipCode = ({ dispatch, store, history, location }) => {
                     <CardContent>
                         <div style={{ textAlign: 'center' }}>
                             <Typography color="textSecondary" id='zipTitle' className={classes.title} gutterBottom>
-                                BE THE CHANGE: State Policy Petition Maker
+                                BE THE CHANGE: State Policy Letter Builder
                         </Typography>
                         </div>
 
