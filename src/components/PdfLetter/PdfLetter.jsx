@@ -13,7 +13,7 @@ import { IconButton, Card, Typography } from '@material-ui/core'
 Font.register({
     family: 'Roboto',
     src: "http://fonts.gstatic.com/s/roboto/v15/dtpHsbgPEm2lVWciJZ0P-A.ttf",
-  });
+});
 
 const styles = StyleSheet.create({
     page: {
@@ -73,6 +73,11 @@ const PdfView = ({ letter, history }) => {
         history.push('/previewEmail')
     }
 
+
+    const introArray = letter.intro.split('\n')
+
+    console.log(introArray[0]);
+    console.log(introArray[1]);
     return (
         <div style={styles.root}>
             <Card style={styles.card}>
@@ -83,10 +88,14 @@ const PdfView = ({ letter, history }) => {
                     <Document>
                         <Page size="A4" style={styles.page} >
                             <View style={styles.section}>
-                                <Text> {letter.intro + '\n' + '\n'}</Text>
-                                <Text> {letter.body}</Text>
+
+                                <Text>{introArray[0] + '\n' + '\n'}</Text>
+
+                                <Text> {letter.intro.length > 0 ? introArray[1] + '\n' + '\n' : ''}</Text>
+                                {letter &&
+                                    <Text> {letter.body}</Text>}
                                 <Text> {letter.conclusion}</Text>
-                                <Image src={gnIcon} style={styles.logo}/>
+                                <Image src={gnIcon} style={styles.logo} />
                             </View>
                         </Page>
                     </Document>
