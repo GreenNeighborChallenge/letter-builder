@@ -32,7 +32,7 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <div style={{ padding: '5em 5em 5em 5em' }} >
+      <div style={{ padding: '5em 5em 10em 5em' }} >
         <form className="formPanel" onSubmit={this.login}>
           <h2>Admin Login</h2>
           {this.props.store.errors.loginMessage && (
