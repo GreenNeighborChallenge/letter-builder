@@ -135,10 +135,13 @@ function PreviewLetter({ letter, address, history, emails, dispatch }) {
                     <IconButton onClick={directToReps} className={black}><ArrowBackIcon /></IconButton>
                     <div className={right}>
                         <Button onClick={directToPdf}>Create pdf<PictureAsPdfIcon /></Button>
-                        <IconButton
-                            className={black}
+                        <Button
+                            // className={black}
                             href={`mailto:${emails}?subject=${letter.subject}&body=${fullEmail}`} target="_blank" onClick={directToConfirmation}
-                        ><ArrowForwardIcon /></IconButton>
+                        > SEND
+                        
+                        
+                         </Button>
                     </div>
                 </section>
             </Card>

@@ -2,28 +2,36 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import {
-    Page, Text, Document, StyleSheet, PDFDownloadLink, PDFViewer, View
+    Page, Text, Document, StyleSheet, Font, PDFViewer, View, Image
 } from '@react-pdf/renderer';
-import gnIcon from './greenNeighbor3.jpg';
+// import {styled } from '@react-pdf/styled-components';
+import gnIcon from './greenNeighborlogo.png';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { IconButton, Card, Typography } from '@material-ui/core'
+
+
+Font.register({
+    family: 'Roboto',
+    src: "http://fonts.gstatic.com/s/roboto/v15/dtpHsbgPEm2lVWciJZ0P-A.ttf",
+  });
 
 const styles = StyleSheet.create({
     page: {
         flexDirection: 'row',
-        backgroundColor: '#E4E4E4',
+        backgroundColor: '#FFFFFF',
         width: '100%',
-        // height: '100%',
     },
     section: {
-        margin: 10,
-        padding: '5px 5px 0em 5px',
-        flexGrow: 1
+        margin: 30,
+        padding: '10px 10px 0em 10px',
+        flexGrow: 1,
+        fontSize: 14,
+        fontFamily: 'Roboto',
     },
     body: {
         padding: '1em',
         width: '48em',
-        height: '40em',
+        height: '35em',
         borderRadius: '1em',
         border: '0',
     },
@@ -45,9 +53,19 @@ const styles = StyleSheet.create({
     },
     arrowIcon: {
         color: 'black'
+    },
+    logo: {
+        width: '35vw',
+        height: '27vw',
+        alignSelf: 'flex-end',
+        marginTop: '7vw'
     }
 
 });
+
+// const Picture = styled.Image`
+//   margin: 15px 100px;
+// `;
 
 const PdfView = ({ letter, history }) => {
 
@@ -66,12 +84,9 @@ const PdfView = ({ letter, history }) => {
                         <Page size="A4" style={styles.page} >
                             <View style={styles.section}>
                                 <Text> {letter.intro + '\n' + '\n'}</Text>
-
-
                                 <Text> {letter.body}</Text>
-
-
                                 <Text> {letter.conclusion}</Text>
+                                <Image src={gnIcon} style={styles.logo}/>
                             </View>
                         </Page>
                     </Document>
