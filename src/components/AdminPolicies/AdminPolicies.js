@@ -84,15 +84,15 @@ class AdminPolicies extends Component {
         <br />
         {this.state.addPolicy === true &&
           <div className="form">
-            <input placeholder="Policy Name" onChange={this.handleNameChange} className="inputs"></input>
-            <h5>Note: If you want to use a states name in the text, replace the states name with [STATE].</h5>
+            <input placeholder="Policy Name" value={this.state.name} onChange={this.handleNameChange} className="inputs"></input>
+            <h5 onClick={this.handleFormFill}>Note: If you want to use a states name in the text, replace the states name with [STATE].</h5>
             <h5>Example: [STATE] should adopt the Green Vehicle Policy...</h5>
             <br />
-            <textarea placeholder="Petition Info" onChange={this.handlePetitionChange} className="inputs"></textarea>
+            <textarea placeholder="Petition Info" value={this.state.petition} onChange={this.handlePetitionChange} className="inputs"></textarea>
             <br />
-            <textarea placeholder="Short Info" onChange={this.handleShortChange} className="inputs"></textarea>
+            <textarea placeholder="Short Info" value={this.state.short} onChange={this.handleShortChange} className="inputs"></textarea>
             <br />
-            <textarea placeholder="Long Info" onChange={this.handleLongChange} className="inputs"></textarea>
+            <textarea placeholder="Long Info" value={this.state.long} onChange={this.handleLongChange} className="inputs"></textarea>
             <br />
             <Button onClick={this.handleSubmit} className="submitButton" variant="outlined">Submit</Button>
           </div>}
