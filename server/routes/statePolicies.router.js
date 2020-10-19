@@ -33,6 +33,25 @@ console.log('req.params in stateName', req.params)
   })
 })
 
+//get recommendations for state policies
+router.post('/', (req, res) => {
+  let stateName = req.body.stateName
+  let policyId = req.body.policyId
+  console.log(stateName, policyId)
+  let queryText=`SELECT * FROM "policy_info"
+                JOIN "policy_name" ON "policy_name".id = "policy_info".policy_id
+                JOIN "state" on "state".id = "policy_info".state_id
+                WHERE "state".state_name = $1 AND "policy_info".policy_id = $2`
+
+  pool.query(queryText, [stateName, policyId])
+  .then(result => {
+    res.send(result.rows)
+  }) .catch(error => {
+    console.log('error fetching recs', error)
+    res.sendStatus(500)
+  })
+})
+
 router.post('/sseo/:id', rejectUnauthenticated, (req, res) => {
   let queryText = `INSERT INTO state_office ("state_id", "SSEO_name", "SSEO_email")
   VALUES ($1, $2, $3);`

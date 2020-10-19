@@ -5,7 +5,7 @@ import userSaga from './user.saga';
 import zipSaga from './zip.saga';
 import adminFormSaga from './AdminForm.saga';
 import statesSaga from './states.saga';
-
+import recsSaga from './recs.saga';
 import policyLanguageSaga from './policyLanguage.saga';
 import repsSaga from './reps.saga'
 import statePolicySaga from './statePolicy.saga';
@@ -29,5 +29,6 @@ export default function* rootSaga() {
     adminFormSaga(),
     officesSaga(), 
     statePolicySaga(), 
+    recsSaga(),
   ]);
 }

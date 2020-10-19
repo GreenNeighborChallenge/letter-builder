@@ -5,9 +5,7 @@ const {
     rejectUnauthenticated,
   } = require('../modules/authentication-middleware');
 
-/**
- * GET route template
- */
+
 router.get('/', (req, res) => {
     // GET states for address form
     let queryText = `SELECT * FROM "state"
@@ -57,6 +55,8 @@ router.get('/sseo/:id', (req, res) => {
         res.sendStatus(500);
     })
 });
+
+
 
 //delete a state
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
