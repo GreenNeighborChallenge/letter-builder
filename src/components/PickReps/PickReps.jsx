@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import {
-    Card, CardActions, Typography, CardContent,
+    Card, Typography, 
     IconButton, makeStyles, FormHelperText
 } from '@material-ui/core';
 import { RepButton } from './RepButtons'

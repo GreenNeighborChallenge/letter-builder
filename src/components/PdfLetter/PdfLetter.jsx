@@ -4,16 +4,14 @@ import { withRouter } from 'react-router-dom';
 import {
     Page, Text, Document, StyleSheet, Font, PDFViewer, View, Image
 } from '@react-pdf/renderer';
-// import {styled } from '@react-pdf/styled-components';
 import gnIcon from './greenNeighborlogo.png';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { IconButton, Card, Typography } from '@material-ui/core'
 
-
 Font.register({
     family: 'Roboto',
     src: "http://fonts.gstatic.com/s/roboto/v15/dtpHsbgPEm2lVWciJZ0P-A.ttf",
-  });
+});
 
 const styles = StyleSheet.create({
     page: {
@@ -63,15 +61,13 @@ const styles = StyleSheet.create({
 
 });
 
-// const Picture = styled.Image`
-//   margin: 15px 100px;
-// `;
-
 const PdfView = ({ letter, history }) => {
 
     const directToPreview = () => {
         history.push('/previewEmail')
     }
+
+    const introArray = letter.intro.split('\n')
 
     return (
         <div style={styles.root}>
@@ -83,10 +79,17 @@ const PdfView = ({ letter, history }) => {
                     <Document>
                         <Page size="A4" style={styles.page} >
                             <View style={styles.section}>
-                                <Text> {letter.intro + '\n' + '\n'}</Text>
-                                <Text> {letter.body}</Text>
+
+                                <Text>{introArray[0] + 
+                                '\n' + 
+                                '\n'}</Text>
+
+                                <Text> {letter.intro.length > 0 ? introArray[1] + '\n' 
+                                + '\n' : ''}</Text>
+                                {letter &&
+                                    <Text> {letter.body}</Text>}
                                 <Text> {letter.conclusion}</Text>
-                                <Image src={gnIcon} style={styles.logo}/>
+                                <Image src={gnIcon} style={styles.logo} />
                             </View>
                         </Page>
                     </Document>

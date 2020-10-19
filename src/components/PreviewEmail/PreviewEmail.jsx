@@ -9,7 +9,7 @@ import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 import Stepper from '../Stepper/Stepper'
 import IconButton from '@material-ui/core/IconButton';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+// import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 const useStyles = makeStyles({
     root: {

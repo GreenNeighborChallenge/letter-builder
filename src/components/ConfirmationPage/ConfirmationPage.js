@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import './ConfirmationPage.css';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
-import { ShareButton, ShareButtonCircle, ShareBlockStandard } from "react-custom-share";
+import { ShareButtonCircle, ShareBlockStandard } from "react-custom-share";
 import gnIcon from './greenNeighbor3.jpg';
 import { Typography, makeStyles  } from '@material-ui/core';
 

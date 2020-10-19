@@ -74,9 +74,6 @@ const useStyles = makeStyles({
         margin: 'auto',
         width: '46em'
     },
-    black: {
-        color: 'black'
-    },
     cardActions: {
         width: '48em'
     }
@@ -84,7 +81,7 @@ const useStyles = makeStyles({
 
 
 const AddressForm = ({ dispatch, history, states }) => {
-    const { card, form, formControl, label, select, signup, black, cardActions,
+    const { card, form, formControl, label, select, signup, cardActions,
         right, root, left, stepper, title, helpText, subheader
     } = useStyles();
     const { handleSubmit, register, control, reset } = useForm();
