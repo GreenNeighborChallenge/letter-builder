@@ -4,11 +4,9 @@ import { withRouter } from 'react-router-dom';
 import {
     Page, Text, Document, StyleSheet, Font, PDFViewer, View, Image
 } from '@react-pdf/renderer';
-// import {styled } from '@react-pdf/styled-components';
 import gnIcon from './greenNeighborlogo.png';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { IconButton, Card, Typography } from '@material-ui/core'
-
 
 Font.register({
     family: 'Roboto',
@@ -63,21 +61,14 @@ const styles = StyleSheet.create({
 
 });
 
-// const Picture = styled.Image`
-//   margin: 15px 100px;
-// `;
-
 const PdfView = ({ letter, history }) => {
 
     const directToPreview = () => {
         history.push('/previewEmail')
     }
 
-
     const introArray = letter.intro.split('\n')
 
-    console.log(introArray[0]);
-    console.log(introArray[1]);
     return (
         <div style={styles.root}>
             <Card style={styles.card}>
@@ -89,9 +80,12 @@ const PdfView = ({ letter, history }) => {
                         <Page size="A4" style={styles.page} >
                             <View style={styles.section}>
 
-                                <Text>{introArray[0] + '\n' + '\n'}</Text>
+                                <Text>{introArray[0] + 
+                                '\n' + 
+                                '\n'}</Text>
 
-                                <Text> {letter.intro.length > 0 ? introArray[1] + '\n' + '\n' : ''}</Text>
+                                <Text> {letter.intro.length > 0 ? introArray[1] + '\n' 
+                                + '\n' : ''}</Text>
                                 {letter &&
                                     <Text> {letter.body}</Text>}
                                 <Text> {letter.conclusion}</Text>
