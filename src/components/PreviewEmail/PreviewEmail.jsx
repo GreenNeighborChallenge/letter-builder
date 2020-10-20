@@ -72,11 +72,14 @@ const useStyles = makeStyles({
     },
     recipients: {
         width: '38em'
+    },
+    spacing: {
+        whiteSpace: 'pre-line'
     }
 });
 
 function PreviewLetter({ letter, address, history, emails, dispatch }) {
-    const { root, card, email, emailBodyStyle, right, stepper, title, bodyText, subHeader, black } = useStyles();
+    const { root, card, email, emailBodyStyle, right, stepper, title, bodyText, subHeader, black, spacing } = useStyles();
 
     const directToConfirmation = () => {
         history.push('/confirmation')
@@ -116,7 +119,7 @@ function PreviewLetter({ letter, address, history, emails, dispatch }) {
                         <Typography >  Subject: {letter.subject} </Typography >
                         <Typography > Message: </Typography >
                     <div className={emailBodyStyle}>
-                        <Typography gutterBottom >
+                        <Typography gutterBottom className={spacing}>
                             {letter.intro}
                         </Typography>
                         <Typography gutterBottom className={bodyText}>
