@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import {
-    Card, Typography, 
+    Card, Typography, withStyles,
     IconButton, makeStyles, FormHelperText
 } from '@material-ui/core';
 import { RepButton } from './RepButtons'
@@ -90,18 +90,23 @@ const useStyles = makeStyles({
         fontSize: '12px',
         color: '#F44336',
         fontFamily: 'Roboto, Helvetica, sans-serif',
+    },
+    repButton: {
+          margin: '1em .5em 0 .5em',
+
     }
 });
 
 
 const PickReps = ({ dispatch, reps, history, offices }) => {
     const { root, card, cardContent, left, repButtons, right, noReps,
-        cardActions, stepper, title, addMarginTop, helpText, subheader, repSection
+        cardActions, stepper, title, addMarginTop, helpText, subheader, repSection,repButton
     } = useStyles();
 
     const [selections, setSelections] = useState(() => []);
     const [helperText, setHelperText] = useState('');
     const [errorState, setErrorState] = useState(false);
+    const [picks, setPicks] = useState([]);
 
     const handleSelections = (event, newSelection) => {
         setSelections(newSelection)
@@ -124,6 +129,30 @@ const PickReps = ({ dispatch, reps, history, offices }) => {
             history.push('/previewEmail')
         }
     }
+
+
+    // const StyledToggleButtonGroup = withStyles((theme) => ({
+    //     grouped: {
+    //         // margin: theme.spacing(1),
+    //         border: 'none',
+    //         '&:not(:first-child)': {
+    //             borderRadius: theme.shape.borderRadius,
+    //         },
+    //         '&:first-child': {
+    //             borderRadius: theme.shape.borderRadius,
+    //         },
+    //     },
+    // }))(ToggleButtonGroup); 
+
+    // const repSelect = (event) => {
+    //     console.log(event);
+    //     const newPick = event.currentTarget.value
+    //     console.log(newPick);
+        
+    //     setPicks([...picks, newPick])
+    // }
+
+    // console.log(picks);
 
     return (
         <div className={root}>
@@ -163,14 +192,18 @@ const PickReps = ({ dispatch, reps, history, offices }) => {
                             <div className={noReps}>
                             </div>
                         }
+
+                        {/* <RepButton value="Public Utilities Commission" className={repButton}  onClick={(e) => repSelect(e)} > Public Utilities Commission </RepButton>
+                        <RepButton value='Commission' className={repButton} onClick={(e) => repSelect(e)}> Commission </RepButton> */}
+
                         <FormHelperText error={errorState} className={helpText}> {helperText} </FormHelperText>
                     </div>
                 </div>
                 <section className={cardActions}>
-                    <div className={stepper} > 
-                    <Stepper step={2} />
+                    <div className={stepper} >
+                        <Stepper step={2} />
                     </div>
-               
+
                     <IconButton onClick={directToPreview} className={right}><ArrowForwardIcon /></IconButton>
 
 
