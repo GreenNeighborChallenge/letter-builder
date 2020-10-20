@@ -34,7 +34,8 @@ const useStyles = makeStyles({
         border: '1px solid black',
         borderRadius: '.3em',
         padding: '1em',
-        background: 'rgb(255,255,255, .4)',
+        background: 'rgb(255,255,255, .4)', 
+        marginTop: '.5em'
     },
     noAddress: {
         marginTop: '5em'
@@ -68,6 +69,9 @@ const useStyles = makeStyles({
     },
     black: {
         color: 'black'
+    },
+    recipients: {
+        width: '38em'
     }
 });
 
@@ -104,17 +108,13 @@ function PreviewLetter({ letter, address, history, emails, dispatch }) {
                 </Typography>
            
                 <CardContent className={email}>
-                    <Typography gutterBottom align="left">
+                    <Typography >
                         Sender: {address.email}
-                        <br />
-                        <>
-                            Recipient(s): {emails}
-                        </>
-                        <br />
-                        Subject: {letter.subject}
-                        <br />
-                        Message:
-                    </Typography>
+                        </Typography>
+                        <Typography> Recipient(s): {emails.join(', ')}
+                        </Typography>
+                        <Typography >  Subject: {letter.subject} </Typography >
+                        <Typography > Message: </Typography >
                     <div className={emailBodyStyle}>
                         <Typography gutterBottom >
                             {letter.intro}
