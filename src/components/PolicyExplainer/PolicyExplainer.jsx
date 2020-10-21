@@ -15,8 +15,6 @@ import {
 } from "@material-ui/core/styles";
 
 
-//override button styling?
-// const defaultTheme = createMuiTheme();
 const theme = createMuiTheme({
   overrides: {
     MuiTooltip: {

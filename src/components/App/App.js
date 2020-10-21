@@ -13,7 +13,6 @@ import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import ZipCode from '../ZipCode/ZipCode';
@@ -107,12 +106,6 @@ class App extends Component {
               authRedirect="/admin_home"
             />
 
-              <ProtectedRoute
-                // logged in shows InfoPage else shows LoginPage
-                exact
-                path="/info"
-                component={InfoPage}
-              />
 
               {/* When a value is supplied for the authRedirect prop the user will
             be redirected to the path supplied when logged in, otherwise they will

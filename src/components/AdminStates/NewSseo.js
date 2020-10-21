@@ -13,10 +13,8 @@ function AdminSseo({ handleSave, dispatch, sseoInfo, stateInfo }) {
     const { handleSubmit, register, reset } = useForm();
 
     const onSubmit = (data) => {
-        console.log(data)
-        console.log(sseoInfo)
         const newData = { ...data, id: stateInfo.id }
-        console.log('this is the', newData)
+
         //goes to state saga
         dispatch({ type: 'SET_NEW_STATE_SSEO', payload: newData })
         //reset inputs

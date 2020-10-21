@@ -35,10 +35,8 @@ function AdminSseo({ dispatch, store, stateInfo }) {
     const [sseoId, setSseoId] = useState(null);
 
     const onSubmit = (data, sseo) => {
-        console.log(sseoId)
         //add the state id to data to send over to the server
         const newData = { ...data, id: sseoId }
-        console.log(newData)
         // //goes to states saga
         dispatch({ type: 'UPDATE_SSEO', payload: newData })
         // //clear the inputs
@@ -81,7 +79,7 @@ function AdminSseo({ dispatch, store, stateInfo }) {
     };
 
     const handleDelete = (id) => {
-        console.log(id)
+
         //goes to state saga
         dispatch({ type: 'DELETE_SSEO', payload: id })
     }

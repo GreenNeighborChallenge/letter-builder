@@ -53,7 +53,6 @@ class AdminPolicyInfo extends Component {
         this.setState({
             isEdit: false
         })
-        console.log(this.state)
         //goes to admin form saga
         this.props.dispatch ({ type: 'UPDATE_POLICY_LANGUAGE', payload: this.state})
     }

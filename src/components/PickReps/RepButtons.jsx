@@ -11,9 +11,11 @@ let CustomButton = withStyles({
     borderColor: '#1D201D',
     borderRadius: '.75em',
     '&:hover': {
-    
       backgroundColor: '#1D201D30',
     },
+    '&:focus': {
+      backgroundColor: '#1D201D10',
+    }
   },
   label: {
     margin: '1.5em',
@@ -30,7 +32,6 @@ let RepButton = withStyles({
       outline: 0,
       '&:hover': {
         backgroundColor: '#1D201D10',
-        // height: '3.9em',
       },
       '&:focus': {
         backgroundColor: '#1D201D10',
