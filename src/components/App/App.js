@@ -49,12 +49,6 @@ class App extends Component {
 
               {/* Visiting localhost:3000/about will show the about page. */}
               <Route
-                // shows AboutPage at all times (logged in or not)
-                exact
-                path="/about"
-                component={AboutPage}
-              />
-              <Route
                 // shows zip code page
                 exact
                 path="/zip"
@@ -141,7 +135,7 @@ class App extends Component {
                 exact
                 path="/registration"
                 component={RegisterPage}
-                authRedirect="/user"
+                authRedirect="/login"
               />
 
               <ProtectedRoute
