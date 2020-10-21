@@ -84,12 +84,7 @@ class App extends Component {
                 path="/selectContacts"
                 component={PickReps}
               />
-                {/* <Route
-                exact
-                path="/previewLetter"
-                component={PreviewLetter}
-              /> */}
-                <Route
+              <Route
                 exact
                 path="/previewEmail"
                 component={PreviewEmail}
@@ -99,26 +94,26 @@ class App extends Component {
                 path="/home"
                 component={ZipCode}
               />
-                <Route
+              <Route
                 exact
                 path="/pdf"
                 component={Pdf}
               />
-            
-            
-            
+
+
+
               {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
             Even though it seems like they are different pages, the user is always on localhost:3000/user */}
 
-            <ProtectedRoute
-              // logged in shows UserPage else shows LoginPage
-              exact
-              path="/user"
-              component={UserPage}
-              authRedirect="/admin_home"
-            />
+              <ProtectedRoute
+                // logged in shows UserPage else shows LoginPage
+                exact
+                path="/user"
+                component={UserPage}
+                authRedirect="/admin_home"
+              />
 
               <ProtectedRoute
                 // logged in shows InfoPage else shows LoginPage

@@ -37,6 +37,7 @@ const useStyles = makeStyles({
     },
     label: {
         minWidth: 120,
+        height: '2em',
         margin: '-1.4em',
     },
     right: {
@@ -136,7 +137,7 @@ const AddressForm = ({ dispatch, history, states }) => {
                                 <TextField inputRef={register} label="Email" variant="outlined" size="small" style={{ marginTop: '1em' }} name="email" placeholder="Email Address" error={errorState} />
                            <br/>
 
-                            <TextField inputRef={register} label="StreetAddress" variant="outlined" size="small" multiline style={{ marginTop: '1em', width: "20em" }} name="street" placeholder="Street Address" error={errorState} />
+                            <TextField inputRef={register} label="StreetAddress" variant="outlined" size="small" style={{ marginTop: '1em', width: "22em" }} name="street" placeholder="Street Address" error={errorState} />
 
                         </section>
                         <section className={formControl}>
