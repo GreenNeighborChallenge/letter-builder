@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import {
-    Card, Typography, withStyles,
+    Card, Typography,
     IconButton, makeStyles, FormHelperText
 } from '@material-ui/core';
 import { RepButton } from './RepButtons'
@@ -100,13 +100,13 @@ const useStyles = makeStyles({
 
 const PickReps = ({ dispatch, reps, history, offices }) => {
     const { root, card, cardContent, left, repButtons, right, noReps,
-        cardActions, stepper, title, addMarginTop, helpText, subheader, repSection,repButton
+        cardActions, stepper, title, addMarginTop, helpText, subheader, repSection, 
     } = useStyles();
 
     const [selections, setSelections] = useState(() => []);
     const [helperText, setHelperText] = useState('');
     const [errorState, setErrorState] = useState(false);
-    const [picks, setPicks] = useState([]);
+    // const [picks, setPicks] = useState([]);
 
     const handleSelections = (event, newSelection) => {
         setSelections(newSelection)
