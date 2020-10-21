@@ -14,7 +14,6 @@ function AdminStateInfo({ dispatch, store, stateInfo }) {
     const { handleSubmit, register, reset } = useForm();
 
     const [isEdit, setEdit] = React.useState(false);
-    const [fillPuc, setPuc] = React.useState('');
 
     const onSubmit = (data) => {
         //add the state id to data to send over to the server
@@ -31,13 +30,6 @@ function AdminStateInfo({ dispatch, store, stateInfo }) {
         setEdit(!isEdit)
     }
 
-    const handlePUCFill = () => {
-        console.log('this is working', fillPuc)
-        setPuc('mpsc_commissioners@michigan.gov')
-    }
-
-
-    // const stateInfo = this.props.stateInfo
     return (
         <div className="stateBody">
 
@@ -55,9 +47,9 @@ function AdminStateInfo({ dispatch, store, stateInfo }) {
                         <p>Resident MWH: </p>
 
                         <TextField inputRef={register} label={'Resident MWH'} variant="outlined" size="small" name={'residentMWH'} defaultValue={stateInfo.resident_mwh} /><br />
-                        <p onClick={handlePUCFill}>PUC:</p>
+                        <p>PUC:</p>
 
-                        <TextField inputRef={register} label={'PUC'} variant="outlined" size="small" name={'statePOC'} defaultValue={stateInfo.puc} value={fillPuc} /><br />
+                        <TextField inputRef={register} label={'PUC'} variant="outlined" size="small" name={'statePOC'} defaultValue={stateInfo.puc} /><br />
                         <p>DoC Email: </p>
 
                         <TextField inputRef={register} label={'DoC'} variant="outlined" size="small" name={'stateDOC'} defaultValue={stateInfo.doc} /><br />

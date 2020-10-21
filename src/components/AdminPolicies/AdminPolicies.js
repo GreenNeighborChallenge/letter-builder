@@ -84,16 +84,6 @@ class AdminPolicies extends Component {
     this.props.dispatch({ type: 'NEW_POLICY_LANGUAGE', payload: this.state })
   }
 
-  handleFormFill = () => {
-    this.setState({
-      ...this.state,
-      name: 'Citizens Utility Board',
-      petition: `Energy policy affects us all, but consumers don't have enough of a voice when it comes to deciding policy and setting rates in our state. [STATE] should create a Citizens Utility Board that does that stuff. This is the petition text. Citizens Utility Boards are independent state-level organizations that advocate for fair energy policy from a consumer perspective.`,
-      short: 'Citizens Utility Boards are independent state-level organizations that advocate for fair energy policy from a consumer perspective.',
-      long: `Citizens Utility Boards are independent state-level organizations that advocate for fair energy policy from a consumer perspective.Citizens Utility Boards are independent state-level organizations that advocate for fair energy policy from a consumer perspective.Citizens Utility Boards are independent state-level organizations that advocate for fair energy policy from a consumer perspective. Citizens Utility Boards are independent state-level organizations that advocate for fair energy policy from a consumer perspective.`
-    })
-  }
-
   render() {
     const { classes } = this.props;
     return (
@@ -105,7 +95,7 @@ class AdminPolicies extends Component {
         {this.state.addPolicy === true &&
           <div className="form">
             <TextField variant="outlined" size="small"  placeholder="Policy Name" value={this.state.name} onChange={this.handleNameChange} className={classes.input}/>
-            <Typography onClick={this.handleFormFill}>Note: If you want to use a states name in the text, replace the states name with [STATE].</Typography>
+            <Typography>Note: If you want to use a states name in the text, replace the states name with [STATE].</Typography>
             <Typography>Example: [STATE] should adopt the Green Vehicle Policy...</Typography>
          
             <TextField placeholder="Petition Info" value={this.state.petition} onChange={this.handlePetitionChange} InputProps={{ classes: { input: classes.resize} }} className={classes.textField} multiline/>
