@@ -9,7 +9,6 @@ import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 import Stepper from '../Stepper/Stepper'
 import IconButton from '@material-ui/core/IconButton';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-// import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 const useStyles = makeStyles({
     root: {
@@ -97,7 +96,8 @@ function PreviewLetter({ letter, address, history, emails, dispatch }) {
     const fullEmail = encodeURIComponent(letter.intro +
         '\n' +
         '\n' + letter.body + letter.conclusion)
-
+    
+        
     return (
         <div className={root}>
             <Card className={card}>
