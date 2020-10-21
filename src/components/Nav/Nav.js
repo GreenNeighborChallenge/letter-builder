@@ -21,20 +21,26 @@ const Nav = (props) => {
 
   return (
     <>
-    <div className="nav">
-      <Link to="/home">
-      <i className="fas fa-home"></i>
-      <FontAwesomeIcon icon={faHome} style={{color:'white'}} size="4x"/>
-        <Typography className="nav-title leafy" variant='h2' style={{fontFamily: 'leafy'}}> The Green Neighbor</Typography>
-      </Link>
-      <div className="nav-right">
-        {/* Always show this link since the about page is not protected */}
-        <a className="nav-link" target="_blank"  href='https://www.greenneighborchallenge.com/about/'>About</a>
-        {props.store.user.id &&
-        <a className="nav-link" target="_blank" onClick={() => props.dispatch({ type: 'LOGOUT' })}>Logout</a>
-        }
+      <div className="nav">
+        <Link to="/home">
+          <i className="fas fa-home"></i>
+          <FontAwesomeIcon icon={faHome} style={{ color: 'white' }} size="4x" />
+          <Typography className="nav-title leafy" variant='h2' style={{ fontFamily: 'leafy' }}> The Green Neighbor</Typography>
+        </Link>
+        <div className="nav-right">
+          {props.store.user.id &&
+            <Link to="/admin_home" className="nav-link" target="_blank">Admin Home</Link>
+          }
+          {/* Always show this link since the about page is not protected */}
+          <a className="nav-link" target="_blank" href='https://www.greenneighborchallenge.com/about/'>About</a>
+          {props.store.user.id &&
+            <a className="nav-link" target="_blank" onClick={() => props.dispatch({ type: 'LOGOUT' })}>Logout</a>
+          }
+          {props.store.user.id &&
+            <Link to="/registration" className="nav-link" target="_blank">Register</Link>
+          }
         </div>
-    </div>
+      </div>
     </>
   );
 };
