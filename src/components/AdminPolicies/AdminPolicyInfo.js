@@ -66,13 +66,13 @@ class AdminPolicyInfo extends Component {
                 {
                     label: 'Yes',
                     onClick: () => {
-                        alert('Policy Deleted.');
+                        ''
                         this.handleDelete();
                     }
                 },
                 {
                     label: 'No',
-                    onClick: () => alert('Nothing Deleted.')
+                    onClick: () => ''
                 }
             ]
         });

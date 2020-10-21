@@ -79,7 +79,7 @@ class AdminPolicies extends Component {
     this.setState({
       addPolicy: false
     })
-    console.log(this.state)
+    
     //goes to Admin Form sagas
     this.props.dispatch({ type: 'NEW_POLICY_LANGUAGE', payload: this.state })
   }
