@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
-// import mapStoreToProps from '../../redux/mapStoreToProps';
 import { connect } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
 

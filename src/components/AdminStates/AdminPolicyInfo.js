@@ -15,7 +15,6 @@ function AdminPolicyInfo({ dispatch, store, stateInfo }) {
     const onSubmit = (data) => {
         //add the state id to data to send over to the server
         const newData = { ...data, id: stateInfo.id }
-        console.log(newData)
         //goes to statePolicy saga
         dispatch({ type: 'UPDATE_POLICY_INFO', payload: newData })
         //clear the inputs

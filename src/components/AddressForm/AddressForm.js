@@ -8,7 +8,7 @@ import {
     MenuItem, InputLabel, Card, IconButton, makeStyles
 } from '@material-ui/core';
 import Stepper from '../Stepper/Stepper'
-import { CustomButton } from '../PickReps/RepButtons'
+// import { CustomButton } from '../PickReps/RepButtons'
 
 
 const useStyles = makeStyles({
@@ -21,7 +21,7 @@ const useStyles = makeStyles({
     card: {
         textAlign: 'center',
         width: '48em',
-        minHeight: '35em',
+        minHeight: '33em',
         maxHeight: '42em',
         padding: '1em',
         backgroundColor: 'rgb(255,255,255, .85)',
@@ -58,7 +58,7 @@ const useStyles = makeStyles({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: '-1em'
+        margin: '0 0 -1em 0'
     },
     title: {
         fontSize: 48,
@@ -113,7 +113,6 @@ const AddressForm = ({ dispatch, history, states }) => {
 
     const directBack = () => {
         history.push('/letterBuilder')
-        // dispatch({type: 'DELETE_BODY'})
     }
 
     return (
@@ -156,10 +155,10 @@ const AddressForm = ({ dispatch, history, states }) => {
                         </section>
                         <FormHelperText error={errorState} className={helpText}> {helperText} </FormHelperText>
                         <section className={signup}>
-                            <CustomButton variant="outlined" >
+                            {/* <CustomButton variant="outlined" >
                                 Sign Up for our News Letter!
                                     <Checkbox size="small" inputProps={{ 'aria-label': 'email signup check box' }} />
-                            </CustomButton>
+                            </CustomButton> */}
                         </section>
                         <section className={cardActions}>
                             <div className={stepper}>

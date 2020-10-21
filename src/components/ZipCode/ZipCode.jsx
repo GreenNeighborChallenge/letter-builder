@@ -93,7 +93,6 @@ const ZipCode = ({ dispatch, store, history, location }) => {
             dispatch({ type: 'SEND_ZIP', payload: zip })
             dispatch({type: 'DELETE_BODY'})
             setHelperText('')
-            // console.log(zip)
         } 
     }
 
@@ -101,7 +100,6 @@ const ZipCode = ({ dispatch, store, history, location }) => {
         history.push('/letterBuilder')
     }
 
-    // http://localhost:3001/#/home?zipCode=55406
     return (
         <>
             <div className={classes.container}>

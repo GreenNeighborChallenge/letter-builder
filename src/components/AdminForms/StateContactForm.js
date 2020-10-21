@@ -24,7 +24,6 @@ class StateContactForm extends Component {
     //this will add a blank object to state, which will
     //allow another input to be rendered
     addSseo = () => {
-        console.log(this.state.sseo)
         this.setState({
             ...this.state,
             sseo: [
@@ -37,7 +36,6 @@ class StateContactForm extends Component {
                 email: ''}
             ]
         })
-        console.log(this.state.sseo)
     }
 
     handleGradeChange =(event) => {
@@ -57,40 +55,35 @@ class StateContactForm extends Component {
         this.setState({
             puc: event.target.value
         })
-        console.log(this.state.puc)
     }
 
     handleDoc = (event) => {
         this.setState({
             doc: event.target.value
         })
-        console.log(this.state.doc)
     }
 
     handleNameChange = (event, id) => {
         //will go through state.sseo to find the one we need to change 
         const nameIndex = this.state.sseo.findIndex(name => name.id === id)
-        console.log(nameIndex)
         let nameToChange = [...this.state.sseo]
         //replacing the empty string in state with the input
         nameToChange[nameIndex] = {...nameToChange[nameIndex], name: event.target.value}
         this.setState({
             sseo: nameToChange
         })
-        console.log(this.state.sseo)
     }
 
     handleEmailChange = (event, id) => {
         //will go through state.sseo to find the one we need to change
         const emailIndex = this.state.sseo.findIndex(email => email.id === id)
-        console.log(emailIndex)
+    
         let emailToChange = [...this.state.sseo]
         //replacing the empty string in state with the input
         emailToChange[emailIndex] = {...emailToChange[emailIndex], email: event.target.value}
         this.setState({
             sseo: emailToChange
         })
-        console.log(this.state)
     }  
 
     handleCountChange = (event) => {
@@ -106,7 +99,6 @@ class StateContactForm extends Component {
     }
 
     handleSave = (event) => {
-        console.log(this.state)
         //goes to Admin Form saga
         this.props.dispatch ({ type: "SET_CONTACT_INFO", payload: this.state })
     }
@@ -114,7 +106,6 @@ class StateContactForm extends Component {
     render() {
         return (
             <div>
-                
                 <h1>State Information</h1>
                 <br />
                 State Grade: 

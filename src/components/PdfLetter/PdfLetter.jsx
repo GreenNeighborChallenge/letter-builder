@@ -80,12 +80,12 @@ const PdfView = ({ letter, history }) => {
                         <Page size="A4" style={styles.page} >
                             <View style={styles.section}>
 
-                                <Text>{introArray[0] + 
-                                '\n' + 
-                                '\n'}</Text>
+                                <Text>{introArray[0] +
+                                    '\n' +
+                                    '\n'}</Text>
 
-                                <Text> {letter.intro.length > 0 ? introArray[1] + '\n' 
-                                + '\n' : ''}</Text>
+                                <Text> {letter.intro.length > 0 ? introArray[1] + '\n'
+                                    + '\n' : ''}</Text>
                                 {letter &&
                                     <Text> {letter.body}</Text>}
                                 <Text> {letter.conclusion}</Text>
@@ -108,6 +108,4 @@ const mapStoreToProps = (reduxState) => {
     };
 };
 
-
-// export default PdfLetter;
 export default withRouter(connect(mapStoreToProps)(PdfView));
