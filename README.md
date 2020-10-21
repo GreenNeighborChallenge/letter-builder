@@ -6,7 +6,7 @@ On the admin side, Green Neighbor staff can edit and update all of the data that
 
 ## Built With
 
-Javascript, React, Node.js, Express.js, Google Geocoding API, Google Civic API, PostgreSQL, Material-UI, HTML5, CSS, Passport
+Javascript, React, Node.js, Express.js, Google Geocoding API, Google Civic API, PostgreSQL, Material-UI, HTML5, CSS, Passport, react-custom-share, Font Awesome, @react-pdf/renderer
 
 ## Screenshots
 

@@ -12,7 +12,6 @@ import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
-import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import LoginPage from '../LoginPage/LoginPage';
@@ -49,12 +48,6 @@ class App extends Component {
               <Redirect exact from="/" to="/home" />
 
               {/* Visiting localhost:3000/about will show the about page. */}
-              <Route
-                // shows AboutPage at all times (logged in or not)
-                exact
-                path="/about"
-                component={AboutPage}
-              />
               <Route
                 // shows zip code page
                 exact
@@ -142,7 +135,7 @@ class App extends Component {
                 exact
                 path="/registration"
                 component={RegisterPage}
-                authRedirect="/user"
+                authRedirect="/login"
               />
 
               <ProtectedRoute
