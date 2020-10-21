@@ -9,7 +9,7 @@ const axios = require('axios');
 router.get('/:zip', (req, res) => {
     console.log('in zipRouter')
     console.log(req.params.zip)
-    axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${req.params.zip}&key=${process.env.zip_key}`)
+    axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${req.params.zip}&key=${process.env.API_KEY}`)
         .then(response => {
             // console.log(response.data);
             if (response.data.results[0]) {
