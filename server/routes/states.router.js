@@ -7,7 +7,7 @@ const {
 
 
 router.get('/', (req, res) => {
-    // GET states for address form
+    // GET states for address form 
     let queryText = `SELECT * FROM "state"
                     ORDER BY "state_name";`;
 
