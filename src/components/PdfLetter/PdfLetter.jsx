@@ -8,10 +8,10 @@ import gnIcon from './greenNeighborlogo.png';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { IconButton, Card, Typography } from '@material-ui/core'
 
-Font.register({
-    family: 'Roboto',
-    src: "http://fonts.gstatic.com/s/roboto/v15/dtpHsbgPEm2lVWciJZ0P-A.ttf",
-});
+// Font.register({
+//     family: 'Roboto',
+//     src: "http://fonts.gstatic.com/s/roboto/v15/dtpHsbgPEm2lVWciJZ0P-A.ttf",
+// });
 
 const styles = StyleSheet.create({
     page: {
