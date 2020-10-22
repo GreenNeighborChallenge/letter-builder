@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         padding: '10px 10px 0em 10px',
         flexGrow: 1,
         fontSize: 14,
-        fontFamily: 'Roboto',
+        // fontFamily: 'Roboto',
     },
     body: {
         padding: '1em',
