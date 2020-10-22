@@ -14,6 +14,7 @@ if (process.env.DATABASE_URL) {
     password: auth[1],
     host: params.hostname,
     port: params.port,
+    connectionString: process.env.DATABASE_URL,
     database: params.pathname.split('/')[1],
     ssl: { rejectUnauthorized: false },
     max: 10, // max number of clients in the pool
