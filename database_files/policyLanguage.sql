@@ -8,7 +8,7 @@ CREATE TABLE "policy_language" (
 ) WITH (
   OIDS=FALSE
 );
-[AllowHtml]
+
 
 INSERT INTO policy_language (id, policy_id, short_info, long_info, petition_info) VALUES (1, 1, 'Climate Action Plans are state- city- or region-wide plans to reduce greenhouse gas emissions and increase resilience. They usually include emissions reduction targets and steps to reach those goals through energy efficiency, land use, green energy, and transportation.', 
 'This is the longer Climate Action Plan info text for the pop-up. To be changed, content copied here to show approximate length. Climate Action Plans are state- city- or region-wide plans to reduce greenhouse gas emissions and increase resilience. They usually include emissions reduction targets and steps to reach those goals through energy efficiency, land use, green energy, and transportation.
