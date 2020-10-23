@@ -94,7 +94,7 @@ class AdminPolicyInfo extends Component {
                     <>
                         <td><input defaultValue={this.state.policyName} onChange={this.handleNameChange} className="inputs"></input></td>
                         <td><textarea defaultValue={this.state.short_info} onChange={this.handleShortChange} className="inputs"></textarea></td>
-                        <td><textarea defaultValue={this.state.long_info} onChange={this.handleLongChange} className="inputs"></textarea></td>
+                        <td><textarea defaultValue={this.state.long_info} onChange={this.handleLongChange} className="inputs" input-type="text/html"></textarea></td>
                         <td><textarea defaultValue={this.state.petition_info} onChange={this.handlePetitionChange} className="inputs"></textarea></td>
                         <td>
                             <Button onClick={this.handleSave} variant="outlined" className="prettyBtn">save</Button>
